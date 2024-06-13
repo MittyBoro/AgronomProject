@@ -10,15 +10,16 @@
   "printWidth": 80,
   "overrides": [
     {
-      "files": ["*.blade.php"],
-      "options": {
-        "parser": "blade"
-      }
-    },
-    {
       "files": ["*.php"],
       "options": {
         "tabWidth": 4
+      }
+    },
+    {
+      "files": ["*.blade.php"],
+      "options": {
+        "tabWidth": 2,
+        "parser": "blade"
       }
     }
   ]

@@ -1,0 +1,57 @@
+:root {
+  --swiper-theme-color: $primary-alt;
+}
+img.swiper-lazy:not(.swiper-lazy-loaded) {
+  opacity: 0;
+}
+.sw-arrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 61px;
+  width: 61px;
+  cursor: pointer;
+  color: $secondary;
+  background: #fff2f0;
+  border: 1.5px solid #d6d6d6;
+  border-top-width: 2.5px;
+  border-bottom-width: 2.5px;
+  border-radius: 50%;
+  transition:
+    border 0.2s,
+    color 0.2s,
+    opacity 0.2s;
+  z-index: 5;
+  user-select: none;
+  img {
+    visibility: hidden;
+  }
+  &:hover {
+    border-color: $primary;
+  }
+}
+.sw-prev {
+  transform: scaleX(-1);
+}
+.swiper-button-disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+body {
+  .lg-backdrop {
+    background: #2b2626cc;
+    backdrop-filter: blur(2.5px);
+  }
+  .lg-outer .lg-thumb-outer {
+    background: transparent;
+  }
+  .lg-outer .lg-thumb-item {
+    border-color: #fff2f033;
+  }
+  .lg-outer .lg-thumb-item.active,
+  .lg-outer .lg-thumb-item:hover {
+    border-color: $primary-alt;
+  }
+}
