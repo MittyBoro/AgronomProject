@@ -1,0 +1,258 @@
+@use 'sass:math';
+/*
+  ********************
+  * Lark.sass v3.3
+  * Description: CSS reset and adaptive layout
+  * Author: Dima Boro
+  * LastUpd: 20.09.2022
+  *********************/
+
+:root {
+  --padding-side: 15px;
+  --content-width: calc(100vw - 10px);
+  --body-width: calc(100vw - var(--scrollbar-width));
+  --side-width: calc((var(--body-width) - var(--content-width) + 30px) / 2);
+  --scrollbar-width: 17px;
+}
+$mediaWidth: (
+  375px 365px 'sm',
+  768px 740px 'md',
+  992px 960px 'lg',
+  1270px 1110px 'xl'
+);
+
+*::selection {
+  background: #333;
+  color: #fff;
+}
+
+body,
+html {
+  scroll-behavior: smooth;
+}
+html {
+  touch-action: manipulation;
+  overflow-x: hidden;
+  &.noscroll {
+    overflow: hidden !important;
+    padding-right: var(--scrollbar-width);
+  }
+}
+[class*='-box'] {
+  position: relative;
+}
+// ------- Reset Styles -------
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  box-sizing: border-box;
+}
+input,
+textarea,
+select,
+pre,
+blockquote,
+button {
+  font: inherit;
+  background: transparent;
+}
+input {
+  appearance: none;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  &[type='number'] {
+    appearance: textfield;
+  }
+}
+textarea {
+  resize: none;
+}
+\:focus {
+  outline: 0;
+}
+[hidden] {
+  display: none;
+}
+[draggable='false'] {
+  user-select: none;
+}
+img {
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+img,
+svg {
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font: inherit;
+}
+a {
+  color: currentColor;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+button {
+  cursor: pointer;
+}
+p,
+.p {
+  &:not(:last-child) {
+    margin-bottom: 1.45em;
+  }
+}
+.preload * {
+  transition: none !important;
+}
+
+.tal {
+  text-align: left;
+}
+.tac {
+  text-align: center;
+}
+.tar {
+  text-align: right;
+}
+img.to-svg {
+  opacity: 0;
+}
+.cover-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grid-12,
+.grid-6,
+.grid-4,
+.grid-3,
+.grid-2,
+.grid {
+  display: grid;
+  gap: 40px;
+}
+.grid-12 {
+  grid-template-columns: repeat(12, 1fr);
+}
+.grid-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.col-full {
+  grid-column: 1 / -1;
+}
+
+// ------- Flex-grid -------
+.row {
+  padding-left: var(--padding-side);
+  padding-right: var(--padding-side);
+}
+.container,
+.container-full {
+  position: relative;
+  padding-left: var(--padding-side);
+  padding-right: var(--padding-side);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.container {
+  max-width: var(--content-width);
+}
+
+@each $screenW, $containerW, $name in $mediaWidth {
+  @media (min-width: #{$screenW}) {
+    :root {
+      --screen-name: #{$name};
+      --content-width: #{$containerW};
+    }
+    .hidden-#{$name} {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: calc( $screenW - 0.01px)) {
+    .visible-#{$name} {
+      display: none !important;
+    }
+  }
+}
+
+// ------- Sizing -------
+.w-100 {
+  width: 100% !important;
+}
+.w-50 {
+  width: 50% !important;
+}
+.w-25 {
+  width: 25% !important;
+}
+.w-0 {
+  width: 0 !important;
+}
+.w-auto {
+  width: auto !important;
+}
+
+// tabs
+[tabs-here] {
+  [data-tab-name] {
+    &:not(.tab-active) {
+      cursor: pointer;
+    }
+  }
+  [data-tab-content] {
+    &:not(.tab-active) {
+      display: none;
+    }
+  }
+}
+.rotating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  &.rotate {
+    transform: rotate(180deg);
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

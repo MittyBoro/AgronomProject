@@ -1,0 +1,35 @@
+:root {
+  // main colors
+  --green: #63b555;
+  --light-green: #76c768;
+  --yellow: #ffad33;
+  --white: #fff;
+  --light-gray: #f8f8f8;
+  --dark-gray: #272727;
+  --black: #000;
+  --red: #db4444;
+
+  // elements
+  --bg: var(--white);
+  --light-bg: var(--gray);
+  --dark-bg: var(--black);
+
+  --text: var(--black);
+  --text-alt: var(--black);
+
+  --btn: var(--green);
+  --btn-hover: var(--light-green);
+  --btn-text: var(--white);
+
+  --link: var(--green);
+  --link-hover: var(--light-green);
+
+  --scrollbar-width: 15px;
+  --sale: var(--red);
+
+  --primary: var(--green);
+  --primary-alt: var(--light-green);
+
+  --font: 'Roboto', sans-serif;
+  --font-size: 16px;
+}
