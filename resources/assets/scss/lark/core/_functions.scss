@@ -1,0 +1,12 @@
+@function convert-rgba($color, $alpha) {
+  $red: red($color);
+  $green: green($color);
+  $blue: blue($color);
+  $alpha: round($alpha * 100); // Convert alpha to percentage and round it
+
+  @return rgba($red, $green, $blue, $alpha / 100);
+}
+
+@function letter-spacing($photoshop-value) {
+  @return calc($photoshop-value / 1000em);
+}

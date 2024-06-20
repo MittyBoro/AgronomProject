@@ -1,35 +1,33 @@
 :root {
   // main colors
   --green: #63b555;
-  --light-green: #76c768;
   --yellow: #ffad33;
   --white: #fff;
   --light-gray: #f8f8f8;
+  --gray: #838383;
   --dark-gray: #272727;
   --black: #000;
   --red: #db4444;
 
-  // elements
-  --bg: var(--white);
-  --light-bg: var(--gray);
-  --dark-bg: var(--black);
-
-  --text: var(--black);
-  --text-alt: var(--black);
-
-  --btn: var(--green);
-  --btn-hover: var(--light-green);
-  --btn-text: var(--white);
-
-  --link: var(--green);
-  --link-hover: var(--light-green);
-
-  --scrollbar-width: 15px;
-  --sale: var(--red);
-
-  --primary: var(--green);
-  --primary-alt: var(--light-green);
-
-  --font: 'Roboto', sans-serif;
+  --font-family: 'Roboto', sans-serif;
   --font-size: 16px;
+
+  --primary-color: #63b555;
+  --secondary-color: #4b9e3c;
+  --accent-color: #db4444;
+  --star-color: #ffad33;
+  --border-color: #e0e0e0;
+  --text-color: #000;
+
+  --back-color: #ffffff;
+  --card-color: #f5f5f5; // фон для карточек
+  --footer-color: #272727; // фон в футере
+  --footer-text-color: #e1e1e1; // цвет текста в футере
+
+  --padding-side: 15px;
+  --gap: 30px;
+  --scrollbar-width: 12px;
+  --content-width: calc(100vw - var(--padding-side) * 2);
+
+  --padding-top: 140px;
 }

@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-x);
+  padding-right: var(--container-padding-x);
+}
+
+@each $breakpoint, $container-max-width in $container-max-widths {
+  @include media-breakpoint-up($breakpoint, $breakpoints) {
+    .container {
+      max-width: $container-max-width;
+    }
+  }
+}

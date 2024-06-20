@@ -1,0 +1,32 @@
+/**
+  Overridden styles
+*/
+
+$grid-columns: 12;
+
+$breakpoints: (
+  xs: 0,
+  sm: 450px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+$container-max-widths: (
+  sm: 440px,
+  md: 720px,
+  lg: 960px,
+  xl: 1170px,
+);
+
+$transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-duration: var(--duration);
+$transition-duration-alt: var(--duration-alt);
+
+$transition-property-none: none;
+$transition-property-all: all;
+$transition-property-colors: color, background-color, border-color,
+  text-decoration-color, fill, stroke;
+$transition-property-opacity: opacity, visibility;
+$transition-property-shadow: box-shadow;
+$transition-property-transform: transform;

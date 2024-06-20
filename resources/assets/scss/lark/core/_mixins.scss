@@ -1,0 +1,23 @@
+@mixin letter-spacing($photoshop-value) {
+  letter-spacing: math.div($photoshop-value, 1000) + em;
+}
+
+@mixin text-gradient($linear-gradient) {
+  background: linear-gradient(#{$linear-gradient});
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+    src:
+      local($font-family),
+      url('#{$file-path}.woff2') format('woff2'),
+      url('#{$file-path}.woff') format('woff');
+  }
+  //       src: url('#{$file-path}.eot');
+} //       src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'), url('#{$file-path}.woff') format('woff'), url('#{$file-path}.ttf') format('truetype')

@@ -1,6 +1,8 @@
 @use 'sass:math';
 
-@import 'core/mixins';
+@import 'lark/core';
+@import 'lark/reset';
+@import 'lark/style';
 
 $primary: #e8bab4;
 $primary-alt: #dea19a;
@@ -11,31 +13,32 @@ $body-color-alt: #858585;
 
 $red: #c96f6f;
 
-@import 'core/lark';
-
-@import 'core/fonts';
-@import 'core/animations';
-
 @import 'root';
 
-@import 'elements/layout';
-@import 'elements/buttons';
+@import 'elements/fonts';
+@import 'elements/main';
 @import 'elements/forms';
 @import 'elements/range';
 @import 'elements/plugins';
-@import 'elements/typography';
-@import 'elements/social';
+
+@import 'elements/categories';
+@import 'elements/products';
+@import 'elements/reviews';
 
 // @import 'elements/popups';
 
+@import 'pages/0_layout';
 @import 'pages/1_home';
-// @import 'pages/2_catalog';
-// @import 'pages/3_product';
-// @import 'pages/4_cart';
-// @import 'pages/5_checkout';
-// @import 'pages/6_page';
-// @import 'pages/7_faq';
-// @import 'pages/8_reviews';
+@import 'pages/2_catalog';
+@import 'pages/3_single-product';
+@import 'pages/4_cart';
+@import 'pages/5_order';
+@import 'pages/6_wishlist'; // wishlist
+@import 'pages/7_bonuses';
+@import 'pages/8_articles';
+@import 'pages/9_about';
+@import 'pages/10_page';
+@import 'pages/11_callback';
 
 @import 'media/s_1200';
 @import 'media/s_992';

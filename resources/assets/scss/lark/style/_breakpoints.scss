@@ -1,0 +1,6 @@
+:root {
+  @each $breakpoint in map-keys($breakpoints) {
+    $min: breakpoint-min($breakpoint, $breakpoints);
+    --#{$breakpoint}: #{if($min == null, 0, $min)};
+  }
+}

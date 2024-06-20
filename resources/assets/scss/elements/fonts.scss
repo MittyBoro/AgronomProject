@@ -1,0 +1,7 @@
+$font-family: 'Roboto';
+$font-folder: '../fonts/';
+
+@include font-face($font-family, $font-folder + 'Roboto-Bold', 700);
+@include font-face($font-family, $font-folder + 'Roboto-Medium', 500);
+@include font-face($font-family, $font-folder + 'Roboto-Regular', 400);
+@include font-face($font-family, $font-folder + 'Roboto-Light', 300);

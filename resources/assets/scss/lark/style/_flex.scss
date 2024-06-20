@@ -1,0 +1,31 @@
+.items {
+  &-center {
+    align-items: center;
+  }
+  &-start {
+    align-items: flex-start;
+  }
+  &-end {
+    align-items: flex-end;
+  }
+  &-stretch {
+    align-items: stretch;
+  }
+  &-baseline {
+    align-items: baseline;
+  }
+}
+.justify {
+  &-center {
+    justify-content: center;
+  }
+  &-start {
+    justify-content: start;
+  }
+  &-end {
+    justify-content: end;
+  }
+  &-stretch {
+    justify-content: stretch;
+  }
+}

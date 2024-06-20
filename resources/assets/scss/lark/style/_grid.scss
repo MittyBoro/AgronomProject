@@ -1,0 +1,41 @@
+@each $breakpoint in map-keys($breakpoints) {
+  $infix: breakpoint-infix($breakpoint, $breakpoints);
+  @include media-breakpoint-up($breakpoint, $breakpoints) {
+    @for $i from 0 through $grid-columns {
+      $infix-int: if($i == 0, '', '-#{$i}');
+
+      .grid#{$infix}#{$infix-int} {
+        display: grid;
+
+        grid-template-columns: repeat(if($i == 0, $grid-columns, $i), 1fr);
+        gap: var(--gap);
+      }
+    }
+  }
+}
+
+@each $breakpoint in map-keys($breakpoints) {
+  $infix: breakpoint-infix($breakpoint, $breakpoints);
+  @include media-breakpoint-up($breakpoint, $breakpoints) {
+    .grid-col#{$infix}-full {
+      grid-column: 1 / -1;
+    }
+    @if $grid-columns > 0 {
+      @for $i from 0 through $grid-columns {
+        $infix-int: if($i == 0, '', '-#{$i}');
+        .grid-col#{$infix}#{$infix-int} {
+          grid-column: auto / span if($i == 0, 1, $i);
+        }
+      }
+
+      @for $i from 1 through ($grid-columns - 1) {
+        .grid-col-start#{$infix}-#{$i} {
+          grid-column-start: $i;
+        }
+      }
+    }
+    .grid-col#{$infix}-full {
+      grid-column: 1 / -1;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+img,
+svg {
+  user-select: none;
+}
+
+.object {
+  &-cover,
+  &-contain {
+    &,
+    & img {
+      position: absolute;
+      object-position: 50% 50%;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &-cover,
+  &-cover img {
+    object-fit: cover;
+  }
+
+  &-contain,
+  &-contain img {
+    object-fit: contain;
+  }
+}

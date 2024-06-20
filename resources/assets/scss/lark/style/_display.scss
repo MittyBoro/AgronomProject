@@ -1,0 +1,43 @@
+@each $breakpoint in map-keys($breakpoints) {
+  $infix: breakpoint-infix($breakpoint, $breakpoints);
+  @include media-breakpoint-down($breakpoint, $breakpoints) {
+    .visible-#{$breakpoint} {
+      display: none !important;
+    }
+  }
+  @include media-breakpoint-up($breakpoint, $breakpoints) {
+    .hidden-#{$breakpoint} {
+      display: none !important;
+    }
+  }
+}
+
+.display {
+  &-block {
+    display: block;
+  }
+  &-inline {
+    display: inline;
+  }
+  &-inline-block {
+    display: inline-block;
+  }
+  &-none {
+    display: none;
+  }
+  &-flex {
+    display: flex;
+  }
+  &-grid {
+    display: grid;
+  }
+  &-inline-flex {
+    display: inline-flex;
+  }
+  &-inline-grid {
+    display: inline-grid;
+  }
+  &-table {
+    display: table;
+  }
+}

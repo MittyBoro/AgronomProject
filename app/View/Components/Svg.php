@@ -21,7 +21,7 @@ class Svg extends Component
      */
     public function render(): View|Closure|string
     {
-        $publicPath = resource_path('front/' . $this->src);
+        $publicPath = resource_path('assets/' . $this->src);
 
         // Create the dom document as per the other answers
         $svg = new \DOMDocument();

@@ -47,21 +47,134 @@
       {{-- <x-admin-bar :page="$page ?? null" :item="$item ?? null" /> --}}
     @endauth
 
-    <main class="wrapper">
-      <header class="header-box">
-        <nav class="container">
-          <a href="/" class="logo">
-            <img src="{{ asset('images/logo.svg') }}" alt="" />
-          </a>
+    {{-- header --}}
+    <header class="header">
+      <div class="header__container container">
+        <a href="#" class="header__logo">
+          <img
+            src="{{ vite_asset('images/logo-big.svg') }}"
+            alt="АгрономСити"
+            class="header__logo-image"
+          />
+        </a>
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link link">О нас</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link link">Доставка</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link link">Оплата</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link link">Поддержка</a>
+            </li>
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link link">Контакты</a>
+            </li>
+          </ul>
         </nav>
-      </header>
+        <div class="header__search form-input">
+          <input
+            type="text"
+            class="header__search-input"
+            placeholder="Что вы ищете?"
+          />
+          <x-icon src="icons/search.svg" class="header__search-icon link" />
+        </div>
+        <div class="header__icons">
+          <a href="#" class="header__icon link">
+            <x-icon src="icons/heart.svg" />
+          </a>
+          <a href="#" class="header__icon link">
+            <x-icon src="icons/cart.svg" />
+          </a>
+          <a href="#" class="header__icon link">
+            <x-icon src="icons/user.svg" />
+          </a>
+        </div>
+      </div>
+    </header>
 
+    {{-- main content --}}
+    <main class="main">
       {{ $slot }}
-
-      <footer class="footer-box">
-        <div class="container"></div>
-      </footer>
     </main>
+
+    {{-- footer --}}
+    <footer class="footer">
+      <div class="footer__container container">
+        <div class="footer__line"></div>
+        <div class="footer__logo">
+          <img
+            src="{{ vite_asset('images/logo.svg') }}"
+            alt="АгрономСити"
+            class="footer__logo-image"
+          />
+          <div class="footer__description">
+            <p>Lorem ipsum dolor sit amet consectetur. Commodo aliquam</p>
+            <p>{{ config('app.name') }} © {{ date('Y') }}</p>
+          </div>
+        </div>
+        <div class="footer__links">
+          <h3 class="footer__links-title">Аккаунт</h3>
+          <ul class="footer__links-list">
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Профиль</a>
+            </li>
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Корзина</a>
+            </li>
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Избранное</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h3 class="footer__links-title">Товары</h3>
+          <ul class="footer__links-list">
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Новинки</a>
+            </li>
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Популярные</a>
+            </li>
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Скидки</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h3 class="footer__links-title">Компания</h3>
+          <ul class="footer__links-list">
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">О нас</a>
+            </li>
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Доставка</a>
+            </li>
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Оплата</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h3 class="footer__links-title">Информация</h3>
+          <ul class="footer__links-list">
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">Связаться с нами</a>
+            </li>
+            <li class="footer__links-item">
+              <a href="#" class="footer__links-link link">
+                Политика конфиденциальности
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 
     {!! $body ?? '' !!}
   </body>

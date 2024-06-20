@@ -1,0 +1,30 @@
+.about__container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 30px;
+  align-items: center;
+}
+
+.about__title {
+  margin-bottom: 25px;
+}
+
+.about__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 411px;
+  background: var(--card-color);
+  grid-column: span 5;
+  img {
+    max-width: 290px;
+  }
+}
+.about__text {
+  grid-column: 7 / -1;
+}
+
+.about__button {
+  margin-top: 24px;
+}

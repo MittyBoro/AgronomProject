@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea,
+select,
+pre,
+blockquote,
+button {
+  font: inherit;
+  background: transparent;
+}
+
+input {
+  appearance: none;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    appearance: textfield;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+:focus {
+  outline: 0;
+}
+
+[hidden] {
+  display: none;
+}
+
+[draggable='false'] {
+  user-select: none;
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+
+img,
+svg {
+  pointer-events: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font: inherit;
+}
+
+a {
+  color: currentColor;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+:root {
+  --scrollbar-width: 17px;
+  @include media-breakpoint-down(md) {
+    --scrollbar-width: 0;
+  }
+}

@@ -1,0 +1,34 @@
+.reviews__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: var(--gap);
+
+  @include media-breakpoint-up(xl) {
+    --gap: 40px;
+  }
+}
+
+.review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 32px;
+  background: var(--card-color);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.review__name {
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.review__text {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.review__rating {
+  margin: 0 auto;
+}

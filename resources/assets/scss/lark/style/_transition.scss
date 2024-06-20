@@ -1,0 +1,46 @@
+.transition-none {
+  transition-property: $transition-property-none;
+  transition-timing-function: $transition-timing-function;
+  transition-duration: $transition-duration;
+}
+
+.transition-all {
+  transition-property: $transition-property-all;
+  transition-timing-function: $transition-timing-function;
+  transition-duration: $transition-duration;
+}
+
+.transition {
+  transition-property: $transition-property-colors, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-timing-function: $transition-timing-function;
+  transition-duration: $transition-duration;
+}
+
+.transition-colors {
+  transition-property: $transition-property-colors;
+  transition-timing-function: $transition-timing-function;
+  transition-duration: $transition-duration;
+}
+
+.transition-opacity {
+  transition-property: $transition-property-opacity;
+  transition-timing-function: $transition-timing-function;
+  transition-duration: $transition-duration;
+}
+
+.transition-shadow {
+  transition-property: $transition-property-shadow;
+  transition-timing-function: $transition-timing-function;
+  transition-duration: $transition-duration;
+}
+
+.transition-transform {
+  transition-property: $transition-property-transform;
+  transition-timing-function: $transition-timing-function;
+  transition-duration: $transition-duration;
+}
+
+.duration-alt {
+  transition-duration: $transition-duration-alt;
+}
