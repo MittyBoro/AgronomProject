@@ -1,0 +1,25 @@
+.catalog-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 1px;
+  min-height: 1px;
+  padding: 18.28% 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.catalog-banner__text {
+  position: absolute;
+  left: 64px;
+  color: var(--white);
+}
+.catalog-banner__title {
+  margin-bottom: 20px;
+  max-width: 350px;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.25;
+}

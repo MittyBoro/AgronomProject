@@ -339,3 +339,20 @@ strong {
   font-weight: 700;
   line-height: 1;
 }
+
+// ********************
+// ******* Breadcrumb *******
+
+.breadcrumbs {
+  margin: 50px 0 80px;
+}
+.breadcrumbs__container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.breadcrumbs__item {
+  &:not(:last-child):not(:hover) {
+    opacity: 0.5;
+  }
+}

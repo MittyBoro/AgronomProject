@@ -1,6 +1,6 @@
 // **********************
 .page-home {
-  --padding-top: 120px;
+  --section-margin-top: 120px;
 }
 
 // ******* muzzle *******
@@ -43,12 +43,12 @@
 
 // ******* About *******
 .about__section {
-  padding-top: var(--padding-top);
+  section-margin-top: var(--section-margin-top);
 }
 
 // ******* Popular *******
 .popular {
-  padding-top: var(--padding-top);
+  section-margin-top: var(--section-margin-top);
 }
 .popular__button {
   max-height: 52px;
@@ -56,20 +56,20 @@
 
 // ******* Categories *******
 .categories {
-  padding-top: var(--padding-top);
+  section-margin-top: var(--section-margin-top);
 }
 
 // ******* Promotions *******
 .promotions {
-  padding-top: var(--padding-top);
+  section-margin-top: var(--section-margin-top);
 }
 
 // ******* Articles *******
 .articles {
-  padding-top: var(--padding-top);
+  section-margin-top: var(--section-margin-top);
 }
 
 // ******* Reviews *******
 .reviews {
-  padding-top: var(--padding-top);
+  section-margin-top: var(--section-margin-top);
 }

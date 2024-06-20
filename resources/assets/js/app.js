@@ -4,4 +4,6 @@ import './libs/imgToSvg'
 
 // import './alpine/app'
 
+import './swiper'
+
 import.meta.glob('../images/**/**', { query: '?url' })

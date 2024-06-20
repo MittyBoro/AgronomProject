@@ -1,0 +1,33 @@
+.special-offers__container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  gap: var(--gap);
+  @include media-breakpoint-up(xl) {
+    --gap: 60px;
+  }
+}
+
+.catalog-sidebar {
+  width: 100%;
+  max-width: 217px;
+}
+
+.catalog-banner__slider {
+  min-width: 1px;
+}
+
+.catalog-sidebar__categories {
+  display: grid;
+  gap: 19px;
+}
+
+.catalog__section {
+  margin-top: var(--section-margin-top);
+}
+
+.catalog__pagination {
+  margin-top: 20px;
+  text-align: center;
+  grid-column: 1 / -1;
+}

@@ -4,7 +4,7 @@
   grid-gap: var(--gap);
 
   @include media-breakpoint-up(xl) {
-    --gap: 40px;
+    --gap: 60px 40px;
   }
 }
 

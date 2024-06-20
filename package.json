@@ -13,5 +13,8 @@
     "prettier-plugin-blade": "^2.1.16",
     "sass": "^1.77.6",
     "vite": "^5.3"
+  },
+  "dependencies": {
+    "swiper": "^11.1.4"
   }
 }
