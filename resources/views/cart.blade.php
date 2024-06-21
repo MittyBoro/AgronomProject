@@ -1,7 +1,7 @@
 <x-layouts.main body_name="cart">
   <x-breadcrumbs :list="[['Корзина', null]]" />
 
-  {{--  --}}
+  {{-- cart --}}
   <section class="cart cart__section">
     <div class="cart__container container">
       <table class="cart__table">
@@ -58,24 +58,16 @@
         <a href="/catalog" class="button button-alt cart__back-button">
           Вернуться в каталог
         </a>
-        <div class="cart__promo">
-          <input
-            type="text"
-            class="cart__promo-input button button-input"
-            placeholder="Введите промокод"
-          />
-          <button class="cart__promo-button button">Применить</button>
-        </div>
-      </div>
 
-      <div class="cart__summary">
-        <div>
-          <span class="cart__summary-label">Сумма:</span>
-          <span class="cart__summary-value">300₽</span>
+        <div class="cart__summary">
+          <div>
+            <span class="cart__summary-label">Сумма:</span>
+            <span class="cart__summary-value">300₽</span>
+          </div>
+          <a href="/order" class="button cart__checkout-button">
+            Перейти к оформлению
+          </a>
         </div>
-        <button class="button cart__checkout-button">
-          Перейти к оформлению
-        </button>
       </div>
     </div>
   </section>

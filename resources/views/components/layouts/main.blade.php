@@ -76,7 +76,7 @@
             </li>
           </ul>
         </nav>
-        <div class="header__search form-input">
+        <div class="header__search field-input">
           <input
             type="text"
             class="header__search-input"

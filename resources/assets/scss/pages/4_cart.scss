@@ -42,19 +42,16 @@
   display: flex;
   justify-content: space-between;
   gap: var(--gap);
-  margin: 50px 0 80px;
-  .button {
-    max-height: 52px;
-  }
+  margin-top: 50px;
 }
-.cart__promo {
-  display: flex;
-  gap: 16px;
-}
-.cart__promo-input {
-  width: 300px;
-  max-width: 100%;
-}
+// .cart__promo {
+//   display: flex;
+//   gap: 16px;
+// }
+// .cart__promo-input {
+//   width: 300px;
+//   max-width: 100%;
+// }
 
 .cart__summary {
   display: flex;
