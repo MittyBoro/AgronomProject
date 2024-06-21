@@ -200,15 +200,15 @@
 
         <div class="order__submit">
           <button class="order__submit-button button">Оформить заказ</button>
-          <div class="order__policy field-label">
+          <div class="order__privacy field-label">
             <input
               type="checkbox"
-              id="policy"
-              class="order__policy-checkbox field-checkbox"
+              id="privacy"
+              class="order__privacy-checkbox field-checkbox"
             />
-            <label for="policy" class="order__policy-checkbox-label">
+            <label for="privacy" class="order__privacy-checkbox-label">
               Нажимая эту кнопку я соглашаюсь с
-              <a href="#" class="link underline">
+              <a href="/privacy" class="link underline">
                 Политикой конфиденциальности
               </a>
             </label>
