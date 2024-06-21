@@ -1,75 +1,75 @@
 // **********************
 .page-home {
   --section-margin-top: 120px;
-}
 
-// ******* muzzle *******
-.muzzle__content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  min-height: 700px;
-  background: var(--dark-gray);
-  &:hover {
-    .muzzle__image {
-      opacity: 0.8;
+  // ******* muzzle *******
+  .muzzle__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 700px;
+    background: var(--dark-gray);
+    &:hover {
+      .muzzle__image {
+        opacity: 0.8;
+      }
     }
   }
-}
-.muzzle__image {
-  transition: opacity 0.15s;
-}
-.muzzle__text {
-  margin: auto;
-  padding: 50px 70px;
-  max-width: 766px;
-  text-align: center;
-}
+  .muzzle__image {
+    transition: opacity 0.15s;
+  }
+  .muzzle__text {
+    margin: auto;
+    padding: 50px 70px;
+    max-width: 766px;
+    text-align: center;
+  }
 
-.muzzle__title {
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
+  .muzzle__title {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
 
-.muzzle__description {
-  font-size: 18px;
-  line-height: calc(26 / 18);
-  margin-bottom: 20px;
-}
+  .muzzle__description {
+    font-size: 18px;
+    line-height: calc(26 / 18);
+    margin-bottom: 20px;
+  }
 
-// ******* About *******
-.about__section {
-  padding-top: var(--section-margin-top);
-}
+  // ******* About *******
+  .about__section {
+    padding-top: var(--section-margin-top);
+  }
 
-// ******* Popular *******
-.popular {
-  padding-top: var(--section-margin-top);
-}
-.popular__button {
-  max-height: 52px;
-}
+  // ******* Popular *******
+  .popular {
+    padding-top: var(--section-margin-top);
+  }
+  .popular__button {
+    max-height: 52px;
+  }
 
-// ******* Categories *******
-.categories {
-  padding-top: var(--section-margin-top);
-}
+  // ******* Categories *******
+  .categories {
+    padding-top: var(--section-margin-top);
+  }
 
-// ******* Promotions *******
-.promotions {
-  padding-top: var(--section-margin-top);
-}
+  // ******* Promotions *******
+  .promotions {
+    padding-top: var(--section-margin-top);
+  }
 
-// ******* Articles *******
-.articles {
-  padding-top: var(--section-margin-top);
-}
+  // ******* Articles *******
+  .articles {
+    padding-top: var(--section-margin-top);
+  }
 
-// ******* Reviews *******
-.reviews {
-  padding-top: var(--section-margin-top);
+  // ******* Reviews *******
+  .reviews {
+    padding-top: var(--section-margin-top);
+  }
 }

@@ -1,0 +1,76 @@
+.loyalty__features {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.loyalty__title {
+  max-width: 600px;
+}
+
+.loyalty__features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  @include media-breakpoint-up(xl) {
+    --gap: 40px;
+  }
+}
+
+.loyalty__feature {
+  padding: 33px 20px;
+  border-radius: 4px;
+  border: 2px solid var(--primary-color);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.loyalty__feature-icon {
+  background-color: var(--primary-color);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 15px;
+  font-size: 36px;
+  color: #fff;
+}
+
+.loyalty__system {
+  margin-top: 80px;
+}
+
+.loyalty__levels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: calc(var(--gap) * 1.25) var(--gap);
+  @include media-breakpoint-up(xl) {
+    --gap: 40px;
+  }
+}
+
+.loyalty__level-percent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 48px;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+}
+
+.loyalty__level-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.loyalty__level-description {
+  max-width: 170px;
+}
