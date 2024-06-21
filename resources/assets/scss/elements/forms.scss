@@ -14,8 +14,12 @@ select {
   &::placeholder {
     color: #7a7a7a;
   }
+  &:focus {
+    border-color: var(--primary-color);
+  }
   &.invalid {
-    color: #e37a74;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
     &.valid::-webkit-calendar-picker-indicator {
       opacity: 1;
     }

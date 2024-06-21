@@ -87,7 +87,7 @@
 .product__volume--button {
   padding: 0 9px;
   font-size: 14px;
-  &.button-alt {
+  &.button-alt:not(:hover) {
     border-color: var(--gray);
     color: var(--gray);
   }
@@ -120,26 +120,25 @@
   display: flex;
   align-items: center;
 }
-.product__button--quality:first-child {
+.product__button--minus {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.product__button--quality:nth-child(2) {
+.product__button--input {
   padding: 0;
   width: 80px;
   border-left: none;
   border-right: none;
   font-size: 20px;
+  text-align: center;
   font-weight: 500;
   border-radius: 0;
-  cursor: default;
 }
-.product__button--quality:last-child {
+.product__button--plus {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-.product__button--quality:first-child,
-.product__button--quality:last-child {
+.product__button--quantity {
   padding: 0 8px;
   font-size: 24px;
 }

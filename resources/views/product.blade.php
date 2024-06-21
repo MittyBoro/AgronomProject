@@ -53,18 +53,30 @@
         </div>
         <div class="product__actions">
           <div class="product__quantity">
-            <button class="button button-alt product__button--quality">
+            <div
+              class="button button-alt product__button product__button--quantity product__button--minus"
+            >
               <x-icon src="icons/minus.svg" />
-            </button>
-            <button class="button button-alt product__button--quality readonly">
-              <span>2</span>
-            </button>
-            <button class="button button-alt product__button--quality">
+            </div>
+            <input
+              class="button button-input product__button product__button--quantity product__button--input"
+              value="2"
+              type="number"
+              min="1"
+              max="999"
+            />
+            <div
+              class="button button-alt product__button--quantity product__button--plus"
+            >
               <x-icon src="icons/plus.svg" />
-            </button>
+            </div>
           </div>
-          <button class="button product__button--cart">В корзину</button>
-          <button class="button button-alt product__button--favorite">
+          <button class="button product__button product__button--cart">
+            В корзину
+          </button>
+          <button
+            class="button button-alt product__button product__button--favorite"
+          >
             <x-icon src="icons/heart.svg" />
           </button>
         </div>

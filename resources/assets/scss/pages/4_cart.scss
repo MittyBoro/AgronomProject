@@ -1,0 +1,69 @@
+.cart__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 var(--gap);
+  margin: calc(var(--gap) * -1) 0;
+
+  @include media-breakpoint-up(xl) {
+    --gap: 40px;
+  }
+}
+
+.cart__table tr {
+  box-shadow: var(--box-shadow);
+}
+.cart__table td,
+.cart__table th {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 24px 40px;
+  span {
+    vertical-align: middle;
+  }
+}
+
+.cart__item-image {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  background: var(--card-color);
+  border-radius: 4px;
+}
+.cart__item-quantity--button {
+  max-height: 36px;
+  max-width: 45px;
+  font-size: 14px;
+}
+
+.cart__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap);
+  margin: 50px 0 80px;
+  .button {
+    max-height: 52px;
+  }
+}
+.cart__promo {
+  display: flex;
+  gap: 16px;
+}
+.cart__promo-input {
+  width: 300px;
+  max-width: 100%;
+}
+
+.cart__summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 700px;
+  margin-left: auto;
+  gap: var(--gap);
+  font-size: 27px;
+  line-height: 1;
+  font-weight: 500;
+}
