@@ -23,7 +23,7 @@ $red: #c96f6f;
 
 @import 'elements/banners';
 @import 'elements/categories';
-@import 'elements/products';
+@import 'elements/products-card';
 @import 'elements/reviews';
 
 // @import 'elements/popups';
@@ -31,7 +31,7 @@ $red: #c96f6f;
 @import 'pages/0_layout';
 @import 'pages/1_home';
 @import 'pages/2_catalog';
-@import 'pages/3_single-product';
+@import 'pages/3_product';
 @import 'pages/4_cart';
 @import 'pages/5_order';
 @import 'pages/6_wishlist'; // wishlist

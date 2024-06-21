@@ -50,7 +50,7 @@
     {{-- header --}}
     <header class="header">
       <div class="header__container container">
-        <a href="#" class="header__logo">
+        <a href="/" class="header__logo">
           <img
             src="{{ vite_asset('images/logo-big.svg') }}"
             alt="АгрономСити"
@@ -60,19 +60,19 @@
         <nav class="header__nav">
           <ul class="header__nav-list">
             <li class="header__nav-item">
-              <a href="#" class="header__nav-link link">О нас</a>
+              <a href="/about" class="header__nav-link link">О нас</a>
             </li>
             <li class="header__nav-item">
-              <a href="#" class="header__nav-link link">Доставка</a>
+              <a href="/delivery" class="header__nav-link link">Доставка</a>
             </li>
             <li class="header__nav-item">
-              <a href="#" class="header__nav-link link">Оплата</a>
+              <a href="/payment" class="header__nav-link link">Оплата</a>
             </li>
             <li class="header__nav-item">
-              <a href="#" class="header__nav-link link">Поддержка</a>
+              <a href="/support" class="header__nav-link link">Поддержка</a>
             </li>
             <li class="header__nav-item">
-              <a href="#" class="header__nav-link link">Контакты</a>
+              <a href="/contacts" class="header__nav-link link">Контакты</a>
             </li>
           </ul>
         </nav>
@@ -85,13 +85,13 @@
           <x-icon src="icons/search.svg" class="header__search-icon link" />
         </div>
         <div class="header__icons">
-          <a href="#" class="header__icon link">
+          <a href="/wishlist" class="header__icon link">
             <x-icon src="icons/heart.svg" />
           </a>
-          <a href="#" class="header__icon link">
+          <a href="/cart" class="header__icon link">
             <x-icon src="icons/cart.svg" />
           </a>
-          <a href="#" class="header__icon link">
+          <a href="/my" class="header__icon link">
             <x-icon src="icons/user.svg" />
           </a>
         </div>

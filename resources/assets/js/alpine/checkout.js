@@ -4,10 +4,10 @@ import cart from './cart'
 export default () => ({
   ...cart($page.checkout_list),
   subTotal: $page.subTotal,
-  shipping: $page.shipping || 0,
+  delivery: $page.delivery || 0,
 
   get total() {
-    return this.subTotal + this.shipping
+    return this.subTotal + this.delivery
   },
 
   loading: false,
