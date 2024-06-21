@@ -255,8 +255,14 @@ strong {
 
 .pagination {
   display: flex;
-  margin-top: 46px;
-  margin-bottom: 6px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  text-align: center;
+  grid-column: 1 / -1;
+  width: 100%;
+}
+.pagination {
   li {
     margin: 0 6px;
     letter-spacing: 0.05em;

@@ -34,7 +34,7 @@
           <x-products.card />
         @endforeach
 
-        <div class="catalog__pagination">
+        <div class="catalog__pagination pagination">
           <div class="button">Показать больше</div>
         </div>
       </div>
