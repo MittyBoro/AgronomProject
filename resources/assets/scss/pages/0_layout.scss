@@ -113,3 +113,26 @@
   list-style: none;
   padding: 0;
 }
+
+.to_top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 46px;
+  height: 46px;
+  background: var(--card-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  transform: rotate(90deg);
+  transition:
+    opacity 0.15s,
+    visibility 0.15s;
+  &:not(.active) {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

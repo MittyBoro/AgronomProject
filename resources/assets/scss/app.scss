@@ -4,21 +4,11 @@
 @import 'lark/reset';
 @import 'lark/style';
 
-$primary: #e8bab4;
-$primary-alt: #dea19a;
-$secondary: #cacc9c;
-$secondary-alt: #8d9041;
-$body-color: #3f3f3f;
-$body-color-alt: #858585;
-
-$red: #c96f6f;
-
 @import 'root';
 
 @import 'elements/fonts';
 @import 'elements/main';
 @import 'elements/forms';
-@import 'elements/range';
 @import 'elements/plugins';
 
 @import 'elements/banners';
@@ -41,7 +31,7 @@ $red: #c96f6f;
 @import 'pages/10_page';
 @import 'pages/11_contacts';
 
-@import 'media/s_1200';
-@import 'media/s_992';
-@import 'media/s_768';
-@import 'media/s_576';
+// @import 'media/s_1200';
+// @import 'media/s_992';
+// @import 'media/s_768';
+// @import 'media/s_576';
