@@ -1,6 +1,6 @@
 <x-layouts.main body_name="favorites">
   <x-breadcrumbs
-    :list="[['Личный кабинет', '/account'], ['Избранное', null]]"
+    :list="[['Мой профиль', '/account-index'], ['Избранное', null]]"
   />
 
   {{-- favorites --}}

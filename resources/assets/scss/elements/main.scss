@@ -390,7 +390,6 @@ strong {
 
 // ********************
 // ******* Breadcrumb *******
-
 .breadcrumbs {
   margin: 50px 0 80px;
 }
@@ -403,4 +402,32 @@ strong {
   &:not(:last-child):not(:hover) {
     opacity: 0.5;
   }
+}
+
+// ***********************
+// ******* Sidebar *******
+.sidebar {
+  max-width: 100%;
+  width: 217px;
+}
+.sidebar__list {
+  display: grid;
+  gap: 18px;
+}
+
+// **************************
+// ******* Badge *******
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: -0.5em 0;
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+  font-size: 0.8em;
+  line-height: 1;
+  font-weight: 700;
+  background: var(--card-color);
+  color: var(--gray);
 }

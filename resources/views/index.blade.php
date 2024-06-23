@@ -16,7 +16,7 @@
             Lorem ipsum dolor sit amet consectetur. Commodo aliquam quam netus
             augue. Pouere egestas mattis fames orci malesuada.
           </p>
-          <a href="#" class="button muzzle__button">Перейти в каталог</a>
+          <a href="/catalog" class="button muzzle__button">Перейти в каталог</a>
         </div>
       </div>
     </div>

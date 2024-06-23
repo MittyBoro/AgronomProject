@@ -85,13 +85,13 @@
           <x-icon src="icons/search.svg" class="header__search-icon link" />
         </div>
         <div class="header__icons">
-          <a href="/wishlist" class="header__icon link">
+          <a href="/account-favorites" class="header__icon link">
             <x-icon src="icons/heart.svg" />
           </a>
           <a href="/cart" class="header__icon link">
             <x-icon src="icons/cart.svg" />
           </a>
-          <a href="/my" class="header__icon link">
+          <a href="/account-index" class="header__icon link">
             <x-icon src="icons/user.svg" />
           </a>
         </div>

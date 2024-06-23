@@ -4,3 +4,124 @@
 // my_wishlist — product data
 // my_loyalty — loyalty data
 // my_reviews — review data
+
+// ************************
+// ***** Account layout ***
+.account__container {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: var(--gap);
+  @include media-breakpoint-up(xl) {
+    --gap: 60px;
+  }
+}
+
+.account__title {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.account-sidebar__list {
+  font-weight: 500;
+  .active {
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+}
+
+// *************************
+// ***** Account loyalty ***
+
+.account__loyalty {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 var(--gap);
+  @include media-breakpoint-up(xl) {
+    --gap: 60px;
+  }
+}
+
+.account-card__link {
+  margin-top: 10px;
+  color: var(--gray);
+  font-size: 12px;
+}
+
+.account__loyalty-progress {
+  margin: auto 0;
+  text-align: center;
+  span {
+    white-space: nowrap;
+  }
+}
+.account__loyalty-progress-title {
+  font-weight: 700;
+}
+.account__loyalty-progress-bar {
+  margin: 10px 0;
+  width: 100%;
+  height: 13px;
+  background: var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  &::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: var(--progress);
+    background: var(--primary-color);
+    opacity: 0.9;
+    border-radius: 2em;
+  }
+}
+
+// ***********
+.account-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3em;
+  padding: 4em 4em;
+  max-width: 50em;
+  width: 100%;
+  font-size: 8px;
+  aspect-ratio: 1.59 / 1;
+  background: var(--card-color);
+  box-shadow: var(--box-shadow);
+  border-radius: 4px;
+}
+.account-card__logo {
+  width: 90%;
+  margin-bottom: auto;
+  filter: saturate(0.75);
+}
+.account-card__logo-text {
+  font-size: 1.405em;
+  letter-spacing: 0.1em;
+  margin-top: -1em;
+  font-weight: 300;
+  text-transform: uppercase;
+  opacity: 0.75;
+  user-select: none;
+  text-align: right;
+}
+
+.account-card__number {
+  margin-left: auto;
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  opacity: 0.5;
+  line-height: 1;
+}
+
+.account-card__count-value {
+  font-size: 3.84em;
+  font-weight: 700;
+  line-height: 1;
+}
+.account-card__count-label {
+  font-size: 1.5em;
+  line-height: 1;
+}

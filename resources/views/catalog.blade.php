@@ -3,8 +3,8 @@
 
   <section class="special-offers">
     <div class="container special-offers__container">
-      <aside class="catalog-sidebar">
-        <ul class="catalog-sidebar__categories">
+      <aside class="catalog-sidebar sidebar">
+        <ul class="catalog-sidebar__list sidebar__list">
           <li><a href="#" class="link">Основная категория 1</a></li>
           <li><a href="#" class="link">Основная категория 2</a></li>
           <li><a href="#" class="link">Категория 3</a></li>
