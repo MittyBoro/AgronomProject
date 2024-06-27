@@ -7,8 +7,8 @@
       <div class="checkout__title title">Оформление заказа</div>
 
       <form class="checkout__form">
-        <div class="checkout__form-group">
-          <label for="name" class="checkout__form-label">
+        <div class="checkout__form-group field-group">
+          <label for="name" class="checkout__form-label field-label">
             Фамилия Имя Отчество *
           </label>
           <input
@@ -19,8 +19,10 @@
           />
         </div>
 
-        <div class="checkout__form-group">
-          <label for="email" class="checkout__form-label">E-mail</label>
+        <div class="checkout__form-group field-group">
+          <label for="email" class="checkout__form-label field-label">
+            E-mail
+          </label>
           <input
             type="email"
             id="email"
@@ -29,8 +31,10 @@
           />
         </div>
 
-        <div class="checkout__form-group">
-          <label for="phone" class="checkout__form-label">Телефон *</label>
+        <div class="checkout__form-group field-group">
+          <label for="phone" class="checkout__form-label field-label">
+            Телефон *
+          </label>
           <input
             type="tel"
             id="phone"
@@ -39,8 +43,8 @@
           />
         </div>
 
-        <div class="checkout__form-group">
-          <label for="postcode" class="checkout__form-label">
+        <div class="checkout__form-group field-group">
+          <label for="postcode" class="checkout__form-label field-label">
             Почтовый индекс
           </label>
           <input
@@ -51,8 +55,8 @@
           />
         </div>
 
-        <div class="checkout__form-group">
-          <label for="city" class="checkout__form-label">
+        <div class="checkout__form-group field-group">
+          <label for="city" class="checkout__form-label field-label">
             Город, Деревня, Область, Район *
           </label>
           <input
@@ -63,8 +67,8 @@
           />
         </div>
 
-        <div class="checkout__form-group">
-          <label for="address" class="checkout__form-label">
+        <div class="checkout__form-group field-group">
+          <label for="address" class="checkout__form-label field-label">
             Адрес доставки (улица, дом)
           </label>
           <textarea
@@ -75,7 +79,7 @@
           ></textarea>
         </div>
 
-        <div class="checkout__form-group field-label">
+        <div class="checkout__form-group field-group field-label">
           <input
             type="checkbox"
             id="save-data"

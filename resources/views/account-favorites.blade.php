@@ -1,27 +1,23 @@
-<x-layouts.main body_name="favorites">
-  <x-breadcrumbs
-    :list="[['Мой профиль', '/account-index'], ['Избранное', null]]"
-  />
-
-  {{-- favorites --}}
-  <section class="favorites favorites__section">
-    <div class="favorites__container container">
-      <div class="favorites__title title">
-        <h1>Избранное (8)</h1>
-        <a href="#" class="button button-alt favorites__button">
+<x-layouts.account name="favorites">
+  {{-- account-favorites --}}
+  <section class="account-favorites">
+    <div class="account-favorites__container container">
+      <div class="account-favorites__title account__title">
+        <div>Избранные товары (8)</div>
+        <a href="#" class="button button-alt account-favorites__button">
           Добавить все в корзину
         </a>
       </div>
-      <div class="favorites__products products__list">
+      <div class="account-favorites__products products__list">
         <!-- Promotion Items -->
         @foreach (range(1, 8) as $product)
           <x-products.card />
         @endforeach
 
-        <div class="favorites__pagination pagination">
+        <div class="account-favorites__pagination pagination">
           <div class="button">Показать больше</div>
         </div>
       </div>
     </div>
   </section>
-</x-layouts.main>
+</x-layouts.account>

@@ -7,50 +7,47 @@
 
 // ************************
 // ***** Account layout ***
-.account__container {
-  display: grid;
-  grid-template-columns: max-content auto;
-  gap: 60px;
+
+.account {
+  --card-gap: 0.5em 3em;
+}
+.account-header {
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+
+.account-header__container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .account__title {
-  grid-column: 1 / -1;
-  margin-bottom: 0;
-}
-
-.account-sidebar__list {
-  font-weight: 500;
-  .active {
-    font-weight: 700;
-    color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  margin-bottom: 30px;
+  font-size: 1.25em;
+  font-weight: 700;
+  .button {
+    max-height: 52px;
   }
 }
 
-// ***** Account addresses ***
-
-.account-addresses {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--gap);
-}
-
-.account-address {
-  display: grid;
-  gap: 0.75em;
+.account__card {
   border-radius: 4px;
-  padding: 25px;
+  padding: 35px 40px;
   background: var(--card-color);
 }
-.account-addresses__button {
-  grid-column: 1/-1;
-}
-.account-address__info-line {
+
+.account__info-line {
   display: flex;
   justify-content: space-between;
   align-self: baseline;
   font-size: 0.85em;
 }
-.account-address__info-title {
+.account__info-title {
   display: flex;
   align-self: baseline;
   flex-grow: 1;
@@ -61,6 +58,146 @@
     border-bottom: 2px dotted var(--border-color);
   }
 }
+
+.account-header__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 17px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition-duration: 0.15s;
+  transition-property: border-color, background-color, color;
+  &.active {
+    border-color: var(--primary-color);
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+  &:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+  .icon {
+    font-size: 30px;
+    margin-right: 0.25em;
+  }
+  .badge {
+    margin-left: 0.5em;
+  }
+}
+
+// *************************
+// ***** Account index *****
+
+.account-index {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr auto;
+  gap: var(--gap);
+  @include media-breakpoint-up(xl) {
+    --gap: 60px;
+  }
+}
+
+.account-index__greeting {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em 2em;
+  align-items: center;
+  padding: 20px 25px;
+  font-size: 1.25em;
+  grid-column: 1 / -1;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  p {
+    max-width: 756px;
+  }
+}
+
+.account-index__title {
+  margin-bottom: 20px;
+  grid-column: 1 / -1;
+}
+
+.account-index__info {
+  display: grid;
+  gap: 1em;
+}
+
+.account-index__info-line {
+  font-size: inherit;
+}
+
+.account-index__info-button {
+  margin-top: 20px;
+}
+
+.account-index__loyalty-button {
+  margin-top: 20px;
+  width: 100%;
+}
+
+// ************************
+// ***** Account edit *****
+
+.account-edit {
+  max-width: 654px;
+}
+
+.account-edit__form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 30px;
+}
+
+.account-edit__form-title {
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-size: 1.5em;
+}
+
+.account-edit__form-subtitle {
+  border-top: 1px solid var(--border-color);
+  padding-top: 30px;
+  margin: 30px 0 20px;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.account-edit__form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+}
+.account-edit__form-submit {
+  flex-grow: 1;
+}
+
+// *****************************
+// ***** Account favorites *****
+//
+
+// *****************************
+// ***** Account addresses *****
+
+.account-addresses {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+.account-address {
+  display: grid;
+  gap: var(--card-gap);
+}
+.account-addresses__button {
+  grid-column: 1/-1;
+}
 .account-address__info-buttons {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -68,7 +205,8 @@
   margin-top: 10px;
 }
 
-// ***** Account orders ***
+// **************************
+// ***** Account orders *****
 
 .account-orders {
   display: grid;
@@ -78,13 +216,12 @@
 .account-order {
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  background-color: #ffffff;
 }
 
 .account-order__header {
   background-color: var(--light-gray);
   border-bottom: 1px solid var(--border-color);
-  padding: 15px 25px;
+  padding: 25px 35px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -136,39 +273,17 @@
   grid-template-columns: 1fr 1fr;
   align-items: start;
   gap: 2em 3em;
-  padding: 30px 25px;
+  padding: 30px 40px;
 }
 
 .account-order__info {
   display: grid;
-  gap: 0.5em;
+  gap: var(--card-gap);
 }
 
 .account-order__info-header {
   font-weight: 500;
   margin-bottom: 0.5em;
-}
-
-.account-order__info-line {
-  display: flex;
-  justify-content: space-between;
-  align-self: baseline;
-  font-size: 0.85em;
-}
-
-.account-order__info-title {
-  display: flex;
-  align-self: baseline;
-  flex-grow: 1;
-  &::after {
-    content: '';
-    flex-grow: 1;
-    margin: auto 0.8em 0.2em 0.4em;
-    border-bottom: 2px dotted var(--border-color);
-  }
-}
-.account-order__info-text {
-  max-width: 50%;
 }
 
 .account-order__products {
@@ -217,8 +332,18 @@
   }
 }
 
+.account-loyalty__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-loyalty__info-text {
+  padding-bottom: 40px;
+  font-size: 1.25em;
+  text-align: center;
+}
+
 .account-loyalty__progress {
-  margin: auto 0;
   text-align: center;
   span {
     white-space: nowrap;
@@ -228,8 +353,8 @@
   font-weight: 700;
 }
 .account-loyalty__progress-bar {
-  margin: 10px 0;
-  width: 100%;
+  margin: 10px auto;
+  max-width: 500px;
   height: 13px;
   background: var(--border-color);
   border-radius: 8px;
@@ -245,8 +370,13 @@
   }
 }
 
-// ***********
-.account-card {
+// **************************
+// ****** Loyalty card ******
+
+.loyalty-card__wrapper {
+  width: max-content;
+}
+.loyalty-card {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -261,12 +391,12 @@
   box-shadow: var(--box-shadow);
   border-radius: 4px;
 }
-.account-card__logo {
+.loyalty-card__logo {
   width: 90%;
   margin-bottom: auto;
   filter: saturate(0.75);
 }
-.account-card__logo-text {
+.loyalty-card__logo-text {
   font-size: 1.405em;
   letter-spacing: 0.1em;
   margin-top: -1em;
@@ -277,7 +407,7 @@
   text-align: right;
 }
 
-.account-card__number {
+.loyalty-card__number {
   margin-left: auto;
   font-size: 2.2em;
   font-weight: 700;
@@ -286,18 +416,19 @@
   line-height: 1;
 }
 
-.account-card__count-value {
+.loyalty-card__count-value {
   font-size: 3.84em;
   font-weight: 700;
   line-height: 1;
 }
-.account-card__count-label {
+.loyalty-card__count-label {
   font-size: 1.5em;
   line-height: 1;
 }
 
-.account-card__link {
+.loyalty-card__link {
   margin-top: 10px;
   color: var(--gray);
   font-size: 12px;
+  text-align: center;
 }

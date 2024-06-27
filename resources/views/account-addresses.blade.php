@@ -1,12 +1,7 @@
-<x-layouts.account>
-  <x-slot:top>
-    <x-breadcrumbs
-      :list="[['Мой профиль', 'account-index'], ['Адреса', null]]"
-    />
-  </x-slot>
+<x-layouts.account name="addresses">
   <div class="account-addresses">
     @foreach (range(1, 3) as $item)
-      <x-addresses.card :item="$item" />
+      <x-account.address :item="$item" />
     @endforeach
 
     <div class="account-addresses__button button button-alt">

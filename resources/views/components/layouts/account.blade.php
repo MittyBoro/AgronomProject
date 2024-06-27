@@ -1,45 +1,52 @@
-@props([
-  'top',
-  'bottom',
-])
 <x-layouts.main body_name="account">
-  {{--  --}}
-  {{ $top ?? '' }}
-
   {{-- account --}}
-  <section class="account account__section">
-    <div class="account__container container">
-      <aside class="account-sidebar sidebar">
-        <ul class="account-sidebar__list sidebar__list">
-          <li @class(['active' => $attributes['name'] === 'index'])>
-            <a href="/account-index" class="link">Мой профиль</a>
-          </li>
-          <li @class(['active' => $attributes['name'] === 'favorites'])>
-            <a href="/account-favorites" class="link">
-              Избранное
-              <span class="badge">8</span>
-            </a>
-          </li>
-          <li @class(['active' => $attributes['name'] === 'orders'])>
-            <a href="/account-orders" class="link">История заказов</a>
-          </li>
-          <li @class(['active' => $attributes['name'] === 'addresses'])>
-            <a href="/account-addresses" class="link">Адреса</a>
-          </li>
-          <li @class(['active' => $attributes['name'] === 'loyalty'])>
-            <a href="/account-loyalty" class="link">
-              Бонусы
-              <span class="badge">12</span>
-            </a>
-          </li>
-        </ul>
-      </aside>
-      <div class="account__content">
-        {{ $slot }}
-      </div>
+  <section class="account-header account-header__section account">
+    <div class="account-header__container container">
+      <a
+        href="/account-index"
+        @class(['account-header__link', 'active' => $attributes['name'] === 'index'])
+      >
+        <x-icon src="icons/user.svg" />
+        <span>Личный кабинет</span>
+      </a>
+      <a
+        href="/account-favorites"
+        @class(['account-header__link', 'active' => $attributes['name'] === 'favorites'])
+      >
+        <x-icon src="icons/heart.svg" />
+        <span>Избранное</span>
+        <span class="badge">8</span>
+      </a>
+      <a
+        href="/account-orders"
+        @class(['account-header__link', 'active' => $attributes['name'] === 'orders'])
+      >
+        <x-icon src="icons/list.svg" />
+        <span>История заказов</span>
+      </a>
+      <a
+        href="/account-addresses"
+        @class(['account-header__link', 'active' => $attributes['name'] === 'addresses'])
+      >
+        <x-icon src="icons/location.svg" />
+        <span>Адреса</span>
+      </a>
+      <a
+        href="/account-loyalty"
+        @class(['account-header__link', 'active' => $attributes['name'] === 'loyalty'])
+      >
+        <x-icon src="icons/card.svg" />
+        <span>Бонусы</span>
+        <span class="badge">12</span>
+      </a>
     </div>
   </section>
 
-  {{--  --}}
+  <section class="account-body account-body__section account">
+    <div class="container">
+      {{ $slot }}
+    </div>
+  </section>
+
   {{ $bottom ?? '' }}
 </x-layouts.main>
