@@ -29,35 +29,166 @@
   }
 }
 
+// ***** Account orders ***
+
+.account-orders {
+  display: grid;
+  gap: var(--gap);
+}
+
+.account-order {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.account-order__header {
+  background-color: var(--light-gray);
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75em;
+  cursor: pointer;
+}
+
+.account-order__date {
+  margin-right: auto;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+.account-order__number,
+.account-order__status {
+  font-weight: 500;
+}
+.account-order__status {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+.account-order__status-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gray);
+}
+.account-order__status--success {
+  background: var(--success-color);
+}
+.account-order__status--pending {
+  background: var(--warning-color);
+}
+.account-order__arrow {
+  position: relative;
+  top: 1px;
+  font-size: 10px;
+  transform: rotate(90deg);
+  &.active {
+    transform: rotate(270deg);
+  }
+}
+
+.account-order__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 2em 3em;
+  padding: 30px 25px;
+}
+
+.account-order__info {
+  display: grid;
+  gap: 0.5em;
+}
+
+.account-order__info-header {
+  font-weight: 500;
+  margin-bottom: 0.5em;
+}
+
+.account-order__info-line {
+  display: flex;
+  justify-content: space-between;
+  align-self: baseline;
+  font-size: 0.85em;
+}
+
+.account-order__info-title {
+  display: flex;
+  align-self: baseline;
+  flex-grow: 1;
+  &::after {
+    content: '';
+    flex-grow: 1;
+    margin: auto 0.8em 0.2em 0.4em;
+    border-bottom: 2px dotted var(--border-color);
+  }
+}
+.account-order__info-text {
+  max-width: 50%;
+}
+
+.account-order__products {
+  display: grid;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+  grid-column: 1 / -1;
+}
+
+.account-order__product {
+  padding: 15px 25px;
+  margin: 0 -25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75em;
+  &:nth-child(even) {
+    background: #aaa1;
+  }
+}
+
+.account-order__product-name {
+  font-weight: 500;
+}
+.account-order__product-option {
+  font-size: 0.85em;
+}
+.account-order__product-price {
+  margin: auto;
+  opacity: 0.75;
+}
+
 // *************************
 // ***** Account loyalty ***
 
-.account__loyalty {
+.account-loyalty {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0 var(--gap);
   @include media-breakpoint-up(xl) {
     --gap: 60px;
   }
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 40px;
+  }
 }
 
-.account-card__link {
-  margin-top: 10px;
-  color: var(--gray);
-  font-size: 12px;
-}
-
-.account__loyalty-progress {
+.account-loyalty__progress {
   margin: auto 0;
   text-align: center;
   span {
     white-space: nowrap;
   }
 }
-.account__loyalty-progress-title {
+.account-loyalty__progress-title {
   font-weight: 700;
 }
-.account__loyalty-progress-bar {
+.account-loyalty__progress-bar {
   margin: 10px 0;
   width: 100%;
   height: 13px;
@@ -124,4 +255,10 @@
 .account-card__count-label {
   font-size: 1.5em;
   line-height: 1;
+}
+
+.account-card__link {
+  margin-top: 10px;
+  color: var(--gray);
+  font-size: 12px;
 }

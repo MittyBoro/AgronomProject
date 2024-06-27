@@ -4,7 +4,7 @@
       :list="[['Мой профиль', '/account-index'], ['Бонусы', null]]"
     />
   </x-slot>
-  <div class="account__loyalty">
+  <div class="account-loyalty">
     {{-- account-card --}}
     <div class="account-card__container">
       <div class="account-card">
@@ -28,9 +28,9 @@
       </div>
     </div>
 
-    <div class="account__loyalty-progress">
-      <div class="account__loyalty-progress-title">1 уровень</div>
-      <div class="account__loyalty-progress-bar" style="--progress: 30%"></div>
+    <div class="account-loyalty__progress">
+      <div class="account-loyalty__progress-title">1 уровень</div>
+      <div class="account-loyalty__progress-bar" style="--progress: 30%"></div>
       <div>
         До повышения уровня осталось
         <span>15 000 ₽</span>

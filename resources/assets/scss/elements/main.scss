@@ -155,20 +155,16 @@ html {
 // ******* Icons *******
 
 .icon {
-  align-items: center;
-  display: inline-flex;
-  height: 1em;
-  justify-content: center;
-  vertical-align: middle;
-  width: 1em;
-  background-color: currentColor;
   display: inline-block;
+  height: 1em;
+  width: 1em;
   -webkit-mask-image: var(--icon);
   mask-image: var(--icon);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
+  background-color: currentColor;
   vertical-align: middle;
 }
 
