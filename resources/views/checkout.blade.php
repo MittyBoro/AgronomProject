@@ -8,48 +8,32 @@
 
       <form class="checkout__form">
         <div class="checkout__form-group">
-          <label for="first_name" class="checkout__form-label">
-            Имя получателя *
+          <label for="name" class="checkout__form-label">
+            Фамилия Имя Отчество *
           </label>
           <input
             type="text"
-            id="first_name"
+            id="name"
             class="checkout__form-input field-input"
             required
           />
         </div>
 
         <div class="checkout__form-group">
-          <label for="last_name" class="checkout__form-label">
-            Фамилия получателя *
-          </label>
+          <label for="email" class="checkout__form-label">E-mail</label>
           <input
-            type="text"
-            id="last_name"
+            type="email"
+            id="email"
             class="checkout__form-input field-input"
             required
           />
         </div>
 
         <div class="checkout__form-group">
-          <label for="address" class="checkout__form-label">
-            Город, улица *
-          </label>
+          <label for="phone" class="checkout__form-label">Телефон *</label>
           <input
-            type="text"
-            id="address"
-            class="checkout__form-input field-input"
-            required
-          />
-        </div>
-
-        <div class="checkout__form-group">
-          <label for="house" class="checkout__form-label">
-            Дом, этаж, квартира *
-          </label>
-          <input
-            type="text"
-            id="house"
+            type="tel"
+            id="phone"
             class="checkout__form-input field-input"
             required
           />
@@ -57,7 +41,7 @@
 
         <div class="checkout__form-group">
           <label for="postcode" class="checkout__form-label">
-            Почтовый индекс *
+            Почтовый индекс
           </label>
           <input
             type="text"
@@ -65,6 +49,30 @@
             class="checkout__form-input field-input"
             required
           />
+        </div>
+
+        <div class="checkout__form-group">
+          <label for="city" class="checkout__form-label">
+            Город, Деревня, Область, Район *
+          </label>
+          <input
+            type="text"
+            id="city"
+            class="checkout__form-input field-input"
+            required
+          />
+        </div>
+
+        <div class="checkout__form-group">
+          <label for="address" class="checkout__form-label">
+            Адрес доставки (улица, дом)
+          </label>
+          <textarea
+            id="address"
+            class="checkout__form-input field-textarea"
+            required
+            rows="3"
+          ></textarea>
         </div>
 
         <div class="checkout__form-group field-label">

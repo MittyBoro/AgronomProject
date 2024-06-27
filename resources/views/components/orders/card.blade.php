@@ -49,7 +49,7 @@
         <div class="account-order__info-text">+7 (999) 999-99-99</div>
       </div>
       <div class="account-order__info-line">
-        <div class="account-order__info-title">Email:</div>
+        <div class="account-order__info-title">E-mail:</div>
         <div class="account-order__info-text">JkFkA@example.com</div>
       </div>
       <div class="account-order__info-line">

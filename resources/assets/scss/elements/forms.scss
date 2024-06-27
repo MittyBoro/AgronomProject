@@ -30,6 +30,10 @@
   padding-bottom: 1em;
   min-height: 50px;
   height: auto;
+  &::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+  }
 }
 
 .field-label {

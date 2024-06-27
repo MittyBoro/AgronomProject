@@ -10,10 +10,7 @@
 .account__container {
   display: grid;
   grid-template-columns: max-content auto;
-  gap: var(--gap);
-  @include media-breakpoint-up(xl) {
-    --gap: 60px;
-  }
+  gap: 60px;
 }
 
 .account__title {
@@ -27,6 +24,48 @@
     font-weight: 700;
     color: var(--primary-color);
   }
+}
+
+// ***** Account addresses ***
+
+.account-addresses {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+}
+
+.account-address {
+  display: grid;
+  gap: 0.75em;
+  border-radius: 4px;
+  padding: 25px;
+  background: var(--card-color);
+}
+.account-addresses__button {
+  grid-column: 1/-1;
+}
+.account-address__info-line {
+  display: flex;
+  justify-content: space-between;
+  align-self: baseline;
+  font-size: 0.85em;
+}
+.account-address__info-title {
+  display: flex;
+  align-self: baseline;
+  flex-grow: 1;
+  &::after {
+    content: '';
+    flex-grow: 1;
+    margin: auto 0.8em 0.2em 0.4em;
+    border-bottom: 2px dotted var(--border-color);
+  }
+}
+.account-address__info-buttons {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 // ***** Account orders ***
