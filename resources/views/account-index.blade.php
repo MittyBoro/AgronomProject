@@ -15,6 +15,12 @@
       </div>
 
       <div class="account-index__info-line account__info-line">
+        <div class="account-index__info-title account__info-title">
+          Публичное имя
+        </div>
+        <div class="account-index__info-text account__info-text">Иван И.</div>
+      </div>
+      <div class="account-index__info-line account__info-line">
         <div class="account-index__info-title account__info-title">ФИО</div>
         <div class="account-index__info-text account__info-text">
           Иванов Иван Иванович
@@ -58,5 +64,19 @@
         Подробнее
       </a>
     </x-account.loyalty-card>
+
+    {{-- последние заказы --}}
+    <div class="account-index__orders">
+      <div class="account__title">Последние заказы</div>
+      <div class="account-orders">
+        @foreach (range(3, 1) as $item)
+          <x-account.order :item="$item" />
+        @endforeach
+      </div>
+
+      <a href="#" class="account-index__orders-button button button-alt">
+        Посмотреть все
+      </a>
+    </div>
   </div>
 </x-layouts.account>

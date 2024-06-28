@@ -6,82 +6,51 @@
       {{--  --}}
       <div class="account-edit__form-grid">
         {{--  --}}
-        <div class="account-edit__form-group field-group">
-          <label for="last_name" class="account-edit__form-label field-label">
-            Фамилия *
-          </label>
-          <input
-            type="text"
-            id="last_name"
-            class="account-edit__form-input field-input"
-            required
-          />
-        </div>
+        <x-form.input
+          class="account-edit__form"
+          label="E-mail *"
+          type="email"
+          id="email"
+          required
+        />
         {{--  --}}
-        <div class="account-edit__form-group field-group">
-          <label for="first_name" class="account-edit__form-label field-label">
-            Имя *
-          </label>
-          <input
-            type="text"
-            id="first_name"
-            class="account-edit__form-input field-input"
-            required
-          />
-        </div>
-        {{--  --}}
-        <div class="account-edit__form-group field-group">
-          <label for="patronymic" class="account-edit__form-label field-label">
-            Отчество *
-          </label>
-          <input
-            type="text"
-            id="patronymic"
-            class="account-edit__form-input field-input"
-            required
-          />
-        </div>
+        <x-form.input
+          class="account-edit__form"
+          label="Телефон"
+          type="tel"
+          id="phone"
+          required
+        />
 
         {{--  --}}
-        <div class="account-edit__form-group field-group">
-          <label for="birthday" class="account-edit__form-label field-label">
-            Дата рождения *
-          </label>
-          <input
-            type="text"
-            id="birthday"
-            class="account-edit__form-input field-input"
-            required
-          />
-        </div>
-      </div>
-
-      {{--  --}}
-      <div class="account-edit__form-grid">
+        <x-form.input
+          class="account-edit__form"
+          label="Фамилия *"
+          required
+          id="last_name"
+        />
         {{--  --}}
-        <div class="account-edit__form-group field-group">
-          <label for="email" class="account-edit__form-label field-label">
-            E-mail *
-          </label>
-          <input
-            type="email"
-            id="email"
-            class="account-edit__form-input field-input"
-            required
-          />
-        </div>
+        <x-form.input
+          class="account-edit__form"
+          label="Имя *"
+          required
+          id="first_name"
+        />
         {{--  --}}
-        <div class="account-edit__form-group field-group">
-          <label for="phone" class="account-edit__form-label field-label">
-            Телефон
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            class="account-edit__form-input field-input"
-            required
-          />
-        </div>
+        <x-form.input
+          class="account-edit__form"
+          label="Отчество *"
+          required
+          id="patronymic"
+        />
+        {{--  --}}
+        <x-form.input
+          class="account-edit__form"
+          label="Дата рождения *"
+          help="После сохранения дату рождения изменить нельзя"
+          type="date"
+          id="birthday"
+        />
       </div>
 
       {{--  --}}
@@ -90,46 +59,27 @@
       </div>
       {{--  --}}
       <div class="account-edit__form-group field-group">
-        <label
-          for="current_password"
-          class="account-edit__form-label field-label"
-        >
-          Старый пароль
-        </label>
-        <input
+        {{--  --}}
+        <x-form.input
+          class="account-edit__form"
+          label="Старый пароль"
           type="password"
           id="current_password"
-          class="account-edit__form-input field-input"
-          required
         />
-      </div>
-      {{--  --}}
-      <div class="account-edit__form-grid">
-        {{--  --}}
-        <div class="account-edit__form-group field-group">
-          <label for="password" class="account-edit__form-label field-label">
-            Новый пароль
-          </label>
-          <input
+        <div class="account-edit__form-grid">
+          {{--  --}}
+          <x-form.input
+            class="account-edit__form"
+            label="Новый пароль"
             type="password"
             id="password"
-            class="account-edit__form-input field-input"
-            required
           />
-        </div>
-        {{--  --}}
-        <div class="account-edit__form-group field-group">
-          <label
-            for="password_confirmation"
-            class="account-edit__form-label field-label"
-          >
-            Повторите новый пароль
-          </label>
-          <input
-            type="password"
+          {{--  --}}
+          <x-form.input
+            class="account-edit__form"
+            label="Повторите новый пароль"
+            type="password_confirmation"
             id="password_confirmation"
-            class="account-edit__form-input field-input"
-            required
           />
         </div>
       </div>

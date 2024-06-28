@@ -7,88 +7,63 @@
       <div class="checkout__title title">Оформление заказа</div>
 
       <form class="checkout__form">
-        <div class="checkout__form-group field-group">
-          <label for="name" class="checkout__form-label field-label">
-            Фамилия Имя Отчество *
-          </label>
-          <input
-            type="text"
-            id="name"
-            class="checkout__form-input field-input"
-            required
-          />
-        </div>
+        {{--  --}}
+        <x-form.input
+          class="checkout__form"
+          label="Фамилия Имя Отчество *"
+          id="name"
+          required
+        />
+        {{--  --}}
+        <x-form.input
+          class="checkout__form"
+          label="E-mail *"
+          type="email"
+          id="name"
+          required
+        />
+        {{--  --}}
+        <x-form.input
+          class="checkout__form"
+          label="Телефон *"
+          type="tel"
+          id="phone"
+          required
+        />
 
-        <div class="checkout__form-group field-group">
-          <label for="email" class="checkout__form-label field-label">
-            E-mail
-          </label>
-          <input
-            type="email"
-            id="email"
-            class="checkout__form-input field-input"
-            required
-          />
-        </div>
+        {{--  --}}
+        <x-form.input
+          class="checkout__form"
+          label="Почтовый индекс"
+          type="number"
+          id="postcode"
+          required
+        />
 
-        <div class="checkout__form-group field-group">
-          <label for="phone" class="checkout__form-label field-label">
-            Телефон *
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            class="checkout__form-input field-input"
-            required
-          />
-        </div>
+        {{--  --}}
+        <x-form.input
+          class="checkout__form"
+          label="Город, Деревня, Область, Район *"
+          id="area"
+          required
+        />
 
-        <div class="checkout__form-group field-group">
-          <label for="postcode" class="checkout__form-label field-label">
-            Почтовый индекс
-          </label>
-          <input
-            type="text"
-            id="postcode"
-            class="checkout__form-input field-input"
-            required
-          />
-        </div>
+        {{--  --}}
+        <x-form.textarea
+          class="checkout__form"
+          label="Улица, дом (этаж, квартира) *"
+          id="address"
+          rows="3"
+          required
+        />
 
-        <div class="checkout__form-group field-group">
-          <label for="city" class="checkout__form-label field-label">
-            Город, Деревня, Область, Район *
-          </label>
-          <input
-            type="text"
-            id="city"
-            class="checkout__form-input field-input"
-            required
-          />
-        </div>
-
-        <div class="checkout__form-group field-group">
-          <label for="address" class="checkout__form-label field-label">
-            Адрес доставки (улица, дом)
-          </label>
-          <textarea
-            id="address"
-            class="checkout__form-input field-textarea"
-            required
-            rows="3"
-          ></textarea>
-        </div>
-
-        <div class="checkout__form-group field-group field-label">
-          <input
-            type="checkbox"
-            id="save-data"
-            class="checkout__form-checkbox field-checkbox"
-          />
-          <label for="save-data" class="checkout__form-checkbox-label">
-            Сохранить данные для следующего заказа
-          </label>
-        </div>
+        {{--  --}}
+        <x-form.checkbox
+          class="checkout__form"
+          label="Сохранить данные для следующего заказа"
+          id="save-data"
+          required
+        />
       </form>
 
       <div class="checkout__summary">
@@ -168,51 +143,42 @@
         </div>
 
         <div class="checkout__payment-methods">
-          <div class="checkout__payment-method field-label">
-            <input
-              type="radio"
-              id="card"
-              name="payment"
-              class="checkout__payment-radio field-radio"
+          {{--  --}}
+          <x-form.radio
+            class="checkout__payment"
+            id="card"
+            name="payment"
+            required
+          >
+            Банковской картой
+            <img
+              src="{{ vite_asset('images/visa-mastercard-mir.png') }}"
+              alt="Visa MasterCard Mir"
+              class="checkout__payment-icon"
             />
-            <label for="card" class="checkout__payment-label">
-              Банковской картой
-              <img
-                src="{{ vite_asset('images/visa-mastercard-mir.png') }}"
-                alt="Visa MasterCard Mir"
-                class="checkout__payment-icon"
-              />
-            </label>
-          </div>
-          <div class="checkout__payment-method field-label">
-            <input
-              type="radio"
-              id="cash"
-              name="payment"
-              class="checkout__payment-radio field-radio"
-              checked
-            />
-            <label for="cash" class="checkout__payment-label">
-              Наличными при доставке
-            </label>
-          </div>
+          </x-form.radio>
+          {{--  --}}
+          <x-form.radio
+            class="checkout__payment"
+            id="cash"
+            name="payment"
+            1
+            required
+          >
+            Наличными при доставке
+          </x-form.radio>
         </div>
 
         <div class="checkout__submit">
           <button class="checkout__submit-button button">Оформить заказ</button>
-          <div class="checkout__privacy field-label">
-            <input
-              type="checkbox"
-              id="privacy"
-              class="checkout__privacy-checkbox field-checkbox"
-            />
-            <label for="privacy" class="checkout__privacy-checkbox-label">
-              Нажимая эту кнопку я соглашаюсь с
-              <a href="/privacy" class="link underline">
-                Политикой конфиденциальности
-              </a>
-            </label>
-          </div>
+
+          {{--  --}}
+          <x-form.checkbox class="checkout__privacy" id="privacy" required>
+            Нажимая эту кнопку я соглашаюсь с
+            <a href="/privacy" class="link underline">
+              Политикой конфиденциальности
+            </a>
+          </x-form.checkbox>
         </div>
       </div>
     </div>
