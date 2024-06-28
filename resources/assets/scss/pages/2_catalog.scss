@@ -1,15 +1,32 @@
 .special-offers__container {
   display: grid;
   align-items: center;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 217px 1fr;
   gap: var(--gap);
   @include media-breakpoint-up(xl) {
     --gap: 60px;
+  }
+  @include media-breakpoint-down(lg) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.catalog-categories {
+  display: grid;
+  width: 100%;
+  gap: 18px;
+  @include media-breakpoint-down(xl) {
+    gap: 13px;
+  }
+  @include media-breakpoint-down(lg) {
+    display: none;
   }
 }
 
 .catalog-banner__slider {
   min-width: 1px;
+  max-width: 100%;
 }
 
 .catalog__section {

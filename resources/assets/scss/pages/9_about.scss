@@ -3,12 +3,19 @@
   grid-template-columns: 5fr 1fr 6fr;
   gap: 30px;
   align-items: center;
-  &::before {
-    content: '';
-    order: 2;
+
+  @include media-breakpoint-up(lg) {
+    &::before {
+      content: '';
+      order: 2;
+    }
   }
   @include media-breakpoint-down(xl) {
     grid-template-columns: 9fr 1fr 12fr;
+  }
+  @include media-breakpoint-down(lg) {
+    align-items: stretch;
+    grid-template-columns: auto 1fr;
   }
 }
 
@@ -21,11 +28,15 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 411px;
+  aspect-ratio: 464 / 411;
   background: var(--card-color);
   order: 1;
   img {
-    max-width: 290px;
+    max-width: 62.5%;
+  }
+  @include media-breakpoint-down(lg) {
+    aspect-ratio: auto;
+    max-width: 250px;
   }
 }
 .about__text {
@@ -52,8 +63,12 @@
   padding: 33px 20px;
   border-radius: 4px;
   border: 2px solid var(--border-color);
-  line-height: 1.5;
   text-align: center;
+
+  @include media-breakpoint-down(lg) {
+    padding: 20px 15px;
+    font-size: 14px;
+  }
 }
 
 .about__benefit-icon {

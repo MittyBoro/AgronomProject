@@ -6,6 +6,9 @@
   @include media-breakpoint-up(xl) {
     --gap: 60px 40px;
   }
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .products-card {

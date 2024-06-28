@@ -5,6 +5,10 @@
   @include media-breakpoint-down(xl) {
     column-gap: 60px;
   }
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+  }
 }
 
 .checkout__title {
@@ -13,12 +17,10 @@
 
 // *** Form ***
 .checkout__form {
-  width: 100%;
   max-width: 470px;
 }
 
 .checkout__summary {
-  width: 100%;
   max-width: 470px;
   @include media-breakpoint-up(xl) {
     margin-right: 24px;
@@ -60,6 +62,9 @@
   gap: 15px var(--gap);
   margin-top: 30px;
   margin-bottom: 30px;
+  @include media-breakpoint-only(md) {
+    grid-template-columns: 1fr;
+  }
 }
 .checkout__loyalty-button {
   padding: 0 20px;
@@ -115,6 +120,10 @@
   margin: 30px 0;
   .button {
     max-height: 44px;
+  }
+  @include media-breakpoint-only(md) {
+    display: grid;
+    gap: 10px;
   }
 }
 

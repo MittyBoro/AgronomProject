@@ -9,6 +9,10 @@
   border-radius: 4px;
   padding: 35px 40px;
   background: var(--card-color);
+
+  @include media-breakpoint-down(lg) {
+    padding: 25px;
+  }
 }
 
 .account__title {
@@ -22,21 +26,8 @@
   .button {
     max-height: 52px;
   }
-}
-
-.account-header {
-  margin: 60px 0 70px;
-  @include media-breakpoint-down(xl) {
-    margin: 40px 0 55px;
-  }
-}
-
-.account-header__container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  @include media-breakpoint-down(xl) {
-    gap: 15px;
+  @include media-breakpoint-down(lg) {
+    margin-bottom: 20px;
   }
 }
 
@@ -58,6 +49,28 @@
   }
 }
 
+.account-header {
+  margin: 60px 0 70px;
+  @include media-breakpoint-down(xl) {
+    margin: 40px 0 55px;
+  }
+  @include media-breakpoint-down(lg) {
+    margin: 25px 0 35px;
+  }
+}
+
+.account-header__container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  @include media-breakpoint-down(xl) {
+    gap: 15px;
+  }
+  @include media-breakpoint-down(lg) {
+    gap: 10px;
+  }
+}
+
 .account-header__link {
   display: flex;
   align-items: center;
@@ -70,10 +83,7 @@
   cursor: pointer;
   transition-duration: 0.15s;
   transition-property: border-color, background-color, color;
-  @include media-breakpoint-down(xl) {
-    padding: 15px 15px;
-    font-size: 14px;
-  }
+
   &.active {
     border-color: var(--primary-color);
     font-weight: 500;
@@ -85,11 +95,24 @@
     color: #fff;
   }
   .icon {
+    flex-shrink: 0;
     font-size: 1.875em;
     margin-right: 0.25em;
+    @include media-breakpoint-down(lg) {
+      font-size: 1.25em;
+    }
   }
   .badge {
     margin-left: 0.5em;
+  }
+
+  @include media-breakpoint-down(xl) {
+    padding: 15px 15px;
+    font-size: 14px;
+  }
+  @include media-breakpoint-down(lg) {
+    padding: 10px;
+    font-size: 13px;
   }
 }
 
@@ -100,9 +123,12 @@
   display: grid;
   align-items: start;
   grid-template-columns: 1fr auto;
-  gap: 60px var(--gap);
+  gap: 60px;
   @include media-breakpoint-up(xl) {
-    --gap: 60px;
+    gap: 60px;
+  }
+  @include media-breakpoint-down(lg) {
+    gap: 40px 30px;
   }
 }
 
@@ -122,16 +148,28 @@
   @include media-breakpoint-down(xl) {
     font-size: inherit;
   }
+  @include media-breakpoint-only(lg) {
+    text-align: center;
+    flex-direction: column;
+    grid-column: initial;
+  }
 }
 
 .account-index__title {
   margin-bottom: 20px;
   grid-column: 1 / -1;
+  @include media-breakpoint-down(lg) {
+    margin-bottom: 10px;
+  }
 }
 
 .account-index__info {
   display: grid;
   gap: 1em;
+  @include media-breakpoint-down(lg) {
+    font-size: 14px;
+    gap: 0.72em;
+  }
 }
 
 .account-index__info-line {
@@ -140,6 +178,9 @@
 
 .account-index__info-button {
   margin-top: 20px;
+  @include media-breakpoint-down(lg) {
+    margin-top: 10px;
+  }
 }
 
 .account-index__loyalty-button {
@@ -152,7 +193,6 @@
     grid-column: 1 / -1;
   }
 }
-
 .account-index__orders-button {
   margin-top: 20px;
   width: 100%;
@@ -162,7 +202,7 @@
 // ***** Account edit *****
 
 .account-edit {
-  max-width: 654px;
+  max-width: 720px;
 }
 
 .account-edit__form-grid {
@@ -246,6 +286,10 @@
   align-items: baseline;
   gap: 0.75em;
   cursor: pointer;
+
+  @include media-breakpoint-down(lg) {
+    padding: 15px 20px;
+  }
 }
 
 .account-order__date {
@@ -294,6 +338,9 @@
   gap: 2em 3em;
   padding: 30px 40px;
   border-top: 1px solid var(--border-color);
+  @include media-breakpoint-down(lg) {
+    padding: 25px 20px;
+  }
 }
 
 .account-order__info {
@@ -315,7 +362,7 @@
 
 .account-order__product {
   padding: 15px 25px;
-  margin: 0 -25px;
+  margin: 0 -20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -395,6 +442,9 @@
 
 .loyalty-card__wrapper {
   width: max-content;
+  @include media-breakpoint-down(lg) {
+    margin: 0 auto;
+  }
 }
 .loyalty-card {
   display: flex;
@@ -410,6 +460,9 @@
   background: var(--card-color);
   box-shadow: var(--box-shadow);
   border-radius: 4px;
+  @include media-breakpoint-down(lg) {
+    font-size: 7px;
+  }
 }
 .loyalty-card__logo {
   width: 90%;

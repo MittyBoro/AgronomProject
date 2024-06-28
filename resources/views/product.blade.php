@@ -96,7 +96,7 @@
   </section>
 
   {{-- popular --}}
-  <section class="popular popular__section">
+  <section class="product__popular popular popular__section">
     <div class="popular__container container">
       <div class="popular__subtitle subtitle">Лучшее за месяц</div>
       <div class="popular__title title">

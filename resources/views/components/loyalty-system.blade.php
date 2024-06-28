@@ -2,7 +2,10 @@
   <div class="loyalty__container container">
     <div class="loyalty__system">
       <h2 class="loyalty__system-title title">
-        Гибкая накопительная система 1 балл = 1 рубль
+        <span>
+          Гибкая накопительная система
+          <span style="display: inline-block">1 балл = 1 рубль</span>
+        </span>
       </h2>
       <div class="loyalty__levels">
         <div class="loyalty__level">

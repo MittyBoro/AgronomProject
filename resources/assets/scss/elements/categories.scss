@@ -1,21 +1,15 @@
-// .categories__list {
-//   --gap: 30px;
-//   display: grid;
-//   grid-template-columns: repeat(6, 1fr);
-//   gap: var(--gap);
-// }
-
 .category {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 25px 30px;
+  padding: 25px 15px;
   border: 1px solid #b3b3b3;
   text-align: center;
   border-radius: 4px;
   transition-duration: 0.15s;
   transition-property: color, background-color, border-color;
+  aspect-ratio: 170 / 145;
   cursor: pointer;
   &:hover {
     color: #fff;
@@ -29,8 +23,8 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   background-color: var(--border-color);
   border-radius: 50%;
   .default {

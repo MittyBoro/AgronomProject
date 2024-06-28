@@ -94,6 +94,9 @@
           <a href="/account-index" class="header__icon link">
             <x-icon src="icons/user.svg" />
           </a>
+          <a href="/account-index" class="header__icon header__icon-menu link">
+            <x-icon src="icons/menu.svg" />
+          </a>
         </div>
       </div>
     </header>

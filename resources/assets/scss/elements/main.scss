@@ -336,13 +336,14 @@ strong {
   padding: 0;
 }
 .check-list__item {
-  margin-bottom: 10px;
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.625em;
   &::before {
     content: '';
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: -2px;
-    margin-right: 5px;
+    position: absolute;
+    top: 0.33em;
+    left: 0;
     width: 0.875em;
     height: 0.875em;
     background: url('../icons/checkmark-circle.svg') no-repeat center;
@@ -441,20 +442,6 @@ strong {
 .breadcrumbs__item {
   &:not(:last-child):not(:hover) {
     opacity: 0.5;
-  }
-}
-
-// ***********************
-// ******* Sidebar *******
-.sidebar {
-  max-width: 100%;
-  width: 217px;
-}
-.sidebar__list {
-  display: grid;
-  gap: 18px;
-  @include media-breakpoint-down(xl) {
-    gap: 13px;
   }
 }
 

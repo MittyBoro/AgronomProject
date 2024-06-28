@@ -27,16 +27,7 @@
 >
   @foreach (range(1, 20) as $category)
     <swiper-slide>
-      <a href="#" class="category">
-        <span class="category__icon">
-          <img
-            src="{{ vite_asset('images/logo.svg') }}"
-            alt="Категория"
-            class="default"
-          />
-        </span>
-        <span class="category__name">Категория {{ $category }}</span>
-      </a>
+      <x-categories.card :category="$category" />
     </swiper-slide>
   @endforeach
 </swiper-container>

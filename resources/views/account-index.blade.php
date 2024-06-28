@@ -3,7 +3,7 @@
     <div class="account-index__greeting">
       <p>
         Здравствуйте,
-        <b>Иван,</b>
+        <b>Иваааааааааааааааан,</b>
         добро пожаловать в ваш личный кабинет!
       </p>
       <div class="button button-alt button-mini">Выйти из аккаунта</div>
@@ -67,7 +67,9 @@
 
     {{-- последние заказы --}}
     <div class="account-index__orders">
-      <div class="account__title">Последние заказы</div>
+      <div class="account-index__orders-title account__title">
+        Последние заказы
+      </div>
       <div class="account-orders">
         @foreach (range(3, 1) as $item)
           <x-account.order :item="$item" />

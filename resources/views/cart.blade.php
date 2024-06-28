@@ -18,39 +18,43 @@
         <tbody class="cart__table-body">
           @foreach (range(1, 2) as $item)
             <tr class="cart__item">
-              <td class="cart__item-info">
-                <span class="cart__item-image">
-                  <img
-                    src="{{ vite_asset('images/product-demo.png') }}"
-                    alt="Название товара"
-                    class="object-cover"
-                  />
-                </span>
-                <span class="cart__item-name">Название товара</span>
+              <td>
+                <div class="cart__item-info">
+                  <span class="cart__item-image">
+                    <img
+                      src="{{ vite_asset('images/product-demo.png') }}"
+                      alt="Название товара"
+                      class="object-cover"
+                    />
+                  </span>
+                  <span class="cart__item-name">Название товара</span>
+                </div>
               </td>
-              <td class="cart__item-price">300₽</td>
-              <td class="cart__item-quantity">
-                <div class="product__quantity">
-                  <div
-                    class="button button-alt product__button product__button--quantity product__button--minus cart__item-quantity--button"
-                  >
-                    <x-icon src="icons/minus.svg" />
-                  </div>
-                  <input
-                    class="button button-input product__button product__button--quantity product__button--input cart__item-quantity--button"
-                    value="2"
-                    type="number"
-                    min="1"
-                    max="999"
-                  />
-                  <div
-                    class="button button-alt product__button--quantity product__button--plus cart__item-quantity--button"
-                  >
-                    <x-icon src="icons/plus.svg" />
+              <td><span class="cart__item-price">300₽</span></td>
+              <td>
+                <div class="cart__item-quantity">
+                  <div class="product__quantity">
+                    <div
+                      class="button button-alt product__button product__button--quantity product__button--minus cart__item-quantity--button"
+                    >
+                      <x-icon src="icons/minus.svg" />
+                    </div>
+                    <input
+                      class="button button-input product__button product__button--quantity product__button--input cart__item-quantity--button"
+                      value="2"
+                      type="number"
+                      min="1"
+                      max="999"
+                    />
+                    <div
+                      class="button button-alt product__button--quantity product__button--plus cart__item-quantity--button"
+                    >
+                      <x-icon src="icons/plus.svg" />
+                    </div>
                   </div>
                 </div>
               </td>
-              <td class="cart__item-total">300₽</td>
+              <td><span class="cart__item-total">300₽</span></td>
             </tr>
           @endforeach
         </tbody>

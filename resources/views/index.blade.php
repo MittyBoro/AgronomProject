@@ -138,7 +138,7 @@
       </div>
       <div class="reviews__list">
         <!-- review Items -->
-        @foreach (range(1, 3) as $product)
+        @foreach (range(1, 4) as $product)
           <x-reviews.card />
         @endforeach
       </div>

@@ -40,4 +40,7 @@
   @include media-breakpoint-down(xl) {
     --section-margin: 90px;
   }
+  @include media-breakpoint-down(lg) {
+    --section-margin: 70px;
+  }
 }
