@@ -22,6 +22,60 @@
     </div>
   </section>
 
+  {{-- popular --}}
+  <section class="popular popular__section">
+    <div class="popular__container container">
+      <div class="popular__subtitle subtitle">Лучшее за месяц</div>
+      <div class="popular__title title">
+        <h2>Самое популярное</h2>
+        <a href="#" class="button popular__button">В каталог</a>
+      </div>
+      <div class="popular__products products__list">
+        @foreach (range(1, 4) as $product)
+          <x-products.card />
+        @endforeach
+      </div>
+    </div>
+  </section>
+
+  {{-- categories --}}
+  <section class="categories categories__section">
+    <div class="categories__container container">
+      <div class="categories__subtitle subtitle">Категории</div>
+      <div class="categories__title title">
+        <h2>Выберите категорию</h2>
+        <div class="nav-arrows">
+          <div href="#" class="nav-arrow nav-arrow__prev">
+            <x-icon src="icons/arrow.svg" />
+          </div>
+          <div href="#" class="nav-arrow nav-arrow__next">
+            <x-icon src="icons/arrow.svg" />
+          </div>
+        </div>
+      </div>
+      <div class="categories__list">
+        <x-swiper.categories />
+      </div>
+    </div>
+  </section>
+
+  {{-- promotions --}}
+  <section class="promotions promotions__section">
+    <div class="promotions__container container">
+      <div class="promotions__subtitle subtitle">Скидки</div>
+      <div class="promotions__title title">
+        <h2>Актуальные акции</h2>
+        <a href="#" class="button promotions__button">В каталог</a>
+      </div>
+      <div class="promotions__products products__list">
+        <!-- Promotion Items -->
+        @foreach (range(1, 4) as $product)
+          <x-products.card />
+        @endforeach
+      </div>
+    </div>
+  </section>
+
   {{-- about --}}
   <section class="about about__section">
     <div class="about__container container">
@@ -52,73 +106,7 @@
             Длинное описание преимущества
           </li>
         </ul>
-        <a href="#" class="button about__button">Узнать больше</a>
-      </div>
-    </div>
-  </section>
-
-  {{-- popular --}}
-  <section class="popular popular__section">
-    <div class="popular__container container">
-      <div class="popular__subtitle subtitle">Лучшее за месяц</div>
-      <div class="popular__title title">
-        <h2>Самое популярное</h2>
-        <a href="#" class="button popular__button">В каталог</a>
-      </div>
-      <div class="popular__products products__list">
-        @foreach (range(1, 4) as $product)
-          <x-products.card />
-        @endforeach
-      </div>
-    </div>
-  </section>
-
-  {{-- categories --}}
-  <section class="categories categories__section">
-    <div class="categories__container container">
-      <div class="categories__subtitle subtitle">Лучшее за месяц</div>
-      <div class="categories__title title">
-        <h2>Выберите категорию</h2>
-        <div class="nav-arrows">
-          <div href="#" class="nav-arrow nav-arrow__prev">
-            <x-icon src="icons/arrow.svg" />
-          </div>
-          <div href="#" class="nav-arrow nav-arrow__next">
-            <x-icon src="icons/arrow.svg" />
-          </div>
-        </div>
-      </div>
-      <div class="categories__list">
-        <!-- Category Items -->
-        @foreach (range(1, 6) as $product)
-          <a href="#" class="category">
-            <span class="category__icon">
-              <img
-                src="{{ vite_asset('images/logo.svg') }}"
-                alt="Категория"
-                class="default"
-              />
-            </span>
-            <span class="category__name">Категория</span>
-          </a>
-        @endforeach
-      </div>
-    </div>
-  </section>
-
-  {{-- promotions --}}
-  <section class="promotions promotions__section">
-    <div class="promotions__container container">
-      <div class="promotions__subtitle subtitle">Скидки</div>
-      <div class="promotions__title title">
-        <h2>Актуальные акции</h2>
-        <a href="#" class="button promotions__button">В каталог</a>
-      </div>
-      <div class="promotions__products products__list">
-        <!-- Promotion Items -->
-        @foreach (range(1, 4) as $product)
-          <x-products.card />
-        @endforeach
+        <a href="/about" class="button about__button">Узнать больше</a>
       </div>
     </div>
   </section>

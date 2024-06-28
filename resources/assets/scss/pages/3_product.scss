@@ -1,7 +1,16 @@
+.product__section {
+  margin-bottom: var(--section-margin);
+}
+
 .product__container {
   display: grid;
-  grid-template-columns: max-content max-content auto;
+  align-items: start;
+  grid-template-columns: 500px 1fr auto;
   gap: 105px;
+  @include media-breakpoint-down(xl) {
+    grid-template-columns: 400px 1fr;
+    gap: 60px;
+  }
 }
 .product__slider {
   max-width: 500px;
@@ -71,16 +80,19 @@
 
 .product__volume {
   display: flex;
-  flex-wrap: wrap;
-  gap: 13px;
+  gap: 30px;
   &:not(:last-child) {
     margin-bottom: 15px;
   }
 }
+.product__volume-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+}
 .product__volume--label {
   border: none;
   padding: 0;
-  margin-right: 16px;
   font-size: 20px;
   pointer-events: none;
 }

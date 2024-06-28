@@ -1,12 +1,14 @@
 .checkout__container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0 var(--gap);
+  display: grid;
+  grid-template-columns: 470fr 527fr;
+  column-gap: 173px;
+  @include media-breakpoint-down(xl) {
+    column-gap: 60px;
+  }
 }
 
 .checkout__title {
-  width: 100%;
+  grid-column: 1 / -1;
 }
 
 // *** Form ***

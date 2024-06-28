@@ -3,6 +3,9 @@
   grid-template-columns: 340px 1fr;
   align-items: start;
   gap: var(--gap);
+  @include media-breakpoint-down(xl) {
+    grid-template-columns: 300px 1fr;
+  }
 }
 
 .contacts__info {
@@ -46,21 +49,20 @@
 .contacts__form {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px 15px;
+  gap: 0 15px;
   padding: 35px 30px;
   box-shadow: var(--box-shadow);
   font-size: 14px;
 }
 
 .contacts__form-title {
-  margin: 0;
+  margin: 0 0 20px;
   span {
     font-size: 0.8em;
   }
 }
 .contacts__form-title,
-.contacts__form-submit-row,
-.contacts__form-textarea {
+.contacts__form-submit-row {
   grid-column: 1 / -1;
 }
 

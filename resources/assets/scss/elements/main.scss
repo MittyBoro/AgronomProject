@@ -162,6 +162,10 @@ html {
   .button {
     max-height: 52px;
   }
+
+  @include media-breakpoint-down(xl) {
+    margin-bottom: 40px;
+  }
 }
 .subtitle {
   display: flex;
@@ -261,13 +265,20 @@ strong {
     margin: 8px 0;
   }
   ul li {
-    list-style: disc;
+    list-style: inside disc;
   }
   ol li {
-    list-style: decimal;
+    list-style: inside decimal;
   }
   p {
     margin: 0 0 1.2em;
+  }
+
+  a {
+    color: var(--primary-color);
+    &:hover {
+      color: var(--secondary-color);
+    }
   }
 
   & > *:first-child {
@@ -417,6 +428,10 @@ strong {
 // ******* Breadcrumb *******
 .breadcrumbs {
   margin: 50px 0 80px;
+
+  @include media-breakpoint-down(xl) {
+    margin: 40px 0 60px;
+  }
 }
 .breadcrumbs__container {
   display: flex;
@@ -438,6 +453,9 @@ strong {
 .sidebar__list {
   display: grid;
   gap: 18px;
+  @include media-breakpoint-down(xl) {
+    gap: 13px;
+  }
 }
 
 // **************************

@@ -1,6 +1,10 @@
 // **********************
 .page-home {
-  --section-margin-top: 120px;
+  --section-margin: 120px;
+
+  @include media-breakpoint-down(xl) {
+    --section-margin: 90px;
+  }
 
   // ******* muzzle *******
   .muzzle__content {
@@ -42,12 +46,12 @@
 
   // ******* About *******
   .about__section {
-    padding-top: var(--section-margin-top);
+    padding-top: var(--section-margin);
   }
 
   // ******* Popular *******
   .popular {
-    padding-top: var(--section-margin-top);
+    padding-top: var(--section-margin);
   }
   .popular__button {
     max-height: 52px;
@@ -55,21 +59,21 @@
 
   // ******* Categories *******
   .categories {
-    padding-top: var(--section-margin-top);
+    padding-top: var(--section-margin);
   }
 
   // ******* Promotions *******
   .promotions {
-    padding-top: var(--section-margin-top);
+    padding-top: var(--section-margin);
   }
 
   // ******* Articles *******
   .articles {
-    padding-top: var(--section-margin-top);
+    padding-top: var(--section-margin);
   }
 
   // ******* Reviews *******
   .reviews {
-    padding-top: var(--section-margin-top);
+    padding-top: var(--section-margin);
   }
 }

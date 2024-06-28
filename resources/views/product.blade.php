@@ -39,16 +39,18 @@
         <div class="product__options">
           <div class="product__volume">
             <div class="button button-alt product__volume--label">Объем:</div>
-            <button class="button button-alt product__volume--button">
-              50 мл
-            </button>
-            <button class="button button-alt product__volume--button">
-              100 мл
-            </button>
-            <button class="button product__volume--button">200 мл</button>
-            <button class="button button-alt product__volume--button">
-              300 мл
-            </button>
+            <div class="product__volume-buttons">
+              <button class="button button-alt product__volume--button">
+                50 мл
+              </button>
+              <button class="button button-alt product__volume--button">
+                100 мл
+              </button>
+              <button class="button product__volume--button">200 мл</button>
+              <button class="button button-alt product__volume--button">
+                300 мл
+              </button>
+            </div>
           </div>
         </div>
         <div class="product__actions">

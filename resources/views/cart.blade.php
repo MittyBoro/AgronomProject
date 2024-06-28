@@ -4,6 +4,8 @@
   {{-- cart --}}
   <section class="cart cart__section">
     <div class="cart__container container">
+      <div class="cart__title title">Ваша корзина</div>
+
       <table class="cart__table">
         <thead class="cart__table-head">
           <tr>

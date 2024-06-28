@@ -1,9 +1,9 @@
-.categories__list {
-  --gap: 30px;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--gap);
-}
+// .categories__list {
+//   --gap: 30px;
+//   display: grid;
+//   grid-template-columns: repeat(6, 1fr);
+//   gap: var(--gap);
+// }
 
 .category {
   display: flex;
@@ -35,5 +35,26 @@
   border-radius: 50%;
   .default {
     max-width: 60%;
+  }
+}
+.categories {
+  overflow: hidden;
+  swiper-container {
+    --gap: 30px;
+  }
+  swiper-container::part(container) {
+    display: flex;
+    margin: calc(var(--gap) * -1);
+    padding: var(--gap);
+    width: auto;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      box-shadow: inset 0 0 calc(var(--gap) * 0.5) calc(var(--gap) * 0.5)
+        var(--back-color);
+      pointer-events: none;
+      z-index: 2;
+    }
   }
 }

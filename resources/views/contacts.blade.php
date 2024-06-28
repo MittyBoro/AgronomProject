@@ -35,29 +35,34 @@
       </div>
       <form class="contacts__form">
         <div class="contacts__form-title title"><span>Написать нам</span></div>
-        <input
-          type="text"
-          class="contacts__form-input field-input"
-          placeholder="Ваше имя *"
+
+        <x-form.input
+          class="contacts__form"
+          label="Ваше имя *"
+          id="name"
           required
         />
-        <input
+        <x-form.input
+          class="contacts__form"
+          label="Ваше E-mail *"
+          id="email"
           type="email"
-          class="contacts__form-input field-input"
-          placeholder="Ваш Email *"
           required
         />
-        <input
+        <x-form.input
+          class="contacts__form"
+          label="Ваш телефон *"
+          id="phone"
           type="tel"
-          class="contacts__form-input field-input"
-          placeholder="Ваш телефон *"
+        />
+        <x-form.textarea
+          class="grid-col-full contacts__form"
+          label="Ваше сообщение"
+          id="message"
+          rows="6"
           required
         />
-        <textarea
-          class="contacts__form-textarea field-textarea"
-          placeholder="Ваше сообщение"
-          rows="6"
-        ></textarea>
+
         <div class="contacts__form-submit-row">
           <button type="submit" class="contacts__form-submit button">
             Отправить

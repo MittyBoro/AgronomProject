@@ -1,25 +1,14 @@
-// my page — name, email, phone, password
-// my_addresses — address data (first_name, last_name, address, house, postcode)
-// my_orders — order data
-// my_wishlist — product data
-// my_loyalty — loyalty data
-// my_reviews — review data
-
 // ************************
 // ***** Account layout ***
 
 .account {
   --card-gap: 0.5em 3em;
 }
-.account-header {
-  margin-top: 60px;
-  margin-bottom: 70px;
-}
 
-.account-header__container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.account__card {
+  border-radius: 4px;
+  padding: 35px 40px;
+  background: var(--card-color);
 }
 
 .account__title {
@@ -35,10 +24,20 @@
   }
 }
 
-.account__card {
-  border-radius: 4px;
-  padding: 35px 40px;
-  background: var(--card-color);
+.account-header {
+  margin: 60px 0 70px;
+  @include media-breakpoint-down(xl) {
+    margin: 40px 0 55px;
+  }
+}
+
+.account-header__container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  @include media-breakpoint-down(xl) {
+    gap: 15px;
+  }
 }
 
 .account__info-line {
@@ -71,6 +70,10 @@
   cursor: pointer;
   transition-duration: 0.15s;
   transition-property: border-color, background-color, color;
+  @include media-breakpoint-down(xl) {
+    padding: 15px 15px;
+    font-size: 14px;
+  }
   &.active {
     border-color: var(--primary-color);
     font-weight: 500;
@@ -82,7 +85,7 @@
     color: #fff;
   }
   .icon {
-    font-size: 30px;
+    font-size: 1.875em;
     margin-right: 0.25em;
   }
   .badge {
@@ -97,7 +100,7 @@
   display: grid;
   align-items: start;
   grid-template-columns: 1fr auto;
-  gap: var(--gap);
+  gap: 60px var(--gap);
   @include media-breakpoint-up(xl) {
     --gap: 60px;
   }
@@ -115,6 +118,9 @@
   border-radius: 4px;
   p {
     max-width: 756px;
+  }
+  @include media-breakpoint-down(xl) {
+    font-size: inherit;
   }
 }
 
@@ -139,6 +145,12 @@
 .account-index__loyalty-button {
   margin-top: 20px;
   width: 100%;
+}
+
+.account-index__orders {
+  @include media-breakpoint-down(xl) {
+    grid-column: 1 / -1;
+  }
 }
 
 .account-index__orders-button {
@@ -194,6 +206,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--gap);
+  @include media-breakpoint-down(xl) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .account-address {
@@ -225,7 +240,6 @@
 
 .account-order__header {
   background-color: var(--light-gray);
-  border-bottom: 1px solid var(--border-color);
   padding: 25px 35px;
   display: flex;
   justify-content: space-between;
@@ -279,6 +293,7 @@
   align-items: start;
   gap: 2em 3em;
   padding: 30px 40px;
+  border-top: 1px solid var(--border-color);
 }
 
 .account-order__info {
