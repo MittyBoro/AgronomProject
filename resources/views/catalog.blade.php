@@ -3,17 +3,11 @@
 
   <section class="special-offers">
     <div class="container special-offers__container">
-      <ul class="catalog-categories">
-        <li><a href="#" class="link">Основная категория 1</a></li>
-        <li><a href="#" class="link">Основная категория 2</a></li>
-        <li><a href="#" class="link">Категория 3</a></li>
-        <li><a href="#" class="link">Категория 4</a></li>
-        <li><a href="#" class="link">Категория 5</a></li>
-        <li><a href="#" class="link">Категория 6</a></li>
-        <li><a href="#" class="link">Категория 7</a></li>
-        <li><a href="#" class="link">Категория 8</a></li>
-        <li><a href="#" class="link">Категория 9</a></li>
-      </ul>
+      <div class="catalog-categories">
+        @foreach (range(1, 9) as $category)
+          <x-categories.card :category="$category" />
+        @endforeach
+      </div>
 
       <x-swiper.catalog-banner />
     </div>

@@ -1,10 +1,13 @@
-.popup-boxes {
+// *******************
+// ***** General *****
+
+.popups {
   & > .popup {
     &:not(.active) {
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
-      .content-wrap {
+      .popup__content {
         opacity: 0;
         transform: translateY(100%);
       }
@@ -13,55 +16,91 @@
 }
 .popup {
   position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  padding: 70px 10px;
+  inset: 0;
+  padding: 70px 15px;
   display: flex;
-  background: var(--back-color);
+  align-items: center;
+  justify-content: center;
   overflow-y: scroll;
   overflow-x: hidden;
-  transition: opacity 0.5s;
-  z-index: 700;
-  cursor: pointer;
-  & > * {
-    cursor: initial;
-  }
-  .close-popup {
+  transition:
+    opacity 0.3s,
+    visibility 0.3s,
+    transform 0.15s;
+  z-index: 100;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--black);
+    opacity: 0.8;
+    z-index: 1;
     cursor: pointer;
   }
-  .container {
-    position: relative;
-    margin: auto;
-    max-width: 883px;
+}
+
+.popup__content {
+  position: relative;
+  margin: auto;
+  max-width: 750px;
+  width: 100%;
+  padding: 20px 15px;
+  background: var(--back-color);
+  z-index: 101;
+}
+
+// ****************
+// ***** Menu *****
+
+.popup__menu {
+  padding: 0;
+  background: var(--back-color);
+  &::before {
+    display: none;
   }
-  .close-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 90px;
-    width: 89px;
-    transition: background 0.15s;
-    z-index: 5;
-    svg {
-      transition: transform 0.5s;
-    }
-    &:hover {
-      svg {
-        transform: rotate(90deg);
-      }
-    }
+}
+.popup__menu-container {
+  margin: 0 auto auto;
+  width: 100%;
+}
+.popup__menu-logo {
+  flex-grow: 1;
+  flex-basis: 50px;
+  width: auto;
+  img {
+    max-width: 100%;
+    width: auto;
   }
-  .content-wrap {
-    position: relative;
-    margin: auto;
-    padding: 52px 40px 60px;
-    width: 100%;
-    background: #fff;
-    border-radius: 20px;
+}
+
+.popup__menu-search {
+  flex-grow: 1;
+  max-width: 100%;
+  width: 100%;
+}
+
+.popup__menu-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  flex-shrink: 0;
+  background: var(--card-color);
+  border-radius: 4px;
+}
+.popup-menu__title {
+  margin: 15px 0 25px;
+}
+
+.popup__menu-footer {
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 30px;
+  .footer__links-list {
+    gap: 10px;
+  }
+  .footer__description {
+    grid-column: 1 / -1;
   }
 }

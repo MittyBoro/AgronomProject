@@ -9,6 +9,7 @@
   @include media-breakpoint-down(lg) {
     display: flex;
     flex-direction: column;
+    gap: 40px;
   }
 }
 
@@ -19,14 +20,38 @@
   @include media-breakpoint-down(xl) {
     gap: 13px;
   }
+  @include media-breakpoint-up(lg) {
+    .category {
+      display: block;
+      padding: 0;
+      aspect-ratio: auto;
+      text-align: left;
+      box-shadow: none;
+      border: none;
+      &:hover {
+        background: transparent;
+        color: var(--primary-color);
+      }
+    }
+    .category__icon {
+      display: none;
+    }
+  }
   @include media-breakpoint-down(lg) {
-    display: none;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 }
 
 .catalog-banner__slider {
   min-width: 1px;
   max-width: 100%;
+  @include media-breakpoint-down(lg) {
+    order: -1;
+  }
 }
 
 .catalog__section {

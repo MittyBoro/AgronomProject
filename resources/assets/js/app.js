@@ -1,7 +1,7 @@
 import './elements/afterLoad'
 import './elements/layout'
 import './elements/range'
-import './libs/imgToSvg'
+import './elements/popup'
 
 // import './alpine/app'
 

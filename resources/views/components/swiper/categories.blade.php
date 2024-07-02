@@ -1,6 +1,6 @@
 <swiper-container
   class="catalog-banner__slider"
-  space-between="15px"
+  space-between="10px"
   keyboard="true"
   slides-per-view="2"
   loop="true"
@@ -14,7 +14,7 @@
     json_encode([
       '375' => [
         'slidesPerView' => 3,
-        'spaceBetween' => 20,
+        'spaceBetween' => 10,
       ],
       '768' => [
         'slidesPerView' => 4,

@@ -9,8 +9,10 @@
   border-radius: 4px;
   transition-duration: 0.15s;
   transition-property: color, background-color, border-color;
+  min-height: 1px;
   aspect-ratio: 170 / 145;
   cursor: pointer;
+  max-width: 100%;
   &:hover {
     color: #fff;
     background-color: var(--primary-color);
@@ -20,6 +22,9 @@
     padding: 15px 10px;
     font-size: 14px;
   }
+  @media screen and (max-width: 360px) {
+    font-size: 12px;
+  }
 }
 
 .category__icon {
@@ -27,8 +32,9 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  height: 60px;
-  width: 60px;
+  flex-grow: 1;
+  max-height: 60px;
+  aspect-ratio: 1 / 1;
   background-color: var(--border-color);
   border-radius: 50%;
   .default {
@@ -42,8 +48,11 @@
     @include media-breakpoint-down(lg) {
       --gap: 20px;
     }
-    @include media-breakpoint-down(lg) {
+    @include media-breakpoint-down(md) {
       --gap: 15px;
+    }
+    @include media-breakpoint-down(sm) {
+      --gap: 10px;
     }
   }
   swiper-container::part(container) {
