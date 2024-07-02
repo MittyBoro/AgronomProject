@@ -9,29 +9,35 @@
   padding: 19.28% 0;
   overflow: hidden;
   cursor: pointer;
+  container: banner / inline-size;
 }
 
 .catalog-banner__text {
   position: absolute;
-  left: 64px;
+  left: 7.17cqw;
+
   color: var(--white);
+  .button {
+    font-size: max(1.793cqw, 12px);
+    max-height: max(6.278cqw, 30px);
+  }
 }
 .catalog-banner__title {
-  margin-bottom: 20px;
-  max-width: 350px;
-  font-size: 48px;
+  margin-bottom: 2.242cqw;
+  max-width: 40cqw;
+  font-size: 5.38cqw;
   font-weight: 700;
   line-height: 1.25;
-  @include media-breakpoint-down(xl) {
-    font-size: 40px;
-  }
-  @include media-breakpoint-down(lg) {
-    font-size: 36px;
-  }
-  @include media-breakpoint-down(md) {
-    font-size: 30px;
-  }
-  @include media-breakpoint-down(sm) {
-    font-size: 24px;
-  }
+  // @include media-breakpoint-down(xl) {
+  //   font-size: 40px;
+  // }
+  // @include media-breakpoint-down(lg) {
+  //   font-size: 36px;
+  // }
+  // @include media-breakpoint-down(md) {
+  //   font-size: 30px;
+  // }
+  // @include media-breakpoint-down(sm) {
+  //   font-size: 24px;
+  // }
 }

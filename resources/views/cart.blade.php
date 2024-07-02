@@ -6,32 +6,39 @@
     <div class="cart__container container">
       <div class="cart__title title">Ваша корзина</div>
 
-      <table class="cart__table">
-        <thead class="cart__table-head">
-          <tr>
-            <th>Товар</th>
-            <th>Цена</th>
-            <th>Количество</th>
-            <th>Итого</th>
-          </tr>
-        </thead>
-        <tbody class="cart__table-body">
-          @foreach (range(1, 2) as $item)
-            <tr class="cart__item">
-              <td>
-                <div class="cart__item-info">
-                  <span class="cart__item-image">
-                    <img
-                      src="{{ vite_asset('images/product-demo.png') }}"
-                      alt="Название товара"
-                      class="object-cover"
-                    />
-                  </span>
-                  <span class="cart__item-name">Название товара</span>
+      <div class="cart__table">
+        <div class="cart__table-head">
+          <div class="cart__table-row">
+            <div class="cart__table-cell"></div>
+            <div class="cart__table-cell">Товар</div>
+            <div class="cart__table-cell">Цена</div>
+            <div class="cart__table-cell">Количество</div>
+            <div class="cart__table-cell">Итого</div>
+          </div>
+        </div>
+        <div class="cart__table-body">
+          @foreach (range(1, 3) as $item)
+            <div class="cart__item cart__table-row">
+              {{--  --}}
+              <div class="cart__table-cell cart__item-image-cell">
+                <div class="cart__item-image">
+                  <img
+                    src="{{ vite_asset('images/product-demo.png') }}"
+                    alt="Название товара"
+                    class="object-cover"
+                  />
                 </div>
-              </td>
-              <td><span class="cart__item-price">300₽</span></td>
-              <td>
+              </div>
+              {{--  --}}
+              <div class="cart__table-cell cart__item-info-cell">
+                <div class="cart__item-name">Название товара</div>
+                <div class="cart__item-option">20ml</div>
+              </div>
+              {{--  --}}
+              <div class="cart__table-cell cart__item-price">
+                <span>300₽</span>
+              </div>
+              <div class="cart__table-cell">
                 <div class="cart__item-quantity">
                   <div class="product__quantity">
                     <div
@@ -53,12 +60,15 @@
                     </div>
                   </div>
                 </div>
-              </td>
-              <td><span class="cart__item-total">300₽</span></td>
-            </tr>
+              </div>
+              {{--  --}}
+              <div class="cart__table-cell cart__item-total">
+                <span>300₽</span>
+              </div>
+            </div>
           @endforeach
-        </tbody>
-      </table>
+        </div>
+      </div>
 
       <div class="cart__actions">
         <a href="/catalog" class="button button-alt cart__back-button">
@@ -70,7 +80,7 @@
             <span class="cart__summary-label">Сумма:</span>
             <span class="cart__summary-value">300₽</span>
           </div>
-          <a href="/order" class="button cart__checkout-button">
+          <a href="/checkout" class="button cart__checkout-button">
             Перейти к оформлению
           </a>
         </div>

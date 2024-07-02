@@ -34,17 +34,26 @@
   img {
     max-width: 62.5%;
   }
-  @include media-breakpoint-down(lg) {
+  @include media-breakpoint-only(md) {
     aspect-ratio: auto;
     max-width: 250px;
+  }
+  @include media-breakpoint-down(md) {
+    display: none;
   }
 }
 .about__text {
   order: 3;
+  @include media-breakpoint-down(md) {
+    font-size: 14px;
+  }
 }
 
 .about__button {
   margin-top: 24px;
+  @include media-breakpoint-down(md) {
+    margin-top: 15px;
+  }
 }
 
 .about__benefits {
@@ -56,6 +65,10 @@
   order: 5;
   @include media-breakpoint-up(xl) {
     --gap: 40px;
+  }
+  @include media-breakpoint-down(md) {
+    margin-top: 0;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

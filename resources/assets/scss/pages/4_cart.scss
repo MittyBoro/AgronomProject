@@ -2,43 +2,80 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 var(--gap);
-  margin: calc(var(--gap) * -1) 0;
 
   @include media-breakpoint-up(xl) {
     --gap: 40px;
   }
 }
 
-.cart__table tr {
-  box-shadow: var(--box-shadow);
+.cart__table-head {
+  display: none;
+  font-weight: 500;
 }
-.cart__table td,
-.cart__table th {
+.cart__table-body {
+  display: grid;
+  gap: 15px;
+}
+.cart__table-row {
+  display: grid;
+  gap: 15px;
+  box-shadow: var(--box-shadow);
+  @include media-breakpoint-down(md) {
+    display: grid;
+    align-items: center;
+    grid-template-columns: min-content auto auto;
+    padding: 20px;
+  }
+}
+
+.cart__table-cell {
   text-align: left;
+  vertical-align: middle;
   font-size: 16px;
   font-weight: 400;
   padding: 24px 40px;
-  span {
-    vertical-align: middle;
-  }
 
   @include media-breakpoint-down(lg) {
     padding: 15px 20px;
   }
+  @include media-breakpoint-down(md) {
+    padding: 0;
+  }
 }
 
-.cart__item-info {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.cart__item-image-cell {
+  width: 1%;
+  @include media-breakpoint-down(md) {
+    display: flex;
+    align-items: center;
+
+    grid-row: 1 / 3;
+  }
+}
+
+.cart__item-info-cell {
+  @include media-breakpoint-down(lg) {
+    grid-column: 2 / -1;
+  }
 }
 .cart__item-image {
   position: relative;
+  padding: 0;
   flex-shrink: 0;
   width: 50px;
   height: 50px;
   background: var(--card-color);
   border-radius: 4px;
+}
+.cart__item-option {
+  opacity: 0.5;
+  font-size: 13px;
+}
+
+.cart__item-price {
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
 }
 .cart__item-quantity--button {
   max-height: 36px;
@@ -71,5 +108,36 @@
     justify-content: space-between;
     max-width: none;
     margin: 0;
+  }
+  @include media-breakpoint-down(md) {
+    display: grid;
+    font-size: 24px;
+    justify-content: stretch;
+  }
+}
+
+.cart__checkout-button {
+  @include media-breakpoint-down(md) {
+    width: 100%;
+    flex-shrink: 1;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .cart__table {
+    display: table;
+    margin: calc(var(--gap) * -1) 0;
+  }
+  .cart__table-head {
+    display: table-header-group;
+  }
+  .cart__table-body {
+    display: table-row-group;
+  }
+  .cart__table-row {
+    display: table-row;
+  }
+  .cart__table-cell {
+    display: table-cell;
   }
 }

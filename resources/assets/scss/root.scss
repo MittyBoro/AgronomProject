@@ -43,4 +43,8 @@
   @include media-breakpoint-down(lg) {
     --section-margin: 70px;
   }
+  @include media-breakpoint-down(md) {
+    --gap: 20px;
+    --section-margin: 50px;
+  }
 }

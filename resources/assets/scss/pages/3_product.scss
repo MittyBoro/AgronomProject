@@ -15,6 +15,9 @@
     grid-template-columns: 300px 1fr;
     gap: 30px;
   }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
+  }
 }
 .product__slider {
   max-width: 500px;
@@ -30,6 +33,9 @@
   background: var(--card-color);
   border-radius: 4px;
   overflow: hidden;
+  @include media-breakpoint-down(md) {
+    padding: 50% 0;
+  }
 }
 
 .product__info {
@@ -74,7 +80,11 @@
   height: 1px;
   max-width: var(--content-max-width);
   background-color: var(--black);
-  opacity: 0.5;
+  opacity: 0.3;
+
+  @include media-breakpoint-down(md) {
+    margin: 20px 0 30px;
+  }
 }
 
 .product__options {
@@ -88,11 +98,17 @@
   &:not(:last-child) {
     margin-bottom: 15px;
   }
+  @include media-breakpoint-down(md) {
+    gap: 15px;
+  }
 }
 .product__volume-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 13px;
+  @include media-breakpoint-down(md) {
+    gap: 8px;
+  }
 }
 .product__volume--label {
   border: none;
@@ -111,6 +127,9 @@
 .product__volume--label,
 .product__volume--button {
   max-height: 32px;
+  @include media-breakpoint-down(md) {
+    max-height: 27px;
+  }
 }
 
 .button--volume {
@@ -132,6 +151,9 @@
   }
   @include media-breakpoint-down(lg) {
     flex-wrap: wrap;
+  }
+  @include media-breakpoint-down(md) {
+    margin-bottom: 50px;
   }
 }
 
@@ -156,6 +178,9 @@
   .icon {
     font-size: 24px;
     margin: 0;
+    @include media-breakpoint-down(md) {
+      font-size: 18px;
+    }
   }
 }
 .product__button--input {

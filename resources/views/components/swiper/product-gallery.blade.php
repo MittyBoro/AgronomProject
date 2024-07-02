@@ -8,7 +8,7 @@
   mousewheel="true"
   mousewheel-force-to-axis="true"
   loop="true"
-  delay="5000"
+  delay="10000"
   keyboard="true"
 >
   @foreach (range(1, 3) as $banner)

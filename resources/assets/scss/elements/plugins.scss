@@ -15,7 +15,18 @@ swiper-container {
   --swiper-pagination-bullet-inactive-opacity: 0.5;
   --swiper-pagination-bullet-opacity: 1;
   --swiper-pagination-bullet-horizontal-gap: 4px;
-  --swiper-pagination-bullet-vertical-gap: 12px;
+  --swiper-pagination-bullet-vertical-gap: 4px;
+
+  @include media-breakpoint-down(md) {
+    --swiper-pagination-right: 5px;
+    --swiper-pagination-bottom: 5px;
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-bullet-horizontal-gap: 3px;
+    --swiper-pagination-color: radial-gradient(
+      var(--primary-color) 3px,
+      #fff 3px
+    );
+  }
 }
 
 // *** LightGallery ***

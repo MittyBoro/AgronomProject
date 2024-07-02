@@ -16,6 +16,10 @@
     background-color: var(--primary-color);
     border-color: var(--primary-color);
   }
+  @include media-breakpoint-down(md) {
+    padding: 15px 10px;
+    font-size: 14px;
+  }
 }
 
 .category__icon {
@@ -35,6 +39,12 @@
   overflow: hidden;
   swiper-container {
     --gap: 30px;
+    @include media-breakpoint-down(lg) {
+      --gap: 20px;
+    }
+    @include media-breakpoint-down(lg) {
+      --gap: 15px;
+    }
   }
   swiper-container::part(container) {
     display: flex;

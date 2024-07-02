@@ -11,6 +11,9 @@
     min-height: auto;
     padding: 80px 50px;
   }
+  @include media-breakpoint-down(md) {
+    padding: 30px 15px;
+  }
 
   &:hover {
     .muzzle__image {
@@ -27,7 +30,10 @@
   max-width: 766px;
   text-align: center;
   @include media-breakpoint-down(lg) {
-    padding: 50px 50px;
+    padding: 50px;
+  }
+  @include media-breakpoint-down(md) {
+    padding: 25px;
   }
 }
 
@@ -36,12 +42,19 @@
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 20px;
+  @include media-breakpoint-down(md) {
+    font-size: 27px;
+    margin-bottom: 13px;
+  }
 }
 
 .muzzle__description {
   font-size: 18px;
   line-height: calc(26 / 18);
   margin-bottom: 20px;
+  @include media-breakpoint-down(md) {
+    font-size: 15px;
+  }
 }
 
 // **********************
@@ -51,6 +64,9 @@
 
   @include media-breakpoint-down(xl) {
     --section-margin: 90px;
+  }
+  @include media-breakpoint-down(md) {
+    --section-margin: 60px;
   }
 
   // ******* About *******
@@ -96,6 +112,11 @@
   .reviews {
     padding-top: var(--section-margin);
     @include media-breakpoint-up(lg) {
+      .review:nth-child(3) ~ .review {
+        display: none;
+      }
+    }
+    @include media-breakpoint-down(md) {
       .review:nth-child(3) ~ .review {
         display: none;
       }

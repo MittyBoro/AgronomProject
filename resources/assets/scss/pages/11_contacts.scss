@@ -20,6 +20,9 @@
     gap: 30px;
     padding: 30px;
   }
+  @include media-breakpoint-down(md) {
+    display: grid;
+  }
 }
 .contacts__item {
   flex-grow: 1;
@@ -42,8 +45,11 @@
   margin-bottom: 20px;
 }
 
-.contacts__text {
+.contacts__text:not(:last-of-type) {
   margin-bottom: 15px;
+  @include media-breakpoint-down(lg) {
+    margin-bottom: 7px;
+  }
 }
 
 .contacts__icon {
@@ -69,6 +75,9 @@
   font-size: 14px;
   @include media-breakpoint-down(lg) {
     padding: 30px;
+  }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
   }
 }
 
