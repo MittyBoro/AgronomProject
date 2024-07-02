@@ -25,6 +25,12 @@
     margin-bottom: 40px;
   }
 }
+.checkout__form-checkbox-label {
+  @include media-breakpoint-down(sm) {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+}
 
 .checkout__summary {
   max-width: 470px;
@@ -131,6 +137,10 @@
     display: grid;
     gap: 10px;
   }
+  @include media-breakpoint-down(sm) {
+    display: grid;
+    gap: 10px;
+  }
 }
 
 .checkout__promo-input {
@@ -142,7 +152,6 @@
 .checkout__submit-button {
   margin-top: 20px;
   margin-bottom: 15px;
-  width: 100%;
 }
 
 .checkout__privacy-checkbox-group {

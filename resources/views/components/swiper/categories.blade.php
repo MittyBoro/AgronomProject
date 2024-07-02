@@ -2,7 +2,7 @@
   class="catalog-banner__slider"
   space-between="15px"
   keyboard="true"
-  slides-per-view="3"
+  slides-per-view="2"
   loop="true"
   navigation="{{
     json_encode([
@@ -12,6 +12,10 @@
   }}"
   breakpoints="{{
     json_encode([
+      '375' => [
+        'slidesPerView' => 3,
+        'spaceBetween' => 20,
+      ],
       '768' => [
         'slidesPerView' => 4,
         'spaceBetween' => 20,

@@ -51,11 +51,17 @@
     <header class="header">
       <div class="header__container container">
         <a href="/" class="header__logo">
-          <img
-            src="{{ vite_asset('images/logo-big.svg') }}"
-            alt="АгрономСити"
-            class="header__logo-image"
-          />
+          <picture>
+            <source
+              srcset="{{ vite_asset('images/logo.svg') }}"
+              media="(max-width: 360px)"
+            />
+            <img
+              src="{{ vite_asset('images/logo-big.svg') }}"
+              alt="АгрономСити"
+              class="header__logo-image"
+            />
+          </picture>
         </a>
         <nav class="header__nav">
           <ul class="header__nav-list">
@@ -76,10 +82,10 @@
             </li>
           </ul>
         </nav>
-        <div class="header__search field-input">
+        <div class="header__search">
           <input
             type="text"
-            class="header__search-input"
+            class="header__search-input field-input"
             placeholder="Что вы ищете?"
           />
           <x-icon src="icons/search.svg" class="header__search-icon link" />
