@@ -24,7 +24,7 @@ document.querySelector('.to_top')?.addEventListener('click', (e) => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 })
 document.addEventListener('scroll', (e) => {
-  if (window.scrollY > 500) {
+  if (document.querySelector('footer')?.getBoundingClientRect().top < 500) {
     document.querySelector('.to_top')?.classList.add('active')
   } else {
     document.querySelector('.to_top')?.classList.remove('active')

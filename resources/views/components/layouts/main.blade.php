@@ -188,6 +188,7 @@
     <div class="to_top">
       <x-icon src="icons/arrow.svg" class="to_top__icon" />
     </div>
+    <x-bottom-bar />
 
     {!! $body ?? '' !!}
   </body>

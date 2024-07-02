@@ -557,9 +557,9 @@
   border-radius: 4px;
   @include media-breakpoint-down(lg) {
     font-size: 7px;
-    font-size: 1.8vw;
   }
   @include media-breakpoint-down(sm) {
+    font-size: 1.8vw;
   }
 }
 .loyalty-card__logo {
