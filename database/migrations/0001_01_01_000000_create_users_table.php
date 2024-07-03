@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
@@ -13,23 +14,26 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('phone')->unique()->nullable();
             $table->string('name')->nullable();
             $table->string('first_name')->nullable();
+            $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('patronymic')->nullable();
             $table->date('birthday')->nullable();
             $table
                 ->enum('gender', [User::GENDER_MALE, User::GENDER_FEMALE])
                 ->nullable();
 
+            $table->string('email')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->string('role')->default(User::ROLE_USER);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        // ставим первый id = 1000000, для красивых чисел на карточке
+        DB::statement('ALTER TABLE `users` AUTO_INCREMENT = 1000000;');
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

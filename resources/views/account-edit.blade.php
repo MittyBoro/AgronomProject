@@ -41,7 +41,7 @@
           class="account-edit__form"
           label="Отчество *"
           required
-          id="patronymic"
+          id="middle_name"
         />
         {{--  --}}
         <x-form.input
