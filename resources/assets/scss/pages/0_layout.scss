@@ -28,17 +28,10 @@
 
 .header__logo {
   transition: filter 0.15s;
+  max-width: 207px;
   &:hover {
     filter: brightness(0.9);
   }
-  @include media-breakpoint-down(sm) {
-    width: auto;
-    flex-grow: 1;
-    flex-basis: 0;
-  }
-}
-.header__logo img {
-  max-width: 207px;
   @include media-breakpoint-down(xl) {
     max-width: 180px;
   }
@@ -46,8 +39,9 @@
     max-width: 160px;
   }
   @include media-breakpoint-down(sm) {
-    max-width: 100%;
-    width: auto;
+    max-width: 150px;
+    flex-grow: 1;
+    flex-basis: 0;
   }
 }
 

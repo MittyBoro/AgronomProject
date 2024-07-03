@@ -36,6 +36,7 @@
   padding: calc(263 / 250 * 50%) 0;
   border-radius: 4px;
   background: var(--card-color);
+  cursor: pointer;
   img {
     transition-property: opacity, transform;
     transition-duration: 0.15s;
