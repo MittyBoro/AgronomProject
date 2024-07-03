@@ -16,6 +16,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class TheAdminPanelProvider extends PanelProvider
@@ -27,9 +28,11 @@ class TheAdminPanelProvider extends PanelProvider
             ->id('theadmin')
             ->path('theadmin')
             ->login()
+            ->font('Nunito', provider: GoogleFontCustomProvider::class)
             ->colors([
-                'primary' => Color::Emerald,
+                'primary' => Color::Green,
             ])
+            ->brandLogo(fn () => view('filament.logo'))
             ->discoverResources(
                 in: app_path('Filament/Resources'),
                 for: 'App\\Filament\\Resources',
@@ -47,6 +50,11 @@ class TheAdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+            ->renderHook('panels::head.start',
+                fn (): string => Vite::useHotFile('hot')
+                    ->useBuildDirectory('assets/build')
+                    ->withEntryPoints(['resources/panel/js/app.js',
+                        'resources/panel/scss/app.scss'])->toHtml())
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -58,6 +66,7 @@ class TheAdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->authMiddleware([Authenticate::class]);
+            ->authMiddleware([Authenticate::class])
+            ->unsavedChangesAlerts();
     }
 }
