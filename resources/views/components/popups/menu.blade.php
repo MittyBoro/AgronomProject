@@ -3,15 +3,12 @@
     <div class="popup__menu-header">
       <div class="header__container">
         <div class="header__search popup__menu-search">
-          <input
-            type="text"
-            class="header__search-input field-input"
-            placeholder="Что вы ищете?"
-          />
-          <x-icon src="icons/search.svg" class="header__search-icon link" />
+          <input class="header__search-input field-input" type="text"
+            placeholder="Что вы ищете?" />
+          <x-a.icon class="header__search-icon link" src="icons/search.svg" />
         </div>
         <div class="popup__menu-close popup__close link">
-          <x-icon src="icons/close.svg" />
+          <x-a.icon src="icons/close.svg" />
         </div>
       </div>
       <div class="popup-menu__title title">Каталог</div>
@@ -22,14 +19,11 @@
       </div>
 
       <div class="popup__menu-footer">
-        <x-main-links class_name="footer__links" />
+        <x-a.footer-links class_name="footer__links" />
 
         <div class="footer__logo">
-          <img
-            src="{{ vite_asset('images/logo.svg') }}"
-            alt="АгрономСити"
-            class="footer__logo-image"
-          />
+          <img class="footer__logo-image"
+            src="{{ Vite::front('images/logo.svg') }}" alt="АгрономСити" />
           <div class="footer__description">
             <p>Lorem ipsum dolor sit amet consectetur. Commodo aliquam</p>
             <p>{{ config('app.name') }} © {{ date('Y') }}</p>

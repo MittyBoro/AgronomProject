@@ -1,5 +1,5 @@
 <x-layouts.main body_name="page">
-  <x-breadcrumbs :list="[ ['Страница', null]]" />
+  <x-a.breadcrumbs :list="[['Страница', null]]" />
   {{--  --}}
   <section class="page__section">
     <div class="page__container container">

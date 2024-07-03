@@ -1,12 +1,9 @@
 <x-form.group {{ $attributes }}>
-  <textarea
+  <textarea class="{{ $attributes['class'] }}-input field-textarea"
     id="{{ $attributes['id'] }}"
-    class="{{ $attributes['class'] }}-input field-textarea"
-    {{ $attributes['required'] ? 'required' : '' }}
-    rows="{{ $attributes['rows'] ?? 1 }}"
     name="{{ $attributes['name'] ?? $attributes['id'] }}"
-  >
+    {{ $attributes['required'] ? 'required' : '' }}
+    rows="{{ $attributes['rows'] ?? 1 }}">
  {{ $attributes['value'] ?? '' }}
- </textarea
-  >
+ </textarea>
 </x-form.group>

@@ -5,6 +5,9 @@ import './elements/popup'
 
 // import './alpine/app'
 
-import './swiper'
-
 import.meta.glob('../images/**/**', { query: '?url' })
+
+import { register } from 'swiper/element/bundle'
+addEventListener('DOMContentLoaded', () => {
+  register()
+})

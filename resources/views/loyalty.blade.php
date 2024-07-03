@@ -1,5 +1,5 @@
 <x-layouts.main body_name="loyalty">
-  <x-breadcrumbs :list="[['Бонусная программа', null]]" />
+  <x-a.breadcrumbs :list="[['Бонусная программа', null]]" />
 
   {{-- loyalty --}}
   <section class="loyalty loyalty__section">
@@ -15,7 +15,7 @@
       <div class="loyalty__features">
         <div class="loyalty__feature">
           <div class="loyalty__feature-icon">
-            <x-icon src="icons/bonus-user.svg" />
+            <x-a.icon src="icons/bonus-user.svg" />
           </div>
           <div class="loyalty__feature-text">
             Пройдите авторизацию на нашем сайте
@@ -23,7 +23,7 @@
         </div>
         <div class="loyalty__feature">
           <div class="loyalty__feature-icon">
-            <x-icon src="icons/bonus-box.svg" />
+            <x-a.icon src="icons/bonus-box.svg" />
           </div>
           <div class="loyalty__feature-text">
             Совершайте покупки для вашего сада
@@ -31,7 +31,7 @@
         </div>
         <div class="loyalty__feature">
           <div class="loyalty__feature-icon">
-            <x-icon src="icons/bonus-percent.svg" />
+            <x-a.icon src="icons/bonus-percent.svg" />
           </div>
           <div class="loyalty__feature-text">
             Получайте до 10% баллами за каждый заказ
@@ -39,7 +39,7 @@
         </div>
         <div class="loyalty__feature">
           <div class="loyalty__feature-icon">
-            <x-icon src="icons/bonus-thumb.svg" />
+            <x-a.icon src="icons/bonus-thumb.svg" />
           </div>
           <div class="loyalty__feature-text">
             Оплачивайте баллами до 50% от стоимости заказа
@@ -50,5 +50,5 @@
   </section>
 
   {{--  --}}
-  <x-loyalty-system />
+  <x-a.loyalty-system />
 </x-layouts.main>

@@ -2,7 +2,7 @@
   <div class="account-loyalty">
     {{--  --}}
     <x-account.loyalty-card>
-      <a href="#" class="link">Условиях использования бонусной карты</a>
+      <a class="link" href="#">Условиях использования бонусной карты</a>
     </x-account.loyalty-card>
 
     {{--  --}}
@@ -15,10 +15,7 @@
       </div>
       <div class="account-loyalty__progress">
         <div class="account-loyalty__progress-title">У вас 1 уровень</div>
-        <div
-          class="account-loyalty__progress-bar"
-          style="--progress: 30%"
-        ></div>
+        <div class="account-loyalty__progress-bar" style="--progress: 30%"></div>
         <div>
           До повышения уровня осталось
           <span>15 000 ₽</span>
@@ -27,6 +24,6 @@
     </div>
   </div>
   <x-slot:bottom>
-    <x-loyalty-system />
+    <x-a.loyalty-system />
   </x-slot>
 </x-layouts.account>

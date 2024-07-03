@@ -1,8 +1,8 @@
 <x-layouts.main body_name="catalog">
-  <x-breadcrumbs :list="[['Каталог', null]]" />
+  <x-a.breadcrumbs :list="[['Каталог', null]]" />
 
   <section class="special-offers">
-    <div class="container special-offers__container">
+    <div class="special-offers__container container">
       <div class="catalog-categories">
         @foreach (range(1, 9) as $category)
           <x-categories.card :category="$category" />
@@ -18,7 +18,7 @@
     <div class="catalog__container container">
       <div class="catalog__title title">
         <h1>Каталог товаров</h1>
-        <a href="#" class="button catalog__button">Самые дорогие</a>
+        <a class="button catalog__button" href="#">Самые дорогие</a>
       </div>
       <div class="catalog__products products__list">
         <!-- Promotion Items -->

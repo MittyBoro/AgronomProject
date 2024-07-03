@@ -4,11 +4,10 @@
     <div class="account-order__date">12.12.2021 в 12:12</div>
     <div class="account-order__status">
       <span
-        class="account-order__status-icon account-order__status--{{ ['success', 'pending', 'danger'][rand(0, 2)] }}"
-      ></span>
+        class="account-order__status-icon account-order__status--{{ ['success', 'pending', 'danger'][rand(0, 2)] }}"></span>
       <span>Ожидается оплата</span>
     </div>
-    <x-icon src="icons/arrow-simple.svg" class="account-order__arrow active" />
+    <x-a.icon class="account-order__arrow active" src="icons/arrow-simple.svg" />
   </div>
   <div class="account-order__body">
     <div class="account-order__info">
@@ -87,14 +86,12 @@
       @foreach (range(1, rand(2, 5)) as $product)
         <div class="account-order__product">
           <div class="account-order__product-image cart__item-image">
-            <img
-              src="{{ vite_asset('images/product-demo.png') }}"
-              alt="{{ config('app.name') }}"
-              class="object-cover"
-            />
+            <img class="object-cover"
+              src="{{ Vite::front('images/product-demo.png') }}"
+              alt="{{ config('app.name') }}" />
           </div>
           <div class="account-order__product-name">
-            <a href="#" target="_blank" class="link">Грудка куриная</a>
+            <a class="link" href="#" target="_blank">Грудка куриная</a>
             <div class="account-order__product-option gray">5кг</div>
           </div>
           <div class="account-order__product-price">

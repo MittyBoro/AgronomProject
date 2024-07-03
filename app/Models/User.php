@@ -12,10 +12,14 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    /** Gender constants. */
     const GENDER_MALE = 'male';
+
     const GENDER_FEMALE = 'female';
 
+    /** Role constants. */
     const ROLE_USER = 'user';
+
     const ROLE_ADMIN = 'admin';
 
     /**
@@ -53,7 +57,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'phone' => E164PhoneNumberCast::class . ':RU',
+            'phone' => E164PhoneNumberCast::class.':RU',
         ];
     }
 }

@@ -23,5 +23,13 @@ class AppServiceProvider extends ServiceProvider
         Vite::useScriptTagAttributes([
             'defer' => true, // Specify an attribute without a value...
         ]);
+
+        Vite::macro(
+            'front',
+            function (string $asset) {
+                /** @var \Illuminate\Support\Facades\Vite $this */
+                return $this->asset(config('app.resources.front')."/{$asset}");
+            }
+        );
     }
 }

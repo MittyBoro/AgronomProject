@@ -24,17 +24,19 @@
     <div class="account-address__info-text account__info-text">Москва</div>
   </div>
   <div class="account-address__info-buttons">
-    <div
-      @class(['button button-mini', 'button-alt' => $item == 1, 'button-alt--primary' => $item !== 1])
-    >
-      <x-icon src="icons/check.svg" />
+    <div @class([
+        'button button-mini',
+        'button-alt' => $item == 1,
+        'button-alt--primary' => $item !== 1,
+    ])>
+      <x-a.icon src="icons/check.svg" />
       По умолчанию
     </div>
     <div class="button button-mini button-alt">
-      <x-icon src="icons/edit.svg" />
+      <x-a.icon src="icons/edit.svg" />
     </div>
     <div class="button button-mini button-alt--danger">
-      <x-icon src="icons/trash.svg" />
+      <x-a.icon src="icons/trash.svg" />
     </div>
   </div>
 </div>

@@ -51,16 +51,14 @@
         <div class="account-index__info-text account__info-text">Мужской</div>
       </div>
 
-      <a
-        href="/account-edit"
-        class="account-index__info-button button button-mini button-alt"
-      >
+      <a class="account-index__info-button button button-mini button-alt"
+        href="/account-edit">
         Редактировать
       </a>
     </div>
 
     <x-account.loyalty-card>
-      <a href="#" class="account-index__loyalty-button button button-alt">
+      <a class="account-index__loyalty-button button button-alt" href="#">
         Подробнее
       </a>
     </x-account.loyalty-card>
@@ -76,7 +74,7 @@
         @endforeach
       </div>
 
-      <a href="#" class="account-index__orders-button button button-alt">
+      <a class="account-index__orders-button button button-alt" href="#">
         Посмотреть все
       </a>
     </div>

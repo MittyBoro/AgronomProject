@@ -1,5 +1,5 @@
 <x-layouts.main body_name="articles">
-  <x-breadcrumbs :list="[['Программы подкормок', null]]" />
+  <x-a.breadcrumbs :list="[['Программы подкормок', null]]" />
 
   {{-- articles --}}
   <section class="articles articles__section">

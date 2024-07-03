@@ -1,11 +1,8 @@
 <div class="loyalty-card__wrapper">
   <div class="loyalty-card">
     <div class="loyalty-card__logo">
-      <img
-        src="{{ vite_asset('images/logo-big.svg') }}"
-        alt="АгрономСити"
-        class="loyalty-card__logo-image"
-      />
+      <img class="loyalty-card__logo-image"
+        src="{{ Vite::front('images/logo-big.svg') }}" alt="АгрономСити" />
       <div class="loyalty-card__logo-text">бонусная карта</div>
     </div>
     <div class="loyalty-card__count">

@@ -2,40 +2,40 @@
   {{-- account --}}
   <section class="account-header account-header__section account">
     <div class="account-header__container container">
-      <a
-        href="/account-index"
-        @class(['account-header__link', 'active' => $attributes['name'] === 'index'])
-      >
-        <x-icon src="icons/user.svg" />
+      <a href="/account-index" @class([
+          'account-header__link',
+          'active' => $attributes['name'] === 'index',
+      ])>
+        <x-a.icon src="icons/user.svg" />
         <span>Личный кабинет</span>
       </a>
-      <a
-        href="/account-favorites"
-        @class(['account-header__link', 'active' => $attributes['name'] === 'favorites'])
-      >
-        <x-icon src="icons/heart.svg" />
+      <a href="/account-favorites" @class([
+          'account-header__link',
+          'active' => $attributes['name'] === 'favorites',
+      ])>
+        <x-a.icon src="icons/heart.svg" />
         <span>Избранное</span>
         <span class="badge">8</span>
       </a>
-      <a
-        href="/account-orders"
-        @class(['account-header__link', 'active' => $attributes['name'] === 'orders'])
-      >
-        <x-icon src="icons/list.svg" />
+      <a href="/account-orders" @class([
+          'account-header__link',
+          'active' => $attributes['name'] === 'orders',
+      ])>
+        <x-a.icon src="icons/list.svg" />
         <span>История заказов</span>
       </a>
-      <a
-        href="/account-addresses"
-        @class(['account-header__link', 'active' => $attributes['name'] === 'addresses'])
-      >
-        <x-icon src="icons/location.svg" />
+      <a href="/account-addresses" @class([
+          'account-header__link',
+          'active' => $attributes['name'] === 'addresses',
+      ])>
+        <x-a.icon src="icons/location.svg" />
         <span>Адреса</span>
       </a>
-      <a
-        href="/account-loyalty"
-        @class(['account-header__link', 'active' => $attributes['name'] === 'loyalty'])
-      >
-        <x-icon src="icons/card.svg" />
+      <a href="/account-loyalty" @class([
+          'account-header__link',
+          'active' => $attributes['name'] === 'loyalty',
+      ])>
+        <x-a.icon src="icons/card.svg" />
         <span>Бонусы</span>
         <span class="badge">12</span>
       </a>

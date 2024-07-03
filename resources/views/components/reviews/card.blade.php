@@ -5,9 +5,7 @@
     Pouere egestas mattis fames orci malesuada.
   </div>
   <div class="review__rating rating">
-    <span
-      class="review__rating--stars rating__stars"
-      style="--percent: {{ rand(60, 100) }}%"
-    ></span>
+    <span class="review__rating--stars rating__stars"
+      style="--percent: {{ rand(60, 100) }}%"></span>
   </div>
 </div>

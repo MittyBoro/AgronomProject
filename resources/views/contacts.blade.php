@@ -1,5 +1,5 @@
 <x-layouts.main body_name="contacts">
-  <x-breadcrumbs :list="[ ['Контакты', null]]" />
+  <x-a.breadcrumbs :list="[['Контакты', null]]" />
   {{--  --}}
   <section class="contacts__section">
     <div class="contacts__container container">
@@ -7,7 +7,7 @@
         <div class="contacts__item">
           <div class="contacts__title">
             <div class="contacts__icon">
-              <x-icon src="icons/phone.svg" />
+              <x-a.icon src="icons/phone.svg" />
             </div>
             <span>Телефон для связи</span>
           </div>
@@ -20,7 +20,7 @@
         <div class="contacts__item">
           <div class="contacts__title">
             <div class="contacts__icon">
-              <x-icon src="icons/envelope.svg" />
+              <x-a.icon src="icons/envelope.svg" />
             </div>
             <span>Пишите нам</span>
           </div>
@@ -36,35 +36,17 @@
       <form class="contacts__form">
         <div class="contacts__form-title title"><span>Написать нам</span></div>
 
-        <x-form.input
-          class="contacts__form"
-          label="Ваше имя *"
-          id="name"
-          required
-        />
-        <x-form.input
-          class="contacts__form"
-          label="Ваше E-mail *"
-          id="email"
-          type="email"
-          required
-        />
-        <x-form.input
-          class="contacts__form"
-          label="Ваш телефон *"
-          id="phone"
-          type="tel"
-        />
-        <x-form.textarea
-          class="grid-col-full contacts__form"
-          label="Ваше сообщение"
-          id="message"
-          rows="6"
-          required
-        />
+        <x-form.input class="contacts__form" id="name" label="Ваше имя *"
+          required />
+        <x-form.input class="contacts__form" id="email" type="email"
+          label="Ваше E-mail *" required />
+        <x-form.input class="contacts__form" id="phone" type="tel"
+          label="Ваш телефон *" />
+        <x-form.textarea class="grid-col-full contacts__form" id="message"
+          label="Ваше сообщение" rows="6" required />
 
         <div class="contacts__form-submit-row">
-          <button type="submit" class="contacts__form-submit button">
+          <button class="contacts__form-submit button" type="submit">
             Отправить
           </button>
         </div>

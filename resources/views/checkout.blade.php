@@ -1,5 +1,5 @@
 <x-layouts.main body_name="checkout">
-  <x-breadcrumbs :list="[['Корзина', '/cart'], ['Оформление заказа', null]]" />
+  <x-a.breadcrumbs :list="[['Корзина', '/cart'], ['Оформление заказа', null]]" />
 
   {{-- checkout --}}
   <section class="checkout checkout__section">
@@ -8,73 +8,39 @@
 
       <form class="checkout__form">
         {{--  --}}
-        <x-form.input
-          class="checkout__form"
-          label="Фамилия Имя Отчество *"
-          id="name"
-          required
-        />
+        <x-form.input class="checkout__form" id="name"
+          label="Фамилия Имя Отчество *" required />
         {{--  --}}
-        <x-form.input
-          class="checkout__form"
-          label="E-mail *"
-          type="email"
-          id="name"
-          required
-        />
+        <x-form.input class="checkout__form" id="name" type="email"
+          label="E-mail *" required />
         {{--  --}}
-        <x-form.input
-          class="checkout__form"
-          label="Телефон *"
-          type="tel"
-          id="phone"
-          required
-        />
+        <x-form.input class="checkout__form" id="phone" type="tel"
+          label="Телефон *" required />
 
         {{--  --}}
-        <x-form.input
-          class="checkout__form"
-          label="Почтовый индекс"
-          type="number"
-          id="postcode"
-          required
-        />
+        <x-form.input class="checkout__form" id="postcode" type="number"
+          label="Почтовый индекс" required />
 
         {{--  --}}
-        <x-form.input
-          class="checkout__form"
-          label="Город, Деревня, Область, Район *"
-          id="area"
-          required
-        />
+        <x-form.input class="checkout__form" id="area"
+          label="Город, Деревня, Область, Район *" required />
 
         {{--  --}}
-        <x-form.textarea
-          class="checkout__form"
-          label="Улица, дом (этаж, квартира) *"
-          id="address"
-          rows="3"
-          required
-        />
+        <x-form.textarea class="checkout__form" id="address"
+          label="Улица, дом (этаж, квартира) *" rows="3" required />
 
         {{--  --}}
-        <x-form.checkbox
-          class="checkout__form"
-          label="Сохранить данные для следующего заказа"
-          id="save-data"
-          required
-        />
+        <x-form.checkbox class="checkout__form" id="save-data"
+          label="Сохранить данные для следующего заказа" required />
       </form>
 
       <div class="checkout__summary">
         @foreach (range(1, 2) as $item)
           <div class="checkout__item">
             <span class="checkout__item-image">
-              <img
-                src="{{ vite_asset('images/product-demo.png') }}"
-                alt="Название товара"
-                class="object-cover"
-              />
+              <img class="object-cover"
+                src="{{ Vite::front('images/product-demo.png') }}"
+                alt="Название товара" />
             </span>
             <span class="checkout__item-name">Название товара</span>
             <span class="checkout__item-right">
@@ -94,13 +60,8 @@
 
           <div class="checkout__loyalty-range">
             <div class="field-range--bubble bubble"></div>
-            <input
-              type="range"
-              min="0"
-              max="28"
-              value="14"
-              class="checkout__loyalty-range--input field-range"
-            />
+            <input class="checkout__loyalty-range--input field-range"
+              type="range" value="14" min="0" max="28" />
             <div class="checkout__loyalty-range-values">
               <span class="range-label">0 бонусов</span>
               <span class="range-label">28 бонусов</span>
@@ -109,11 +70,8 @@
         </div>
 
         <div class="checkout__promo">
-          <input
-            type="text"
-            class="checkout__promo-input button button-input"
-            placeholder="Промокод"
-          />
+          <input class="checkout__promo-input button button-input"
+            type="text" placeholder="Промокод" />
           <button class="checkout__promo-button button">Применить</button>
         </div>
 
@@ -144,27 +102,16 @@
 
         <div class="checkout__payment-methods">
           {{--  --}}
-          <x-form.radio
-            class="checkout__payment"
-            id="card"
-            name="payment"
-            required
-          >
+          <x-form.radio class="checkout__payment" id="card" name="payment"
+            required>
             Банковской картой
-            <img
-              src="{{ vite_asset('images/visa-mastercard-mir.png') }}"
-              alt="Visa MasterCard Mir"
-              class="checkout__payment-icon"
-            />
+            <img class="checkout__payment-icon"
+              src="{{ Vite::front('images/visa-mastercard-mir.png') }}"
+              alt="Visa MasterCard Mir" />
           </x-form.radio>
           {{--  --}}
-          <x-form.radio
-            class="checkout__payment"
-            id="cash"
-            name="payment"
-            1
-            required
-          >
+          <x-form.radio class="checkout__payment" id="cash" name="payment"
+            1 required>
             Наличными при доставке
           </x-form.radio>
         </div>
@@ -175,7 +122,7 @@
           {{--  --}}
           <x-form.checkbox class="checkout__privacy" id="privacy" required>
             Нажимая эту кнопку я соглашаюсь с
-            <a href="/privacy" class="link underline">
+            <a class="link underline" href="/privacy">
               Политикой конфиденциальности
             </a>
           </x-form.checkbox>

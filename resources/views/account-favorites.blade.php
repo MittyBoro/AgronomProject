@@ -4,7 +4,7 @@
     <div class="account-favorites__container container">
       <div class="account-favorites__title account__title">
         <div>Избранные товары (8)</div>
-        <a href="#" class="button button-alt account-favorites__button">
+        <a class="button button-alt account-favorites__button" href="#">
           Добавить все в корзину
         </a>
       </div>

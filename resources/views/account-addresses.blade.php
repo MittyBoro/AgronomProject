@@ -5,7 +5,7 @@
     @endforeach
 
     <div class="account-addresses__button button button-alt">
-      <x-icon src="icons/plus.svg" />
+      <x-a.icon src="icons/plus.svg" />
       Добавить адрес
     </div>
   </div>
