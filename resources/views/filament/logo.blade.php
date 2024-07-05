@@ -1,6 +1,18 @@
-<span class="flex max-h-full items-center text-lg font-bold" href="/">
-  <img class="shrink-1 h-full w-auto" src="{{ Vite::front('images/logo.svg') }}"
-    alt="ПУ" />
-  <span class="ml-1">Панель</span>
-  <span class="text-primary-500">Управления</span>
-</span>
+<span class="flex max-h-full items-center font-bold" href="/">
+  <svg class="shrink-1 h-full w-auto" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 194 174">
+    <path fill-rule="evenodd" fill="#2ac764" d=" M21.426,113.873
+      C21.426,113.873 19.020,87.757 44.677,61.029 C76.054,28.343 125.276,48.780
+      193.078,5.070 C194.719,12.819 191.996,53.902 158.499,89.726
+      C117.995,133.044 59.085,132.772 59.085,132.772 C59.085,132.772
+      71.254,95.393 112.795,70.876 C124.073,64.219 39.494,74.671 48.299,147.465
+      C46.512,150.540 21.426,113.873 21.426,113.873 Z" />
+    <path fill-rule="evenodd" fill="currentColor"
+      d="M130.450,8.846 C130.450,8.846 78.727,-15.123 32.675,19.124 C-8.405,49.674 -6.748,105.855 17.483,136.002 C40.005,164.023 90.003,189.849 136.254,159.909 C182.547,129.942 180.551,89.558 180.551,89.558 C180.551,89.558 173.537,135.622 116.898,153.786 C80.226,162.196 46.762,146.241 30.164,120.543 C14.372,96.092 13.980,62.763 35.585,35.440 C65.924,-2.928 130.450,8.846 130.450,8.846 Z" />
+  </svg>
+  <span class="ml-1 leading-none">
+    <span class="flex"><span
+        class="text-primary-500">П</span><span>анель</span></span>
+    <span class="flex"><span
+        class="text-primary-500">У</span><span>правления</span></span>
+  </span>

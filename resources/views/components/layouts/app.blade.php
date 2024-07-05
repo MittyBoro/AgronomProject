@@ -17,7 +17,7 @@
   </style>
 
   @filamentStyles
-  @vite('resources/css/app.css')
+  @vite('resources/panel/scss/app.scss')
 </head>
 
 <body class="antialiased">
@@ -26,7 +26,7 @@
   @livewire('notifications')
 
   @filamentScripts
-  @vite('resources/js/app.js')
+  @vite('resources/panel/js/app.js')
 </body>
 
 </html>

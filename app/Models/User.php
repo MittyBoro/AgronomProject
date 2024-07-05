@@ -61,15 +61,20 @@ class User extends Authenticatable implements FilamentUser
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'phone' => E164PhoneNumberCast::class.':RU',
+            'phone' => E164PhoneNumberCast::class . ':RU',
         ];
+    }
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
     }
 
     public function isAdmin(): Attribute
     {
-        return Attribute::make(
-            get: fn () => $this->role === self::ROLE_ADMIN,
-        );
+        return Attribute::make(get: fn() => $this->role === self::ROLE_ADMIN);
     }
 
     public function canAccessPanel(Panel $panel): bool

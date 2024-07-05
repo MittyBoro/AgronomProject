@@ -32,7 +32,7 @@ class TheAdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
-            ->brandLogo(fn () => view('filament.logo'))
+            ->brandLogo(fn() => view('filament.logo'))
             ->discoverResources(
                 in: app_path('Filament/Resources'),
                 for: 'App\\Filament\\Resources',
@@ -46,15 +46,18 @@ class TheAdminPanelProvider extends PanelProvider
                 in: app_path('Filament/Widgets'),
                 for: 'App\\Filament\\Widgets',
             )
-            ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
-            ])
-            ->renderHook('panels::head.start',
-                fn (): string => Vite::useHotFile('hot')
+            ->sidebarWidth('16rem')
+            ->widgets([Widgets\AccountWidget::class])
+            ->renderHook(
+                'panels::head.start',
+                fn(): string => Vite::useHotFile('hot')
                     ->useBuildDirectory('assets/build')
-                    ->withEntryPoints(['resources/panel/js/app.js',
-                        'resources/panel/scss/app.scss'])->toHtml())
+                    ->withEntryPoints([
+                        'resources/panel/js/app.js',
+                        'resources/panel/scss/app.scss',
+                    ])
+                    ->toHtml(),
+            )
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -66,7 +69,6 @@ class TheAdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->authMiddleware([Authenticate::class])
-            ->unsavedChangesAlerts();
+            ->authMiddleware([Authenticate::class]);
     }
 }

@@ -4,7 +4,7 @@
     <div class="muzzle__container container">
       <div class="muzzle__content">
         <img class="muzzle__image object-cover"
-          src="{{ Vite::asset('images/muzzle-background.png') }}"
+          src="{{ Vite::front('images/muzzle-background.png') }}"
           alt="" />
         <div class="muzzle__text white-blur-block">
           <div class="muzzle__title">

@@ -24,12 +24,9 @@ class AppServiceProvider extends ServiceProvider
             'defer' => true, // Specify an attribute without a value...
         ]);
 
-        Vite::macro(
-            'front',
-            function (string $asset) {
-                /** @var \Illuminate\Support\Facades\Vite $this */
-                return $this->asset(config('app.resources.front')."/{$asset}");
-            }
-        );
+        Vite::macro('front', function (string $asset) {
+            /** @var \Illuminate\Support\Facades\Vite $this */
+            return $this->asset(config('app.resources.front') . "/{$asset}");
+        });
     }
 }
