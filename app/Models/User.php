@@ -77,8 +77,27 @@ class User extends Authenticatable implements FilamentUser
         return Attribute::make(get: fn() => $this->role === self::ROLE_ADMIN);
     }
 
+    /**
+     * Get the panel permissions for the user.
+     */
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->is_admin;
+    }
+    /**
+     * Get the globally searchable attributes for the panel.
+     */
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'name',
+            'first_name',
+            'middle_name',
+            'last_name',
+            'birthday',
+            'gender',
+            'email',
+            'phone',
+        ];
     }
 }

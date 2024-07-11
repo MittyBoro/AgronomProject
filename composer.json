@@ -15,6 +15,7 @@
         "propaganistas/laravel-phone": "^5.3"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.13",
         "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.23",
         "laravel-lang/lang": "^15.5",

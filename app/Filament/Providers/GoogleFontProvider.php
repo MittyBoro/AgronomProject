@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Providers\Filament;
+namespace App\Filament\Providers;
 
 use Filament\FontProviders\Contracts\FontProvider;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
 
-class GoogleFontCustomProvider implements FontProvider
+class GoogleFontProvider implements FontProvider
 {
     public function getHtml(string $family, ?string $url = null): Htmlable
     {

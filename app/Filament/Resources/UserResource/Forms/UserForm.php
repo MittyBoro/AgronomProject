@@ -104,7 +104,7 @@ class UserForm
                             // Other actions here
                             Action::make('verifyEmail')
                                 ->label('Верифицировать email')
-                                ->icon('heroicon-m-check-circle')
+                                ->icon('heroicon-m-exclamation-circle')
                                 ->tooltip('Верифицировать email')
                                 ->color('warning')
                                 ->requiresConfirmation()
@@ -130,10 +130,9 @@ class UserForm
                             ),
                         )
                         ->formatStateUsing(
-                            fn(string $state): string => phone(
-                                $state,
-                                'ru',
-                            )->formatE164(),
+                            fn(?string $state): string => $state
+                                ? phone($state, 'ru')->formatE164()
+                                : '',
                         )
                         ->rules('phone:INTERNATIONAL:ru'),
                 ]),

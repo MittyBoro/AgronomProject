@@ -30,6 +30,10 @@
           label="Улица, дом (этаж, квартира) *" rows="3" required />
 
         {{--  --}}
+        <x-form.textarea class="checkout__form" id="address"
+          label="Комментарий к заказу" rows="3" required />
+
+        {{--  --}}
         <x-form.checkbox class="checkout__form" id="save-data"
           label="Сохранить данные для следующего заказа" required />
       </form>
