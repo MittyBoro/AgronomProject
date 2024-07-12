@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UserResource\Forms;
 
+use App\Enums\GenderEnum;
 use App\Models\User;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
@@ -78,11 +79,7 @@ class UserForm
                         ->locale('ru'),
                     Select::make('gender')
                         ->label('Пол')
-                        ->options([
-                            null => 'Не указан',
-                            User::GENDER_MALE => 'Мужской',
-                            User::GENDER_FEMALE => 'Женский',
-                        ])
+                        ->options(GenderEnum::array())
                         ->native(false),
                 ]),
 

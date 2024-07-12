@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UserResource\Tables;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
@@ -75,17 +76,13 @@ class UserTable
                 ->label('Роль')
                 ->badge()
                 ->color(
-                    fn(string $state): string => match ($state) {
-                        'admin' => 'danger',
-                        'user' => 'info',
+                    fn(RoleEnum $state): string => match ($state) {
+                        RoleEnum::Admin => 'danger',
+                        default => 'info',
                     },
                 )
                 ->formatStateUsing(
-                    fn(string $state): string => match ($state) {
-                        'admin' => 'админ',
-                        'user' => 'клиент',
-                        default => $state,
-                    },
+                    fn(RoleEnum $state): string => $state->label(),
                 )
                 ->searchable()
                 ->sortable(),

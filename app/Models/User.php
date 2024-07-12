@@ -3,7 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-
+use App\Enums\GenderEnum;
+use App\Enums\RoleEnum;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -15,16 +16,6 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
-
-    /** Gender constants. */
-    const GENDER_MALE = 'male';
-
-    const GENDER_FEMALE = 'female';
-
-    /** Role constants. */
-    const ROLE_USER = 'user';
-
-    const ROLE_ADMIN = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -62,6 +53,8 @@ class User extends Authenticatable implements FilamentUser
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'phone' => E164PhoneNumberCast::class . ':RU',
+            'gender' => GenderEnum::class,
+            'role' => RoleEnum::class,
         ];
     }
 
@@ -74,7 +67,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function isAdmin(): Attribute
     {
-        return Attribute::make(get: fn() => $this->role === self::ROLE_ADMIN);
+        return Attribute::make(get: fn() => $this->role === RoleEnum::Admin);
     }
 
     /**
