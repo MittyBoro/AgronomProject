@@ -39,7 +39,7 @@ class TheAdminPanelProvider extends PanelProvider
                 'primary' => Color::Green,
             ])
             ->brandLogo(fn() => view('filament.logo'))
-            ->favicon(Vite::asset('resources/panel/images/logo.svg'))
+            ->favicon(fn() => Vite::asset('resources/panel/images/favicon.svg'))
             ->discoverResources(
                 in: app_path('Filament/Resources'),
                 for: 'App\\Filament\\Resources',
