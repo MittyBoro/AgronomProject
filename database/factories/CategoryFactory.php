@@ -19,7 +19,7 @@ class CategoryFactory extends Factory
     {
         return $this->afterCreating(function (Category $category) {
             $category
-                ->addMediaFromUrl($this->faker->imageUrl())
+                ->addMediaFromUrl(faker_media_url())
                 ->usingName($category->slug)
                 ->toMediaCollection();
         });
@@ -32,14 +32,14 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        $name = trim($this->faker->sentence(), '.');
+        $name = trim(fake()->unique()->sentence(rand(1, 3)), '.');
 
         return [
             'slug' => Str::slug($name),
             'name' => $name,
-            'description' => $this->faker->text(),
+            'description' => fake()->text(),
             'meta_title' => $name,
-            'meta_description' => $this->faker->text(),
+            'meta_description' => fake()->text(),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasResponsiveImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -9,7 +10,15 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, HasResponsiveImages, InteractsWithMedia {
+        HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
+    }
+
+    /**
+     * for responsive images HasResponsiveImages
+     * @var int
+     */
+    private int $responsiveMediaMaxWidth = 1000;
 
     /**
      * The attributes that are mass assignable.

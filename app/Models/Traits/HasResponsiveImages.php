@@ -17,19 +17,19 @@ trait HasResponsiveImages
 
     abstract public function media(): MorphMany;
 
-    private int $responsiveMediaMaxWidth = 1200;
+    private static int $mediaMaxWidthDefault = 1200;
 
     public function registerMediaConversions(?Media $media = null): void
     {
         // Добавляем конверсию для формата JPEG
         $this->addMediaConversion('jpeg')
-            ->fit(Fit::Max, $this->responsiveMediaMaxWidth)
+            ->fit(Fit::Max, $this->mediaMaxWidth ?? $this->mediaMaxWidthDefault)
             ->withResponsiveImages()
             ->format('jpg');
 
         // Добавляем конверсию для формата WebP
         $this->addMediaConversion('webp')
-            ->fit(Fit::Max, $this->responsiveMediaMaxWidth)
+            ->fit(Fit::Max, $this->mediaMaxWidth ?? $this->mediaMaxWidthDefault)
             ->withResponsiveImages()
             ->format('webp');
 

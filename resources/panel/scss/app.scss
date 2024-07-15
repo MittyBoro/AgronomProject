@@ -1,3 +1,9 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.fi-sidebar-group-headless {
+  .fi-sidebar-group-button {
+    display: none;
+  }
+}

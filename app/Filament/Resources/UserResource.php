@@ -17,15 +17,16 @@ class UserResource extends Resource
     protected static ?string $label = 'Пользователь';
     protected static ?string $pluralLabel = 'Пользователи';
     protected static ?string $navigationLabel = 'Пользователи';
+    protected static ?string $navigationGroup = 'Прочее';
 
     public static function form(Form $form): Form
     {
-        return UserResource\Forms\UserForm::form($form);
+        return UserResource\Forms\UserForm::make($form);
     }
 
     public static function table(Table $table): Table
     {
-        return UserResource\Tables\UserTable::table($table);
+        return UserResource\Tables\UserTable::make($table);
     }
 
     public static function getRelations(): array

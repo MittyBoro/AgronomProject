@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasResponsiveImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -9,7 +10,15 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Category extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, HasResponsiveImages, InteractsWithMedia {
+        HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
+    }
+
+    /**
+     * for responsive images HasResponsiveImages
+     * @var int
+     */
+    public static int $mediaMaxWidth = 150;
 
     /**
      * The attributes that are mass assignable.
@@ -17,8 +26,8 @@ class Category extends Model implements HasMedia
      * @var array<int, string>
      */
     protected $fillable = [
-        'slug',
         'name',
+        'slug',
         'description',
         'meta_title',
         'meta_description',
@@ -37,5 +46,10 @@ class Category extends Model implements HasMedia
             'position' => 'integer',
             'is_published' => 'boolean',
         ];
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
     }
 }

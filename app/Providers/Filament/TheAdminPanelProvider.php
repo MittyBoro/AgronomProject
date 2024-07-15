@@ -9,6 +9,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
@@ -57,12 +58,25 @@ class TheAdminPanelProvider extends PanelProvider
 
             // navigation
             ->navigationItems([
-                // ...
-                NavigationItem::make('dashboard')
+                NavigationItem::make('to-frontend')
                     ->icon('heroicon-o-arrow-top-right-on-square')
                     ->label(fn(): string => 'Открыть сайт')
                     ->url('/', shouldOpenInNewTab: true)
+                    ->group('Bottom')
                     ->sort(33),
+            ])
+            ->navigationGroups([
+                NavigationGroup::make('Магазин')->collapsible(false),
+                NavigationGroup::make('Прочее')
+                    ->extraSidebarAttributes([
+                        'class' => 'fi-sidebar-group-headless',
+                    ])
+                    ->collapsed(false),
+                NavigationGroup::make('Bottom')
+                    ->extraSidebarAttributes([
+                        'class' => 'fi-sidebar-group-headless',
+                    ])
+                    ->collapsed(false),
             ])
             ->userMenuItems([
                 MenuItem::make()
@@ -83,6 +97,8 @@ class TheAdminPanelProvider extends PanelProvider
                     default => null,
                 },
             )
+
+            // vite build
             ->renderHook(
                 'panels::head.start',
                 fn(): string => Vite::useHotFile('hot')
