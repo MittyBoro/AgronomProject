@@ -7,3 +7,29 @@
     display: none;
   }
 }
+
+@media (hover: hover) {
+  html::-webkit-scrollbar {
+    @apply w-4;
+  }
+  html::-webkit-scrollbar-thumb {
+    @apply bg-gray-500/40 ring-4 ring-inset ring-white rounded-full transition-all;
+    &:hover {
+      @apply bg-gray-500/70;
+    }
+  }
+  body {
+    *::-webkit-scrollbar {
+      @apply w-2 h-2;
+    }
+    *::-webkit-scrollbar-thumb {
+      @apply bg-gray-500/30 dark:bg-primary-600 ring-0 rounded-full;
+    }
+  }
+}
+
+.variation-repeater {
+  .fi-fo-repeater-item {
+    @apply border bg-gray-100/10 dark:bg-gray-800/30;
+  }
+}

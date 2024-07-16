@@ -18,7 +18,7 @@ class Product extends Model implements HasMedia
      * for responsive images HasResponsiveImages
      * @var int
      */
-    private int $responsiveMediaMaxWidth = 1000;
+    public static int $mediaMaxWidth = 1000;
 
     /**
      * The attributes that are mass assignable.
@@ -49,7 +49,7 @@ class Product extends Model implements HasMedia
     {
         return [
             'position' => 'integer',
-            'price' => 'decimal:2',
+            'price' => 'decimal:0',
             'stock' => 'integer',
             'is_published' => 'boolean',
         ];

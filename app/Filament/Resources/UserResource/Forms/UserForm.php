@@ -16,16 +16,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserForm
 {
-    public static function form(Form $form): Form
+    public static function make(Form $form): Form
     {
-        return $form->columns(1)->schema(self::schema());
-    }
-
-    private static function schema(): array
-    {
-        return [
-            Tabs::make('settings')
-                ->id('user-tabs')
+        return $form->columns(1)->schema([
+            Tabs::make()
+                ->persistTabInQueryString()
                 ->tabs([
                     Tabs\Tab::make('main')
                         ->label('Основное')
@@ -34,7 +29,7 @@ class UserForm
                         ->label('Пароль')
                         ->schema(self::passwordTabSchema()),
                 ]),
-        ];
+        ]);
     }
 
     private static function mainTabSchema(): array

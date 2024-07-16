@@ -43,7 +43,6 @@ class Category extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'position' => 'integer',
             'is_published' => 'boolean',
         ];
     }

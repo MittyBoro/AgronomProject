@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductVariation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,15 +15,19 @@ class ProductFactory extends Factory
 {
     /**
      * Configure the model factory.
-     * After creating the model, add a media to it
+     * Добавляем изображения, категории и вариации к продукту
      */
     public function configure(): static
     {
-        return $this->afterCreating(function (Product $category) {
-            foreach (range(1, 2) as $v) {
-                $category
-                    ->addMediaFromUrl($this->faker->imageUrl())
-                    ->usingName($category->slug)
+        return $this->has(
+            ProductVariation::factory()->count(rand(1, 5)),
+            'variations',
+        )->afterCreating(function (Product $product) {
+            $product->categories()->attach(Category::all()->random(rand(1, 3)));
+            foreach (range(1, rand(1, 2)) as $v) {
+                $product
+                    ->addMediaFromUrl(faker_media_url())
+                    ->usingName($product->slug)
                     ->toMediaCollection();
             }
         });
@@ -34,19 +40,19 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $name = trim($this->faker->sentence(), '.');
+        $name = trim(fake()->unique()->sentence(rand(2, 5)), '.');
 
         return [
             'slug' => Str::slug($name),
             'name' => $name,
-            'description' => $this->faker->text(),
+            'description' => fake()->text(),
 
-            'price' => $this->faker->numberBetween(500, 9000),
-            'stock' => $this->faker->numberBetween(0, 1000),
-            'is_published' => $this->faker->boolean(80),
+            'price' => round(fake()->numberBetween(500, 9000), -2),
+            'stock' => fake()->numberBetween(0, 1000),
+            'is_published' => fake()->boolean(80),
 
             'meta_title' => $name,
-            'meta_description' => $this->faker->text(),
+            'meta_description' => fake()->text(),
         ];
     }
 }

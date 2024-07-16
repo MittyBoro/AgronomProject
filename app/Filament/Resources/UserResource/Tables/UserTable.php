@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UserResource\Tables;
 
 use App\Enums\RoleEnum;
+use App\Filament\Tables\IdColumn;
 use App\Models\User;
 use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
@@ -11,7 +12,7 @@ use Filament\Tables\Table;
 
 class UserTable
 {
-    public static function table(Table $table): Table
+    public static function make(Table $table): Table
     {
         return $table
             ->columns(self::columns())
@@ -32,7 +33,7 @@ class UserTable
     {
         return [
             //
-            TextColumn::make('id')->label('ID')->searchable()->sortable(),
+            IdColumn::make('id'),
             //
             TextColumn::make('name')
                 ->label('Имя')

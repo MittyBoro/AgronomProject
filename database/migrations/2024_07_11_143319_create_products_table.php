@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->text('description')->nullable();
 
-            $table->decimal('price', 12, 2);
+            $table->decimal('price', 8, 2)->unsigned()->default(0);
             $table->integer('stock')->default(0);
             $table->boolean('is_published')->default(false);
 
