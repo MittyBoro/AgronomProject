@@ -102,7 +102,7 @@ class TheAdminPanelProvider extends PanelProvider
             ->renderHook(
                 'panels::head.start',
                 fn(): string => Vite::useHotFile('hot')
-                    ->useBuildDirectory('assets/build')
+                    ->useBuildDirectory('build')
                     ->withEntryPoints([
                         'resources/panel/js/app.js',
                         'resources/panel/scss/app.scss',
