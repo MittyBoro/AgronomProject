@@ -3,9 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('media', function (Blueprint $table) {
@@ -28,5 +28,11 @@ return new class extends Migration
 
             $table->nullableTimestamps();
         });
+    }
+
+    public function down(): void
+    {
+        Media::get()->each->delete();
+        Schema::dropIfExists('media');
     }
 };

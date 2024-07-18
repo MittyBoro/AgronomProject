@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\VariationTypeEnum;
+use App\Enums\VariationGroupTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +11,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('variations', function (Blueprint $table) {
+        Schema::create('variation_groups', function (Blueprint $table) {
             $table->id();
             $table
                 ->string('type', 16)
-                ->default(VariationTypeEnum::String->value);
-            $table->string('name');
-            $table->unsignedInteger('position')->default(0);
+                ->default(VariationGroupTypeEnum::String->value);
+            $table->string('name')->unique();
+            $table->unsignedInteger('order_column')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('variations');
+        Schema::dropIfExists('variation_groups');
     }
 };

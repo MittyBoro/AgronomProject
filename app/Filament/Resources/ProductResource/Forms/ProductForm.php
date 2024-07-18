@@ -46,7 +46,7 @@ class ProductForm extends BaseForm
                             ->schema(self::mainTabSchema()),
                         //
                         Tabs\Tab::make('price')
-                            ->label('Цены')
+                            ->label('Цена')
                             ->schema(self::priceTabSchema()),
                         //
                         Tabs\Tab::make('seo')
@@ -67,6 +67,10 @@ class ProductForm extends BaseForm
         ]);
     }
 
+    /**
+     * Основные данные по товару:
+     * Название, Слаг, Описание, Изображения
+     */
     private static function mainTabSchema(): array
     {
         return [
@@ -92,7 +96,7 @@ class ProductForm extends BaseForm
 
             RichEditor::make('description')
                 ->label('Описание')
-                ->fileAttachmentsDirectory('attachments/categories')
+                ->fileAttachmentsDirectory('attachments/products')
                 ->maxLength(65535),
 
             MediaUpload::make('media')
@@ -111,6 +115,10 @@ class ProductForm extends BaseForm
         ];
     }
 
+    /**
+     * Цены:
+     * Базовая цена, Остаток на складе, вариации
+     */
     private static function priceTabSchema(): array
     {
         return [
@@ -149,19 +157,82 @@ class ProductForm extends BaseForm
                 ->hintColor('warning'),
 
             //
-            self::priceRepeater(),
+            self::variationGroupsRepeater(),
         ];
     }
 
-    private static function priceRepeater(): Repeater
+    private static function variationGroupsRepeater(): Repeater
+    {
+        return Repeater::make('variationGroups')
+            ->label('Вариации')
+            ->relationship()
+            ->addActionLabel('Добавить группу')
+            ->itemLabel(fn(array $state): ?string => $state['name'] ?? null)
+            ->collapsible()
+            ->collapseAllAction(fn(Action $action) => $action->hidden())
+            ->expandAllAction(fn(Action $action) => $action->hidden())
+            ->schema([
+                // TODO: type (not now)
+                // ...
+
+                //
+                TextInput::make('name')
+                    ->label('Название')
+                    ->live()
+                    ->hidden(
+                        fn(Get $get, ?Model $record): bool => !$get(
+                            'is_editing',
+                        ) && $record?->id,
+                    ),
+                //
+                self::variationsRepeater(),
+            ])
+            ->extraAttributes([
+                'class' => 'variation-repeater',
+            ])
+            ->deletable(false)
+            // ->deleteAction(
+            //     fn(Action $action) => $action->action(function (
+            //         array $arguments,
+            //         Repeater $component,
+            //     ): void {
+            //         $items = $component->getState();
+            //         unset($items[$arguments['item']]['variations']);
+
+            //         $component->state($items);
+
+            //         $component->callAfterStateUpdated();
+            //     }),
+            // )
+            ->extraItemActions([
+                //
+                Action::make('Редактировать')
+                    ->icon('heroicon-m-pencil-square')
+                    ->action(function (
+                        array $arguments,
+                        Repeater $component,
+                    ): void {
+                        $state = $component->getState();
+                        $state[$arguments['item']]['is_editing'] = !(
+                            $state[$arguments['item']]['is_editing'] ?? false
+                        );
+                        $component->state($state);
+                    }),
+            ]);
+    }
+
+    /**
+     * Вариации:
+     * Цена, Остаток на складе, Имя вариации
+     */
+    private static function variationsRepeater(): Repeater
     {
         return Repeater::make('variations')
-            ->label('Вариации')
-            ->defaultItems(1)
+            ->label('')
             ->relationship()
             ->addActionLabel('Добавить вариацию')
             ->columns(2)
-            ->orderColumn('position')
+            ->orderColumn('order_column')
             ->itemLabel(fn(array $state): ?string => $state['name'] ?? null)
             ->collapsible()
             ->cloneable()
@@ -171,12 +242,18 @@ class ProductForm extends BaseForm
                 //
                 TextInput::make('name')
                     ->label('Название')
+                    ->required()
                     ->live()
                     ->columnSpan(2)
-                    ->hidden(fn(Get $get): bool => !$get('is_editing')),
+                    ->hidden(
+                        fn(Get $get, ?Model $record): bool => !$get(
+                            'is_editing',
+                        ) && $record?->id,
+                    ),
                 //
                 TextInput::make('price_modifier')
                     ->default(0)
+                    ->required()
                     ->label('Модификатор цены')
                     ->prefix('₽')
                     ->numeric()
@@ -203,6 +280,7 @@ class ProductForm extends BaseForm
                     ->maxValue(9999999)
                     ->integer()
                     ->live()
+                    ->required()
                     ->hintIcon(
                         fn(Get $get): ?string => $get('stock') < 10
                             ? (!$get('stock')
@@ -217,6 +295,14 @@ class ProductForm extends BaseForm
                     ),
                 //
             ])
+            ->mutateRelationshipDataBeforeCreateUsing(function (
+                array $data,
+                Get $get,
+            ): array {
+                $productId = $get('../../id');
+                $data['product_id'] = $productId;
+                return $data;
+            })
             ->extraAttributes([
                 'class' => 'variation-repeater',
             ])
@@ -236,6 +322,7 @@ class ProductForm extends BaseForm
                     }),
             ]);
     }
+
     private static function detailsSection(): Section
     {
         return Section::make([
@@ -244,7 +331,7 @@ class ProductForm extends BaseForm
             //
             CheckboxList::make('categories')
                 ->label('Категории')
-                ->relationship(titleAttribute: 'name')
+                ->relationship('categories', titleAttribute: 'name')
                 ->gridDirection('row')
                 ->searchable()
                 ->searchDebounce(500)
@@ -259,7 +346,7 @@ class ProductForm extends BaseForm
 
     private static function variationPrice(Get $get): int
     {
-        return parse_price($get('../../price')) +
+        return parse_price($get('../../../../price')) +
             parse_price($get('price_modifier'));
     }
 }

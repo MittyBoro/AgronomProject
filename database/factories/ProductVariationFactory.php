@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Variation;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\VariationGroup;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProductVariation>
  */
-class ProductVariationFactory extends Factory
+class ProductVariationFactory extends BaseFactory
 {
     /**
      * Define the model's default state.
@@ -17,14 +16,15 @@ class ProductVariationFactory extends Factory
      */
     public function definition(): array
     {
-        $variation = Variation::inRandomOrder()->first();
+        $variation = VariationGroup::inRandomOrder()->first();
+        $rand = rand(1, 10);
         return [
-            'variation_id' => $variation->id,
-            'value' =>
-                $this->faker->randomDigit() * 100 .
-                ($variation->name === 'Вес' ? ' г.' : 'мл.'),
-            'price_modifier' => rand(-1, 1) * rand(1, 4) * 100,
-            'stock' => $this->faker->numberBetween(0, 1000),
+            'variation_group_id' => $variation->id,
+            'name' =>
+                $rand * 100 . ($variation->name === 'Вес' ? ' г.' : 'мл.'),
+            'order_column' => $rand,
+            'price_modifier' => rand(-1, 1) * rand(0, 4) * 100,
+            'stock' => fake()->numberBetween(0, 1000),
         ];
     }
 }

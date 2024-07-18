@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\Traits\HasResponsiveImages;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -37,7 +39,7 @@ class Product extends Model implements HasMedia
         'meta_title',
         'meta_description',
         'meta_keywords',
-        'position',
+        'order_column',
     ];
 
     /**
@@ -48,7 +50,6 @@ class Product extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'position' => 'integer',
             'price' => 'decimal:0',
             'stock' => 'integer',
             'is_published' => 'boolean',
@@ -68,6 +69,37 @@ class Product extends Model implements HasMedia
      */
     public function variations()
     {
-        return $this->hasMany(ProductVariation::class);
+        return $this->hasMany(ProductVariation::class)
+            ->with('variationGroup')
+            ->orderBy('order_column');
     }
+
+    public function variationGroups()
+    {
+        return $this->belongsToMany(
+            VariationGroup::class,
+            'product_variations',
+        )->with('variations', function ($query) {
+            $query->where('product_id', $this->id);
+            $query->orderBy('order_column');
+        });
+    }
+
+    // protected function variationGroups(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: function () {
+    //             $r = $this->variations
+    //                 ->groupBy('variation_group.name')
+    //                 ->map(function (Collection $items) {
+    //                     return [
+    //                         'type' => $items->first()->variation_id,
+    //                         'data' => $items,
+    //                     ];
+    //                 })
+    //                 ->values();
+    //             dd($r);
+    //         },
+    //     );
+    // }
 }

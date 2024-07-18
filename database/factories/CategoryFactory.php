@@ -3,13 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\Category;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
  */
-class CategoryFactory extends Factory
+class CategoryFactory extends BaseFactory
 {
     /**
      * Configure the model factory.
@@ -18,10 +17,12 @@ class CategoryFactory extends Factory
     public function configure(): static
     {
         return $this->afterCreating(function (Category $category) {
-            $category
-                ->addMediaFromUrl(faker_media_url())
-                ->usingName($category->slug)
-                ->toMediaCollection();
+            if ($this->hasMedia) {
+                $category
+                    ->addMediaFromUrl(faker_media_url())
+                    ->usingName($category->slug)
+                    ->toMediaCollection();
+            }
         });
     }
 

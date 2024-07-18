@@ -16,10 +16,11 @@ class ProductVariation extends Model
      */
     protected $fillable = [
         'product_id',
-        'variation_id',
-        'value',
+        'variation_group_id',
+        'name',
         'price_modifier',
         'stock',
+        'order_column',
     ];
 
     /**
@@ -46,8 +47,8 @@ class ProductVariation extends Model
     /**
      * Get the variation that owns the product variation.
      */
-    public function variation()
+    public function variationGroup()
     {
-        return $this->belongsTo(Variation::class);
+        return $this->belongsTo(VariationGroup::class);
     }
 }

@@ -74,7 +74,7 @@ class CategoryTable
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort('position')
-            ->reorderable('position');
+            ->defaultSort('order_column')
+            ->reorderable('order_column');
     }
 }

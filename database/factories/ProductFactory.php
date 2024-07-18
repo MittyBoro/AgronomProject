@@ -5,13 +5,12 @@ namespace Database\Factories;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductVariation;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class ProductFactory extends Factory
+class ProductFactory extends BaseFactory
 {
     /**
      * Configure the model factory.
@@ -24,11 +23,14 @@ class ProductFactory extends Factory
             'variations',
         )->afterCreating(function (Product $product) {
             $product->categories()->attach(Category::all()->random(rand(1, 3)));
-            foreach (range(1, rand(1, 2)) as $v) {
-                $product
-                    ->addMediaFromUrl(faker_media_url())
-                    ->usingName($product->slug)
-                    ->toMediaCollection();
+
+            if ($this->hasMedia) {
+                foreach (range(1, rand(1, 2)) as $v) {
+                    $product
+                        ->addMediaFromUrl(faker_media_url())
+                        ->usingName($product->slug)
+                        ->toMediaCollection();
+                }
             }
         });
     }

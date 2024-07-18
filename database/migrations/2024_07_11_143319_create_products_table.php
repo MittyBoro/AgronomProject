@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->string('meta_description', 1024)->nullable();
             $table->string('meta_keywords', 512)->nullable();
 
-            $table->unsignedInteger('position')->default(0);
+            $table->unsignedInteger('order_column')->default(0);
 
             $table->timestamps();
         });

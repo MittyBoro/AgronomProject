@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Enums\VariationTypeEnum;
-use App\Models\Variation;
+use App\Enums\VariationGroupTypeEnum;
+use App\Models\VariationGroup;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class VariationSeeder extends Seeder
+class VariationGroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +15,12 @@ class VariationSeeder extends Seeder
     public function run(): void
     {
         //
-        Variation::create([
-            'type' => VariationTypeEnum::String->value,
+        VariationGroup::create([
+            'type' => VariationGroupTypeEnum::String->value,
             'name' => 'Объем',
         ]);
-        Variation::create([
-            'type' => VariationTypeEnum::String->value,
+        VariationGroup::create([
+            'type' => VariationGroupTypeEnum::String->value,
             'name' => 'Вес',
         ]);
     }

@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use App\Enums\VariationTypeEnum;
+use App\Enums\VariationGroupTypeEnum;
 use Illuminate\Database\Eloquent\Model;
 
-class Variation extends Model
+class VariationGroup extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = ['type', 'name', 'position'];
+    protected $fillable = ['type', 'name', 'order_column'];
 
     /**
      * Get the attributes that should be cast.
@@ -22,14 +22,14 @@ class Variation extends Model
     protected function casts(): array
     {
         return [
-            'type' => VariationTypeEnum::class,
+            'type' => VariationGroupTypeEnum::class,
         ];
     }
 
     /**
      * Get the product variations for the variation.
      */
-    public function productVariations()
+    public function variations()
     {
         return $this->hasMany(ProductVariation::class);
     }

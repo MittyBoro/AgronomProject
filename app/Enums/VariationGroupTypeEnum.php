@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum VariationTypeEnum: string
+enum VariationGroupTypeEnum: string
 {
     use LabelsTrait;
 
