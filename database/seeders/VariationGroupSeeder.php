@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Enums\VariationGroupTypeEnum;
 use App\Models\VariationGroup;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class VariationGroupSeeder extends Seeder

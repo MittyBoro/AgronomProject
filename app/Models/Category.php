@@ -16,7 +16,6 @@ class Category extends Model implements HasMedia
 
     /**
      * for responsive images HasResponsiveImages
-     * @var int
      */
     public static int $mediaMaxWidth = 150;
 

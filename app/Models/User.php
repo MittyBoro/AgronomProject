@@ -61,13 +61,11 @@ class User extends Authenticatable implements FilamentUser
     /**
      * The "booted" method of the model.
      */
-    protected static function booted(): void
-    {
-    }
+    protected static function booted(): void {}
 
     public function isAdmin(): Attribute
     {
-        return Attribute::make(get: fn() => $this->role === RoleEnum::Admin);
+        return Attribute::make(get: fn () => $this->role === RoleEnum::Admin);
     }
 
     /**
@@ -77,6 +75,7 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->is_admin;
     }
+
     /**
      * Get the globally searchable attributes for the panel.
      */

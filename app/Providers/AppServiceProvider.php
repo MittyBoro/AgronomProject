@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         Vite::macro('front', function (string $asset) {
-            /** @var \Illuminate\Support\Facades\Vite $this */
+            /** @var Vite $this */
             return $this->asset(config('app.resources.front') . "/{$asset}");
         });
     }

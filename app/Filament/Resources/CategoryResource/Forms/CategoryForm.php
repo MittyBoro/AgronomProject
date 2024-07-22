@@ -8,14 +8,12 @@ use App\Filament\Forms\SlugInput;
 use App\Filament\Resources\ProductResource;
 use App\Models\Category;
 use Filament\Actions\Action;
-use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -53,7 +51,7 @@ class CategoryForm extends BaseForm
                     Set $set,
                     ?string $old,
                     ?string $state,
-                ) {
+                ): void {
                     if (($get('slug') ?? '') !== Str::slug($old)) {
                         return;
                     }
@@ -77,9 +75,9 @@ class CategoryForm extends BaseForm
                 ->imageEditor()
                 ->imageResizeMode('cover')
                 ->imageCropAspectRatio('1:1')
-                ->imageResizeTargetWidth(fn(): ?int => Category::$mediaMaxWidth)
+                ->imageResizeTargetWidth(fn (): ?int => Category::$mediaMaxWidth)
                 ->imageResizeTargetHeight(
-                    fn(): ?int => Category::$mediaMaxWidth,
+                    fn (): ?int => Category::$mediaMaxWidth,
                 ),
         ];
     }
@@ -88,10 +86,10 @@ class CategoryForm extends BaseForm
     {
         return parent::informationSection([
             Placeholder::make('products')
-                ->visible(fn(?Category $record): bool => !!$record)
+                ->visible(fn (?Category $record): bool => (bool) $record)
                 ->label('Товары')
                 ->content(
-                    fn(?Category $record) => Action::make(
+                    fn (?Category $record) => Action::make(
                         $record->products()->count() . ' шт.',
                     )
                         ->icon('heroicon-o-shopping-cart')

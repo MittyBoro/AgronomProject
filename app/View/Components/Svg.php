@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Closure;
+use DOMDocument;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -24,7 +25,7 @@ class Svg extends Component
         $publicPath = resource_path('assets/' . $this->src);
 
         // Create the dom document as per the other answers
-        $svg = new \DOMDocument();
+        $svg = new DOMDocument();
         $svg->load($publicPath);
         if ($this->class) {
             $svg->documentElement->setAttribute('class', $this->class);

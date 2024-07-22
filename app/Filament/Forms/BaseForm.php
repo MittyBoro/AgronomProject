@@ -2,11 +2,10 @@
 
 namespace App\Filament\Forms;
 
-use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseForm
@@ -18,15 +17,15 @@ class BaseForm
             Placeholder::make('created_at')
                 ->label('Дата создания')
                 ->content(
-                    fn(?Model $record): string => (
+                    fn (?Model $record): string => (
                         $record?->created_at ?? now()
                     )->format('d.m.Y H:i'),
                 ),
             Placeholder::make('updated_at')
-                ->visible(fn(?Model $record): bool => !!$record)
+                ->visible(fn (?Model $record): bool => (bool) $record)
                 ->label('Последнее обновление')
                 ->content(
-                    fn(Model $record): string => $record->updated_at->format(
+                    fn (Model $record): string => $record->updated_at->format(
                         'd.m.Y H:i',
                     ),
                 ),

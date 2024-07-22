@@ -7,12 +7,10 @@ use App\Filament\Resources\ProductResource;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
 use App\Models\Category;
-use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 
 class CategoryTable
 {
@@ -41,7 +39,7 @@ class CategoryTable
                     ->counts('products')
                     ->sortable()
                     ->url(
-                        fn(Category $record): string => ProductResource::getUrl(
+                        fn (Category $record): string => ProductResource::getUrl(
                             'index',
                             [
                                 'tableFilters' => [
@@ -57,7 +55,7 @@ class CategoryTable
                 //
             ])
             ->recordUrl(
-                fn(Model $record): string => EditCategory::getUrl([$record]),
+                fn (Model $record): string => EditCategory::getUrl([$record]),
             )
             ->actions([
                 Tables\Actions\ViewAction::make()

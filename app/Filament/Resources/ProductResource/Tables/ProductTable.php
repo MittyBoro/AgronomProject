@@ -2,19 +2,16 @@
 
 namespace App\Filament\Resources\ProductResource\Tables;
 
-use App\Filament\Resources\ProductResource;
 use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
 use App\Models\Product;
-use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 
 class ProductTable
 {
@@ -45,7 +42,7 @@ class ProductTable
                     ->sortable()
                     ->size('xs')
                     ->color(
-                        fn(Product $record): string => $record->stock > 10
+                        fn (Product $record): string => $record->stock > 10
                             ? 'gray'
                             : 'danger',
                     ),
@@ -76,7 +73,7 @@ class ProductTable
                     ->relationship('categories', 'name'),
             ])
             ->recordUrl(
-                fn(Model $record): string => EditProduct::getUrl([$record]),
+                fn (Model $record): string => EditProduct::getUrl([$record]),
             )
             ->actions([
                 Tables\Actions\ViewAction::make()

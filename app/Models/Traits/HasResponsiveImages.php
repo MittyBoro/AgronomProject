@@ -8,16 +8,15 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 trait HasResponsiveImages
 {
+    private static int $mediaMaxWidthDefault = 1200;
+
     /**
      * Для регистрации дополнительных конверсий использовать
      * public function registerMediaConversions(Media $media = null) {}
      *
      * https://spatie.be/docs/laravel-medialibrary
      */
-
     abstract public function media(): MorphMany;
-
-    private static int $mediaMaxWidthDefault = 1200;
 
     public function registerMediaConversions(?Media $media = null): void
     {

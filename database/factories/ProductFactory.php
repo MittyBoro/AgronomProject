@@ -21,7 +21,7 @@ class ProductFactory extends BaseFactory
         return $this->has(
             ProductVariation::factory()->count(rand(1, 5)),
             'variations',
-        )->afterCreating(function (Product $product) {
+        )->afterCreating(function (Product $product): void {
             $product->categories()->attach(Category::all()->random(rand(1, 3)));
 
             if ($this->hasMedia) {

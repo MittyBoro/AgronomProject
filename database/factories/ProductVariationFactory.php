@@ -18,10 +18,10 @@ class ProductVariationFactory extends BaseFactory
     {
         $variation = VariationGroup::inRandomOrder()->first();
         $rand = rand(1, 10);
+
         return [
             'variation_group_id' => $variation->id,
-            'name' =>
-                $rand * 100 . ($variation->name === 'Вес' ? ' г.' : 'мл.'),
+            'name' => $rand * 100 . ($variation->name === 'Вес' ? ' г.' : 'мл.'),
             'order_column' => $rand,
             'price_modifier' => rand(-1, 1) * rand(0, 4) * 100,
             'stock' => fake()->numberBetween(0, 1000),

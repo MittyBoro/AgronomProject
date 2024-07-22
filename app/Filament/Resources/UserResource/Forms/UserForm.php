@@ -100,12 +100,12 @@ class UserForm
                                 ->tooltip('Верифицировать email')
                                 ->color('warning')
                                 ->requiresConfirmation()
-                                ->action(function (User $record) {
+                                ->action(function (User $record): void {
                                     $record->email_verified_at = now();
                                     $record->save();
                                 })
                                 ->visible(
-                                    fn($record) => !$record->email_verified_at,
+                                    fn ($record) => ! $record->email_verified_at,
                                 ),
                         ]),
 
@@ -122,7 +122,7 @@ class UserForm
                             ),
                         )
                         ->formatStateUsing(
-                            fn(?string $state): string => $state
+                            fn (?string $state): string => $state
                                 ? phone($state, 'ru')->formatE164()
                                 : '',
                         )
@@ -140,18 +140,18 @@ class UserForm
                 ->minLength(8)
                 ->maxLength(255)
                 ->password()
-                ->dehydrateStateUsing(fn($state) => Hash::make($state))
-                ->dehydrated(fn($state) => filled($state))
+                ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                ->dehydrated(fn ($state) => filled($state))
                 ->confirmed()
                 ->revealable(true)
-                ->disabled(fn($record) => $record && $record->is_admin),
+                ->disabled(fn ($record) => $record && $record->is_admin),
             TextInput::make('password_confirmation')
                 ->label('Повторите новый пароль')
                 ->password()
                 ->minLength(8)
                 ->maxLength(255)
                 ->revealable(true)
-                ->disabled(fn($record) => $record && $record->is_admin),
+                ->disabled(fn ($record) => $record && $record->is_admin),
         ];
     }
 }

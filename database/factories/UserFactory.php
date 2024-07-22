@@ -29,8 +29,7 @@ class UserFactory extends BaseFactory
         $nameArray = explode(' ', $name);
 
         return [
-            'name' =>
-                $nameArray[0] . ' ' . mb_substr($nameArray[2], 0, 1) . '. ',
+            'name' => $nameArray[0] . ' ' . mb_substr($nameArray[2], 0, 1) . '. ',
             'first_name' => $nameArray[0],
             'middle_name' => $nameArray[1],
             'last_name' => $nameArray[2],
@@ -50,7 +49,7 @@ class UserFactory extends BaseFactory
     public function unverified(): static
     {
         return $this->state(
-            fn(array $attributes) => [
+            fn (array $attributes) => [
                 'email_verified_at' => null,
             ],
         );

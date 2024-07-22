@@ -13,10 +13,15 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $recordTitleAttribute = 'name';
+
     protected static ?string $navigationIcon = 'heroicon-o-users';
+
     protected static ?string $label = 'Пользователь';
+
     protected static ?string $pluralLabel = 'Пользователи';
+
     protected static ?string $navigationLabel = 'Пользователи';
+
     protected static ?string $navigationGroup = 'Прочее';
 
     public static function form(Form $form): Form
@@ -32,8 +37,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
-            ];
+            //
+        ];
     }
 
     public static function getPages(): array

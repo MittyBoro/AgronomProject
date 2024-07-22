@@ -18,7 +18,6 @@ class Product extends Model implements HasMedia
 
     /**
      * for responsive images HasResponsiveImages
-     * @var int
      */
     public static int $mediaMaxWidth = 1000;
 
@@ -79,7 +78,7 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(
             VariationGroup::class,
             'product_variations',
-        )->with('variations', function ($query) {
+        )->with('variations', function ($query): void {
             $query->where('product_id', $this->id);
             $query->orderBy('order_column');
         });

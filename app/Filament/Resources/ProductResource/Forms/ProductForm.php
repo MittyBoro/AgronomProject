@@ -5,27 +5,20 @@ namespace App\Filament\Resources\ProductResource\Forms;
 use App\Filament\Forms\BaseForm;
 use App\Filament\Forms\MediaUpload;
 use App\Filament\Forms\SlugInput;
-use App\Filament\Resources\ProductResource;
 use App\Models\Product;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\Component;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
-use Filament\Support\Enums\MaxWidth;
 use Filament\Support\RawJs;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -82,7 +75,7 @@ class ProductForm extends BaseForm
                     Set $set,
                     ?string $old,
                     ?string $state,
-                ) {
+                ): void {
                     if (($get('slug') ?? '') !== Str::slug($old)) {
                         return;
                     }
@@ -108,9 +101,9 @@ class ProductForm extends BaseForm
                 ->imageEditor()
                 ->imageResizeMode('cover')
                 ->imageCropAspectRatio('1:1')
-                ->imageResizeTargetWidth(fn(): ?int => Product::$mediaMaxWidth)
+                ->imageResizeTargetWidth(fn (): ?int => Product::$mediaMaxWidth)
                 ->imageResizeTargetHeight(
-                    fn(): ?int => Product::$mediaMaxWidth,
+                    fn (): ?int => Product::$mediaMaxWidth,
                 ),
         ];
     }
@@ -134,7 +127,7 @@ class ProductForm extends BaseForm
                 ->mask(RawJs::make('$money($input, `.`, ` `)'))
                 ->stripCharacters([' '])
                 ->hint(
-                    fn(Get $get): ?string => !$get('price')
+                    fn (Get $get): ?string => ! $get('price')
                         ? 'Цена не установлена!'
                         : '',
                 )
@@ -148,8 +141,8 @@ class ProductForm extends BaseForm
                 ->integer()
                 ->live()
                 ->hint(
-                    fn(Get $get): ?string => $get('stock') < 10
-                        ? (!$get('stock')
+                    fn (Get $get): ?string => $get('stock') < 10
+                        ? ( ! $get('stock')
                             ? 'Закончился'
                             : 'Заканчивается')
                         : '',
@@ -167,10 +160,10 @@ class ProductForm extends BaseForm
             ->label('Вариации')
             ->relationship()
             ->addActionLabel('Добавить группу')
-            ->itemLabel(fn(array $state): ?string => $state['name'] ?? null)
+            ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
             ->collapsible()
-            ->collapseAllAction(fn(Action $action) => $action->hidden())
-            ->expandAllAction(fn(Action $action) => $action->hidden())
+            ->collapseAllAction(fn (Action $action) => $action->hidden())
+            ->expandAllAction(fn (Action $action) => $action->hidden())
             ->schema([
                 // TODO: type (not now)
                 // ...
@@ -180,7 +173,7 @@ class ProductForm extends BaseForm
                     ->label('Название')
                     ->live()
                     ->hidden(
-                        fn(Get $get, ?Model $record): bool => !$get(
+                        fn (Get $get, ?Model $record): bool => ! $get(
                             'is_editing',
                         ) && $record?->id,
                     ),
@@ -213,7 +206,7 @@ class ProductForm extends BaseForm
                         Repeater $component,
                     ): void {
                         $state = $component->getState();
-                        $state[$arguments['item']]['is_editing'] = !(
+                        $state[$arguments['item']]['is_editing'] = ! (
                             $state[$arguments['item']]['is_editing'] ?? false
                         );
                         $component->state($state);
@@ -233,11 +226,11 @@ class ProductForm extends BaseForm
             ->addActionLabel('Добавить вариацию')
             ->columns(2)
             ->orderColumn('order_column')
-            ->itemLabel(fn(array $state): ?string => $state['name'] ?? null)
+            ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
             ->collapsible()
             ->cloneable()
-            ->collapseAllAction(fn(Action $action) => $action->hidden())
-            ->expandAllAction(fn(Action $action) => $action->hidden())
+            ->collapseAllAction(fn (Action $action) => $action->hidden())
+            ->expandAllAction(fn (Action $action) => $action->hidden())
             ->schema([
                 //
                 TextInput::make('name')
@@ -246,7 +239,7 @@ class ProductForm extends BaseForm
                     ->live()
                     ->columnSpan(2)
                     ->hidden(
-                        fn(Get $get, ?Model $record): bool => !$get(
+                        fn (Get $get, ?Model $record): bool => ! $get(
                             'is_editing',
                         ) && $record?->id,
                     ),
@@ -261,12 +254,12 @@ class ProductForm extends BaseForm
                     ->stripCharacters([' '])
                     ->live()
                     ->hint(
-                        fn(Get $get): ?string => 'Итог: ' .
+                        fn (Get $get): ?string => 'Итог: ' .
                             price_formatter(static::variationPrice($get)) .
                             '₽',
                     )
                     ->hintColor(
-                        fn(Get $get): ?string => static::variationPrice($get) <=
+                        fn (Get $get): ?string => static::variationPrice($get) <=
                         0
                             ? 'danger'
                             : null,
@@ -282,14 +275,14 @@ class ProductForm extends BaseForm
                     ->live()
                     ->required()
                     ->hintIcon(
-                        fn(Get $get): ?string => $get('stock') < 10
-                            ? (!$get('stock')
+                        fn (Get $get): ?string => $get('stock') < 10
+                            ? ( ! $get('stock')
                                 ? 'heroicon-m-exclamation-triangle'
                                 : 'heroicon-o-exclamation-triangle')
                             : '',
                     )
                     ->hintColor(
-                        fn(Get $get): ?string => !$get('stock')
+                        fn (Get $get): ?string => ! $get('stock')
                             ? 'danger'
                             : 'warning',
                     ),
@@ -301,6 +294,7 @@ class ProductForm extends BaseForm
             ): array {
                 $productId = $get('../../id');
                 $data['product_id'] = $productId;
+
                 return $data;
             })
             ->extraAttributes([
@@ -315,7 +309,7 @@ class ProductForm extends BaseForm
                         Repeater $component,
                     ): void {
                         $state = $component->getState();
-                        $state[$arguments['item']]['is_editing'] = !(
+                        $state[$arguments['item']]['is_editing'] = ! (
                             $state[$arguments['item']]['is_editing'] ?? false
                         );
                         $component->state($state);
@@ -337,8 +331,7 @@ class ProductForm extends BaseForm
                 ->searchDebounce(500)
                 ->bulkToggleable()
                 ->extraAttributes([
-                    'style' =>
-                        'max-height: 200px !important; overflow-y: scroll !important;',
+                    'style' => 'max-height: 200px !important; overflow-y: scroll !important;',
                     'class' => 'pl-0.5 md:min-w-80',
                 ]),
         ]);

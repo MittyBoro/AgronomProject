@@ -4,7 +4,6 @@ namespace App\Filament\Tables;
 
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Vite;
 
 class MediaImageColumn extends SpatieMediaLibraryImageColumn
 {
@@ -19,7 +18,7 @@ class MediaImageColumn extends SpatieMediaLibraryImageColumn
             ->circular()
             ->limitedRemainingText()
             ->stacked()
-            ->tooltip(fn(Model $record): string => 'ID: ' . $record->id)
+            ->tooltip(fn (Model $record): string => 'ID: ' . $record->id)
             ->grow(false);
     }
 }
