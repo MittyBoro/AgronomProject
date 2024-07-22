@@ -3,17 +3,21 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\VariationGroupResource\Pages;
+use App\Filament\Tables\IdColumn;
 use App\Models\VariationGroup;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class VariationGroupResource extends Resource
 {
     protected static ?string $model = VariationGroup::class;
 
-    protected static bool $shouldRegisterNavigation = false;
+    protected static ?bool $hasTableModalRendered = false;
+
+    // protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Form $form): Form
     {
@@ -27,6 +31,14 @@ class VariationGroupResource extends Resource
         return $table
             ->columns([
                 //
+                IdColumn::make('id')->toggleable(
+                    isToggledHiddenByDefault: true,
+                ),
+                //
+                TextColumn::make('name')
+                    ->label('Название')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
