@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\ProductResource\Forms\Tabs;
+namespace App\Filament\Resources\ProductResource;
 
 use App\Models\VariationGroup;
 use Filament\Forms\Components\Actions\Action;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-class ProductPriceTab
+class TabPriceFormProduct
 {
     /**
      * Базовая цена

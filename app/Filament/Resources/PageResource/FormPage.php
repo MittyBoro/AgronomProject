@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\CategoryResource\Forms;
+namespace App\Filament\Resources\PageResource;
 
 use App\Filament\Forms\BaseForm;
 use App\Filament\Forms\MediaUpload;
@@ -19,7 +19,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 
-class CategoryForm extends BaseForm
+class FormPage extends BaseForm
 {
     public static function make(Form $form): Form
     {

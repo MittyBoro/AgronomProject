@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Forms;
+namespace App\Filament\Resources\UserResource;
 
 use App\Enums\GenderEnum;
 use App\Models\User;
@@ -14,7 +14,7 @@ use Filament\Forms\Form;
 use Filament\Support\RawJs;
 use Illuminate\Support\Facades\Hash;
 
-class UserForm
+class FormUser
 {
     public static function make(Form $form): Form
     {

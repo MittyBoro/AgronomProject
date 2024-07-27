@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\ProductResource\Tables;
+namespace App\Filament\Resources\ProductResource;
 
 use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Tables\IdColumn;
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class ProductTable
+class TableProduct
 {
     public static function make(Table $table): Table
     {

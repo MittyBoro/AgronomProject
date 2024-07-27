@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\CategoryResource\Tables;
+namespace App\Filament\Resources\CategoryResource;
 
 use App\Filament\Resources\CategoryResource\Pages\EditCategory;
 use App\Filament\Resources\ProductResource;
@@ -12,7 +12,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryTable
+class TableCategory
 {
     public static function make(Table $table): Table
     {

@@ -28,12 +28,12 @@ class ProductResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return ProductResource\Forms\ProductForm::make($form);
+        return ProductResource\FormProduct::make($form);
     }
 
     public static function table(Table $table): Table
     {
-        return ProductResource\Tables\ProductTable::make($table);
+        return ProductResource\TableProduct::make($table);
     }
 
     public static function getRelations(): array

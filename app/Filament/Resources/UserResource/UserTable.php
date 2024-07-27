@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Tables;
+namespace App\Filament\Resources\UserResource;
 
 use App\Enums\RoleEnum;
 use App\Filament\Tables\IdColumn;
@@ -10,7 +10,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class UserTable
+class TableUser
 {
     public static function make(Table $table): Table
     {

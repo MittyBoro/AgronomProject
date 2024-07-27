@@ -26,12 +26,12 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return UserResource\Forms\UserForm::make($form);
+        return UserResource\FormUser::make($form);
     }
 
     public static function table(Table $table): Table
     {
-        return UserResource\Tables\UserTable::make($table);
+        return UserResource\TableUser::make($table);
     }
 
     public static function getRelations(): array

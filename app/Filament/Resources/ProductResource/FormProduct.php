@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\ProductResource\Forms;
+namespace App\Filament\Resources\ProductResource;
 
 use App\Filament\Forms\BaseForm;
 use App\Filament\Forms\MediaUpload;
 use App\Filament\Forms\SlugInput;
-use App\Filament\Resources\ProductResource\Forms\Tabs\ProductPriceTab;
 use App\Models\Product;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Grid;
@@ -20,7 +19,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 
-class ProductForm extends BaseForm
+class FormProduct extends BaseForm
 {
     public static function make(Form $form): Form
     {
@@ -37,7 +36,7 @@ class ProductForm extends BaseForm
                         //
                         Tabs\Tab::make('price')
                             ->label('Цена')
-                            ->schema(ProductPriceTab::schema()),
+                            ->schema(TabPriceFormProduct::schema()),
                         //
                         Tabs\Tab::make('seo')
                             ->label('SEO')

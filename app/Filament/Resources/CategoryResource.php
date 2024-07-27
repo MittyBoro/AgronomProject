@@ -28,12 +28,12 @@ class CategoryResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return CategoryResource\Forms\CategoryForm::make($form);
+        return CategoryResource\FormCategory::make($form);
     }
 
     public static function table(Table $table): Table
     {
-        return CategoryResource\Tables\CategoryTable::make($table);
+        return CategoryResource\TableCategory::make($table);
     }
 
     public static function getRelations(): array
