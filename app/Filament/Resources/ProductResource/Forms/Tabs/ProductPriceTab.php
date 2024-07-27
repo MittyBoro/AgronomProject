@@ -263,17 +263,45 @@ class ProductPriceTab
             ->form([
                 //
                 Repeater::make('main_variation_groups')
-                    ->label('')
+                    ->hiddenLabel()
                     ->addActionLabel('Добавить группу вариаций')
                     ->schema([
                         //
                         TextInput::make('name')
-                            ->label('Название')
+                            ->hiddenLabel()
                             ->required()
+                            ->placeholder('Название группы')
+                            ->markAsRequired(false)
                             ->live(),
-                    ]),
+                    ])
+                    ->deleteAction(
+                        fn (Action $action) => $action
+                            ->requiresConfirmation()
+                            ->modalHeading('Удалить группу вариаций?')
+                            ->modalDescription(
+                                'Удаление группы приведёт к удалению ВСЕХ вариаций этой группы во ВСЕХ товарах!',
+                            )
+                            ->modalSubmitActionLabel(
+                                'Удалить группу и всё, что с ней связано',
+                            ),
+                    )
+                    ->itemLabel(
+                        fn (array $state): ?string => '#' .
+                            ($state['id'] ?? null) .
+                            ' ' .
+                            ($state['name'] ?? null),
+                    ),
             ])
             ->action(function (array $data): void {
+                // удаление первым, ибо у новых нет id и их после создания снесёт
+                // Удаляем группы, которых нет в новом списке
+                $keepIds = collect($data['main_variation_groups'])
+                    ->pluck('id')
+                    ->filter()
+                    ->values();
+                VariationGroup::whereNotIn('id', $keepIds)->delete();
+
+                // Обновляем группы
                 foreach ($data['main_variation_groups'] as $key => $groupData) {
                     if (isset($groupData['id'])) {
                         VariationGroup::find($groupData['id'])->update([
@@ -287,14 +315,7 @@ class ProductPriceTab
                         ]);
                     }
                 }
-
-                // Удаляем группы, которых нет в новом списке
-                $keepIds = collect($data['main_variation_groups'])
-                    ->pluck('id')
-                    ->filter()
-                    ->values();
-                VariationGroup::whereNotIn('id', $keepIds)->delete();
             })
-            ->modalHeading('Редактировать группы вариации');
+            ->modalHeading('Редактировать группы вариаций');
     }
 }
