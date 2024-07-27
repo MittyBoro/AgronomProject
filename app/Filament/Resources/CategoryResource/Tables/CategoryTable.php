@@ -27,7 +27,7 @@ class CategoryTable
                 MediaImageColumn::make('media'),
 
                 //
-                TextColumn::make('name')
+                TextColumn::make('title')
                     ->label('Название')
                     ->searchable()
                     ->sortable(),

@@ -42,18 +42,18 @@ class ProductFactory extends BaseFactory
      */
     public function definition(): array
     {
-        $name = trim(fake()->unique()->sentence(rand(2, 5)), '.');
+        $title = trim(fake()->unique()->sentence(rand(2, 5)), '.');
 
         return [
-            'slug' => Str::slug($name),
-            'name' => $name,
+            'slug' => Str::slug($title),
+            'title' => $title,
             'description' => fake()->text(),
 
             'price' => round(fake()->numberBetween(500, 9000), -2),
             'stock' => fake()->numberBetween(0, 1000),
             'is_published' => fake()->boolean(80),
 
-            'meta_title' => $name,
+            'meta_title' => $title,
             'meta_description' => fake()->text(),
         ];
     }

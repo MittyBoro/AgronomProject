@@ -6,8 +6,8 @@ use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
 use App\Models\Product;
+use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -30,27 +30,20 @@ class ProductTable
                 //
                 MediaImageColumn::make('preview'),
 
-                IconColumn::make('has_variations')
-                    ->label('')
-                    ->boolean()
-                    ->trueIcon('heroicon-s-list-bullet')
-                    ->falseIcon('')
-                    ->color('gray')
-                    ->width(1)
-                    ->tooltip(
-                        fn (Product $record) => $record->has_variations
-                            ? 'Несколько вариаций'
-                            : null,
-                    ),
-
-                TextColumn::make('name')
+                TextColumn::make('title')
                     ->label('Название')
                     ->searchable()
                     ->sortable()
                     ->wrap()
+                    ->iconPosition(IconPosition::After)
+                    ->icon(
+                        fn (Product $record) => $record->has_variations
+                            ? 'heroicon-s-list-bullet'
+                            : null,
+                    )
                     ->description(
                         fn (Product $record): string => $record->variations
-                            ->pluck('name')
+                            ->pluck('title')
                             ->implode(', '),
                     ),
 
@@ -108,7 +101,7 @@ class ProductTable
 
                 SelectFilter::make('categories')
                     ->label('Категория')
-                    ->relationship('categories', 'name'),
+                    ->relationship('categories', 'title'),
             ])
             ->recordUrl(
                 fn (Model $record): string => EditProduct::getUrl([$record]),

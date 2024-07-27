@@ -23,7 +23,7 @@ return new class() extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->string('name')->nullable(); // e.g., 100ml, 200ml, 1kg
+            $table->string('title')->nullable(); // e.g., 100ml, 200ml, 1kg
             $table->decimal('price_modifier', 8, 2)->default(0);
             $table->integer('stock')->default(0);
 

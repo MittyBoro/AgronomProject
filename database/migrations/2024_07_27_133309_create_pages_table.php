@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -11,18 +12,20 @@ return new class() extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table): void {
+        Schema::create('pages', function (Blueprint $table): void {
             $table->id();
+
             $table->string('slug')->index()->unique();
 
-            $table->string('title');
-            $table->text('description')->nullable();
+            $table->json('title');
+            $table->json('description');
+            $table->json('meta_title');
+            $table->json('meta_description');
+            $table->json('meta_keywords');
 
-            $table->string('meta_title', 255)->nullable();
-            $table->string('meta_description', 1024)->nullable();
-            $table->string('meta_keywords', 512)->nullable();
+            $table->json('fields')->default(new Expression('(JSON_ARRAY())'));
 
-            $table->unsignedInteger('order_column')->default(0);
+            $table->string('view')->nullable();
 
             $table->timestamps();
         });
@@ -33,6 +36,6 @@ return new class() extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('pages');
     }
 };

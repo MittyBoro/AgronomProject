@@ -12,7 +12,7 @@ class VariationGroup extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['type', 'name', 'order_column'];
+    protected $fillable = ['type', 'title', 'order_column'];
 
     /**
      * Get the attributes that should be cast.

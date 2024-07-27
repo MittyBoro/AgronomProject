@@ -64,7 +64,7 @@ class ProductForm extends BaseForm
     private static function mainTabSchema(): array
     {
         return [
-            TextInput::make('name')
+            TextInput::make('title')
                 ->label('Название')
                 ->live()
                 ->afterStateUpdated(function (
@@ -122,7 +122,7 @@ class ProductForm extends BaseForm
             //
             CheckboxList::make('categories')
                 ->label('Категории')
-                ->relationship('categories', titleAttribute: 'name')
+                ->relationship('categories', titleAttribute: 'title')
                 ->gridDirection('row')
                 ->searchable()
                 ->searchDebounce(500)

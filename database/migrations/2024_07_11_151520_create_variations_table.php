@@ -17,7 +17,7 @@ return new class() extends Migration
             $table
                 ->string('type', 16)
                 ->default(VariationGroupTypeEnum::String->value);
-            $table->string('name')->unique();
+            $table->string('title')->unique();
             $table->unsignedInteger('order_column')->default(0);
             $table->timestamps();
         });

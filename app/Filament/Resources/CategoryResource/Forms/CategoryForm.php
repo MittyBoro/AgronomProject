@@ -43,7 +43,7 @@ class CategoryForm extends BaseForm
     private static function mainTabSchema(): array
     {
         return [
-            TextInput::make('name')
+            TextInput::make('title')
                 ->label('Название')
                 ->live()
                 ->afterStateUpdated(function (

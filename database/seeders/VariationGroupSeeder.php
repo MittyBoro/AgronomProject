@@ -16,11 +16,11 @@ class VariationGroupSeeder extends Seeder
         //
         VariationGroup::create([
             'type' => VariationGroupTypeEnum::String->value,
-            'name' => 'Объем',
+            'title' => 'Объем',
         ]);
         VariationGroup::create([
             'type' => VariationGroupTypeEnum::String->value,
-            'name' => 'Вес',
+            'title' => 'Вес',
         ]);
     }
 }

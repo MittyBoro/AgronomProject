@@ -85,7 +85,7 @@ class ProductPriceTab
                     CheckboxList::make('enabled_groups')
                         ->relationship(
                             'variationGroups',
-                            titleAttribute: 'name',
+                            titleAttribute: 'title',
                         )
                         ->label('')
                         ->reactive()
@@ -114,7 +114,7 @@ class ProductPriceTab
 
         return $variationGroups
             ->map(function ($group) {
-                return Fieldset::make($group->name)
+                return Fieldset::make($group->title)
                     ->schema([static::variationsRepeater($group)])
                     ->columns(1);
             })
@@ -139,7 +139,7 @@ class ProductPriceTab
             ->addActionLabel('Добавить вариацию')
             ->columns(2)
             ->orderColumn('order_column')
-            ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
             ->collapsible()
             ->cloneable()
 
@@ -178,7 +178,7 @@ class ProductPriceTab
         return [
             Hidden::make('variation_group_id')->default($group->id),
             //
-            TextInput::make('name')
+            TextInput::make('title')
                 ->label('Название')
                 ->required()
                 ->live()
@@ -267,7 +267,7 @@ class ProductPriceTab
                     ->addActionLabel('Добавить группу вариаций')
                     ->schema([
                         //
-                        TextInput::make('name')
+                        TextInput::make('title')
                             ->hiddenLabel()
                             ->required()
                             ->placeholder('Название группы')
@@ -289,7 +289,7 @@ class ProductPriceTab
                         fn (array $state): ?string => '#' .
                             ($state['id'] ?? null) .
                             ' ' .
-                            ($state['name'] ?? null),
+                            ($state['title'] ?? null),
                     ),
             ])
             ->action(function (array $data): void {
@@ -305,12 +305,12 @@ class ProductPriceTab
                 foreach ($data['main_variation_groups'] as $key => $groupData) {
                     if (isset($groupData['id'])) {
                         VariationGroup::find($groupData['id'])->update([
-                            'name' => $groupData['name'],
+                            'title' => $groupData['title'],
                             'order_column' => $key,
                         ]);
                     } else {
                         VariationGroup::create([
-                            'name' => $groupData['name'],
+                            'title' => $groupData['title'],
                             'order_column' => $key,
                         ]);
                     }

@@ -33,13 +33,13 @@ class CategoryFactory extends BaseFactory
      */
     public function definition(): array
     {
-        $name = trim(fake()->unique()->sentence(rand(1, 3)), '.');
+        $title = trim(fake()->unique()->sentence(rand(1, 3)), '.');
 
         return [
-            'slug' => Str::slug($name),
-            'name' => $name,
+            'slug' => Str::slug($title),
+            'title' => $title,
             'description' => fake()->text(),
-            'meta_title' => $name,
+            'meta_title' => $title,
             'meta_description' => fake()->text(),
         ];
     }
