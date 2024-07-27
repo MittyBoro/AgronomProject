@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasResponsiveImages;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -77,5 +78,12 @@ class Product extends Model implements HasMedia
             VariationGroup::class,
             'product_variations',
         )->orderBy('variation_groups.order_column');
+    }
+
+    protected function hasVariations(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->variations->isNotEmpty(),
+        );
     }
 }

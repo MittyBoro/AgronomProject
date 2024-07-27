@@ -9,6 +9,6 @@ class IdColumn extends TextColumn
     protected function setUp(): void
     {
         parent::setUp();
-        $this->label('ID')->grow(false)->width(1)->searchable()->sortable();
+        $this->label('ID')->width(1)->searchable()->sortable();
     }
 }
