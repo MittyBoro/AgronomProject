@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 abstract class BaseFactory extends Factory
 {
-    protected bool $hasMedia = false;
+    protected bool $hasMedia = true;
 }

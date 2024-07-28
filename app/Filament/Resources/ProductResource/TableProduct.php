@@ -6,7 +6,6 @@ use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
 use App\Models\Product;
-use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -35,12 +34,6 @@ class TableProduct
                     ->searchable()
                     ->sortable()
                     ->wrap()
-                    ->iconPosition(IconPosition::After)
-                    ->icon(
-                        fn (Product $record) => $record->has_variations
-                            ? 'heroicon-s-list-bullet'
-                            : null,
-                    )
                     ->description(
                         fn (Product $record): string => $record->variations
                             ->pluck('title')

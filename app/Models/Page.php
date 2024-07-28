@@ -2,10 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Page extends Model
+class Page extends Model implements HasMedia
 {
-    use HasFactory;
+    use InteractsWithMedia;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'slug',
+        'title',
+        'content',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'fields',
+        'layout',
+        'order_column',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'fields' => 'array',
+        ];
+    }
 }

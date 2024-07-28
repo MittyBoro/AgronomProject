@@ -17,15 +17,18 @@ return new class() extends Migration
 
             $table->string('slug')->index()->unique();
 
-            $table->json('title');
-            $table->json('description');
-            $table->json('meta_title');
-            $table->json('meta_description');
-            $table->json('meta_keywords');
+            $table->string('title');
+            $table->text('content')->nullable();
+
+            $table->string('meta_title', 255)->nullable();
+            $table->string('meta_description', 1024)->nullable();
+            $table->string('meta_keywords', 512)->nullable();
 
             $table->json('fields')->default(new Expression('(JSON_ARRAY())'));
 
-            $table->string('view')->nullable();
+            $table->string('layout')->nullable();
+
+            $table->unsignedInteger('order_column')->default(0);
 
             $table->timestamps();
         });

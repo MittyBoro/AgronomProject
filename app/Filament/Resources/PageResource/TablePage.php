@@ -2,11 +2,8 @@
 
 namespace App\Filament\Resources\PageResource;
 
-use App\Filament\Resources\CategoryResource\Pages\EditCategory;
-use App\Filament\Resources\ProductResource;
+use App\Filament\Resources\PageResource\Pages\EditPage;
 use App\Filament\Tables\IdColumn;
-use App\Filament\Tables\MediaImageColumn;
-use App\Models\Category;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -24,38 +21,22 @@ class TablePage
                 ),
 
                 //
-                MediaImageColumn::make('media'),
-
-                //
                 TextColumn::make('title')
-                    ->label('Название')
+                    ->label('Заголовок')
                     ->searchable()
                     ->sortable(),
                 //
-                TextColumn::make('products_count')
-                    ->label('Товары')
-                    ->badge()
-                    ->icon('heroicon-o-shopping-bag')
-                    ->counts('products')
-                    ->sortable()
-                    ->url(
-                        fn (Category $record): string => ProductResource::getUrl(
-                            'index',
-                            [
-                                'tableFilters' => [
-                                    'categories' => [
-                                        'value' => $record->id,
-                                    ],
-                                ],
-                            ],
-                        ),
-                    ),
+                TextColumn::make('slug')
+                    ->label('Ссылка')
+                    ->formatStateUsing(fn (Model $record): string => '/' . $record->slug)
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->recordUrl(
-                fn (Model $record): string => EditCategory::getUrl([$record]),
+                fn (Model $record): string => EditPage::getUrl([$record]),
             )
             ->actions([
                 Tables\Actions\ViewAction::make()

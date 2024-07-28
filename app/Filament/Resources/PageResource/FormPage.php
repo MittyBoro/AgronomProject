@@ -5,12 +5,8 @@ namespace App\Filament\Resources\PageResource;
 use App\Filament\Forms\BaseForm;
 use App\Filament\Forms\MediaUpload;
 use App\Filament\Forms\SlugInput;
-use App\Filament\Resources\ProductResource;
-use App\Models\Category;
-use Filament\Actions\Action;
-use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
@@ -35,7 +31,7 @@ class FormPage extends BaseForm
                             ->label('SEO')
                             ->schema(self::seoSchema()),
                     ]),
-                self::myInformationSection()->grow(false),
+                self::informationSection()->grow(false),
             ])->from('xl'),
         ]);
     }
@@ -43,6 +39,7 @@ class FormPage extends BaseForm
     private static function mainTabSchema(): array
     {
         return [
+            //
             TextInput::make('title')
                 ->label('Название')
                 ->live()
@@ -61,50 +58,22 @@ class FormPage extends BaseForm
                 ->required()
                 ->maxLength(255),
 
-            SlugInput::make('slug')->prefix('/category/'),
+            //
+            SlugInput::make('slug')->prefix('/'),
 
-            RichEditor::make('description')
-                ->label('Описание')
-                ->fileAttachmentsDirectory('attachments/categories')
-                ->maxLength(65535),
+            //
+            RichEditor::make('content')->label('Контент')->maxLength(65535),
 
+            //
+            KeyValue::make('fields')->label('Дополнительные поля')->reorderable(),
+
+            //
             MediaUpload::make('media')
-                ->label('Изображение')
+                ->label('Дополнительные файлы')
+                ->hint('По необходимости')
+                ->previewable(false)
                 ->maxSize(1024 * 20)
-                ->image()
-                ->imageEditor()
-                ->imageResizeMode('cover')
-                ->imageCropAspectRatio('1:1')
-                ->imageResizeTargetWidth(fn (): ?int => Category::$mediaMaxWidth)
-                ->imageResizeTargetHeight(
-                    fn (): ?int => Category::$mediaMaxWidth,
-                ),
+                ->multiple(),
         ];
-    }
-
-    private static function myInformationSection(): Section
-    {
-        return parent::informationSection([
-            Placeholder::make('products')
-                ->visible(fn (?Category $record): bool => (bool) $record)
-                ->label('Товары')
-                ->content(
-                    fn (?Category $record) => Action::make(
-                        $record->products()->count() . ' шт.',
-                    )
-                        ->icon('heroicon-o-shopping-cart')
-                        ->color('gray')
-                        ->size('xs')
-                        ->url(
-                            ProductResource::getUrl('index', [
-                                'tableFilters' => [
-                                    'categories' => [
-                                        'value' => $record->id,
-                                    ],
-                                ],
-                            ]),
-                        ),
-                ),
-        ]);
     }
 }

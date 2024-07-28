@@ -28,7 +28,7 @@ class TableCategory
 
                 //
                 TextColumn::make('title')
-                    ->label('Название')
+                    ->label('Заголовок')
                     ->searchable()
                     ->sortable(),
                 //

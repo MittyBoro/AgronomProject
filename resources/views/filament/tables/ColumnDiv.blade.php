@@ -1,3 +1,0 @@
-<div>
-  {{ $getRecord()->name }}
-</div>

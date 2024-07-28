@@ -14,11 +14,15 @@ return new class() extends Migration
     {
         Schema::create('variation_groups', function (Blueprint $table): void {
             $table->id();
+
             $table
                 ->string('type', 16)
                 ->default(VariationGroupTypeEnum::String->value);
+
             $table->string('title')->unique();
+
             $table->unsignedInteger('order_column')->default(0);
+
             $table->timestamps();
         });
     }

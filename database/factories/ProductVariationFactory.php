@@ -21,7 +21,7 @@ class ProductVariationFactory extends BaseFactory
 
         return [
             'variation_group_id' => $variation->id,
-            'title' => $rand * 100 . ($variation->name === 'Вес' ? ' г.' : 'мл.'),
+            'title' => $rand * 100 . ($variation->title === 'Вес' ? ' г.' : 'мл.'),
             'order_column' => $rand,
             'price_modifier' => rand(-1, 1) * rand(0, 4) * 100,
             'stock' => fake()->numberBetween(0, 1000),
