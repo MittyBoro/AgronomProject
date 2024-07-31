@@ -63,6 +63,14 @@ class User extends Authenticatable implements FilamentUser
      */
     protected static function booted(): void {}
 
+    /**
+     * Get the reviews for the user.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function isAdmin(): Attribute
     {
         return Attribute::make(get: fn () => $this->role === RoleEnum::Admin);

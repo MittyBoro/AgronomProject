@@ -24,10 +24,13 @@ return new class() extends Migration
             $table->foreignId('user_id')->constrained()->nullable();
 
             $table->boolean('is_approved')->default(false);
+            $table->boolean('is_pinned')->default(false);
 
             $table->unsignedTinyInteger('rating');
             $table->string('name')->nullable();
             $table->text('comment')->nullable();
+
+            $table->bigInteger('likes')->default(0);
 
             $table->timestamps();
         });

@@ -5,7 +5,10 @@ namespace App\Filament\Resources\ProductResource;
 use App\Filament\Forms\BaseForm;
 use App\Filament\Forms\MediaUpload;
 use App\Filament\Forms\SlugInput;
+use App\Filament\Resources\ReviewResource;
 use App\Models\Product;
+use Filament\Forms\Components\Actions;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
@@ -36,7 +39,7 @@ class FormProduct extends BaseForm
                         //
                         Tabs\Tab::make('price')
                             ->label('Цена')
-                            ->schema(TabPriceFormProduct::schema()),
+                            ->schema(FormTabPriceProduct::schema()),
                         //
                         Tabs\Tab::make('seo')
                             ->label('SEO')
@@ -46,7 +49,9 @@ class FormProduct extends BaseForm
                 Grid::make(['default' => '1'])
                     ->schema([
                         static::detailsSection(),
-                        static::informationSection(),
+                        static::informationSection(
+                            self::informationSectionComponents(),
+                        ),
                     ])
                     ->extraAttributes([
                         'class' => 'xl:max-w-md',
@@ -131,5 +136,39 @@ class FormProduct extends BaseForm
                     'class' => 'pl-0.5 md:min-w-80',
                 ]),
         ]);
+    }
+
+    private static function informationSectionComponents(): array
+    {
+        return [
+            Actions::make([
+                Action::make('reviews')
+                    ->badge()
+                    ->icon('heroicon-o-star')
+                    ->color('success')
+                    ->label(
+                        fn (?Product $record) => round(
+                            $record->reviews()->avg('rating'),
+                            2,
+                        ) . " ({$record->reviews()->count()} отзывов)",
+                    )
+                    ->url(
+                        fn (?Product $record) => ReviewResource::getUrl(
+                            'index',
+                            [
+                                'tableFilters' => [
+                                    'products' => [
+                                        'value' => $record->id,
+                                    ],
+                                ],
+                            ],
+                        ),
+                    ),
+            ])
+                ->hidden(
+                    fn (?Product $record) => ! $record ||
+                        $record->reviews()->count() === 0,
+                ),
+        ];
     }
 }

@@ -100,12 +100,16 @@ class FormUser
                                 ->tooltip('Верифицировать email')
                                 ->color('warning')
                                 ->requiresConfirmation()
+
                                 ->action(function (User $record): void {
                                     $record->email_verified_at = now();
                                     $record->save();
                                 })
+                                ->hidden(
+                                    fn ($record) => ! $record,
+                                )
                                 ->visible(
-                                    fn ($record) => ! $record->email_verified_at,
+                                    fn ($record) => ! $record?->email_verified_at,
                                 ),
                         ]),
 

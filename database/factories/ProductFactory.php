@@ -42,19 +42,19 @@ class ProductFactory extends BaseFactory
      */
     public function definition(): array
     {
-        $title = trim(fake()->unique()->sentence(rand(2, 5)), '.');
+        $title = trim($this->faker->unique()->sentence(rand(2, 5)), '.');
 
         return [
             'slug' => Str::slug($title),
             'title' => $title,
-            'description' => fake()->text(),
+            'description' => $this->faker->text(),
 
-            'price' => round(fake()->numberBetween(500, 9000), -2),
-            'stock' => fake()->numberBetween(0, 1000),
-            'is_published' => fake()->boolean(80),
+            'price' => round($this->faker->numberBetween(500, 9000), -2),
+            'stock' => $this->faker->numberBetween(0, 1000),
+            'is_published' => $this->faker->boolean(80),
 
             'meta_title' => $title,
-            'meta_description' => fake()->text(),
+            'meta_description' => $this->faker->text(),
         ];
     }
 }

@@ -44,6 +44,16 @@ class TableProduct
                 ToggleColumn::make('is_published')->label('Опубликовано'),
 
                 //
+                TextColumn::make('reviews_avg_rating')
+                    ->label('Рейтинг')
+                    ->badge()
+                    ->icon('heroicon-o-star')
+                    ->color('gray')
+                    ->sortable()
+                    ->avg('reviews', 'rating')
+                    ->state(fn ($record): float => round($record->reviews_avg_rating, 2)),
+
+                //
                 TextColumn::make('variations_min_stock')
                     ->label('Наличие')
                     ->min('variations', 'stock')

@@ -16,6 +16,7 @@ class BaseForm
         return Section::make([
             Placeholder::make('created_at')
                 ->label('Дата создания')
+                ->hidden(fn (?Model $record) => ! $record)
                 ->content(
                     fn (?Model $record): string => (
                         $record?->created_at ?? now()

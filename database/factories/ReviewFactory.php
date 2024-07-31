@@ -24,10 +24,10 @@ class ReviewFactory extends Factory
         return [
             'product_id' => $product->id,
             'user_id' => $user->id,
-            'is_approved' => fake()->boolean(80),
-            'rating' => fake()->numberBetween(1, 5),
+            'is_approved' => $this->faker->boolean(80),
+            'rating' => $this->faker->numberBetween(1, 5),
             'name' => $user->name,
-            'comment' => fake()->sentence(rand(3, 10)),
+            'comment' => $this->faker->sentence(rand(3, 10)),
         ];
     }
 }

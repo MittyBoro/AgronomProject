@@ -36,6 +36,7 @@ class TableCategory
                     ->label('Товары')
                     ->badge()
                     ->icon('heroicon-o-shopping-bag')
+                    ->color('gray')
                     ->counts('products')
                     ->sortable()
                     ->url(
