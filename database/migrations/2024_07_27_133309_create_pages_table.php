@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Page;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
@@ -32,6 +33,21 @@ return new class() extends Migration
 
             $table->timestamps();
         });
+
+        $pages = [
+            ['slug' => 'index', 'title' => 'Главная'],
+            ['slug' => 'catalog', 'title' => 'Каталог'],
+            ['slug' => 'product', 'title' => 'Товар'],
+            ['slug' => 'loyalty', 'title' => 'Бонусная программа'],
+            ['slug' => 'articles', 'title' => 'Статьи'],
+            ['slug' => 'about', 'title' => 'О нас'],
+            ['slug' => 'contacts', 'title' => 'Контакты'],
+            ['slug' => 'simple-page', 'title' => 'Простая страница'],
+        ];
+
+        foreach ($pages as $page) {
+            Page::create($page);
+        }
     }
 
     /**

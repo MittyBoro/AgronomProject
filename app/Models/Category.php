@@ -46,6 +46,15 @@ class Category extends Model implements HasMedia
         ];
     }
 
+    protected static function booted(): void
+    {
+        static::saving(function (Category $record): void {
+            if ( ! $record->meta_title) {
+                $record->meta_title = $record->title;
+            }
+        });
+    }
+
     public function products()
     {
         return $this->belongsToMany(Product::class);

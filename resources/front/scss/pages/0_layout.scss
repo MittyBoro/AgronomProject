@@ -176,11 +176,12 @@
 }
 
 .footer__logo {
-  grid-column: 1 / -1;
+  max-width: 250px;
   @include media-breakpoint-down(lg) {
     display: flex;
     align-items: center;
     gap: var(--gap);
+    grid-column: 1 / -1;
   }
 }
 

@@ -54,6 +54,15 @@ class Product extends Model implements HasMedia
         ];
     }
 
+    protected static function booted(): void
+    {
+        static::saving(function (Product $record): void {
+            if ( ! $record->meta_title) {
+                $record->meta_title = $record->title;
+            }
+        });
+    }
+
     /**
      * Get the categories that belong to the product.
      */
@@ -85,5 +94,10 @@ class Product extends Model implements HasMedia
         return Attribute::make(
             get: fn () => $this->variations->isNotEmpty(),
         );
+    }
+
+    public function scopeIsPublished($query): void
+    {
+        $query->where('is_published', true);
     }
 }

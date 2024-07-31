@@ -38,4 +38,13 @@ class Page extends Model implements HasMedia
             'fields' => 'array',
         ];
     }
+
+    protected static function booted(): void
+    {
+        static::saving(function (Page $record): void {
+            if ( ! $record->meta_title) {
+                $record->meta_title = $record->title;
+            }
+        });
+    }
 }
