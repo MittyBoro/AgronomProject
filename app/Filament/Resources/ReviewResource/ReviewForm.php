@@ -16,7 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Illuminate\Support\HtmlString;
 
-class FormReview extends BaseForm
+class ReviewForm extends BaseForm
 {
     public static function make(Form $form): Form
     {

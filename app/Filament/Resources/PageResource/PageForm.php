@@ -15,7 +15,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 
-class FormPage extends BaseForm
+class PageForm extends BaseForm
 {
     public static function make(Form $form): Form
     {

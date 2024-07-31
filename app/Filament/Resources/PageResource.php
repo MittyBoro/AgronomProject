@@ -26,12 +26,12 @@ class PageResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return PageResource\FormPage::make($form);
+        return PageResource\PageForm::make($form);
     }
 
     public static function table(Table $table): Table
     {
-        return PageResource\TablePage::make($table);
+        return PageResource\PageTable::make($table);
     }
 
     public static function getRelations(): array

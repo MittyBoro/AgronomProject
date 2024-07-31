@@ -14,7 +14,7 @@ use Filament\Forms\Form;
 use Filament\Support\RawJs;
 use Illuminate\Support\Facades\Hash;
 
-class FormUser
+class UserForm
 {
     public static function make(Form $form): Form
     {

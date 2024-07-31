@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-class FormTabPriceProduct
+class ProductFormTabPrice
 {
     /**
      * Базовая цена

@@ -19,7 +19,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 
-class FormCategory extends BaseForm
+class CategoryForm extends BaseForm
 {
     public static function make(Form $form): Form
     {

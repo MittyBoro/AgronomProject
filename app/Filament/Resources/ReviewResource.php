@@ -30,12 +30,12 @@ class ReviewResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return ReviewResource\FormReview::make($form);
+        return ReviewResource\ReviewForm::make($form);
     }
 
     public static function table(Table $table): Table
     {
-        return ReviewResource\TableReview::make($table);
+        return ReviewResource\ReviewTable::make($table);
     }
 
     public static function getRelations(): array

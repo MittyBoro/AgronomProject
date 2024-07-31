@@ -22,7 +22,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 
-class FormProduct extends BaseForm
+class ProductForm extends BaseForm
 {
     public static function make(Form $form): Form
     {
@@ -39,7 +39,7 @@ class FormProduct extends BaseForm
                         //
                         Tabs\Tab::make('price')
                             ->label('Цена')
-                            ->schema(FormTabPriceProduct::schema()),
+                            ->schema(ProductFormTabPrice::schema()),
                         //
                         Tabs\Tab::make('seo')
                             ->label('SEO')
