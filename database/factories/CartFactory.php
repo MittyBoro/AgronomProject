@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Cart;
 use App\Models\CartItem;
-use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cart>
@@ -28,11 +27,8 @@ class CartFactory extends BaseFactory
      */
     public function definition(): array
     {
-        $ids = Cart::pluck('user_id')->toArray();
-        $user = User::inRandomOrder()->whereNotIn('id', $ids)->first();
-
         return [
-            'user_id' => $user->id,
+            'user_id' => 1,
         ];
     }
 }

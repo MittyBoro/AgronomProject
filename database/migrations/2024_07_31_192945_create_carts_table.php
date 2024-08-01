@@ -15,7 +15,10 @@ return new class() extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->unique()->constrained()->cascadeOnDelete();
             $table->string('session_id')->nullable();
+            $table->enum('type', ['cart', 'wishlist'])->default('cart');
             $table->timestamps();
+
+            $table->unique(['user_id', 'type'], 'user_id_type_unique');
         });
     }
 
