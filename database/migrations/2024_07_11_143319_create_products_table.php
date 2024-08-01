@@ -29,6 +29,7 @@ return new class() extends Migration
             $table->unsignedInteger('order_column')->default(0);
 
             $table->timestamps();
+            $table->softDeletes();
         });
 
         // ставим первый id = 1000, для красивых чисел

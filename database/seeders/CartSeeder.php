@@ -2,17 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\VariationGroup;
+use App\Models\Cart;
 use Illuminate\Database\Seeder;
 
-class VariationGroupSeeder extends Seeder
+class CartSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //
-        VariationGroup::factory(10)->create();
+        Cart::factory(100)->create();
     }
 }
