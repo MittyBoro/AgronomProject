@@ -20,7 +20,7 @@ class ReviewResource extends Resource
 
     protected static ?string $navigationLabel = 'Отзывы';
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left';
 
     protected static ?string $navigationGroup = 'Магазин';
 

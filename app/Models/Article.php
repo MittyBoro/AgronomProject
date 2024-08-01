@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Category extends Model implements HasMedia
+class Article extends Model implements HasMedia
 {
     use HasFactory, HasMetaTitle, HasResponsiveImages, InteractsWithMedia {
         HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
@@ -18,7 +18,7 @@ class Category extends Model implements HasMedia
     /**
      * for responsive images HasResponsiveImages
      */
-    public static int $mediaMaxWidth = 150;
+    public static int $mediaMaxWidth = 1500;
 
     /**
      * The attributes that are mass assignable.
@@ -26,20 +26,19 @@ class Category extends Model implements HasMedia
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
         'slug',
+        'title',
         'description',
+        'content',
+
+        'is_published',
+
         'meta_title',
         'meta_description',
         'meta_keywords',
         'order_column',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -47,8 +46,8 @@ class Category extends Model implements HasMedia
         ];
     }
 
-    public function products()
+    public function scopeIsPublished($query): void
     {
-        return $this->belongsToMany(Product::class);
+        $query->where('is_published', true);
     }
 }

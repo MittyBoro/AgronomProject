@@ -4,12 +4,11 @@ namespace Database\Factories;
 
 use App\Models\CartItem;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CartItem>
  */
-class CartItemFactory extends Factory
+class CartItemFactory extends BaseFactory
 {
     public function configure(): static
     {

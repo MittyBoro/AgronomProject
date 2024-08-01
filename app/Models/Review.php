@@ -42,15 +42,6 @@ class Review extends Model implements HasMedia
         ];
     }
 
-    protected static function booted(): void
-    {
-        static::saving(function (Review $record): void {
-            if ( ! $record->name) {
-                $record->name = 'Аноним';
-            }
-        });
-    }
-
     public function product()
     {
         return $this->belongsTo(Product::class);

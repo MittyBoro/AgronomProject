@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasMetaTitle;
 use App\Models\Traits\HasResponsiveImages;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, HasResponsiveImages, InteractsWithMedia {
+    use HasFactory, HasMetaTitle, HasResponsiveImages, InteractsWithMedia {
         HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
     }
 
@@ -52,15 +53,6 @@ class Product extends Model implements HasMedia
             'stock' => 'integer',
             'is_published' => 'boolean',
         ];
-    }
-
-    protected static function booted(): void
-    {
-        static::saving(function (Product $record): void {
-            if ( ! $record->meta_title) {
-                $record->meta_title = $record->title;
-            }
-        });
     }
 
     /**

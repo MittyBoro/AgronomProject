@@ -106,6 +106,13 @@ class ReviewTable
                                 ->orderBy('id', $direction);
                         },
                     ),
+
+                //created_at
+                TextColumn::make('created_at')
+                    ->label('Дата создания')
+                    ->sortable()
+                    ->toggleable()
+                    ->date('d.m.Y H:i'),
             ])
             ->filters([
                 SelectFilter::make('products')

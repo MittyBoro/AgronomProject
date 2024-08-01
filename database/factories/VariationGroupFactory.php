@@ -3,12 +3,11 @@
 namespace Database\Factories;
 
 use App\Enums\VariationGroupTypeEnum;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
  */
-class VariationGroupFactory extends Factory
+class VariationGroupFactory extends BaseFactory
 {
     /**
      * Define the model's default state.

@@ -60,11 +60,6 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * The "booted" method of the model.
-     */
-    protected static function booted(): void {}
-
-    /**
      * Get the reviews for the user.
      */
     public function reviews()

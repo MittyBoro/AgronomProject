@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasMetaTitle;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Page extends Model implements HasMedia
 {
-    use InteractsWithMedia;
+    use HasMetaTitle, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -37,14 +38,5 @@ class Page extends Model implements HasMedia
         return [
             'fields' => 'array',
         ];
-    }
-
-    protected static function booted(): void
-    {
-        static::saving(function (Page $record): void {
-            if ( ! $record->meta_title) {
-                $record->meta_title = $record->title;
-            }
-        });
     }
 }
