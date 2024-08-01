@@ -61,7 +61,7 @@ class ReviewResource extends Resource
 
     public static function getNavigationBadgeColor(): ?string
     {
-        return static::getNewRecordsCount() ? 'primary' : 'gray';
+        return static::getNewRecordsCount() ? 'warning' : 'gray';
     }
 
     private static function getNewRecordsCount(): ?int

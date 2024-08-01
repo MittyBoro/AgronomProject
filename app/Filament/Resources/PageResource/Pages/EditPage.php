@@ -3,17 +3,12 @@
 namespace App\Filament\Resources\PageResource\Pages;
 
 use App\Filament\Resources\PageResource;
-use Filament\Actions;
+use App\Filament\Traits\EditRecordPage;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
 {
-    protected static string $resource = PageResource::class;
+    use EditRecordPage;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\DeleteAction::make(),
-        ];
-    }
+    protected static string $resource = PageResource::class;
 }

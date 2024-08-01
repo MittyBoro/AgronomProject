@@ -6,8 +6,9 @@ use App\Filament\Resources\CategoryResource\Pages\EditCategory;
 use App\Filament\Resources\ProductResource;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
+use App\Filament\Tables\TableActions;
+use App\Filament\Tables\TableBulkActions;
 use App\Models\Category;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -58,21 +59,11 @@ class CategoryTable
             ->recordUrl(
                 fn (Model $record): string => EditCategory::getUrl([$record]),
             )
-            ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->iconButton()
-                    ->url('/')
-                    ->openUrlInNewTab('/'),
-                Tables\Actions\EditAction::make()->button()->iconButton(false),
-                Tables\Actions\DeleteAction::make()
-                    ->button()
-                    ->iconButton(false),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
+            //
+            ->actions(TableActions::make())
+            //
+            ->bulkActions(TableBulkActions::make())
+            //
             ->defaultSort('order_column')
             ->reorderable('order_column');
     }

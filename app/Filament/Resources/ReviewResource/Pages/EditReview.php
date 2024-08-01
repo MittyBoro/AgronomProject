@@ -3,17 +3,12 @@
 namespace App\Filament\Resources\ReviewResource\Pages;
 
 use App\Filament\Resources\ReviewResource;
-use Filament\Actions;
+use App\Filament\Traits\EditRecordPage;
 use Filament\Resources\Pages\EditRecord;
 
 class EditReview extends EditRecord
 {
-    protected static string $resource = ReviewResource::class;
+    use EditRecordPage;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\DeleteAction::make(),
-        ];
-    }
+    protected static string $resource = ReviewResource::class;
 }

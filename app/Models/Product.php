@@ -7,14 +7,20 @@ use App\Models\Traits\HasResponsiveImages;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, HasMetaTitle, HasResponsiveImages, InteractsWithMedia {
-        HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
-    }
+    use HasFactory,
+        HasMetaTitle,
+        HasResponsiveImages,
+        InteractsWithMedia,
+        SoftDeletes
+         {
+             HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
+         }
 
     /**
      * for responsive images HasResponsiveImages
@@ -91,9 +97,7 @@ class Product extends Model implements HasMedia
 
     protected function hasVariations(): Attribute
     {
-        return Attribute::make(
-            get: fn () => $this->variations->isNotEmpty(),
-        );
+        return Attribute::make(get: fn () => $this->variations->isNotEmpty());
     }
 
     public function scopeIsPublished($query): void

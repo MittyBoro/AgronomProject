@@ -24,6 +24,8 @@ class PageResource extends Resource
 
     protected static ?string $navigationGroup = 'Прочее';
 
+    protected static ?int $navigationSort = 0;
+
     public static function form(Form $form): Form
     {
         return PageResource\PageForm::make($form);

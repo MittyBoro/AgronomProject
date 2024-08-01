@@ -4,7 +4,8 @@ namespace App\Filament\Resources\PageResource;
 
 use App\Filament\Resources\PageResource\Pages\EditPage;
 use App\Filament\Tables\IdColumn;
-use Filament\Tables;
+use App\Filament\Tables\TableActions;
+use App\Filament\Tables\TableBulkActions;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -35,24 +36,15 @@ class PageTable
             ->filters([
                 //
             ])
+            //
             ->recordUrl(
                 fn (Model $record): string => EditPage::getUrl([$record]),
             )
-            ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->iconButton()
-                    ->url('/')
-                    ->openUrlInNewTab('/'),
-                Tables\Actions\EditAction::make()->button()->iconButton(false),
-                Tables\Actions\DeleteAction::make()
-                    ->button()
-                    ->iconButton(false),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
+            //
+            ->actions(TableActions::make())
+            //
+            ->bulkActions(TableBulkActions::make())
+            //
             ->defaultSort('order_column')
             ->reorderable('order_column');
     }

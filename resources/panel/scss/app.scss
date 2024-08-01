@@ -33,3 +33,13 @@
     @apply border bg-gray-100/10 dark:bg-gray-800/30;
   }
 }
+
+.fi-form-actions {
+  position: sticky;
+  bottom: 10px;
+  .fi-btn {
+    &:first-child {
+      @apply grow;
+    }
+  }
+}

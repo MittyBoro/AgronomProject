@@ -5,8 +5,9 @@ namespace App\Filament\Resources\ReviewResource;
 use App\Filament\Resources\ReviewResource;
 use App\Filament\Resources\ReviewResource\Pages\EditReview;
 use App\Filament\Tables\IdColumn;
+use App\Filament\Tables\TableActions;
+use App\Filament\Tables\TableBulkActions;
 use App\Models\Review;
-use Filament\Tables;
 use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -138,24 +139,15 @@ class ReviewTable
                         ),
                     ),
             ])
+            //
             ->recordUrl(
                 fn (Model $record): string => EditReview::getUrl([$record]),
             )
-            ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->iconButton()
-                    ->url('/')
-                    ->openUrlInNewTab('/'),
-                Tables\Actions\EditAction::make()->button()->iconButton(false),
-                Tables\Actions\DeleteAction::make()
-                    ->button()
-                    ->iconButton(false),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
+            //
+            ->actions(TableActions::make())
+            //
+            ->bulkActions(TableBulkActions::make())
+            //
             ->defaultSort('is_pinned', 'desc')
             ->persistSortInSession();
     }

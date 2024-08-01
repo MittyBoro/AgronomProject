@@ -5,7 +5,8 @@ namespace App\Filament\Resources\ArticleResource;
 use App\Filament\Resources\ArticleResource\Pages\EditArticle;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
-use Filament\Tables;
+use App\Filament\Tables\TableActions;
+use App\Filament\Tables\TableBulkActions;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
@@ -46,21 +47,8 @@ class ArticleTable
             ->recordUrl(
                 fn (Model $record): string => EditArticle::getUrl([$record]),
             )
-            ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->iconButton()
-                    ->url('/')
-                    ->openUrlInNewTab('/'),
-                Tables\Actions\EditAction::make()->button()->iconButton(false),
-                Tables\Actions\DeleteAction::make()
-                    ->button()
-                    ->iconButton(false),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
+            ->actions(TableActions::make())
+            ->bulkActions(TableBulkActions::make())
             ->defaultSort('order_column')
             ->reorderable('order_column');
     }

@@ -3,25 +3,12 @@
 namespace App\Filament\Resources\CategoryResource\Pages;
 
 use App\Filament\Resources\CategoryResource;
-use Filament\Actions;
+use App\Filament\Traits\EditRecordPage;
 use Filament\Resources\Pages\EditRecord;
 
 class EditCategory extends EditRecord
 {
-    protected static string $resource = CategoryResource::class;
+    use EditRecordPage;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            // Actions\Action::make('open')
-            //     ->label('Открыть')
-            //     ->url('/')
-            //     ->shouldOpenUrlInNewTab(),
-            Actions\Action::make('create_more')
-                ->label('Создать ещё')
-                ->color('gray')
-                ->url(self::getResource()::getUrl('create')),
-            Actions\DeleteAction::make(),
-        ];
-    }
+    protected static string $resource = CategoryResource::class;
 }

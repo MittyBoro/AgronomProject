@@ -4,9 +4,10 @@ namespace App\Filament\Resources\UserResource;
 
 use App\Enums\RoleEnum;
 use App\Filament\Tables\IdColumn;
+use App\Filament\Tables\TableActions;
+use App\Filament\Tables\TableBulkActions;
 use App\Models\User;
 use Filament\Support\Enums\IconPosition;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -16,15 +17,15 @@ class UserTable
     {
         return $table
             ->columns(self::columns())
+            //
             ->filters([
                 //
             ])
-            ->actions([Tables\Actions\EditAction::make()])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
+            //
+            ->actions(TableActions::make())
+            //
+            ->bulkActions(TableBulkActions::make())
+            //
             ->persistSortInSession()
             ->defaultSort('id', 'desc');
     }

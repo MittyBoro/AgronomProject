@@ -5,11 +5,13 @@ namespace App\Filament\Resources\ProductResource;
 use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
+use App\Filament\Tables\TableActions;
+use App\Filament\Tables\TableBulkActions;
 use App\Models\Product;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -51,7 +53,12 @@ class ProductTable
                     ->color('gray')
                     ->sortable()
                     ->avg('reviews', 'rating')
-                    ->state(fn ($record): float => round($record->reviews_avg_rating, 2)),
+                    ->state(
+                        fn ($record): float => round(
+                            $record->reviews_avg_rating,
+                            2,
+                        ),
+                    ),
 
                 //
                 TextColumn::make('variations_min_stock')
@@ -94,6 +101,9 @@ class ProductTable
             ])
             ->filters([
                 //
+                TrashedFilter::make(),
+
+                //
                 SelectFilter::make('is_published')
                     ->label('Опубликовано')
                     ->options([
@@ -106,24 +116,15 @@ class ProductTable
                     ->label('Категория')
                     ->relationship('categories', 'title'),
             ])
+            //
             ->recordUrl(
                 fn (Model $record): string => EditProduct::getUrl([$record]),
             )
-            ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->iconButton()
-                    ->url('/')
-                    ->openUrlInNewTab('/'),
-                Tables\Actions\EditAction::make()->button()->iconButton(false),
-                Tables\Actions\DeleteAction::make()
-                    ->button()
-                    ->iconButton(false),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
+            //
+            ->actions(TableActions::make())
+            //
+            ->bulkActions(TableBulkActions::make())
+            //
             ->defaultSort('id', 'desc');
     }
 }

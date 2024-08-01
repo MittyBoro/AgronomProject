@@ -24,6 +24,8 @@ class UserResource extends Resource
 
     protected static ?string $navigationGroup = 'Прочее';
 
+    protected static ?int $navigationSort = 3;
+
     public static function form(Form $form): Form
     {
         return UserResource\UserForm::make($form);
