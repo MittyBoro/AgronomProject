@@ -17,9 +17,9 @@ class CategoryFactory extends BaseFactory
     public function configure(): static
     {
         return $this->afterCreating(function (Category $category): void {
-            if ($this->hasMedia) {
+            if ($this->loadMedia()) {
                 $category
-                    ->addMediaFromUrl(faker_media_url())
+                    ->addMediaFromUrl(faker_media_url(200))
                     ->usingName($category->slug)
                     ->toMediaCollection();
             }

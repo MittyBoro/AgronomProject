@@ -13,10 +13,9 @@ class CartFactory extends BaseFactory
     public function configure(): static
     {
         return $this->afterCreating(function (Cart $cart): void {
-            $items = CartItem::factory(rand(5, 15))->create([
+            CartItem::factory(15)->create([
                 'cart_id' => $cart->id,
             ]);
-            $cart->items()->attach($items);
         });
     }
 

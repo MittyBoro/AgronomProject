@@ -1,10 +1,14 @@
 <?php
 
 if ( ! function_exists('faker_media_url')) {
-    function faker_media_url()
+    function faker_media_url(int $width = 700, ?int $height = null): string
     {
-        return 'https://placedog.net/700/700?r';
-        // return 'https://doodleipsum.com/700';
+        if ( ! $height) {
+            $height = $width;
+        }
+
+        return "https://placedog.net/{$width}/{$height}?r";
+        // return "https://doodleipsum.com/{$width}";
     }
 }
 

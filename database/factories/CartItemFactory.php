@@ -13,8 +13,11 @@ class CartItemFactory extends BaseFactory
     public function configure(): static
     {
         return $this->afterCreating(function (CartItem $cartItem): void {
-            $vId = $cartItem->product->variations()->inRandomOrder()->first();
-            $cartItem->items()->attach($vId);
+            $variationId = $cartItem->product
+                ->variations()
+                ->inRandomOrder()
+                ->first()->id;
+            $cartItem->variations()->attach($variationId);
         });
     }
 

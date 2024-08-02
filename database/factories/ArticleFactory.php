@@ -18,9 +18,9 @@ class ArticleFactory extends BaseFactory
     public function configure(): static
     {
         return $this->afterCreating(function (Article $article): void {
-            if ($this->hasMedia) {
+            if ($this->loadMedia()) {
                 $article
-                    ->addMediaFromUrl(faker_media_url())
+                    ->addMediaFromUrl(faker_media_url(1200, 800))
                     ->usingName($article->slug)
                     ->toMediaCollection();
             }

@@ -24,10 +24,10 @@ class ProductFactory extends BaseFactory
         )->afterCreating(function (Product $product): void {
             $product->categories()->attach(Category::all()->random(rand(1, 3)));
 
-            if ($this->hasMedia) {
+            if ($this->loadMedia()) {
                 foreach (range(1, rand(1, 2)) as $v) {
                     $product
-                        ->addMediaFromUrl(faker_media_url())
+                        ->addMediaFromUrl(faker_media_url(700))
                         ->usingName($product->slug)
                         ->toMediaCollection();
                 }

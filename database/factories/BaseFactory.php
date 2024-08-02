@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 abstract class BaseFactory extends Factory
 {
-    protected bool $hasMedia = true;
+    protected function loadMedia(): bool
+    {
+        return config('app.faker_has_media', false);
+    }
 }
