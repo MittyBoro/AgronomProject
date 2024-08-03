@@ -25,6 +25,7 @@ class Review extends Model implements HasMedia
         'name',
         'comment',
         'likes',
+        'order_column',
     ];
 
     /**
@@ -50,5 +51,33 @@ class Review extends Model implements HasMedia
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeIsApproved($query): void
+    {
+        $query->where('is_approved', true);
+    }
+
+    public function scopeIsPinned($query): void
+    {
+        $query->where('is_pinned', true);
+    }
+
+    public function scopeSelectPublic($query): void
+    {
+        $query
+            ->select(
+                'id',
+                'product_id',
+                'user_id',
+                'is_approved',
+                'is_pinned',
+                'rating',
+                'name',
+                'comment',
+                'likes',
+            )
+            ->isApproved()
+            ->orderBy('order_column');
     }
 }

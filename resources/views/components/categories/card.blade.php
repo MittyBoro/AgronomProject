@@ -1,7 +1,8 @@
-<a class="category" href="#">
+<a class="category" href="/catalog/{{ $category->slug }}"
+  title="{{ $category->title }}">
   <span class="category__icon">
-    <img class="default" src="{{ Vite::front('images/logo.svg') }}"
-      alt="Категория" />
+    <x-a.picture :media="$category->media" />
   </span>
-  <span class="category__name">Категория {{ $category }}</span>
+
+  <span class="category__name">{{ $category->title }}</span>
 </a>

@@ -59,13 +59,16 @@ class PageForm extends BaseForm
                 ->maxLength(255),
 
             //
+
             SlugInput::make('slug')->prefix('/'),
 
             //
             RichEditor::make('content')->label('Контент')->maxLength(65535),
 
             //
-            KeyValue::make('fields')->label('Дополнительные поля')->reorderable(),
+            KeyValue::make('fields')
+                ->label('Дополнительные поля')
+                ->reorderable(),
 
             //
             MediaUpload::make('media')

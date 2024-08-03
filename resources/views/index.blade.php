@@ -1,4 +1,4 @@
-<x-layouts.main body_name="home">
+<x-layouts.main body_name="home" :page="$page">
   {{-- muzzle --}}
   <section class="muzzle muzzle__section">
     <div class="muzzle__container container">
@@ -8,11 +8,10 @@
           alt="" />
         <div class="muzzle__text white-blur-block">
           <div class="muzzle__title">
-            <h1>Тут будет какой-то оффер мол лучшая отрава для огорода</h1>
+            <h1>{{ $page->fields['home_title'] ?? '' }}</h1>
           </div>
           <p class="muzzle__description">
-            Lorem ipsum dolor sit amet consectetur. Commodo aliquam quam netus
-            augue. Pouere egestas mattis fames orci malesuada.
+            {{ $page->fields['home_description'] ?? '' }}
           </p>
           <a class="button muzzle__button" href="/catalog">Перейти в каталог</a>
         </div>
@@ -52,7 +51,7 @@
         </div>
       </div>
       <div class="categories__list">
-        <x-swiper.categories />
+        <x-swiper.categories :component="$component" />
       </div>
     </div>
   </section>
@@ -136,8 +135,8 @@
       </div>
       <div class="reviews__list">
         <!-- review Items -->
-        @foreach (range(1, 4) as $product)
-          <x-reviews.card />
+        @foreach ($reviews as $review)
+          <x-reviews.card :review="$review" />
         @endforeach
       </div>
     </div>

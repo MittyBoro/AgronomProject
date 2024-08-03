@@ -1,4 +1,6 @@
 @props(['head', 'body', 'page', 'item', 'popup'])
+
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -136,7 +138,7 @@
     {!! $popup ?? '' !!}
 
     {{--  --}}
-    <x-popups.menu />
+    <x-popups.menu :categories="$categories" />
   </div>
 </body>
 

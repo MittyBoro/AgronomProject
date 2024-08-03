@@ -10,6 +10,7 @@ use App\Filament\Tables\TableBulkActions;
 use App\Models\Review;
 use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -29,7 +30,7 @@ class ReviewTable
                     ->label('Заголовок')
                     ->badge()
                     ->description(
-                        fn (Review $record): string => $record->comment,
+                        fn(Review $record): string => $record->comment,
                     )
                     ->icon('heroicon-o-user')
                     ->color('info')
@@ -37,7 +38,7 @@ class ReviewTable
                     ->searchable()
                     ->sortable()
                     ->url(
-                        fn (Review $record): string => ReviewResource::getUrl(
+                        fn(Review $record): string => ReviewResource::getUrl(
                             'index',
                             [
                                 'tableFilters' => [
@@ -67,7 +68,7 @@ class ReviewTable
                     ->wrap()
                     ->color('gray')
                     ->url(
-                        fn (Review $record): string => ReviewResource::getUrl(
+                        fn(Review $record): string => ReviewResource::getUrl(
                             'index',
                             [
                                 'tableFilters' => [
@@ -84,7 +85,7 @@ class ReviewTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->icon(
-                        fn (?Review $record) => $record->likes >= 0
+                        fn(?Review $record) => $record->likes >= 0
                             ? 'heroicon-o-hand-thumb-up'
                             : 'heroicon-o-hand-thumb-down',
                     ),
@@ -93,10 +94,10 @@ class ReviewTable
                     ->label('Одобрено')
                     ->sortable(),
                 //
-                CheckboxColumn::make('is_pinned')
+                ToggleColumn::make('is_pinned')
                     ->label('Закреплено')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->toggleable()
                     ->sortable(
                         query: function (
                             Builder $query,
@@ -123,32 +124,54 @@ class ReviewTable
                     ->relationship(
                         'product',
                         'title',
-                        fn (Builder $query): Builder => $query->whereHas(
+                        fn(Builder $query): Builder => $query->whereHas(
                             'reviews',
                         ),
                     ),
                 SelectFilter::make('users')
                     ->label('Пользователь')
-                    ->searchable()
                     ->preload()
                     ->relationship(
                         'user',
                         'name',
-                        fn (Builder $query): Builder => $query->whereHas(
+                        fn(Builder $query): Builder => $query->whereHas(
                             'reviews',
                         ),
                     ),
+                SelectFilter::make('is_approved')
+                    ->label('Одобрение')
+                    ->options([
+                        1 => 'Одобренные',
+                        0 => 'Не одобренные',
+                    ]),
+                SelectFilter::make('is_pinned')
+                    ->label('Закреплено')
+                    ->options([
+                        1 => 'Только закрепленные',
+                    ]),
             ])
             //
             ->recordUrl(
-                fn (Model $record): string => EditReview::getUrl([$record]),
+                fn(Model $record): string => EditReview::getUrl([$record]),
+            )
+            //
+
+            ->recordClasses(
+                fn(Model $record) => $record->is_pinned
+                    ? 'border-l-4 bg-gray-500/5'
+                    : '',
             )
             //
             ->actions(TableActions::make())
             //
             ->bulkActions(TableBulkActions::make())
             //
-            ->defaultSort('is_pinned', 'desc')
-            ->persistSortInSession();
+            ->persistSortInSession()
+            ->defaultSort(
+                fn($query) => $query
+                    ->orderBy('is_pinned', 'desc')
+                    ->orderBy('order_column'),
+            )
+            ->reorderable('order_column');
     }
 }

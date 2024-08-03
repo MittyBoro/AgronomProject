@@ -22,7 +22,7 @@
           'spaceBetween' => 30,
       ],
   ]) }}">
-  @foreach (range(1, 20) as $category)
+  @foreach ($component->categories as $category)
     <swiper-slide>
       <x-categories.card :category="$category" />
     </swiper-slide>

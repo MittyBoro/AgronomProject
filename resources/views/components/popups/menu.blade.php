@@ -13,7 +13,7 @@
       </div>
       <div class="popup-menu__title title">Каталог</div>
       <div class="popup-menu__categories catalog-categories">
-        @foreach (range(1, 9) as $category)
+        @foreach ($categories as $category)
           <x-categories.card :category="$category" />
         @endforeach
       </div>
