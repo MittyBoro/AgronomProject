@@ -17,10 +17,9 @@ class Product extends Model implements HasMedia
         HasMetaTitle,
         HasResponsiveImages,
         InteractsWithMedia,
-        SoftDeletes
-         {
-             HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
-         }
+        SoftDeletes {
+        HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
+    }
 
     /**
      * for responsive images HasResponsiveImages
@@ -100,11 +99,34 @@ class Product extends Model implements HasMedia
 
     protected function hasVariations(): Attribute
     {
-        return Attribute::make(get: fn () => $this->variations->isNotEmpty());
+        return Attribute::make(get: fn() => $this->variations->isNotEmpty());
+    }
+
+    protected function totalPrice(): Attribute
+    {
+        return Attribute::make(get: fn() => round($this->price * $this->discount / 100));
     }
 
     public function scopeIsPublished($query): void
     {
         $query->where('is_published', true);
+    }
+
+    public function scopeSelectPublic($query): void
+    {
+        $query
+            ->select(
+                'id',
+                'slug',
+                'title',
+                'price',
+                'discount',
+                'stock',
+                'is_published',
+            )
+            ->isPublished()
+            ->with('variations', 'media')
+            ->withCount('reviews')
+            ->withAvg('reviews', 'rating');
     }
 }

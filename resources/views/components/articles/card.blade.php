@@ -1,12 +1,11 @@
 <div class="article">
   <div class="article__image">
-    <img class="object-cover" src="{{ Vite::front('images/article-demo.png') }}"
-      alt="AAAAAAAAAa" />
+    <x-a.picture class="object-cover" :media="$item->media" />
   </div>
   <div class="article__text white-blur-block">
-    <div class="article__name">Название программы</div>
+    <div class="article__name">{{ $item->title }}</div>
     <div class="article__description">
-      Lorem ipsum dolor sit amet consectetur. Commodo aliquam quam netus augue.
+      {{ $item->description }}
     </div>
     <a class="article__link color-link" href="#">Смотреть</a>
   </div>

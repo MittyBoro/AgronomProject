@@ -1,8 +1,10 @@
-<div class="products-card">
+<div class="products-card"
+  onclick="location.href='/products/{{ $item->slug }}'">
   <div class="products-card__image">
-    <img class="object-cover" src="{{ Vite::front('images/product-demo.png') }}"
-      alt="{{ config('app.name') }}" />
-    <span class="products-card__badge">-40%</span>
+    <x-a.picture class="object-cover" :media="$item->media" />
+    @if ($item->discount > 0)
+      <span class="products-card__badge">-{{ $item->discount }}%</span>
+    @endif
     <span class="products-card__actions">
       <span class="products-card__action products-card__action--like link">
         <x-a.icon src="icons/heart.svg" />
@@ -13,15 +15,24 @@
     </span>
   </div>
   <div class="products-card__name">
-    <h3><a class="link" href="#">Длинное название товара</a></h3>
+    <h3><a class="link"
+        href="/products/{{ $item->slug }}">{{ $item->title }}</a></h3>
   </div>
   <div class="products-card__price">
-    300₽
-    <span class="products-card__price--old">450₽</span>
+    @if ($item->discount > 0)
+      <span>{{ $item->total_price }}₽</span>
+      <span class="products-card__price--old">{{ $item->price }}₽</span>
+    @else
+      <span>{{ $item->price }}₽</span>
+    @endif
   </div>
-  <div class="products-card__rating rating">
-    <div class="products-card__rating--stars rating__stars"
-      style="--percent: {{ rand(60, 100) }}%"></div>
-    <div class="products-card__rating--count rating__count">(66)</div>
-  </div>
+  @if ($item->reviews_count)
+    <div class="products-card__rating rating">
+      <div class="products-card__rating--stars rating__stars"
+        style="--percent: {{ ($item->reviews_avg_rating / 5) * 100 }}%">
+      </div>
+      <div class="products-card__rating--count rating__count">
+        ({{ $item->reviews_count }})</div>
+    </div>
+  @endif
 </div>

@@ -25,11 +25,11 @@
       <div class="popular__subtitle subtitle">Лучшее за месяц</div>
       <div class="popular__title title">
         <h2>Самое популярное</h2>
-        <a class="button popular__button" href="#">В каталог</a>
+        <a class="button popular__button" href="/catalog">В каталог</a>
       </div>
       <div class="popular__products products__list">
-        @foreach (range(1, 4) as $product)
-          <x-products.card />
+        @foreach ($popularProducts as $item)
+          <x-products.card :item="$item" />
         @endforeach
       </div>
     </div>
@@ -62,12 +62,12 @@
       <div class="promotions__subtitle subtitle">Скидки</div>
       <div class="promotions__title title">
         <h2>Актуальные акции</h2>
-        <a class="button promotions__button" href="#">В каталог</a>
+        <a class="button promotions__button" href="/catalog">В каталог</a>
       </div>
       <div class="promotions__products products__list">
         <!-- Promotion Items -->
-        @foreach (range(1, 4) as $product)
-          <x-products.card />
+        @foreach ($discountProducts as $item)
+          <x-products.card :item="$item" />
         @endforeach
       </div>
     </div>
@@ -114,12 +114,12 @@
       <div class="articles__subtitle subtitle">Полезное</div>
       <div class="articles__title title">
         <h2>Программы подкормок</h2>
-        <a class="button articles__button" href="#">В каталог</a>
+        <a class="button articles__button" href="/catalog">В каталог</a>
       </div>
       <div class="articles__list">
         <!-- Article Items -->
-        @foreach (range(1, 3) as $product)
-          <x-articles.card />
+        @foreach ($articles as $item)
+          <x-articles.card :item="$item" />
         @endforeach
       </div>
     </div>
@@ -131,12 +131,12 @@
       <div class="reviews__subtitle subtitle">Клиенты о нас</div>
       <div class="reviews__title title">
         <h2>Отзывы покупателей</h2>
-        <a class="button reviews__button" href="#">Смотреть все</a>
+        {{-- <a class="button reviews__button" href="/catalog">Смотреть все</a> --}}
       </div>
       <div class="reviews__list">
         <!-- review Items -->
-        @foreach ($reviews as $review)
-          <x-reviews.card :review="$review" />
+        @foreach ($reviews as $item)
+          <x-reviews.card :item="$item" />
         @endforeach
       </div>
     </div>

@@ -51,4 +51,16 @@ class Article extends Model implements HasMedia
     {
         $query->where('is_published', true);
     }
+
+    public function scopeSelectPublic($query): void
+    {
+        $query
+            ->select(
+                'id',
+                'slug',
+                'title',
+                'description',
+            )
+            ->isPublished();
+    }
 }
