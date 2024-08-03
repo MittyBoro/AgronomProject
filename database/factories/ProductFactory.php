@@ -52,6 +52,7 @@ class ProductFactory extends BaseFactory
             'price' => round($this->faker->numberBetween(500, 9000), -2),
             'stock' => $this->faker->numberBetween(0, 1000),
             'is_published' => $this->faker->boolean(80),
+            'discount' => rand(0, 3)? rand(10, 50) : 0,
 
             'meta_title' => $title,
             'meta_description' => $this->faker->text(),

@@ -38,6 +38,8 @@ class Product extends Model implements HasMedia
         'description',
 
         'price',
+        'discount',
+
         'stock',
         'is_published',
 
@@ -56,6 +58,7 @@ class Product extends Model implements HasMedia
     {
         return [
             'price' => 'decimal:0',
+            'discount' => 'decimal:0',
             'stock' => 'integer',
             'is_published' => 'boolean',
         ];

@@ -52,11 +52,31 @@ class ProductFormTabPrice
                 ->mask(RawJs::make('$money($input, `.`, ` `)'))
                 ->stripCharacters([' '])
                 ->hint(
-                    fn (Get $get): ?string => ! $get('price')
+                    fn(Get $get): ?string => !$get('price')
                         ? 'Цена не установлена!'
                         : '',
                 )
                 ->hintColor('danger'),
+
+            TextInput::make('discount')
+                ->default(0)
+                ->label('Скидка')
+                ->live()
+                ->prefix('%')
+                ->minValue(0)
+                ->maxValue(100)
+                ->numeric()
+                ->hint(
+                    fn(Get $get): ?string => $get('discount')
+                        ? 'Цена с учётом скидки: ' .
+                            price_formatter(
+                                $get('price') -
+                                    ($get('price') * $get('discount')) / 100,
+                            ) .
+                            ' ₽'
+                        : '',
+                )
+                ->hintColor('primary'),
             // остаток
             TextInput::make('stock')
                 ->default(0)
@@ -64,12 +84,12 @@ class ProductFormTabPrice
                 ->suffix('шт.')
                 ->minValue(0)
                 ->maxValue(9999999)
-                ->hidden(fn (Get $get): bool => ! empty($get('enabled_groups')))
+                ->hidden(fn(Get $get): bool => !empty($get('enabled_groups')))
                 ->integer()
                 ->live()
                 ->hint(
-                    fn (Get $get): ?string => $get('stock') < 10
-                        ? ( ! $get('stock')
+                    fn(Get $get): ?string => $get('stock') < 10
+                        ? (!$get('stock')
                             ? 'Закончился'
                             : 'Заканчивается')
                         : '',
@@ -96,7 +116,7 @@ class ProductFormTabPrice
             // выбранные группы вариаций
             Grid::make('Вариации продукта')
                 ->schema(
-                    fn (Get $get) => static::variationGroupFieldsets(
+                    fn(Get $get) => static::variationGroupFieldsets(
                         $get('enabled_groups'),
                     ),
                 )
@@ -131,7 +151,7 @@ class ProductFormTabPrice
             ->label('')
             ->relationship(
                 'variations',
-                fn (Builder $query) => $query->where(
+                fn(Builder $query) => $query->where(
                     'variation_group_id',
                     $group->id,
                 ),
@@ -139,20 +159,20 @@ class ProductFormTabPrice
             ->addActionLabel('Добавить вариацию')
             ->columns(2)
             ->orderColumn('order_column')
-            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+            ->itemLabel(fn(array $state): ?string => $state['title'] ?? null)
             ->collapsible()
             ->cloneable()
 
             // скрыть кнопки
-            ->collapseAllAction(fn (Action $action) => $action->hidden())
-            ->expandAllAction(fn (Action $action) => $action->hidden())
+            ->collapseAllAction(fn(Action $action) => $action->hidden())
+            ->expandAllAction(fn(Action $action) => $action->hidden())
 
             // элемент вариации
             ->schema(static::variationsItem($group))
             ->extraAttributes([
                 'class' => 'variation-repeater',
             ])
-            ->deleteAction(fn (Action $action) => $action->color('gray'))
+            ->deleteAction(fn(Action $action) => $action->color('gray'))
             ->extraItemActions([
                 //
                 Action::make('Редактировать')
@@ -162,7 +182,7 @@ class ProductFormTabPrice
                         Repeater $component,
                     ): void {
                         $state = $component->getState();
-                        $state[$arguments['item']]['is_editing'] = ! (
+                        $state[$arguments['item']]['is_editing'] = !(
                             $state[$arguments['item']]['is_editing'] ?? false
                         );
                         $component->state($state);
@@ -184,7 +204,7 @@ class ProductFormTabPrice
                 ->live()
                 ->columnSpan(2)
                 ->hidden(
-                    fn (Get $get, ?Model $record): bool => ! $get('is_editing') &&
+                    fn(Get $get, ?Model $record): bool => !$get('is_editing') &&
                         $record?->id,
                 ),
             //
@@ -198,12 +218,12 @@ class ProductFormTabPrice
                 ->stripCharacters([' '])
                 ->live()
                 ->hint(
-                    fn (Get $get): ?string => 'Итог: ' .
+                    fn(Get $get): ?string => 'Итог: ' .
                         price_formatter(static::variationPrice($get)) .
                         '₽',
                 )
                 ->hintColor(
-                    fn (Get $get): ?string => static::variationPrice($get) <= 0
+                    fn(Get $get): ?string => static::variationPrice($get) <= 0
                         ? 'danger'
                         : null,
                 ),
@@ -218,14 +238,14 @@ class ProductFormTabPrice
                 ->live()
                 ->required()
                 ->hintIcon(
-                    fn (Get $get): ?string => $get('stock') < 10
-                        ? ( ! $get('stock')
+                    fn(Get $get): ?string => $get('stock') < 10
+                        ? (!$get('stock')
                             ? 'heroicon-m-exclamation-triangle'
                             : 'heroicon-o-exclamation-triangle')
                         : '',
                 )
                 ->hintColor(
-                    fn (Get $get): ?string => ! $get('stock')
+                    fn(Get $get): ?string => !$get('stock')
                         ? 'danger'
                         : 'warning',
                 ),
@@ -256,7 +276,7 @@ class ProductFormTabPrice
             ->size('xs')
             ->button()
             ->mountUsing(
-                fn (Form $form) => $form->fill([
+                fn(Form $form) => $form->fill([
                     'main_variation_groups' => static::$groups,
                 ]),
             )
@@ -275,7 +295,7 @@ class ProductFormTabPrice
                             ->live(),
                     ])
                     ->deleteAction(
-                        fn (Action $action) => $action
+                        fn(Action $action) => $action
                             ->requiresConfirmation()
                             ->modalHeading('Удалить группу вариаций?')
                             ->modalDescription(
@@ -286,7 +306,7 @@ class ProductFormTabPrice
                             ),
                     )
                     ->itemLabel(
-                        fn (array $state): ?string => '#' .
+                        fn(array $state): ?string => '#' .
                             ($state['id'] ?? null) .
                             ' ' .
                             ($state['title'] ?? null),

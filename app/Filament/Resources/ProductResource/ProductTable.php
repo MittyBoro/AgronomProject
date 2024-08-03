@@ -92,6 +92,7 @@ class ProductTable
                 TextColumn::make('price')
                     ->label('Цена')
                     ->money('RUB', locale: 'ru_RU')
+                    ->description(fn (Product $record): string => $record->discount ? '-' . $record->discount . ' %' : '')
                     ->sortable(),
 
                 TextColumn::make('created_at')

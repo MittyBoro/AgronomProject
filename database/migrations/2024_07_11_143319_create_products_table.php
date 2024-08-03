@@ -19,6 +19,7 @@ return new class() extends Migration
             $table->text('description')->nullable();
 
             $table->decimal('price', 8, 2)->unsigned()->default(0);
+            $table->decimal('discount', 8, 2)->unsigned()->default(0);
             $table->integer('stock')->default(0);
             $table->boolean('is_published')->default(false);
 

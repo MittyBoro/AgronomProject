@@ -114,7 +114,7 @@
       <div class="articles__subtitle subtitle">Полезное</div>
       <div class="articles__title title">
         <h2>Программы подкормок</h2>
-        <a class="button articles_button" href="#">В каталог</a>
+        <a class="button articles__button" href="#">В каталог</a>
       </div>
       <div class="articles__list">
         <!-- Article Items -->
@@ -131,7 +131,7 @@
       <div class="reviews__subtitle subtitle">Клиенты о нас</div>
       <div class="reviews__title title">
         <h2>Отзывы покупателей</h2>
-        <a class="button reviews_button" href="#">Смотреть все</a>
+        <a class="button reviews__button" href="#">Смотреть все</a>
       </div>
       <div class="reviews__list">
         <!-- review Items -->
