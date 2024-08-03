@@ -35,7 +35,14 @@ return new class() extends Migration
         });
 
         $pages = [
-            ['slug' => 'index', 'title' => 'Главная'],
+            [
+                'slug' => 'index',
+                'title' => 'Главная',
+                'fields' => [
+                    'home_title' => 'Тут будет какой-то офер мол лучшая отрава для огорода',
+                    'home_description' => 'Lorem ipsum dolor sit amet consectetur. Commodo aliquam quam netus augue. Egestas mattis fames orci malesuada.',
+                ],
+            ],
             ['slug' => 'catalog', 'title' => 'Каталог'],
             ['slug' => 'product', 'title' => 'Товар'],
             ['slug' => 'loyalty', 'title' => 'Бонусная программа'],

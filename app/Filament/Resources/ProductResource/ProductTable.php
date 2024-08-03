@@ -83,7 +83,7 @@ class ProductTable
                         },
                     )
                     ->color(
-                        fn (Product $record): string => $record->stock > 10
+                        fn (Product $record): string => $record->variations_min_stock > 10
                             ? 'gray'
                             : 'danger',
                     ),

@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+final class CartController extends Controller
 {
     protected $cartService;
 
