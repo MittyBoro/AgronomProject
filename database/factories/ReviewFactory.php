@@ -23,6 +23,7 @@ class ReviewFactory extends BaseFactory
         return [
             'product_id' => $product->id,
             'user_id' => $user->id,
+            'is_pinned' => $this->faker->boolean(30),
             'is_approved' => $this->faker->boolean(80),
             'rating' => $this->faker->numberBetween(1, 5),
             'name' => $user->name,

@@ -4,6 +4,7 @@ namespace App\View\Components\Layouts;
 
 use App\Models\Category;
 use App\Models\Page;
+use App\Models\Product;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -15,7 +16,7 @@ class Main extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public Page $page,
+        public Page|Category|Product $page,
         public Collection $categories,
     ) {
         $this->categories = Category::select('id', 'slug', 'title')

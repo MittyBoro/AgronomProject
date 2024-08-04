@@ -124,6 +124,7 @@ class Product extends Model implements HasMedia
                 'stock',
                 'is_published',
             )
+            ->selectRaw('(price / 100 * discount) as total_price')
             ->isPublished()
             ->with('variations', 'media')
             ->withCount('reviews')

@@ -13,6 +13,7 @@
   aspect-ratio: 170 / 145;
   cursor: pointer;
   max-width: 100%;
+  max-width: 200px;
   &:hover {
     color: #fff;
     background-color: var(--primary-color);
@@ -53,6 +54,9 @@
 .categories {
   overflow: hidden;
   swiper-container {
+    display: flex;
+    container: swiper / inline-size;
+    max-height: 33cqb;
     --gap: 30px;
     @include media-breakpoint-down(lg) {
       --gap: 20px;
@@ -65,7 +69,6 @@
     }
   }
   swiper-container::part(container) {
-    display: flex;
     margin: calc(var(--gap) * -1);
     padding: var(--gap);
     width: auto;
@@ -78,5 +81,11 @@
       pointer-events: none;
       z-index: 2;
     }
+  }
+  swiper-slide {
+    transition: opacity 0.15s;
+  }
+  swiper-slide:not([role]) {
+    opacity: 0;
   }
 }

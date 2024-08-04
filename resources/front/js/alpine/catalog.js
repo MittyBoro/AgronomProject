@@ -1,44 +1,27 @@
 import API from '../libs/api'
-import noUiSlider from 'nouislider'
 
 export default () => ({
   query: {},
   baseUrl: location.origin + location.pathname,
   loading: false,
-  showMobileFilter: false,
-  rangeSlider: document.querySelector('#range_slider'),
 
   // Data
   title: $page.title,
-  priceRange: {
-    min: parseInt($page.priceRange.min || 0),
-    max: parseInt($page.priceRange.max || 0),
-  },
+
   sortList: [
     { key: '', label: 'Сначала новое' },
     { key: 'price-desc', label: 'Цены по убыванию' },
     { key: 'price-asc', label: 'Цены по возрастанию' },
+    { key: 'discount', label: 'Размер скидки' },
   ],
 
   activeSort: {},
 
-  categories: [
-    ...$page.categories,
-    {
-      slug: '',
-      title: 'Весь каталог',
-    },
-  ],
   variations: $page.variations,
 
   // Initialization
   init() {
     // размещение блока сортировки в зависимости от ширины экрана
-    window.addEventListener('resize', () => this.moveSortByScreen())
-    this.moveSortByScreen()
-
-    // установка блока ценового диапазона
-    this.initRangeSlider()
 
     // установка параметров фильтра из URL
     this.initQuery()
@@ -59,7 +42,10 @@ export default () => ({
         clearTimeout(timerId)
         this.setQuery(this.query)
       }
+
+      this.setActiveSort()
     })
+    this.setActiveSort()
 
     // заблокировать браузеру переход по ссылкам в каталоге
     this.$nextTick((e) => {
@@ -113,37 +99,22 @@ export default () => ({
     }
   },
 
-  // получить активную сортировку
+  // установить активную сортировку
   setActiveSort() {
     const urlParams = new URLSearchParams(location.search)
     const sortValue = urlParams.get('sort')
 
-    this.sort.forEach((item) => {
-      const itemUrlParams = new URLSearchParams(item.href)
-      if (sortValue == itemUrlParams.get('sort')) {
+    this.activeSort = {}
+    this.sortList.forEach((item) => {
+      if (sortValue == item.key) {
         this.activeSort = item
       }
     })
-  },
-
-  /***************************************************
-   * Методы для работы с DOM
-   */
-  // установка блока сортировки в зависимости от ширины экрана
-  moveSortByScreen() {
-    const sortingEl =
-      this.$refs.sortingEl.content.firstElementChild.cloneNode(true)
-
-    let to
-
-    if (window.innerWidth <= 768) {
-      to = document.querySelector('#sorting-mobile > div')
-    } else {
-      to = document.querySelector('#sorting-desktop > div')
+    if (!this.activeSort.label) {
+      this.activeSort = this.sortList[0]
     }
-
-    Alpine.morph(to, sortingEl)
   },
+
   // Предотвращает переход по ссылкам в каталоге
   preventCatalogLink(selector) {
     document
@@ -157,46 +128,6 @@ export default () => ({
           }
         })
       })
-  },
-
-  /***************************************************
-   * Установка блока ценового диапазона
-   * через noUiSlider
-   */
-  // Укажите ценовой диапазон
-  initRangeSlider() {
-    noUiSlider.create(this.rangeSlider, {
-      start: [0, 0],
-      connect: true,
-      step: this.$store.lang == 'ru' ? 100 : 1,
-      tooltips: {
-        to: (value) => new Intl.NumberFormat('ru-RU').format(value),
-      },
-      range: {
-        min: parseInt(this.priceRange.min || 0),
-        max: parseInt(this.priceRange.max || 0),
-      },
-    })
-
-    this.rangeSlider.noUiSlider.on('change', (values, handle) => {
-      this.query.min_price = values[0] <= this.priceRange.min ? null : values[0]
-      this.query.max_price = values[1] >= this.priceRange.max ? null : values[1]
-    })
-
-    this.updateRangeSlider()
-  },
-
-  // Обновление ценового диапазона
-  updateRangeSlider() {
-    const urlParams = new URLSearchParams(location.search)
-
-    this.rangeSlider.noUiSlider.updateOptions({
-      range: this.priceRange,
-    })
-    this.rangeSlider.noUiSlider.set([
-      parseInt(urlParams.get('min_price') || this.priceRange.min),
-      parseInt(urlParams.get('max_price') || this.priceRange.max),
-    ])
   },
 
   /***************************************************
@@ -220,19 +151,10 @@ export default () => ({
     this.title = data.title
     document.title = data.meta_title
 
-    this.priceRange = {
-      min: parseInt(data.priceRange.min || 0),
-      max: parseInt(data.priceRange.max || 0),
-    }
-    this.updateRangeSlider()
-
-    this.variations = data.variations
-
     const catalogList = document.querySelector('#catalog_list')
 
     if (replace) {
       catalogList.innerHTML = data.html
-      this.$root.scrollIntoView()
     } else {
       catalogList.querySelector('#catalog_pagination').remove()
       catalogList.insertAdjacentHTML('beforeend', data.html)

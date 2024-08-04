@@ -12,7 +12,7 @@
         "autoprefixer": "^10.4.20",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.40",
-        "postcss-nesting": "^12.1.5",
+        "postcss-nesting": "^13.0.0",
         "prettier": "3.3.3",
         "prettier-plugin-blade": "^2.1.16",
         "sass": "^1.77.8",
@@ -20,6 +20,10 @@
         "vite": "^5.3"
     },
     "dependencies": {
+        "@alpinejs/collapse": "^3.14.1",
+        "@alpinejs/mask": "^3.14.1",
+        "@alpinejs/persist": "^3.14.1",
+        "alpinejs": "^3.14.1",
         "swiper": "^11.1.9"
     }
 }

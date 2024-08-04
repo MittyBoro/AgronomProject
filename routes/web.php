@@ -10,9 +10,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', IndexController::class)->name('index');
-
+Route::get('/catalog', CatalogController::class)->name('catalog');
+Route::get('/catalog/{category}', CatalogController::class)->name('catalog');
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function (): void {
     Route::get('/', [CartController::class, 'index'])->name('index');
@@ -22,5 +22,4 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function (): void {
     Route::post('/clear', [CartController::class, 'clear'])->name('clear');
 });
 
-
-Route::get('{path}', fn ($path = null) => view($path));
+Route::get('{path}', fn($path = null) => view($path));

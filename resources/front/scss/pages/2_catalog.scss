@@ -57,3 +57,39 @@
 .catalog__section {
   margin-top: var(--section-margin);
 }
+
+.catalog__container {
+  transition: 0.25s;
+}
+.catalog__container--loading {
+  filter: blur(3px);
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.7;
+}
+
+.catalog__categories {
+  margin-top: -40px;
+  margin-bottom: -15px;
+  @include media-breakpoint-down(xl) {
+    margin-top: 0;
+  }
+  @include media-breakpoint-up(lg) {
+    margin-bottom: -30px;
+  }
+}
+.catalog__categories .title {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.catalog__categories .nav-arrows {
+  margin-left: auto;
+}
+.catalog__categories ~ .catalog__section {
+  padding-top: 30px;
+  margin-top: calc(var(--section-margin) / 2);
+}
+
+.catalog-pagination {
+  grid-column: 1 / -1;
+}
