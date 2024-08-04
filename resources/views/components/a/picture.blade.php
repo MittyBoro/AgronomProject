@@ -1,5 +1,5 @@
 @php
-  $item = $item ?? $media?->first();
+  $item = $item ?? $media;
   $i = isset($attributes['i']) ? ' (' . $attributes['i'] + 1 . ')' : '';
 @endphp
 

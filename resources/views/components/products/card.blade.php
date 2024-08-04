@@ -1,7 +1,7 @@
 <div class="products-card"
   onclick="location.href='/products/{{ $item->slug }}'">
   <div class="products-card__image">
-    <x-a.picture class="object-cover" :media="$item->media" />
+    <x-a.picture class="object-cover" :media="$item->media->first()" />
     @if ($item->discount > 0)
       <span class="products-card__badge">-{{ $item->discount }}%</span>
     @endif
@@ -20,10 +20,11 @@
   </div>
   <div class="products-card__price">
     @if ($item->discount > 0)
-      <span>{{ $item->total_price }}₽</span>
-      <span class="products-card__price--old">{{ $item->price }}₽</span>
+      <span>{{ price_formatter($item->total_price) }}₽</span>
+      <span
+        class="products-card__price--old">{{ price_formatter($item->price) }}₽</span>
     @else
-      <span>{{ $item->price }}₽</span>
+      <span>{{ price_formatter($item->price) }}₽</span>
     @endif
   </div>
   @if ($item->reviews_count)

@@ -1,6 +1,6 @@
 <div class="article">
   <div class="article__image">
-    <x-a.picture class="object-cover" :media="$item->media" />
+    <x-a.picture class="object-cover" :media="$item->media->first()" />
   </div>
   <div class="article__text white-blur-block">
     <div class="article__name">{{ $item->title }}</div>

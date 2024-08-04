@@ -47,8 +47,8 @@ class ProductVariation extends Model
     /**
      * Get the variation that owns the product variation.
      */
-    public function variationGroup()
+    public function group()
     {
-        return $this->belongsTo(VariationGroup::class);
+        return $this->belongsTo(VariationGroup::class, 'variation_group_id', 'id');
     }
 }

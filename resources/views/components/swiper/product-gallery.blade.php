@@ -1,13 +1,9 @@
 <swiper-container class="product__slider" pagination="true"
-  pagination-clickable="true" space-between="30px" autoplay="true"
-  autoplay-pause-on-mouse-enter="true" mousewheel="true"
-  mousewheel-force-to-axis="true" loop="true" delay="10000" keyboard="true">
-  @foreach (range(1, 3) as $banner)
+  pagination-clickable="true" space-between="30px" loop="true" keyboard="true">
+  @foreach ($media->sortBy('order_column') as $item)
     <swiper-slide>
       <div class="product__image">
-        <img class="object-cover"
-          src="{{ Vite::front('images/product-demo.png') }}"
-          alt="{{ config('app.name') }}" />
+        <x-a.picture class="object-cover" :media="$item" />
       </div>
     </swiper-slide>
   @endforeach

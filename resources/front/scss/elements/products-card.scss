@@ -49,18 +49,23 @@
     height: auto;
   }
 }
+.products__badge,
 .products-card__badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 6px 11px;
-  background: var(--accent-color);
-  border-radius: 4px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.05em;
   color: var(--white);
   line-height: 1;
+  padding: 6px 11px;
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+.products-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 12px;
   @include media-breakpoint-down(sm) {
     top: 8px;
     left: 8px;

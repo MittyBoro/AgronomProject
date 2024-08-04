@@ -12,7 +12,7 @@ class MediaUpload extends SpatieMediaLibraryFileUpload
     {
         parent::setUp();
         $this->getUploadedFileNameForStorageUsing(
-            fn (
+            fn(
                 TemporaryUploadedFile $file,
                 Model $record,
             ): string => (string) str(

@@ -57,6 +57,7 @@ class Product extends Model implements HasMedia
     {
         return [
             'price' => 'decimal:0',
+            'total_price' => 'decimal:0',
             'discount' => 'decimal:0',
             'stock' => 'integer',
             'is_published' => 'boolean',
@@ -85,7 +86,7 @@ class Product extends Model implements HasMedia
     public function variations()
     {
         return $this->hasMany(ProductVariation::class)
-            ->with('variationGroup')
+            ->with('group')
             ->orderBy('product_variations.order_column');
     }
 
@@ -102,20 +103,16 @@ class Product extends Model implements HasMedia
         return Attribute::make(get: fn() => $this->variations->isNotEmpty());
     }
 
-    protected function totalPrice(): Attribute
-    {
-        return Attribute::make(get: fn() => round($this->price * $this->discount / 100));
-    }
-
     public function scopeIsPublished($query): void
     {
         $query->where('is_published', true);
     }
 
-    public function scopeSelectPublic($query): void
+    public function scopeSelectPublic($query, $full = false): void
     {
         $query
-            ->select(
+            ->selectRaw('(price * (1 - discount / 100)) as total_price')
+            ->addSelect(
                 'id',
                 'slug',
                 'title',
@@ -124,7 +121,15 @@ class Product extends Model implements HasMedia
                 'stock',
                 'is_published',
             )
-            ->selectRaw('(price / 100 * discount) as total_price')
+            ->when(
+                $full,
+                fn($q) => $q->addSelect([
+                    'meta_title',
+                    'meta_description',
+                    'meta_keywords',
+                    'description',
+                ]),
+            )
             ->isPublished()
             ->with('variations', 'media')
             ->withCount('reviews')

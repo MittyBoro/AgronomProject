@@ -74,8 +74,11 @@
 }
 
 .product__price {
+  display: flex;
+  align-items: center;
   margin-bottom: 25px;
   font-size: 25px;
+  gap: 5px;
 }
 .product__price--old {
   margin-left: 10px;

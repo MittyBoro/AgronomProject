@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name('index');
 Route::get('/catalog', CatalogController::class)->name('catalog');
-Route::get('/catalog/{category}', CatalogController::class)->name('catalog');
+Route::get('/catalog/{category:slug}', CatalogController::class)->name('catalog');
+
+Route::get('/products/{product:slug}', ProductController::class)->name('product');
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function (): void {
     Route::get('/', [CartController::class, 'index'])->name('index');
