@@ -150,12 +150,6 @@ class ReviewTable
                         1 => 'Только закрепленные',
                     ]),
             ])
-            //
-            ->recordUrl(
-                fn(Model $record): string => EditReview::getUrl([$record]),
-            )
-            //
-
             ->recordClasses(
                 fn(Model $record) => $record->is_pinned
                     ? 'border-l-4 bg-gray-500/5'

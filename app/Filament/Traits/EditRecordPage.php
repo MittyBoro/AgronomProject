@@ -10,8 +10,8 @@ trait EditRecordPage
     {
         return [
             Actions\ViewAction::make('open')
-                ->label('Открыть')
-                ->url('/'),
+                ->label('Просмотр')
+                ->openUrlInNewTab(),
             Actions\Action::make('create_more')
                 ->label('Добавить ещё')
                 ->color('gray')

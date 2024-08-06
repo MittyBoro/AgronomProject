@@ -117,11 +117,6 @@ class ProductTable
                     ->label('Категория')
                     ->relationship('categories', 'title'),
             ])
-            //
-            ->recordUrl(
-                fn (Model $record): string => EditProduct::getUrl([$record]),
-            )
-            //
             ->actions(TableActions::make())
             //
             ->bulkActions(TableBulkActions::make())

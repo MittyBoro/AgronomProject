@@ -56,9 +56,6 @@ class CategoryTable
             ->filters([
                 //
             ])
-            ->recordUrl(
-                fn (Model $record): string => EditCategory::getUrl([$record]),
-            )
             //
             ->actions(TableActions::make())
             //

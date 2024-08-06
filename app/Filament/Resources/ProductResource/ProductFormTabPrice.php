@@ -66,22 +66,13 @@ class ProductFormTabPrice
                 ->minValue(0)
                 ->maxValue(100)
                 ->numeric()
-                ->hint(
-                    fn(Get $get): ?string => $get('discount')
-                        ? 'Цена с учётом скидки: ' .
-                            price_formatter(
-                                $get('price') -
-                                    ($get('price') * $get('discount')) / 100,
-                            ) .
-                            ' ₽'
-                        : '',
-                )
+                ->hint(fn(Get $get): ?string => self::discountHint($get))
                 ->hintColor('primary'),
             // остаток
             TextInput::make('stock')
                 ->default(0)
                 ->label('Остаток на складе')
-                ->suffix('шт.')
+                ->suffix(' шт.')
                 ->minValue(0)
                 ->maxValue(9999999)
                 ->hidden(fn(Get $get): bool => !empty($get('enabled_groups')))
@@ -231,7 +222,7 @@ class ProductFormTabPrice
             TextInput::make('stock')
                 ->default(0)
                 ->label('Остаток на складе')
-                ->suffix('шт.')
+                ->suffix(' шт.')
                 ->minValue(0)
                 ->maxValue(9999999)
                 ->integer()
@@ -259,6 +250,21 @@ class ProductFormTabPrice
     {
         return parse_price($get('../../price')) +
             parse_price($get('price_modifier'));
+    }
+
+    /**
+     * подсказка для скидки с итоговой ценой
+     */
+    private static function discountHint(Get $get): string
+    {
+        $price = parse_price($get('price'));
+        return $get('discount')
+            ? 'Цена с учётом скидки: ' .
+                    price_formatter(
+                        $price - ($price * $get('discount')) / 100,
+                    ) .
+                    ' ₽'
+            : '';
     }
 
     /**

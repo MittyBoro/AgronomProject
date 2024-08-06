@@ -37,10 +37,6 @@ class PageTable
                 //
             ])
             //
-            ->recordUrl(
-                fn (Model $record): string => EditPage::getUrl([$record]),
-            )
-            //
             ->actions(TableActions::make())
             //
             ->bulkActions(TableBulkActions::make())

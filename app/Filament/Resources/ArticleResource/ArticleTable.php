@@ -44,9 +44,6 @@ class ArticleTable
             ->filters([
                 //
             ])
-            ->recordUrl(
-                fn (Model $record): string => EditArticle::getUrl([$record]),
-            )
             ->actions(TableActions::make())
             ->bulkActions(TableBulkActions::make())
             ->defaultSort('order_column')
