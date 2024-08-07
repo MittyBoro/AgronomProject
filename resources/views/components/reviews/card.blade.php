@@ -1,5 +1,9 @@
 <div class="review">
   <div class="review__name">{{ $item->name }}</div>
+  @empty($hideProduct)
+    <a class="review__product link" href="/products/{{ $item->product->slug }}">к
+      {{ $item->product->title }}</a>
+  @endempty
   <div class="review__text">
     {{ $item->comment }}
   </div>

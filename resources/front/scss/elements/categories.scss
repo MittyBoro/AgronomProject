@@ -52,7 +52,6 @@
   overflow: hidden;
 }
 .categories {
-  overflow: hidden;
   swiper-container {
     display: flex;
     container: swiper / inline-size;
@@ -71,6 +70,7 @@
   swiper-container::part(container) {
     margin: calc(var(--gap) * -1);
     padding: var(--gap);
+    overflow: hidden;
     width: auto;
     &::after {
       content: '';

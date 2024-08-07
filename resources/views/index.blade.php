@@ -20,20 +20,22 @@
   </section>
 
   {{-- popular --}}
-  <section class="popular popular__section">
-    <div class="popular__container container">
-      <div class="popular__subtitle subtitle">Лучшее за месяц</div>
-      <div class="popular__title title">
-        <h2>Самое популярное</h2>
-        <a class="button popular__button" href="/catalog">В каталог</a>
+  @if ($popularProducts->count())
+    <section class="popular popular__section">
+      <div class="popular__container container">
+        <div class="popular__subtitle subtitle">Лучшее за месяц</div>
+        <div class="popular__title title">
+          <h2>Самое популярное</h2>
+          <a class="button popular__button" href="/catalog">В каталог</a>
+        </div>
+        <div class="popular__products products__list">
+          @foreach ($popularProducts as $item)
+            <x-products.card :item="$item" />
+          @endforeach
+        </div>
       </div>
-      <div class="popular__products products__list">
-        @foreach ($popularProducts as $item)
-          <x-products.card :item="$item" />
-        @endforeach
-      </div>
-    </div>
-  </section>
+    </section>
+  @endif
 
   {{-- categories --}}
   <section class="categories categories__section">
@@ -42,10 +44,10 @@
       <div class="categories__title title">
         <h2>Выберите категорию</h2>
         <div class="nav-arrows">
-          <div class="nav-arrow nav-arrow__prev" href="#">
+          <div class="nav-arrow nav-arrow__prev">
             <x-a.icon src="icons/arrow.svg" />
           </div>
-          <div class="nav-arrow nav-arrow__next" href="#">
+          <div class="nav-arrow nav-arrow__next">
             <x-a.icon src="icons/arrow.svg" />
           </div>
         </div>
@@ -57,21 +59,23 @@
   </section>
 
   {{-- promotions --}}
-  <section class="promotions promotions__section">
-    <div class="promotions__container container">
-      <div class="promotions__subtitle subtitle">Скидки</div>
-      <div class="promotions__title title">
-        <h2>Актуальные акции</h2>
-        <a class="button promotions__button" href="/catalog">В каталог</a>
+  @if ($discountProducts->count())
+    <section class="promotions promotions__section">
+      <div class="promotions__container container">
+        <div class="promotions__subtitle subtitle">Скидки</div>
+        <div class="promotions__title title">
+          <h2>Актуальные акции</h2>
+          <a class="button promotions__button" href="/catalog">В каталог</a>
+        </div>
+        <div class="promotions__products products__list">
+          <!-- Promotion Items -->
+          @foreach ($discountProducts as $item)
+            <x-products.card :item="$item" />
+          @endforeach
+        </div>
       </div>
-      <div class="promotions__products products__list">
-        <!-- Promotion Items -->
-        @foreach ($discountProducts as $item)
-          <x-products.card :item="$item" />
-        @endforeach
-      </div>
-    </div>
-  </section>
+    </section>
+  @endif
 
   {{-- about --}}
   <section class="about about__section">
@@ -109,36 +113,40 @@
   </section>
 
   {{-- articles --}}
-  <section class="articles articles__section">
-    <div class="articles__container container">
-      <div class="articles__subtitle subtitle">Полезное</div>
-      <div class="articles__title title">
-        <h2>Программы подкормок</h2>
-        <a class="button articles__button" href="/catalog">В каталог</a>
+  @if ($articles->count())
+    <section class="articles articles__section">
+      <div class="articles__container container">
+        <div class="articles__subtitle subtitle">Полезное</div>
+        <div class="articles__title title">
+          <h2>Программы подкормок</h2>
+          <a class="button articles__button" href="/catalog">В каталог</a>
+        </div>
+        <div class="articles__list">
+          <!-- Article Items -->
+          @foreach ($articles as $item)
+            <x-articles.card :item="$item" />
+          @endforeach
+        </div>
       </div>
-      <div class="articles__list">
-        <!-- Article Items -->
-        @foreach ($articles as $item)
-          <x-articles.card :item="$item" />
-        @endforeach
-      </div>
-    </div>
-  </section>
+    </section>
+  @endif
 
   {{-- reviews --}}
-  <section class="reviews reviews__section">
-    <div class="reviews__container container">
-      <div class="reviews__subtitle subtitle">Клиенты о нас</div>
-      <div class="reviews__title title">
-        <h2>Отзывы покупателей</h2>
-        {{-- <a class="button reviews__button" href="/catalog">Смотреть все</a> --}}
+  @if ($reviews->count())
+    <section class="reviews reviews__section">
+      <div class="reviews__container container">
+        <div class="reviews__subtitle subtitle">Клиенты о нас</div>
+        <div class="reviews__title title">
+          <h2>Отзывы покупателей</h2>
+          {{-- <a class="button reviews__button" href="/catalog">Смотреть все</a> --}}
+        </div>
+        <div class="reviews__list">
+          <!-- review Items -->
+          @foreach ($reviews as $item)
+            <x-reviews.card :item="$item" />
+          @endforeach
+        </div>
       </div>
-      <div class="reviews__list">
-        <!-- review Items -->
-        @foreach ($reviews as $item)
-          <x-reviews.card :item="$item" />
-        @endforeach
-      </div>
-    </div>
-  </section>
+    </section>
+  @endif
 </x-layouts.main>

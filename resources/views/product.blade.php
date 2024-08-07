@@ -20,8 +20,10 @@
           <div class="product__rating--stars rating__stars"
             style="--percent: {{ round($product->reviews->avg('rating') * 10) }}%">
           </div>
-          <div class="product__rating--count rating__count">
-            ({{ $product->reviews->count() }})</div>
+          @if ($product->reviews->count())
+            <a class="product__rating--count rating__count" href="#reviews">
+              ({{ $product->reviews->count() }})</a>
+          @endif
           <div class="product__rating-separator">|</div>
           <div class="product__availability"
             :class="stock === 0 ? 'red' : (stock >= 1 && stock <= 10 ? 'yellow' :
@@ -115,8 +117,29 @@
     </div>
   </section>
 
+  @if ($reviews->count())
+    <section class="reviews reviews__section reviews__section--product"
+      id="reviews">
+      <div class="reviews__container container">
+        <div class="reviews__title title">
+          <h2>Отзывы покупателей</h2>
+          {{-- <a class="button reviews__button" href="/catalog">Смотреть все</a> --}}
+        </div>
+        <div class="reviews__list">
+          <!-- review Items -->
+          @foreach ($reviews as $item)
+            <x-reviews.card :item="$item" hideProduct />
+          @endforeach
+          <div class="grid-col-full">
+            {{ $reviews->fragment('reviews')->links('components.a.pagination') }}
+          </div>
+        </div>
+      </div>
+    </section>
+  @endif
+
   {{-- popular --}}
-  @if ($similar)
+  @if ($product->reviews->count())
     <section class="product__popular popular popular__section">
       <div class="popular__container container">
         <div class="popular__subtitle subtitle">Лучшее за месяц</div>
