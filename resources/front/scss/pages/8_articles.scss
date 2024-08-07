@@ -21,6 +21,14 @@
   }
 }
 
+.articles__pagination {
+  grid-column: 1 / -1;
+}
+
+.articles__similar {
+  margin-top: var(--section-margin);
+}
+
 .article {
   position: relative;
   padding: 23px;

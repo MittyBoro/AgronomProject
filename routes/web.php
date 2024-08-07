@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CheckoutController;
@@ -11,10 +12,21 @@ use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name('index');
-Route::get('/catalog', CatalogController::class)->name('catalog');
-Route::get('/catalog/{category:slug}', CatalogController::class)->name('catalog');
+Route::get('/catalog', CatalogController::class)->name('catalog.index');
+Route::get('/catalog/{category:slug}', CatalogController::class)->name(
+    'catalog.category',
+);
 
-Route::get('/products/{product:slug}', ProductController::class)->name('product');
+Route::get('/articles', [ArticleController::class, 'index'])->name(
+    'articles.index',
+);
+Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name(
+    'articles.show',
+);
+
+Route::get('/products/{product:slug}', ProductController::class)->name(
+    'products.show',
+);
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function (): void {
     Route::get('/', [CartController::class, 'index'])->name('index');

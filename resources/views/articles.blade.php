@@ -1,4 +1,4 @@
-<x-layouts.main body_name="articles">
+<x-layouts.main :page="$page" body_name="articles">
   <x-a.breadcrumbs :list="[['Программы подкормок', null]]" />
 
   {{-- articles --}}
@@ -9,12 +9,12 @@
       </div>
       <div class="articles__list">
         <!-- Article Items -->
-        @foreach (range(1, 6) as $product)
-          <x-articles.card />
+        @foreach ($articles as $item)
+          <x-articles.card :item="$item" />
         @endforeach
 
-        <div class="articles__pagination pagination">
-          <div class="button">Показать больше</div>
+        <div class="grid-col-full">
+          {{ $articles->links('components.a.pagination') }}
         </div>
       </div>
     </div>

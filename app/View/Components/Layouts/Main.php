@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Layouts;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
@@ -16,7 +17,7 @@ class Main extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public Page|Category|Product $page,
+        public Article|Category|Page|Product $page,
         public Collection $categories,
     ) {
         $this->categories = Category::select('id', 'slug', 'title')

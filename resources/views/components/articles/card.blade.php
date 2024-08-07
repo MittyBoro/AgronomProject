@@ -1,4 +1,4 @@
-<div class="article">
+<div class="article" onclick="location.href='/articles/{{ $item->slug }}'">
   <div class="article__image">
     <x-a.picture class="object-cover" :media="$item->media->first()" />
   </div>

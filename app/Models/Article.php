@@ -52,7 +52,7 @@ class Article extends Model implements HasMedia
         $query->where('is_published', true);
     }
 
-    public function scopeSelectPublic($query): void
+    public function scopeSelectPublic($query, $full = false): void
     {
         $query
             ->select(
@@ -61,6 +61,16 @@ class Article extends Model implements HasMedia
                 'title',
                 'description',
             )
-            ->isPublished();
+            ->isPublished()
+            ->when(
+                $full,
+                fn($q) => $q->addSelect([
+                    'meta_title',
+                    'meta_description',
+                    'meta_keywords',
+                    'content',
+                ]),
+            )
+            ->with('media');
     }
 }

@@ -119,7 +119,7 @@
         <div class="articles__subtitle subtitle">Полезное</div>
         <div class="articles__title title">
           <h2>Программы подкормок</h2>
-          <a class="button articles__button" href="/catalog">В каталог</a>
+          <a class="button articles__button" href="/articles">Посмотреть все</a>
         </div>
         <div class="articles__list">
           <!-- Article Items -->
