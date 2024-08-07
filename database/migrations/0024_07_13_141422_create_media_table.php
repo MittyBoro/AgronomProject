@@ -2,11 +2,12 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-return new class() extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('media', function (Blueprint $table): void {
@@ -33,7 +34,15 @@ return new class() extends Migration
 
     public function down(): void
     {
-        Media::get()->each->delete();
+        $disk = Config::get('media-library.disk_name');
+        $path = Config::get('media-library.prefix');
+
+        $storage = Storage::disk($disk);
+
+        if ($storage->exists($path)) {
+            $storage->deleteDirectory($path);
+        }
+
         Schema::dropIfExists('media');
     }
 };

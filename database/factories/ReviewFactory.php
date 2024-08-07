@@ -25,7 +25,7 @@ class ReviewFactory extends BaseFactory
             'user_id' => $user->id,
             'is_pinned' => $this->faker->boolean(30),
             'is_approved' => $this->faker->boolean(80),
-            'rating' => $this->faker->numberBetween(1, 5),
+            'rating' => $this->faker->numberBetween(3, 5),
             'name' => $user->name,
             'comment' => $this->faker->sentence(rand(3, 10)),
         ];

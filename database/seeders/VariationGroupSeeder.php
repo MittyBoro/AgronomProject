@@ -13,6 +13,6 @@ class VariationGroupSeeder extends Seeder
     public function run(): void
     {
         //
-        VariationGroup::factory(10)->create();
+        VariationGroup::factory(3)->create();
     }
 }
