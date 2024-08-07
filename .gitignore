@@ -4,6 +4,7 @@
 /public/hot
 /public/panel.hot
 /public/storage
+/public/assets/filament
 /storage/*.key
 /vendor
 .env

@@ -1,37 +1,37 @@
 export default () => ({
   product: $page.product,
   variations: [],
-  selected: [],
-  // get inCart() {
-  //   let item = this.$store.cart.findItem(this.product, this.selected)
-  //   return item
-  // },
+  selected: undefined,
+  itemCount: 1,
+  get stock() {
+    let stock = this.product.stock
+    if (this.selected.length) {
+      stock = this.product.variations.find(
+        (item) => item.id == this.selected,
+      )?.stock
+    }
+    return stock
+  },
 
   init() {
-    this.variations = this.product.variations.reduce((acc, item) => {
-      const groupTitle = item.group.title
-      if (!acc[groupTitle]) {
-        acc[groupTitle] = []
-      }
-      acc[groupTitle].push(item)
-      return acc
-    }, {})
-    console.log('this.variations', this.variations)
+    if (this.product.variations?.length) {
+      this.selected = this.product.variations[0].id
 
-    // const currentItems = this.$store.cart.findItems(this.product)
+      this.variations = this.product.variations?.reduce((acc, item) => {
+        const groupTitle = item.group.title
+        if (!acc[groupTitle]) {
+          acc[groupTitle] = []
+        }
+        acc[groupTitle].push(item)
+        return acc
+      }, {})
+    }
 
-    // // выбрать если есть в корзине
-    // if (currentItems.length) {
-    //   this.selected = [...(currentItems[0].variation_ids || [])]
-    //   this.$store.cart.updateItems(this.product)
-    // }
-    // // если нет то выбрать первую вариацию
-    // else {
-    //   const id = this.product.variations[0]?.id
-    //   if (id) {
-    //     this.selected = [id]
-    //   }
-    // }
+    this.$watch('itemCount', (value) => {
+      if (value < 1) this.itemCount = 1
+      if (value > 100) this.itemCount = 100
+      if (value > this.stock) this.itemCount = this.stock
+    })
   },
 
   addToCart() {

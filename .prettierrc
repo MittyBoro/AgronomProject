@@ -1,5 +1,5 @@
 {
-  "plugins": ["@prettier/plugin-php"],
+  "plugins": ["@prettier/plugin-php", "prettier-plugin-blade"],
   "phpVersion": "8.2",
   "tabWidth": 2,
   "useTabs": false,
@@ -18,7 +18,7 @@
     {
       "files": ["*.blade.php"],
       "options": {
-        "prettier-ignore": true
+        "tabWidth": 4
       }
     },
     {

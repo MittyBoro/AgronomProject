@@ -23,28 +23,20 @@
           <div class="product__rating--count rating__count">
             ({{ $product->reviews->count() }})</div>
           <div class="product__rating-separator">|</div>
-          <div @class([
-              'product__availability',
-              match ($product->stock) {
-                  0 => 'red',
-                  range(1, 10) => 'yellow',
-                  default => 'green',
-              },
-          ])>
-            {{ match ($product->stock) {
-                0 => 'Нет в наличии',
-                range(1, 10) => 'Осталось мало',
-                default => 'В наличии',
-            } }}
+          <div class="product__availability"
+            :class="stock === 0 ? 'red' : (stock >= 1 && stock <= 10 ? 'yellow' :
+                'green')"
+            x-text="stock === 0 ? 'Нет в наличии' : (stock >= 1 && stock <= 10 ? 'Осталось мало' : 'В наличии')">
           </div>
         </div>
 
         {{-- price  --}}
         <div class="product__price">
-          {{ price_formatter($product->total_price) }}₽
+          <span
+            x-text="price_formatter(product.total_price)">{{ price_formatter($product->total_price) }}₽</span>
           @if ($product->price !== $product->total_price)
-            <span
-              class="product__price--old">{{ price_formatter($product->price) }}₽</span>
+            <span class="product__price--old"
+              x-text="price_formatter(product.price)">{{ price_formatter($product->price) }}₽</span>
             <span
               class="products__badge">-{{ (float) $product->discount }}%</span>
           @endif
@@ -58,15 +50,20 @@
         <div class="product__info-separator"></div>
 
         {{-- options  --}}
-        <div class="product__options">
+        <div class="product__variation--groups">
           <template x-for="list, group in variations">
-            <div class="product__volume">
-              <div class="button button-alt product__volume--label"><span
+            <div class="product__variation">
+              <div class="button button-alt product__variation--title"><span
                   x-text="group"></span>:</div>
-              <div class="product__volume-buttons">
+              <div class="product__variation-buttons">
                 <template x-for="variation in list">
-                  <button class="button button-alt product__volume--button"
-                    x-text="variation.title"></button>
+                  <label class="product__variation--label">
+                    <input class="product__variation-input" name="variation"
+                      type="radio" x-model="selected" :value="variation.id">
+                    <div class="button button-alt product__variation--button"
+                      x-text="variation.title">
+                    </div>
+                  </label>
                 </template>
               </div>
             </div>
@@ -78,14 +75,17 @@
           {{-- quantity --}}
           <div class="product__quantity">
             <div
-              class="button button-alt product__button product__button--quantity product__button--minus">
+              class="button button-alt product__button product__button--quantity product__button--minus"
+              x-on:click="itemCount--">
               <x-a.icon src="icons/minus.svg" />
             </div>
             <input
               class="button button-input product__button product__button--quantity product__button--input"
-              type="number" value="2" min="1" max="999" />
+              type="number" value="1" x-model="itemCount" min="1"
+              :max="stock" />
             <div
-              class="button button-alt product__button--quantity product__button--plus">
+              class="button button-alt product__button--quantity product__button--plus"
+              x-on:click="itemCount++">
               <x-a.icon src="icons/plus.svg" />
             </div>
           </div>
@@ -136,7 +136,7 @@
   <x-slot:body>
     <script>
       const $page = {
-        product: @json($product),
+        product: @json($product)
       }
     </script>
   </x-slot>

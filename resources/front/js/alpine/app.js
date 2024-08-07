@@ -8,8 +8,6 @@ import product from './product'
 import checkout from './checkout'
 // import cart from './cart'
 
-import { formatPrice } from '../libs/methods'
-
 Alpine.plugin(collapse)
 Alpine.plugin(persist)
 Alpine.plugin(mask)
@@ -17,8 +15,6 @@ Alpine.plugin(mask)
 window.Alpine = Alpine
 
 Alpine.store('lang', document.documentElement.lang)
-
-Alpine.magic('formatPrice', () => (int) => formatPrice(int))
 
 // Alpine.store('cart', cart(Alpine.$persist([]).as('cart_list')))
 // addEventListener('storage', () =>
