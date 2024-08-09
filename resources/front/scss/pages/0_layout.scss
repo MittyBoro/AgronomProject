@@ -53,7 +53,7 @@
 }
 .header__nav-list {
   display: flex;
-  gap: 48px;
+  gap: 40px;
   @include media-breakpoint-down(xl) {
     gap: 25px;
   }

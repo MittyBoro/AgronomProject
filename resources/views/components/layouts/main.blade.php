@@ -67,6 +67,9 @@
       <nav class="header__nav">
         <ul class="header__nav-list">
           <li class="header__nav-item">
+            <a class="header__nav-link link" href="/catalog">Каталог</a>
+          </li>
+          <li class="header__nav-item">
             <a class="header__nav-link link" href="/about">О нас</a>
           </li>
           <li class="header__nav-item">
@@ -76,16 +79,13 @@
             <a class="header__nav-link link" href="/payment">Оплата</a>
           </li>
           <li class="header__nav-item">
-            <a class="header__nav-link link" href="/support">Поддержка</a>
-          </li>
-          <li class="header__nav-item">
             <a class="header__nav-link link" href="/contacts">Контакты</a>
           </li>
         </ul>
       </nav>
-      <div class="header__search">
+      <div class="header__search" data-popup=".popup__search">
         <input class="header__search-input field-input" type="text"
-          placeholder="Что вы ищете?" />
+          placeholder="Что вы ищете?" readonly />
         <x-a.icon class="header__search-icon link" src="icons/search.svg" />
       </div>
       <div class="header__icons">
@@ -126,6 +126,7 @@
     </div>
   </footer>
 
+
   <div class="to_top">
     <x-a.icon class="to_top__icon" src="icons/arrow.svg" />
   </div>
@@ -139,6 +140,7 @@
 
     {{--  --}}
     <x-popups.menu :categories="$categories" />
+    <x-popups.search :categories="$categories" />
   </div>
 </body>
 
