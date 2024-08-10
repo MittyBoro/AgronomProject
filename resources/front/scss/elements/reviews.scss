@@ -14,7 +14,7 @@
   }
 }
 
-.review {
+.review__card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -25,12 +25,12 @@
   box-shadow: var(--box-shadow);
 }
 
-.review__name {
+.review__card-name {
   margin-bottom: 15px;
   font-size: 24px;
   font-weight: 500;
 }
-.review__product {
+.review__card-product {
   margin-top: -5px;
   margin-bottom: 15px;
   font-size: 14px;
@@ -40,11 +40,11 @@
   text-overflow: ellipsis;
 }
 
-.review__text {
+.review__card-text {
   font-size: 14px;
   margin-bottom: 15px;
 }
 
-.review__rating {
+.review__card-rating {
   margin: 0 auto;
 }

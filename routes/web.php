@@ -9,9 +9,10 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
+use App\Livewire\HomePage;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', IndexController::class)->name('index');
+Route::get('/', HomePage::class)->name('home');
 Route::get('/catalog', CatalogController::class)->name('catalog.index');
 Route::get('/catalog/{category:slug}', CatalogController::class)->name(
     'catalog.category',

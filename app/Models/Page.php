@@ -39,4 +39,19 @@ class Page extends Model implements HasMedia
             'fields' => 'array',
         ];
     }
+
+
+    public function scopePublicSelect($query)
+    {
+        $query
+            ->select(
+                'slug',
+                'title',
+                'content',
+                'meta_title',
+                'meta_description',
+                'meta_keywords',
+                'fields',
+            );
+    }
 }

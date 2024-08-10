@@ -273,7 +273,7 @@
 
 .product__popular {
   @include media-breakpoint-only(md) {
-    .products-card:nth-child(3) ~ .products-card {
+    .product__card:nth-child(3) ~ .product__card {
       display: none;
     }
   }

@@ -167,7 +167,7 @@ html {
 // **********************
 // ******* Titles *******
 
-.title {
+.head-row__title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -192,7 +192,7 @@ html {
     font-size: 22px;
   }
 }
-.subtitle {
+.head-row__pretitle {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
