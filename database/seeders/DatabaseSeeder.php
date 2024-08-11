@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(PageSeeder::class);
+        $this->call(BannerSeeder::class);
 
         $this->call(VariationGroupSeeder::class);
         $this->call(CategorySeeder::class);

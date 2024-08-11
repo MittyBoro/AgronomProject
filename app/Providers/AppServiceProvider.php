@@ -28,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
             /** @var Vite $this */
             return $this->asset(config('app.resources.front') . "/{$asset}");
         });
+
+        date_default_timezone_set(config('app.timezone'));
     }
 }
