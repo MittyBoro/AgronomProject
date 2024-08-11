@@ -8,10 +8,10 @@
           src="{{ Vite::front('images/home-background.png') }}" alt="" />
         <div class="home__text white-blur-block">
           <div class="home__title">
-            <h1>{{ $page->fields['home_title'] ?? '' }}</h1>
+            <h1>{{ $homeTitle }}</h1>
           </div>
           <p class="home__description">
-            {{ $page->fields['home_description'] ?? '' }}
+            {{ $homeDescription }}
           </p>
           <a class="button home__button" href="/catalog">Перейти в каталог</a>
         </div>

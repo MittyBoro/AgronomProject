@@ -25,15 +25,17 @@ class UserFactory extends BaseFactory
     {
         $gender = $this->faker->randomElement(GenderEnum::cases())->value;
 
-        $name = $this->faker->name($gender);
-        $nameArray = explode(' ', $name);
+        $firstName = $this->faker->firstName($gender);
+        $lastName = $this->faker->lastName($gender);
 
         return [
-            'name' => $nameArray[0] . ' ' . mb_substr($nameArray[2], 0, 1) . '. ',
-            'first_name' => $nameArray[0],
-            'middle_name' => $nameArray[1],
-            'last_name' => $nameArray[2],
-            'birthday' => $this->faker->dateTimeBetween('-70 years', '-18 years'),
+            'name' => $firstName . ' ' . mb_substr($lastName, 0, 1) . '. ',
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'birthday' => $this->faker->dateTimeBetween(
+                '-70 years',
+                '-18 years',
+            ),
             'gender' => $gender,
             'phone' => $this->faker->e164PhoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
@@ -49,7 +51,7 @@ class UserFactory extends BaseFactory
     public function unverified(): static
     {
         return $this->state(
-            fn (array $attributes) => [
+            fn(array $attributes) => [
                 'email_verified_at' => null,
             ],
         );

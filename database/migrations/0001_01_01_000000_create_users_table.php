@@ -32,14 +32,6 @@ return new class() extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        User::create([
-            'name' => 'Dima Boro',
-            'first_name' => 'Дмитрий',
-            'last_name' => 'Бородин',
-            'email' => 'iboro770@gmail.com',
-            'password' => '$2y$12$iDrXeh6vIU.Px3fYkCw7FOgXUPNgTaOiRf8p03RwPwjYTsSBGd1Ea',
-            'role' => 'admin',
-        ]);
 
         // ставим первый id = 1000000, для красивых чисел на карточке
         DB::statement('ALTER TABLE `users` AUTO_INCREMENT = 100000;');

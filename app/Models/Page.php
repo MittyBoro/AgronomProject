@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasMetaTitle;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -23,7 +24,7 @@ class Page extends Model implements HasMedia
         'meta_title',
         'meta_description',
         'meta_keywords',
-        'fields',
+        'blocks',
         'layout',
         'order_column',
     ];
@@ -36,22 +37,32 @@ class Page extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'fields' => 'array',
+            'blocks' => 'array',
         ];
     }
 
-
     public function scopePublicSelect($query)
     {
-        $query
-            ->select(
-                'slug',
-                'title',
-                'content',
-                'meta_title',
-                'meta_description',
-                'meta_keywords',
-                'fields',
-            );
+        $query->select(
+            'slug',
+            'title',
+            'content',
+            'meta_title',
+            'meta_description',
+            'meta_keywords',
+            'blocks',
+        );
+    }
+
+    public function attrs(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $data = collect($this->blocks)
+                    ->groupBy('type')
+                    ->map->pluck('data.value')->toArray();
+                return $data;
+            },
+        )->shouldCache();
     }
 }
