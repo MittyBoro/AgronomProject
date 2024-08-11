@@ -6,11 +6,14 @@ use App\Models\Article;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Review;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class HomePage extends Component
 {
+    use SEOToolsTrait;
+
     public ?Page $page;
     public ?string $homeTitle;
     public ?string $homeDescription;
@@ -31,11 +34,14 @@ class HomePage extends Component
 
     private function getPage(): void
     {
-        $this->page = Page::publicSelect()->whereSlug('/')->first();
+        $this->page = Page::publicSelect()->whereSlug('/')->firstOrFail();
 
         $homeData = $this->page->attrs['key_value'][0];
         $this->homeTitle = $homeData['home_title'] ?? null;
         $this->homeDescription = $homeData['home_description'] ?? null;
+
+        $this->seo()->setTitle($this->page->meta_title);
+        $this->seo()->setDescription($this->page->meta_description);
     }
 
 

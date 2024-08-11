@@ -5,18 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>{{ $metaTitle ?? config('app.name') }}</title>
+  {{-- https://github.com/artesaos/seotools?tab=readme-ov-file#in-your-view --}}
+  {!! SEO::generate() !!}
 
-  <meta name="description" content="{{ $metaDescription ?? '' }}" />
-
-  <meta property="og:title" content="{{ $metaTitle ?? config('app.name') }}" />
-  <meta property="og:description" content="{{ $metaDescription ?? '' }}" />
-  <meta property="og:type" content="{{ $metaType ?? 'website' }}" />
-  <meta property="og:locale" content="ru_RU" />
-  @isset($metaImage)
-    <meta property="og:image" content="{{ $metaImage }}" />
-  @endisset
-
+  {{-- Favicons --}}
   <link href="/favicon/apple-touch-icon.png" rel="apple-touch-icon"
     sizes="180x180">
   <link type="image/png" href="/favicon/favicon-32x32.png" rel="icon"
