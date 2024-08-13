@@ -44,6 +44,7 @@ class Page extends Model implements HasMedia
     public function scopePublicSelect($query)
     {
         $query->select(
+            'id',
             'slug',
             'title',
             'content',

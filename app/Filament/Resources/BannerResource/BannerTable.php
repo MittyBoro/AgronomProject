@@ -43,7 +43,7 @@ class BannerTable
                     ->tooltip(
                         fn(
                             Banner $record,
-                        ) => $record->published_until->diffForHumans(parts: 2),
+                        ) => $record->published_until?->diffForHumans(parts: 2),
                     )
                     ->color(
                         fn(Banner $record): string => $record->published_until <

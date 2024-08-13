@@ -3,6 +3,7 @@
 namespace App\Livewire\Lists;
 
 use App\Models\Category;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -16,18 +17,26 @@ class CategoryList extends Component
     public ?string $className;
     public bool $swiper = false;
 
+    public ?int $activeIndex;
+
     public function mount()
     {
         $this->className = 'categories__' . Str::random();
 
         $this->categories = Category::select('id', 'slug', 'title')
             ->with('media')
-            ->limit(20)
+            ->limit(50)
+            ->orderBy('order_column', 'asc')
             ->get();
-    }
 
-    public function render()
-    {
-        return view('livewire.category.list');
+        $activeCategory = request()->category?->id;
+
+        if ($activeCategory) {
+            $this->activeIndex = $this->categories->search(function (
+                $category,
+            ) use ($activeCategory) {
+                return $category->id === $activeCategory;
+            });
+        }
     }
 }

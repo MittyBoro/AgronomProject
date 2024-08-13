@@ -28,6 +28,12 @@
   }
 }
 
+.category__card--active {
+  color: #fff;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
 .category__card-icon {
   display: flex;
   align-items: center;
@@ -84,8 +90,8 @@
     }
   }
   swiper-container::part(container) {
-    margin: calc(var(--gap) * -1);
-    padding: var(--gap);
+    margin: calc(var(--gap) * -1) -50px;
+    padding: var(--gap) 50px;
     overflow: hidden;
     width: auto;
     &::after {
@@ -97,6 +103,10 @@
       pointer-events: none;
       z-index: 2;
     }
+  }
+  swiper-container::part(scrollbar) {
+    --swiper-scrollbar-sides-offset: 50px;
+    opacity: 0.1;
   }
   swiper-slide {
     transition: opacity 0.15s;

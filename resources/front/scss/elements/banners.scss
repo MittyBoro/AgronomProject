@@ -1,43 +1,21 @@
-.catalog-banner {
+.banner__slider {
+  min-width: 1px;
+  max-width: 100%;
+  @include media-breakpoint-down(lg) {
+    order: -1;
+  }
+}
+
+.banner__card {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  background: #777;
   min-width: 1px;
   min-height: 1px;
-  padding: 19.28% 0;
   overflow: hidden;
   cursor: pointer;
-  container: banner / inline-size;
-}
-
-.catalog-banner__text {
-  position: absolute;
-  left: 7.17cqw;
-
-  color: var(--white);
-  .button {
-    font-size: max(1.793cqw, 12px);
-    max-height: max(6.278cqw, 30px);
-  }
-}
-.catalog-banner__title {
-  margin-bottom: 2.242cqw;
-  max-width: 40cqw;
-  font-size: 5.38cqw;
-  font-weight: 700;
-  line-height: 1.25;
-  // @include media-breakpoint-down(xl) {
-  //   font-size: 40px;
-  // }
-  // @include media-breakpoint-down(lg) {
-  //   font-size: 36px;
-  // }
-  // @include media-breakpoint-down(md) {
-  //   font-size: 30px;
-  // }
-  // @include media-breakpoint-down(sm) {
-  //   font-size: 24px;
-  // }
+  aspect-ratio: 10 / 3;
 }

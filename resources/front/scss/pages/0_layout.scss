@@ -236,7 +236,7 @@
   }
 }
 
-.to_top {
+.to-top {
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -252,7 +252,7 @@
   transform: rotate(90deg);
   transition-property: opacity, visibility, bottom;
   transition-duration: 0.2s;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow), var(--box-shadow);
   z-index: 19;
   &:not(.active) {
     opacity: 0;

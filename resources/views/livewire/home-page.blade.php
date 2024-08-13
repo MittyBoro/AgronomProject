@@ -13,23 +13,24 @@
           <p class="home__description">
             {{ $homeDescription }}
           </p>
-          <a class="button home__button" href="/catalog">Перейти в каталог</a>
+          <a class="button home__button" href="/catalog" wire:navigate>Перейти в
+            каталог</a>
         </div>
       </div>
     </div>
   </section>
 
   {{-- Популярные товары --}}
-  <livewire:lists.product-list title="Самое популярное" :products="$popularProducts"
+  <x-product.list title="Самое популярное" :products="$popularProducts"
     pretitle="Лучшее за месяц" :button="['/catalog', 'В каталог']" />
 
   {{-- Категории, swiper --}}
-  <livewire:lists.category-list title="Выберите категорию" :products="$popularProducts"
-    pretitle="Категории" :button="['/catalog', 'В каталог']" swiper />
+  <livewire:lists.category-list title="Выберите категорию" pretitle="Категории"
+    :button="['/catalog', 'В каталог']" swiper />
 
   {{-- Товары со скидками --}}
-  <livewire:lists.product-list title="Актуальные акции" :products="$discountsProducts"
-    pretitle="Скидки" :button="['/catalog', 'В каталог']" />
+  <x-product.list title="Актуальные акции" :products="$discountsProducts" pretitle="Скидки"
+    :button="['/catalog', 'В каталог']" />
 
   {{-- About --}}
   <section class="about__section">
@@ -58,16 +59,17 @@
             Длинное описание преимущества
           </li>
         </ul>
-        <a class="button about__button" href="/about">Узнать больше</a>
+        <a class="button about__button" href="/about" wire:navigate>Узнать
+          больше</a>
       </div>
     </div>
   </section>
 
   {{-- Статьи --}}
-  <livewire:lists.article-list title="Программы подкормок" :articles="$articles"
+  <x-article.list title="Программы подкормок" :articles="$articles"
     pretitle="Полезное" :button="['/catalog', 'В каталог']" />
 
   {{-- Отзывы --}}
-  <livewire:lists.review-list title="Отзывы покупателей" :reviews="$reviews"
+  <x-review.list title="Отзывы покупателей" :reviews="$reviews"
     pretitle="Клиенты о нас" />
 </main>

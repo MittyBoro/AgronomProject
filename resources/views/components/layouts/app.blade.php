@@ -24,16 +24,11 @@
   <meta name="msapplication-config" content="/favicon/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
 
-  @livewireStyles
   @vite(config('app.resources.front') . '/scss/app.scss')
 </head>
 
 <body>
   <x-main.header />
-
-  @isset($breadcrumbs)
-    <x-main.breadcrumbs :list="$breadcrumbs" />
-  @endisset
 
   {{ $slot }}
 
@@ -41,8 +36,8 @@
   <x-main.mobile-nav />
 
   {{-- to top arrow --}}
-  <div class="to_top">
-    <x-main.icon class="to_top__icon" src="icons/arrow.svg" />
+  <div class="to-top">
+    <x-main.icon class="to-top__icon" src="icons/arrow.svg" />
   </div>
 
 
@@ -55,7 +50,6 @@
     <x-popups.search :categories="$categories" /> --}}
   </div>
 
-  @livewireScripts
   @vite(config('app.resources.front') . '/js/app.js')
 </body>
 

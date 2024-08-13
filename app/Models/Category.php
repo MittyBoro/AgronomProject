@@ -51,4 +51,12 @@ class Category extends Model implements HasMedia
     {
         return $this->belongsToMany(Product::class);
     }
+
+    public function scopeSelectPublic($query): void
+    {
+        $query
+            ->addSelect('id', 'slug', 'title')
+            ->with('media')
+            ->orderBy('order_column', 'asc');
+    }
 }

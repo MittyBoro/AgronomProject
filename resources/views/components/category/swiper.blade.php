@@ -1,5 +1,7 @@
-<swiper-container class="categories__slider" space-between="10px" keyboard="true"
-  slides-per-view="2" loop="true"
+<swiper-container @class(['categories__slider', $class ?? '']) space-between="10px"
+  keyboard="true" slides-per-view="2" loop="true"
+  initial-slide="{{ $activeIndex ?? 0 }}" scrollbar="true"
+  scrollbar-snap-on-release="true"
   navigation="{{ json_encode([
       'prevEl' => '.' . $className . ' .nav-arrow__prev',
       'nextEl' => '.' . $className . ' .nav-arrow__next',
@@ -24,7 +26,7 @@
   ]) }}">
   @foreach ($categories as $category)
     <swiper-slide>
-      <x-category.card :category="$category" />
+      <x-category.card :category="$category" :active="$activeIndex === $loop->index" />
     </swiper-slide>
   @endforeach
 </swiper-container>

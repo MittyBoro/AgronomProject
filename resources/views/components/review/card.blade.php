@@ -2,7 +2,7 @@
   <div class="review__card-name">{{ $review->name }}</div>
   @empty($hideProduct)
     <a class="review__card-product link"
-      href="/products/{{ $review->product->slug }}">к
+      href="/products/{{ $review->product->slug }}" wire:navigate>к
       {{ $review->product->title }}</a>
   @endempty
   <div class="review__card-text">

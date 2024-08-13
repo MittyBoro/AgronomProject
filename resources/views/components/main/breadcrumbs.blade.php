@@ -1,16 +1,15 @@
-@props(['list'])
 <div class="breadcrumbs">
   <div class="breadcrumbs__container container">
-    <a class="breadcrumbs__item link" href="/">Главная</a>
-    @foreach ($list as [$name, $link])
+    <a class="breadcrumbs__item link" href="/" wire:navigate>Главная</a>
+    @foreach ($list as [$link, $name])
       <span class="breadcrumbs__item">/</span>
 
-      @isset($link)
-        <a class="breadcrumbs__item link"
-          href="{{ $link }}">{{ $name }}</a>
+      @if ($link && !$loop->last)
+        <a class="breadcrumbs__item link" href="{{ $link }}"
+          wire:navigate>{{ $name }}</a>
       @else
         <span class="breadcrumbs__item">{{ $name }}</span>
-      @endisset
+      @endif
     @endforeach
   </div>
 </div>

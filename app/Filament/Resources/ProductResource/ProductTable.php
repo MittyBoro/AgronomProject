@@ -8,7 +8,10 @@ use App\Filament\Tables\MediaImageColumn;
 use App\Filament\Tables\TableActions;
 use App\Filament\Tables\TableBulkActions;
 use App\Models\Product;
+use Filament\Support\Enums\Alignment;
+use Filament\Tables\Columns\ColumnGroup;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
@@ -36,37 +39,64 @@ class ProductTable
                     ->searchable()
                     ->sortable()
                     ->wrap()
+                    ->grow(1)
                     ->description(
-                        fn (Product $record): string => $record->variations
+                        fn(Product $record): string => $record->variations
                             ->pluck('title')
                             ->implode(', '),
                     ),
 
                 //
-                ToggleColumn::make('is_published')->label('Опубликовано'),
+                ColumnGroup::make('Отзывы', [
+                    TextColumn::make('reviews_avg_rating')
+                        ->label('Рейтинг')
+                        ->badge()
+                        ->icon('heroicon-o-star')
+                        ->color('gray')
+                        ->sortable()
+                        ->avg('reviews', 'rating')
+                        ->state(
+                            fn($record): float => round(
+                                $record->reviews_avg_rating,
+                                2,
+                            ),
+                        )
+                        ->toggleable(),
+
+                    TextColumn::make('reviews_count')
+                        ->label('Отзывов')
+                        ->sortable()
+                        ->counts('reviews')
+                        ->state(fn($record) => $record->reviews_count)
+                        ->toggleable(),
+                ]),
+
+                ColumnGroup::make('Цены', [
+                    //
+                    TextColumn::make('price')
+                        ->label('Цена')
+                        ->money('RUB', locale: 'ru_RU')
+                        ->sortable(),
+                    //
+                    TextInputColumn::make('discount')
+                        ->label('Скидка, %')
+                        ->extraAttributes(['class' => 'max-w-24'])
+                        ->alignment(Alignment::Center)
+                        ->type('number')
+                        ->rules(['required', 'numeric', 'min:0', 'max:100'])
+                        ->sortable()
+                        ->toggleable(),
+                ]),
 
                 //
-                TextColumn::make('reviews_avg_rating')
-                    ->label('Рейтинг')
-                    ->badge()
-                    ->icon('heroicon-o-star')
-                    ->color('gray')
-                    ->sortable()
-                    ->avg('reviews', 'rating')
-                    ->state(
-                        fn ($record): float => round(
-                            $record->reviews_avg_rating,
-                            2,
-                        ),
-                    ),
-
+                ToggleColumn::make('is_published')->label('Опубл.')->sortable(),
                 //
                 TextColumn::make('variations_min_stock')
                     ->label('Наличие')
                     ->min('variations', 'stock')
                     ->badge()
                     ->state(
-                        fn (
+                        fn(
                             Product $record,
                         ): string => $record->variations_min_stock
                             ? 'от ' . $record->variations_min_stock
@@ -83,17 +113,12 @@ class ProductTable
                         },
                     )
                     ->color(
-                        fn (Product $record): string => $record->variations_min_stock > 10
+                        fn(
+                            Product $record,
+                        ): string => $record->variations_min_stock > 10
                             ? 'gray'
                             : 'danger',
                     ),
-
-                //
-                TextColumn::make('price')
-                    ->label('Цена')
-                    ->money('RUB', locale: 'ru_RU')
-                    ->description(fn (Product $record): string => $record->discount ? '-' . $record->discount . ' %' : '')
-                    ->sortable(),
 
                 TextColumn::make('created_at')
                     ->label('Дата создания')

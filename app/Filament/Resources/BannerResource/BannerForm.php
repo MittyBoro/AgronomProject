@@ -57,7 +57,7 @@ class BannerForm extends BaseForm
                         ->helperText(
                             fn($state): string => Carbon::parse(
                                 $state,
-                            )->diffForHumans(),
+                            )?->diffForHumans(),
                         )
                         ->hintAction(
                             Action::make('set_default')

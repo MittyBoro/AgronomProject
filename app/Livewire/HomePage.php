@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Review;
@@ -43,7 +44,6 @@ class HomePage extends Component
         $this->seo()->setTitle($this->page->meta_title);
         $this->seo()->setDescription($this->page->meta_description);
     }
-
 
     // популярные товары
     private function getPopularProducts(): void

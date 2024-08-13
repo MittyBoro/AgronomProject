@@ -111,7 +111,6 @@ class Product extends Model implements HasMedia
     public function scopeSelectPublic($query, $full = false): void
     {
         $query
-            ->selectRaw('(price * (1 - discount / 100)) as total_price')
             ->addSelect(
                 'id',
                 'slug',
@@ -121,6 +120,7 @@ class Product extends Model implements HasMedia
                 'stock',
                 'is_published',
             )
+            ->selectRaw('(price * (1 - discount / 100)) as total_price')
             ->when(
                 $full,
                 fn($q) => $q->addSelect([
@@ -131,8 +131,9 @@ class Product extends Model implements HasMedia
                 ]),
             )
             ->isPublished()
-            ->with('variations', 'media')
+            ->with('media')
             ->withCount('reviews')
-            ->withAvg('reviews', 'rating');
+            ->withAvg('reviews', 'rating')
+            ;
     }
 }

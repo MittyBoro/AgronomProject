@@ -1,5 +1,5 @@
 <div class="product__card"
-  onclick="location.href='/products/{{ $product->slug }}'">
+  onclick="Livewire.navigate('/products/{{ $product->slug }}')">
   <div class="product__card-image">
     <x-main.picture class="object-cover" :media="$product->media->first()" />
     @if ($product->discount > 0)
@@ -15,16 +15,19 @@
     </span>
   </div>
   <div class="product__card-name">
-    <h3><a class="link"
-        href="/products/{{ $product->slug }}">{{ $product->title }}</a></h3>
+    <a class="link" href="/products/{{ $product->slug }}"
+      wire:navigate>#{{ $product->id }}
+      {{ $product->title }}</a>
   </div>
   <div class="product__card-price">
-    @if ($product->discount > 0)
-      <span>{{ price_formatter($product->total_price) }}₽</span>
-      <span
-        class="product__card-price--old">{{ price_formatter($product->price) }}₽</span>
-    @else
-      <span>{{ price_formatter($product->price) }}₽</span>
+    @if ($product->price)
+      @if ($product->discount > 0)
+        <span>{{ price_formatter($product->total_price) }}₽</span>
+        <span
+          class="product__card-price--old">{{ price_formatter($product->price) }}₽</span>
+      @else
+        <span>{{ price_formatter($product->price) }}₽</span>
+      @endif
     @endif
   </div>
   @if ($product->reviews_count)
