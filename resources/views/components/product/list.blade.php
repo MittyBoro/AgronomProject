@@ -1,7 +1,8 @@
   <section class="products products__section" id="paginated"
     wire:loading.class="loading">
     <div class="products__container container">
-      <x-main.title :pretitle="$pretitle ?? null" :title="$title ?? null" :button="$button ?? null">
+      <x-main.title :titleTag="$titleTag ?? 'h2'" :pretitle="$pretitle ?? null" :title="$title ?? null"
+        :button="$button ?? null">
         {{ $slot }}
       </x-main.title>
       <div class="products-list">

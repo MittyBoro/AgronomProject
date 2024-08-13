@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -35,5 +36,12 @@ trait HasResponsiveImages
         if (method_exists($this, 'registerCustomMediaConversions')) {
             $this->registerCustomMediaConversions($media);
         }
+    }
+
+    protected function preview(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->media->first()?->getFullUrl('jpeg'),
+        );
     }
 }

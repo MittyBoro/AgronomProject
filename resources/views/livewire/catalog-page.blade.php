@@ -1,16 +1,18 @@
 <main class="catalog-page">
 
+  {{-- хлебушек --}}
   <x-main.breadcrumbs :list="$breadcrumbs" />
 
   {{-- баннер --}}
   @if (!$category)
     <livewire:lists.banner-list />
   @endif
+
   {{-- Категории, swiper --}}
   <livewire:lists.category-list swiper />
 
   {{-- Товары --}}
-  <x-product.list :$title :$products>
+  <x-product.list titleTag="h1" :$title :$products>
     {{-- сортировка --}}
     <div class="dropdown">
       <div class="dropdown__button button catalog__button">

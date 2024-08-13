@@ -41,7 +41,7 @@ class CatalogPage extends Component
 
     public function mount(?Category $category)
     {
-        $this->getPage($category);
+        $this->setPage($category);
     }
 
     public function setSort($v)
@@ -56,19 +56,47 @@ class CatalogPage extends Component
         return $this->sortList[$this->sort ?? ''];
     }
 
-    private function getPage($category): void
+    private function setPage($category): void
     {
         if ($category->id) {
             $page = $category;
             $this->category = $category;
             $this->title = $category->title;
             $this->breadcrumbs[] = [$category->slug, $category->title];
+
+            if ($category->preview) {
+                $this->seo()
+                    ->opengraph()
+                    ->addImage($category->preview);
+            }
         } else {
             $page = Page::publicSelect()->whereSlug('catalog')->firstOrFail();
         }
 
-        $this->seo()->setTitle($page->meta_title);
-        $this->seo()->setDescription($page->meta_description);
+        $this->seo()
+            ->setTitle($page->meta_title)
+            ->setDescription($page->meta_description);
+    }
+    private function setJsonLd(array $products): void
+    {
+        foreach ($products as $product) {
+            $this->seo()
+                ->jsonLdMulti()
+                ->newJsonLd()
+                ->addValue('itemListElement', [
+                    '@type' => 'Product',
+                    'name' => $product->title,
+                    'description' => $product->description,
+                    'offers' => [
+                        '@type' => 'Offer',
+                        'priceCurrency' => 'RUB',
+                        'price' => $product->price,
+                        'url' => url('/product/' . $product->slug),
+                        'availability' => 'http://schema.org/InStock', // или другой статус, если товар недоступен
+                    ],
+                    'image' => $product->preview,
+                ]);
+        }
     }
 
     public function render()
@@ -84,6 +112,8 @@ class CatalogPage extends Component
                 $sort[1] ?? 'desc',
             )
             ->paginate(perPage: $this->perPage);
+
+        $this->setJsonLd($products->items());
 
         return view('livewire.catalog-page', [
             'products' => $products,

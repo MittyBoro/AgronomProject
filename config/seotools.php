@@ -9,7 +9,7 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults' => [
-            'title' => false, // set false to total remove
+            'title' => env('APP_NAME'), // set false to total remove
             'titleBefore' => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
             'description' => false, // set false to total remove
             'separator' => ' - ',
@@ -35,15 +35,17 @@ return [
         /*
          * The default configurations to be used by the opengraph generator.
          */
+
         'defaults' => [
-            'title' => false, // set false to total remove
+            'title' => env('APP_NAME'), // set false to total remove
             'description' => false, // set false to total remove
             'url' => null, // Set null for using Url::current(), set false to total remove
             'type' => false,
-            'site_name' => false,
+            'site_name' => env('APP_NAME'),
+            'locale' => 'ru_RU',
             'images' => [
                 [
-                    env('APP_URL') . '/assets/images/meta.png',
+                    env('APP_URL') . '/assets/images/logo.png',
                     ['width' => 1200, 'height' => 630],
                 ],
             ],
@@ -63,13 +65,13 @@ return [
          * The default configurations to be used by the json-ld generator.
          */
         'defaults' => [
-            'title' => false, // set false to total remove
+            'title' => env('APP_NAME'), // set false to total remove
             'description' => false, // set false to total remove
             'url' => 'current', // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
             'type' => 'WebPage',
             'images' => [
                 [
-                    env('APP_URL') . '/assets/images/meta.png',
+                    env('APP_URL') . '/assets/images/logo.png',
                     ['width' => 1200, 'height' => 630],
                 ],
             ],

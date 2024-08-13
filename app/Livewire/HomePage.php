@@ -26,14 +26,14 @@ class HomePage extends Component
 
     public function mount()
     {
-        $this->getPage();
-        $this->getPopularProducts();
-        $this->getDiscountsProducts();
-        $this->getArticles();
-        $this->getReviews();
+        $this->setPage();
+        $this->setPopularProducts();
+        $this->setDiscountsProducts();
+        $this->setArticles();
+        $this->setReviews();
     }
 
-    private function getPage(): void
+    private function setPage(): void
     {
         $this->page = Page::publicSelect()->whereSlug('/')->firstOrFail();
 
@@ -46,7 +46,7 @@ class HomePage extends Component
     }
 
     // популярные товары
-    private function getPopularProducts(): void
+    private function setPopularProducts(): void
     {
         $this->popularProducts = Product::selectPublic()
             ->latest()
@@ -55,7 +55,7 @@ class HomePage extends Component
     }
 
     // продукты со скидкой
-    private function getDiscountsProducts(): void
+    private function setDiscountsProducts(): void
     {
         $this->discountsProducts = Product::selectPublic()
             ->orderBy('discount', 'desc')
@@ -64,13 +64,13 @@ class HomePage extends Component
     }
 
     // последние статьи
-    private function getArticles(): void
+    private function setArticles(): void
     {
         $this->articles = Article::selectPublic()->latest()->limit(3)->get();
     }
 
     // лучшие отзывы
-    private function getReviews(): void
+    private function setReviews(): void
     {
         $this->reviews = Review::selectPublic()
             ->with('product')
