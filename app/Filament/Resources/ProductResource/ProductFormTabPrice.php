@@ -248,8 +248,12 @@ class ProductFormTabPrice
      */
     private static function variationPrice(Get $get): int
     {
-        return parse_price($get('../../price')) +
-            parse_price($get('price_modifier'));
+        $discountFactor = 1 - (int) $get('../../discount') / 100;
+
+        $price = parse_price($get('../../price')) * $discountFactor;
+        $priceModifier = parse_price($get('price_modifier')) * $discountFactor;
+
+        return $price + $priceModifier;
     }
 
     /**
@@ -258,11 +262,11 @@ class ProductFormTabPrice
     private static function discountHint(Get $get): string
     {
         $price = parse_price($get('price'));
+        $discountFactor = 1 - (int) $get('discount') / 100;
+
         return $get('discount')
             ? 'Цена с учётом скидки: ' .
-                    price_formatter(
-                        $price - ($price * $get('discount')) / 100,
-                    ) .
+                    price_formatter($price * $discountFactor) .
                     ' ₽'
             : '';
     }

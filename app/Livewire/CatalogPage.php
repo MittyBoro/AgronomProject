@@ -9,6 +9,7 @@ use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Renderless;
+use Livewire\Attributes\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
@@ -23,7 +24,8 @@ class CatalogPage extends Component
     public array $breadcrumbs = [['/catalog', 'Каталог']];
     public string $title = 'Каталог';
 
-    private string $sort;
+    #[Session('sort')]
+    public ?string $sort = '';
     private int $perPage = 12;
 
     public array $sortList = [
@@ -32,12 +34,6 @@ class CatalogPage extends Component
         'price-desc' => 'Сначала дорогие',
         'discount' => 'Скидка',
     ];
-
-    // public string $sort = '';
-    public function boot()
-    {
-        $this->sort = session('sort', '');
-    }
 
     public function mount(?Category $category)
     {
@@ -62,7 +58,7 @@ class CatalogPage extends Component
             $page = $category;
             $this->category = $category;
             $this->title = $category->title;
-            $this->breadcrumbs[] = [$category->slug, $category->title];
+            $this->breadcrumbs[] = [url('/catalog/' . $category->slug), $category->title];
 
             if ($category->preview) {
                 $this->seo()
@@ -77,6 +73,7 @@ class CatalogPage extends Component
             ->setTitle($page->meta_title)
             ->setDescription($page->meta_description);
     }
+
     private function setJsonLd(array $products): void
     {
         foreach ($products as $product) {
@@ -91,7 +88,7 @@ class CatalogPage extends Component
                         '@type' => 'Offer',
                         'priceCurrency' => 'RUB',
                         'price' => $product->price,
-                        'url' => url('/product/' . $product->slug),
+                        'url' => url('\/products\/' . $product->slug),
                         'availability' => 'http://schema.org/InStock', // или другой статус, если товар недоступен
                     ],
                     'image' => $product->preview,

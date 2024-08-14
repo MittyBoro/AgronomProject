@@ -70,6 +70,6 @@
     pretitle="Полезное" :button="['/catalog', 'В каталог']" />
 
   {{-- Отзывы --}}
-  <x-review.list title="Отзывы покупателей" :reviews="$reviews"
-    pretitle="Клиенты о нас" />
+  <livewire:lists.review-list title="Отзывы покупателей"
+    pretitle="Клиенты о нас">
 </main>

@@ -12,7 +12,7 @@
         @endforeach
       </div>
       @if ($products instanceof \Illuminate\Pagination\LengthAwarePaginator)
-        <div class="catalog__pagination pagination" id="catalog_pagination">
+        <div class="catalog__pagination pagination">
           {{ $products->links('components.main.pagination', data: ['scrollTo' => '#paginated']) }}
         </div>
       @endif

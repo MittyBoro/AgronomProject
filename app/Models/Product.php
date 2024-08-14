@@ -98,9 +98,20 @@ class Product extends Model implements HasMedia
         )->orderBy('variation_groups.order_column');
     }
 
-    protected function hasVariations(): Attribute
+    protected function groupedVariations(): Attribute
     {
-        return Attribute::make(get: fn() => $this->variations->isNotEmpty());
+        return Attribute::make(
+            get: fn() => $this->variations
+                ->groupBy('variation_group_id')
+                ->map(
+                    fn($list) => tap(
+                        $list->first()->group,
+                        fn($group) => ($group->variations = $list->toArray()),
+                    ),
+                )
+                ->sortBy('order_column')
+                ->toArray(),
+        );
     }
 
     public function scopeIsPublished($query): void
@@ -123,17 +134,19 @@ class Product extends Model implements HasMedia
             ->selectRaw('(price * (1 - discount / 100)) as total_price')
             ->when(
                 $full,
-                fn($q) => $q->addSelect([
-                    'meta_title',
-                    'meta_description',
-                    'meta_keywords',
-                    'description',
-                ]),
+                fn($q) => $q
+                    ->addSelect([
+                        'meta_title',
+                        'meta_description',
+                        'meta_keywords',
+                        'description',
+                    ])
+                    ->with('variations', 'categories'),
+                fn($q) => $q->withCount('variations'),
             )
             ->isPublished()
             ->with('media')
-            ->withCount('reviews')
             ->withAvg('reviews', 'rating')
-            ;
+            ->withCount('reviews');
     }
 }
