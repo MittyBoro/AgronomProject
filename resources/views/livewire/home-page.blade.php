@@ -67,7 +67,7 @@
 
   {{-- Статьи --}}
   <x-article.list title="Программы подкормок" :articles="$articles"
-    pretitle="Полезное" :button="['/catalog', 'В каталог']" />
+    pretitle="Полезное" :button="['/articles', 'Больше статей']" />
 
   {{-- Отзывы --}}
   <livewire:lists.review-list title="Отзывы покупателей"

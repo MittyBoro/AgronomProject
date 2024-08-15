@@ -3,7 +3,6 @@
 namespace App\Livewire\Lists;
 
 use App\Models\Category;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -18,6 +17,7 @@ class CategoryList extends Component
     public bool $swiper = false;
 
     public ?int $activeIndex;
+    public ?int $activeId = null;
 
     public function mount()
     {
@@ -29,13 +29,11 @@ class CategoryList extends Component
             ->orderBy('order_column', 'asc')
             ->get();
 
-        $activeCategory = request()->category?->id;
-
-        if ($activeCategory) {
+        if ($this->activeId) {
             $this->activeIndex = $this->categories->search(function (
                 $category,
-            ) use ($activeCategory) {
-                return $category->id === $activeCategory;
+            ) {
+                return $category->id === $this->activeId;
             });
         }
     }

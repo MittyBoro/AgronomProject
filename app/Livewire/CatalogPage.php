@@ -6,9 +6,8 @@ use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -19,14 +18,15 @@ class CatalogPage extends Component
     use WithPagination, WithoutUrlPagination;
     use SEOToolsTrait;
 
-    public ?Category $category;
+    private ?Category $category = null;
+    private int $perPage = 12;
 
     public array $breadcrumbs = [['/catalog', 'Каталог']];
     public string $title = 'Каталог';
+    public ?int $categoryId = null;
 
     #[Session('sort')]
     public ?string $sort = '';
-    private int $perPage = 12;
 
     public array $sortList = [
         '' => 'Новинки',
@@ -35,43 +35,43 @@ class CatalogPage extends Component
         'discount' => 'Скидка',
     ];
 
-    public function mount(?Category $category)
+    public function mount(string $slug = null)
     {
-        $this->setPage($category);
+        $this->mountPage($slug);
     }
 
-    public function setSort($v)
+    private function mountPage($slug): void
     {
-        $this->sort = $v;
-        session(['sort' => $v]);
-    }
-
-    #[Computed]
-    public function currentSort()
-    {
-        return $this->sortList[$this->sort ?? ''];
-    }
-
-    private function setPage($category): void
-    {
-        if ($category->id) {
-            $page = $category;
-            $this->category = $category;
-            $this->title = $category->title;
-            $this->breadcrumbs[] = [url('/catalog/' . $category->slug), $category->title];
-
-            if ($category->preview) {
-                $this->seo()
-                    ->opengraph()
-                    ->addImage($category->preview);
-            }
+        if ($slug) {
+            $page = $this->getCategoryPage($slug);
         } else {
             $page = Page::publicSelect()->whereSlug('catalog')->firstOrFail();
         }
+        $this->title = $page->title;
 
         $this->seo()
             ->setTitle($page->meta_title)
             ->setDescription($page->meta_description);
+    }
+
+    private function getCategoryPage($slug): Model
+    {
+        $category = Category::whereSlug($slug)->with('media')->firstOrFail();
+        $this->breadcrumbs[] = [
+            url('/catalog/' . $category->slug),
+            $category->title,
+        ];
+
+        if ($category->preview) {
+            $this->seo()
+                ->opengraph()
+                ->addImage($category->preview);
+        }
+
+        $this->category = $category;
+        $this->categoryId = $category->id;
+
+        return $category;
     }
 
     private function setJsonLd(array $products): void
@@ -96,10 +96,30 @@ class CatalogPage extends Component
         }
     }
 
+    public function setSort($v)
+    {
+        $this->sort = $v;
+        session(['sort' => $v]);
+        $this->resetPage();
+    }
+
+    #[Computed]
+    public function currentSort()
+    {
+        return $this->sortList[$this->sort ?? ''];
+    }
+
     public function render()
     {
         $sort = explode('-', $this->sort);
         $products = Product::selectPublic()
+            ->when(
+                $this->category,
+                fn($q) => $q->whereHas(
+                    'categories',
+                    fn($q) => $q->whereId($this->category->id),
+                ),
+            )
             ->orderBy(
                 match ($sort[0]) {
                     'price' => 'total_price',
@@ -112,8 +132,6 @@ class CatalogPage extends Component
 
         $this->setJsonLd($products->items());
 
-        return view('livewire.catalog-page', [
-            'products' => $products,
-        ]);
+        return view('livewire.catalog-page', compact('products'));
     }
 }
