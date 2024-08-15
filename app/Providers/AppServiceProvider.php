@@ -21,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         date_default_timezone_set(config('app.timezone'));
-
+        setlocale(LC_ALL, 'ru_RU.UTF-8');
     }
 }
