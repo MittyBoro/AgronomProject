@@ -31,12 +31,13 @@ class PageSeeder extends Seeder
                 ],
             ],
             ['slug' => 'catalog', 'title' => 'Каталог'],
-            ['slug' => 'product', 'title' => 'Товар'],
+            // ['slug' => 'product', 'title' => 'Товар'],
             ['slug' => 'loyalty', 'title' => 'Бонусная программа'],
             ['slug' => 'articles', 'title' => 'Статьи'],
             ['slug' => 'about', 'title' => 'О нас'],
             ['slug' => 'contacts', 'title' => 'Контакты'],
-            ['slug' => 'simple-page', 'title' => 'Простая страница'],
+            ['slug' => 'delivery', 'title' => 'Доставка'],
+            // ['slug' => 'simple-page', 'title' => 'Простая страница'],
         ];
 
         foreach ($pages as $page) {

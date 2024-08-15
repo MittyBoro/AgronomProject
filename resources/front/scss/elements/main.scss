@@ -306,7 +306,7 @@ strong {
   }
   ul,
   ol {
-    margin: 10px 0 20px;
+    margin: 0.5em 0 1.2em;
   }
   li {
     margin: 8px 0;
@@ -333,6 +333,15 @@ strong {
   }
   & > *:last-child {
     margin-bottom: 0;
+  }
+
+  blockquote {
+    margin: 1.7em 0;
+    padding: 20px 30px;
+    line-height: 1.35;
+    font-style: italic;
+    border-left: 3px solid var(--primary-color);
+    background: var(--light-gray);
   }
 }
 

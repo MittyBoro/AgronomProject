@@ -4,11 +4,14 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use App\Models\Review;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class ProductPage extends Component
 {
+    use SEOToolsTrait;
+
     public Product $product;
     public ?Collection $similar;
     public ?Collection $reviews;

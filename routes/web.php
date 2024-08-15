@@ -1,25 +1,22 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CartController;
+use App\Livewire\ArticleListPage;
+use App\Livewire\ArticlePage;
 use App\Livewire\CatalogPage;
+use App\Livewire\ErrorPage;
 use App\Livewire\HomePage;
 use App\Livewire\ProductPage;
+use App\Livewire\SimplePage;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 Route::get('/', HomePage::class)->name('home');
 Route::get('/catalog', CatalogPage::class)->name('catalog');
-Route::get('/catalog/{category:slug}', CatalogPage::class)->name('category');
+Route::get('/catalog/{slug}', CatalogPage::class)->name('category');
 Route::get('/products/{slug}', ProductPage::class)->name('product');
-
-
-// Route::get('/articles', [ArticleController::class, 'index'])->name(
-//     'articles.index',
-// );
-// Route::get('/articles/{article:slug}', [
-//     ArticleController::class,
-//     'show',
-// ])->name('articles.show');
+Route::get('/articles', ArticleListPage::class)->name('articles');
+Route::get('/articles/{article:slug}', ArticlePage::class)->name('article');
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function (): void {
     Route::get('/', [CartController::class, 'index'])->name('index');
@@ -29,4 +26,4 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function (): void {
     Route::post('/clear', [CartController::class, 'clear'])->name('clear');
 });
 
-Route::get('{path}', fn($path = null) => view($path));
+Route::get('/{page:slug}', SimplePage::class)->name('page');

@@ -12,7 +12,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Article extends Model implements HasMedia
 {
-    use HasFactory, HasMetaTitle, HasResponsiveImages, InteractsWithMedia, SoftDeletes {
+    use HasFactory,
+        HasMetaTitle,
+        HasResponsiveImages,
+        InteractsWithMedia,
+        SoftDeletes {
         HasResponsiveImages::registerMediaConversions insteadof InteractsWithMedia;
     }
 
@@ -55,12 +59,7 @@ class Article extends Model implements HasMedia
     public function scopeSelectPublic($query, $full = false): void
     {
         $query
-            ->select(
-                'id',
-                'slug',
-                'title',
-                'description',
-            )
+            ->select('id', 'slug', 'title', 'description', 'created_at')
             ->isPublished()
             ->when(
                 $full,
@@ -70,6 +69,7 @@ class Article extends Model implements HasMedia
                     'meta_keywords',
                     'content',
                 ]),
+                fn($q) => $q->latest(),
             )
             ->with('media');
     }
