@@ -1,5 +1,11 @@
-<swiper-container class="product__slider" pagination="true"
-  pagination-clickable="true" space-between="30px" loop="true" keyboard="true">
+<swiper-container
+  class="product__slider"
+  pagination="true"
+  pagination-clickable="true"
+  space-between="30px"
+  loop="true"
+  keyboard="true"
+>
   @foreach ($media->sortBy('order_column') as $item)
     <swiper-slide>
       <div class="product__image">
