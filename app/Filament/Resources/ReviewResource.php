@@ -41,8 +41,8 @@ class ReviewResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array
@@ -67,7 +67,8 @@ class ReviewResource extends Resource
     private static function getNewRecordsCount(): ?int
     {
         if (self::$newRecords === null) {
-            self::$newRecords = static::getModel()::where('is_approved', 0)
+            self::$newRecords = static::getModel()
+                ::where('is_approved', 0)
                 ->count();
         }
 

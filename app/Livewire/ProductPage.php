@@ -13,12 +13,14 @@ class ProductPage extends Component
     use SEOToolsTrait;
 
     public Product $product;
+
     public ?Collection $similar;
+
     public ?Collection $reviews;
 
     public array $breadcrumbs = [['/catalog', 'Каталог']];
 
-    public function mount($slug)
+    public function mount($slug): void
     {
         $this->product = Product::whereSlug($slug)
             ->selectPublic(full: true)
@@ -30,7 +32,7 @@ class ProductPage extends Component
         $this->setSimilar();
     }
 
-    private function setBreadcrumbs()
+    private function setBreadcrumbs(): void
     {
         $category = $this->product->categories->first();
         if ($category) {
@@ -42,7 +44,7 @@ class ProductPage extends Component
         $this->breadcrumbs[] = ['', $this->product->title];
     }
 
-    private function setSimilar()
+    private function setSimilar(): void
     {
         $this->similar = Product::selectPublic()
             ->where('id', '!=', $this->product->id)
@@ -58,7 +60,7 @@ class ProductPage extends Component
             ->get();
     }
 
-    private function setReviews()
+    private function setReviews(): void
     {
         $this->reviews = Review::selectPublic()
             ->where('product_id', $this->product->id)

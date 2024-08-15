@@ -15,15 +15,20 @@ class HomePage extends Component
     use SEOToolsTrait;
 
     public ?Page $page;
+
     public ?string $homeTitle;
+
     public ?string $homeDescription;
 
     public ?Collection $popularProducts;
+
     public ?Collection $discountsProducts;
+
     public ?Collection $articles;
+
     public ?Collection $reviews;
 
-    public function mount()
+    public function mount(): void
     {
         $this->setPage();
         $this->setPopularProducts();

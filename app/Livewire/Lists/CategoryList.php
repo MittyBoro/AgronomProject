@@ -12,14 +12,18 @@ class CategoryList extends Component
     public ?Collection $categories;
 
     public ?string $pretitle;
+
     public ?string $title;
+
     public ?string $className;
+
     public bool $swiper = false;
 
     public ?int $activeIndex;
+
     public ?int $activeId = null;
 
-    public function mount()
+    public function mount(): void
     {
         $this->className = 'categories__' . Str::random();
 

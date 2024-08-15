@@ -3,8 +3,7 @@
     $scrollTo = 'body';
   }
 
-  $scrollIntoViewJsSnippet =
-    $scrollTo !== false ? "(\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()" : '';
+  $scrollIntoViewJsSnippet = $scrollTo !== false ? "(\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()" : '';
 @endphp
 
 <nav>

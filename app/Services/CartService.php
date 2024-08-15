@@ -78,6 +78,6 @@ class CartService
     {
         $cart = $this->getCart();
 
-        return $cart->items->sum(fn ($item) => $item->quantity * $item->price);
+        return $cart->items->sum(fn($item) => $item->quantity * $item->price);
     }
 }

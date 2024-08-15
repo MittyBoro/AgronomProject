@@ -4,21 +4,24 @@ namespace App\Livewire\Lists;
 
 use App\Models\Review;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class ReviewList extends Component
 {
-    use WithPagination, WithoutUrlPagination;
+    use WithoutUrlPagination, WithPagination;
 
     public ?string $title;
+
     public ?string $pretitle;
+
     public ?int $productId;
 
     private int $perPage = 6;
+
     private int $limitOfList = 4;
 
-    public function mount($productId = null)
+    public function mount($productId = null): void
     {
         $this->productId = $productId;
     }

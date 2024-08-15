@@ -81,9 +81,9 @@ class ArticleForm extends BaseForm
                 ->imageEditor()
                 ->imageResizeMode('cover')
                 ->imageCropAspectRatio('1:1')
-                ->imageResizeTargetWidth(fn (): ?int => Article::$mediaMaxWidth)
+                ->imageResizeTargetWidth(fn(): ?int => Article::$mediaMaxWidth)
                 ->imageResizeTargetHeight(
-                    fn (): ?int => Article::$mediaMaxWidth,
+                    fn(): ?int => Article::$mediaMaxWidth,
                 ),
         ];
     }

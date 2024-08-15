@@ -6,20 +6,21 @@ use App\Models\Article;
 use App\Models\Page;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class ArticleListPage extends Component
 {
-    use WithPagination, WithoutUrlPagination;
     use SEOToolsTrait;
+    use WithoutUrlPagination, WithPagination;
 
     public array $breadcrumbs = [['/articles', 'Статьи']];
+
     public string $title = 'Каталог';
 
     private int $perPage = 8;
 
-    public function mount()
+    public function mount(): void
     {
         $this->mountPage();
     }

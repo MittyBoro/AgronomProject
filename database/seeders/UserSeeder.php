@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
             'first_name' => 'Дмитрий',
             'last_name' => 'Бородин',
             'email' => 'iboro770@gmail.com',
-            'password' => '$2y$12$iDrXeh6vIU.Px3fYkCw7FOgXUPNgTaOiRf8p03RwPwjYTsSBGd1Ea',
+            'password' =>
+                '$2y$12$iDrXeh6vIU.Px3fYkCw7FOgXUPNgTaOiRf8p03RwPwjYTsSBGd1Ea',
             'role' => 'admin',
         ]);
 

@@ -12,21 +12,23 @@ class ArticlePage extends Component
     use SEOToolsTrait;
 
     public Article $article;
+
     public array $breadcrumbs = [['/articles', 'Статьи']];
+
     public Collection $similar;
 
-    public function mount()
+    public function mount(): void
     {
         $this->setBreadcrumbs();
         $this->setSimilar();
     }
 
-    private function setBreadcrumbs()
+    private function setBreadcrumbs(): void
     {
         $this->breadcrumbs[] = ['', $this->article->title];
     }
 
-    private function setSimilar()
+    private function setSimilar(): void
     {
         $this->similar = Article::selectPublic()
             ->where('id', '!=', $this->article->id)

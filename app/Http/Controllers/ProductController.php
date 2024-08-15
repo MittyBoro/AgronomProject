@@ -18,7 +18,9 @@ final class ProductController extends Controller
             ->selectPublic(full: true)
             ->firstOrFail();
 
-        $reviews = Review::selectPublic()->where('product_id', $product->id)->paginate(12);
+        $reviews = Review::selectPublic()
+            ->where('product_id', $product->id)
+            ->paginate(12);
 
         $similar = $product->categories
             ->first()
@@ -28,6 +30,7 @@ final class ProductController extends Controller
             ->limit(4)
             ->inRandomOrder()
             ->get();
+
         return view('product', compact('product', 'reviews', 'similar'));
     }
 }

@@ -18,7 +18,7 @@ class MediaImageColumn extends SpatieMediaLibraryImageColumn
             ->circular()
             ->limitedRemainingText()
             ->stacked()
-            ->tooltip(fn (Model $record): string => 'ID: ' . $record->id)
+            ->tooltip(fn(Model $record): string => 'ID: ' . $record->id)
             ->grow(false);
     }
 }

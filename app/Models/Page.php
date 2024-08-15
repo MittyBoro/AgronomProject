@@ -41,7 +41,7 @@ class Page extends Model implements HasMedia
         ];
     }
 
-    public function scopePublicSelect($query)
+    public function scopePublicSelect($query): void
     {
         $query->select(
             'id',
@@ -61,7 +61,9 @@ class Page extends Model implements HasMedia
             get: function () {
                 $data = collect($this->blocks)
                     ->groupBy('type')
-                    ->map->pluck('data.value')->toArray();
+                    ->map->pluck('data.value')
+                    ->toArray();
+
                 return $data;
             },
         )->shouldCache();

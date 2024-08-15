@@ -11,9 +11,10 @@ class SimplePage extends Component
     use SEOToolsTrait;
 
     public Page $page;
+
     public array $breadcrumbs = [];
 
-    public function mount(Page $page)
+    public function mount(Page $page): void
     {
         $this->breadcrumbs[] = ['', $page->title];
 

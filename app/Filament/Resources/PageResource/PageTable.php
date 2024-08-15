@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\PageResource;
 
-use App\Filament\Resources\PageResource\Pages\EditPage;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\TableActions;
 use App\Filament\Tables\TableBulkActions;
@@ -29,7 +28,9 @@ class PageTable
                 //
                 TextColumn::make('slug')
                     ->label('Ссылка')
-                    ->formatStateUsing(fn (Model $record): string => '/' . $record->slug)
+                    ->formatStateUsing(
+                        fn(Model $record): string => '/' . $record->slug,
+                    )
                     ->searchable()
                     ->sortable(),
             ])

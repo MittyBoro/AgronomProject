@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\CategoryResource;
 
-use App\Filament\Resources\CategoryResource\Pages\EditCategory;
 use App\Filament\Resources\ProductResource;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
@@ -11,7 +10,6 @@ use App\Filament\Tables\TableBulkActions;
 use App\Models\Category;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Model;
 
 class CategoryTable
 {
@@ -41,7 +39,7 @@ class CategoryTable
                     ->counts('products')
                     ->sortable()
                     ->url(
-                        fn (Category $record): string => ProductResource::getUrl(
+                        fn(Category $record): string => ProductResource::getUrl(
                             'index',
                             [
                                 'tableFilters' => [

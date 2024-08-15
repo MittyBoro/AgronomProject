@@ -102,9 +102,9 @@ class ProductForm extends BaseForm
                 ->imageEditor()
                 ->imageResizeMode('cover')
                 ->imageCropAspectRatio('1:1')
-                ->imageResizeTargetWidth(fn (): ?int => Product::$mediaMaxWidth)
+                ->imageResizeTargetWidth(fn(): ?int => Product::$mediaMaxWidth)
                 ->imageResizeTargetHeight(
-                    fn (): ?int => Product::$mediaMaxWidth,
+                    fn(): ?int => Product::$mediaMaxWidth,
                 ),
         ];
     }
@@ -132,7 +132,8 @@ class ProductForm extends BaseForm
                 ->searchDebounce(500)
                 ->bulkToggleable()
                 ->extraAttributes([
-                    'style' => 'max-height: 200px !important; overflow-y: scroll !important;',
+                    'style' =>
+                        'max-height: 200px !important; overflow-y: scroll !important;',
                     'class' => 'pl-0.5 md:min-w-80',
                 ]),
         ]);
@@ -147,13 +148,13 @@ class ProductForm extends BaseForm
                     ->icon('heroicon-o-star')
                     ->color('success')
                     ->label(
-                        fn (?Product $record) => round(
+                        fn(?Product $record) => round(
                             $record->reviews()->avg('rating'),
                             2,
                         ) . " ({$record->reviews()->count()} отзывов)",
                     )
                     ->url(
-                        fn (?Product $record) => ReviewResource::getUrl(
+                        fn(?Product $record) => ReviewResource::getUrl(
                             'index',
                             [
                                 'tableFilters' => [
@@ -164,11 +165,10 @@ class ProductForm extends BaseForm
                             ],
                         ),
                     ),
-            ])
-                ->hidden(
-                    fn (?Product $record) => ! $record ||
-                        $record->reviews()->count() === 0,
-                ),
+            ])->hidden(
+                fn(?Product $record) => !$record ||
+                    $record->reviews()->count() === 0,
+            ),
         ];
     }
 }

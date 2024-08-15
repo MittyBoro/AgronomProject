@@ -4,12 +4,10 @@ use App\Http\Controllers\CartController;
 use App\Livewire\ArticleListPage;
 use App\Livewire\ArticlePage;
 use App\Livewire\CatalogPage;
-use App\Livewire\ErrorPage;
 use App\Livewire\HomePage;
 use App\Livewire\ProductPage;
 use App\Livewire\SimplePage;
 use Illuminate\Support\Facades\Route;
-use Livewire\Livewire;
 
 Route::get('/', HomePage::class)->name('home');
 Route::get('/catalog', CatalogPage::class)->name('catalog');

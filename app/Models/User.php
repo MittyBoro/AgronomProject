@@ -69,7 +69,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function isAdmin(): Attribute
     {
-        return Attribute::make(get: fn () => $this->role === RoleEnum::Admin);
+        return Attribute::make(get: fn() => $this->role === RoleEnum::Admin);
     }
 
     /**

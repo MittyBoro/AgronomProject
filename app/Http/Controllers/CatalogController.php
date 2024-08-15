@@ -50,9 +50,8 @@ final class CatalogController extends Controller
             return $this->responseWithLayout($products, $category, $sort);
         }
         // если нужна только часть страницы, то json с html кодом каталога
-        else {
-            return $this->responseListOnly($products, $category);
-        }
+
+        return $this->responseListOnly($products, $category);
     }
 
     // запрос для «дорисовки»

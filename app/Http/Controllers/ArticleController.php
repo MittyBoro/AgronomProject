@@ -28,7 +28,11 @@ final class ArticleController extends Controller
             ->selectPublic(full: true)
             ->firstOrFail();
 
-        $similar = Article::selectPublic()->where('id', '!=', $article->id)->inRandomOrder()->limit(3)->get();
+        $similar = Article::selectPublic()
+            ->where('id', '!=', $article->id)
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
 
         return view('article', compact('article', 'similar'));
     }

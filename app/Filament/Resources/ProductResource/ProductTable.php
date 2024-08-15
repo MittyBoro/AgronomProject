@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\ProductResource;
 
-use App\Filament\Resources\ProductResource\Pages\EditProduct;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\MediaImageColumn;
 use App\Filament\Tables\TableActions;
@@ -17,7 +16,6 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class ProductTable

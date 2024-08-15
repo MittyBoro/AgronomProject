@@ -41,7 +41,7 @@ class UserTable
                 ->searchable()
                 ->sortable()
                 ->description(
-                    fn (User $user): string => implode(
+                    fn(User $user): string => implode(
                         ' ',
                         array_filter([
                             $user->last_name,
@@ -56,12 +56,12 @@ class UserTable
             TextColumn::make('email')
                 ->label('E-mail')
                 ->icon(
-                    fn (User $user): ?string => ! $user->email_verified_at
+                    fn(User $user): ?string => !$user->email_verified_at
                         ? 'heroicon-m-exclamation-triangle'
                         : null,
                 )
                 ->tooltip(
-                    fn (TextColumn $column): ?string => ! $column->getRecord()
+                    fn(TextColumn $column): ?string => !$column->getRecord()
                         ->email_verified_at
                         ? 'E-mail не подтверждён'
                         : null,
@@ -78,13 +78,13 @@ class UserTable
                 ->label('Роль')
                 ->badge()
                 ->color(
-                    fn (RoleEnum $state): string => match ($state) {
+                    fn(RoleEnum $state): string => match ($state) {
                         RoleEnum::Admin => 'danger',
                         default => 'info',
                     },
                 )
                 ->formatStateUsing(
-                    fn (RoleEnum $state): string => $state->label(),
+                    fn(RoleEnum $state): string => $state->label(),
                 )
                 ->searchable()
                 ->sortable(),

@@ -9,7 +9,7 @@ trait HasMetaTitle
     protected static function bootHasMetaTitle(): void
     {
         static::saving(function (Model $record): void {
-            if ( ! $record->meta_title) {
+            if (!$record->meta_title) {
                 $record->meta_title = $record->title;
             }
         });

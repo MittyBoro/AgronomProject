@@ -75,9 +75,9 @@ class CategoryForm extends BaseForm
                 ->imageEditor()
                 ->imageResizeMode('cover')
                 ->imageCropAspectRatio('1:1')
-                ->imageResizeTargetWidth(fn (): ?int => Category::$mediaMaxWidth)
+                ->imageResizeTargetWidth(fn(): ?int => Category::$mediaMaxWidth)
                 ->imageResizeTargetHeight(
-                    fn (): ?int => Category::$mediaMaxWidth,
+                    fn(): ?int => Category::$mediaMaxWidth,
                 ),
         ];
     }
@@ -86,10 +86,10 @@ class CategoryForm extends BaseForm
     {
         return parent::informationSection([
             Placeholder::make('products')
-                ->visible(fn (?Category $record): bool => (bool) $record)
+                ->visible(fn(?Category $record): bool => (bool) $record)
                 ->label('Товары')
                 ->content(
-                    fn (?Category $record) => Action::make(
+                    fn(?Category $record) => Action::make(
                         $record->products()->count() . ' шт.',
                     )
                         ->icon('heroicon-o-shopping-cart')

@@ -54,10 +54,10 @@ class ReviewForm extends BaseForm
                         ->image()
                         ->imageEditor()
                         ->imageResizeTargetWidth(
-                            fn (): ?int => Review::$mediaMaxWidth,
+                            fn(): ?int => Review::$mediaMaxWidth,
                         )
                         ->imageResizeTargetHeight(
-                            fn (): ?int => Review::$mediaMaxWidth,
+                            fn(): ?int => Review::$mediaMaxWidth,
                         ),
                 ]),
 
@@ -74,9 +74,9 @@ class ReviewForm extends BaseForm
         return [
             Placeholder::make('user')
                 ->label('Автор отзыва')
-                ->hidden(fn (?Review $record) => ! $record)
+                ->hidden(fn(?Review $record) => !$record)
                 ->content(
-                    fn (?Review $record) => new HtmlString(
+                    fn(?Review $record) => new HtmlString(
                         '<a class="text-primary-500" href="' .
                             UserResource::getUrl('edit', [
                                 'record' => $record->user,
@@ -88,9 +88,9 @@ class ReviewForm extends BaseForm
                 ),
             Placeholder::make('product')
                 ->label('Товар')
-                ->hidden(fn (?Review $record) => ! $record)
+                ->hidden(fn(?Review $record) => !$record)
                 ->content(
-                    fn (?Review $record) => new HtmlString(
+                    fn(?Review $record) => new HtmlString(
                         '<a class="block text-primary-500 max-w-60 truncate" href="' .
                             ProductResource::getUrl('edit', [
                                 'record' => $record->product,

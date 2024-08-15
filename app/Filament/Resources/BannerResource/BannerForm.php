@@ -4,23 +4,16 @@ namespace App\Filament\Resources\BannerResource;
 
 use App\Filament\Forms\BaseForm;
 use App\Filament\Forms\MediaUpload;
-use App\Filament\Forms\SlugInput;
 use App\Models\Banner;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Split;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
 
 class BannerForm extends BaseForm
 {
@@ -45,7 +38,7 @@ class BannerForm extends BaseForm
                                 ->tooltip('Поставить по умолчанию')
                                 ->icon('heroicon-m-cube-transparent')
                                 ->color('gray')
-                                ->action(function (Set $set, $state) {
+                                ->action(function (Set $set, $state): void {
                                     $set('url', config('app.url') . '/catalog');
                                 }),
                         ),
@@ -63,7 +56,7 @@ class BannerForm extends BaseForm
                             Action::make('set_default')
                                 ->label('+ 1 день')
                                 ->color('gray')
-                                ->action(function (Set $set, $state) {
+                                ->action(function (Set $set, $state): void {
                                     $set(
                                         'published_until',
                                         Carbon::parse($state)

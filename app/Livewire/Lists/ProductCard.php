@@ -9,9 +9,8 @@ class ProductCard extends Component
 {
     public Product $product;
 
-    public function mount($product)
+    public function mount($product): void
     {
         $this->product = $product;
     }
-
 }

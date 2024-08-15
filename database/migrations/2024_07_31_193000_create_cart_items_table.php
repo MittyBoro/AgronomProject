@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -20,10 +19,18 @@ return new class() extends Migration
             $table->timestamps();
         });
 
-        Schema::create('cart_item_product_variation', function (Blueprint $table): void {
+        Schema::create('cart_item_product_variation', function (
+            Blueprint $table,
+        ): void {
             $table->foreignId('cart_item_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('product_variation_id')->constrained()->cascadeOnDelete();
-            $table->unique(['cart_item_id', 'product_variation_id'], 'ci_id_pv_id_unique');
+            $table
+                ->foreignId('product_variation_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->unique(
+                ['cart_item_id', 'product_variation_id'],
+                'ci_id_pv_id_unique',
+            );
         });
     }
 

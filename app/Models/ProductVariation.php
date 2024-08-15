@@ -49,6 +49,10 @@ class ProductVariation extends Model
      */
     public function group()
     {
-        return $this->belongsTo(VariationGroup::class, 'variation_group_id', 'id');
+        return $this->belongsTo(
+            VariationGroup::class,
+            'variation_group_id',
+            'id',
+        );
     }
 }

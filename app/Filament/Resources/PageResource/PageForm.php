@@ -12,8 +12,8 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -76,7 +76,6 @@ class PageForm extends BaseForm
                 ->collapseAllAction(fn(Action $action) => $action->hidden())
                 ->expandAllAction(fn(Action $action) => $action->hidden())
                 ->blocks([
-
                     // Простой текст
                     Builder\Block::make('text')
                         ->label('Текст')

@@ -38,8 +38,8 @@ class TheAdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
-            ->brandLogo(fn () => view('filament.logo'))
-            ->favicon(fn () => Vite::asset('resources/panel/images/favicon.svg'))
+            ->brandLogo(fn() => view('filament.logo'))
+            ->favicon(fn() => Vite::asset('resources/panel/images/favicon.svg'))
             ->discoverResources(
                 in: app_path('Filament/Resources'),
                 for: 'App\\Filament\\Resources',
@@ -59,7 +59,7 @@ class TheAdminPanelProvider extends PanelProvider
             ->navigationItems([
                 NavigationItem::make('to-frontend')
                     ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->label(fn (): string => 'Открыть сайт')
+                    ->label(fn(): string => 'Открыть сайт')
                     ->url('/', shouldOpenInNewTab: true)
                     ->group('Bottom')
                     ->sort(33),
@@ -82,7 +82,7 @@ class TheAdminPanelProvider extends PanelProvider
                     ->label('Редактировать')
                     ->icon('heroicon-o-cog-6-tooth')
                     ->url(
-                        fn (): string => UserResource::getUrl('edit', [
+                        fn(): string => UserResource::getUrl('edit', [
                             auth()->id(),
                         ]),
                     ),
@@ -90,7 +90,7 @@ class TheAdminPanelProvider extends PanelProvider
             ->sidebarWidth('16rem')
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->globalSearchFieldSuffix(
-                fn (): ?string => match (Platform::detect()) {
+                fn(): ?string => match (Platform::detect()) {
                     Platform::Windows, Platform::Linux => 'CTRL+K',
                     Platform::Mac => '⌘K',
                     default => null,
@@ -100,7 +100,7 @@ class TheAdminPanelProvider extends PanelProvider
             // vite build
             ->renderHook(
                 'panels::head.start',
-                fn (): string => Vite::useHotFile('hot')
+                fn(): string => Vite::useHotFile('hot')
                     ->useBuildDirectory('build')
                     ->withEntryPoints([
                         'resources/panel/js/app.js',

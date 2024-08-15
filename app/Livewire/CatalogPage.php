@@ -10,19 +10,22 @@ use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Session;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class CatalogPage extends Component
 {
-    use WithPagination, WithoutUrlPagination;
     use SEOToolsTrait;
+    use WithoutUrlPagination, WithPagination;
 
     private ?Category $category = null;
+
     private int $perPage = 12;
 
     public array $breadcrumbs = [['/catalog', 'Каталог']];
+
     public string $title = 'Каталог';
+
     public ?int $categoryId = null;
 
     #[Session('sort')]
@@ -35,7 +38,7 @@ class CatalogPage extends Component
         'discount' => 'Скидка',
     ];
 
-    public function mount(string $slug = null)
+    public function mount(?string $slug = null): void
     {
         $this->mountPage($slug);
     }
@@ -96,7 +99,7 @@ class CatalogPage extends Component
         }
     }
 
-    public function setSort($v)
+    public function setSort($v): void
     {
         $this->sort = $v;
         session(['sort' => $v]);

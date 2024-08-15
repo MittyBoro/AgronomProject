@@ -10,7 +10,7 @@ class BannerList extends Component
 {
     public ?Collection $banners;
 
-    public function mount()
+    public function mount(): void
     {
         $this->banners = Banner::selectPublic()->get();
 

@@ -31,20 +31,30 @@ final class CartController extends Controller
 
         $this->cartService->addToCart($product, $variationIds, $quantity);
 
-        return redirect()->route('cart.index')->with('success', 'Product added to cart');
+        return redirect()
+            ->route('cart.index')
+            ->with('success', 'Product added to cart');
     }
 
     public function remove(Request $request)
     {
-        $cartItem = $this->cartService->getCart()->items()->findOrFail($request->cart_item_id);
+        $cartItem = $this->cartService
+            ->getCart()
+            ->items()
+            ->findOrFail($request->cart_item_id);
         $this->cartService->removeFromCart($cartItem);
 
-        return redirect()->route('cart.index')->with('success', 'Product removed from cart');
+        return redirect()
+            ->route('cart.index')
+            ->with('success', 'Product removed from cart');
     }
 
     public function update(Request $request)
     {
-        $cartItem = $this->cartService->getCart()->items()->findOrFail($request->cart_item_id);
+        $cartItem = $this->cartService
+            ->getCart()
+            ->items()
+            ->findOrFail($request->cart_item_id);
         $this->cartService->updateQuantity($cartItem, $request->quantity);
 
         return redirect()->route('cart.index')->with('success', 'Cart updated');

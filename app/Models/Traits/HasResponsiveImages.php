@@ -41,7 +41,7 @@ trait HasResponsiveImages
     protected function preview(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->media->first()?->getFullUrl('jpeg'),
+            get: fn() => $this->media->first()?->getFullUrl('jpeg'),
         );
     }
 }

@@ -8,6 +8,8 @@
   "vueIndentScriptAndStyle": true,
   "htmlWhitespaceSensitivity": "ignore",
   "printWidth": 80,
+  "trailingCommaPHP": true,
+  "braceStyle": "per-cs",
   "overrides": [
     {
       "files": ["*.php"],

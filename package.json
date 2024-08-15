@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "style": "./vendor/bin/pint --repair; npx prettier --write ."
     },
     "devDependencies": {
         "@prettier/plugin-php": "^0.22.2",

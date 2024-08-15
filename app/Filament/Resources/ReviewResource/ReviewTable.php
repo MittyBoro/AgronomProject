@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\ReviewResource;
 
 use App\Filament\Resources\ReviewResource;
-use App\Filament\Resources\ReviewResource\Pages\EditReview;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\TableActions;
 use App\Filament\Tables\TableBulkActions;

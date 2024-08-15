@@ -2,13 +2,8 @@
 
 namespace App\Livewire\Product;
 
-use App\Models\Product;
-use Barryvdh\LaravelIdeHelper\Eloquent;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Modelable;
-use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -18,6 +13,7 @@ class Detail extends Component
     public array $product;
 
     public string $description;
+
     public string $grouped_variations;
 
     #[Validate('required|integer|min:1|max:99')]
@@ -26,7 +22,7 @@ class Detail extends Component
     #[Renderless]
     public ?int $activeVariationId = null;
 
-    public function mount()
+    public function mount(): void
     {
         $this->activeVariationId =
             $this->product['variations'][0]['id'] ?? null;
@@ -41,6 +37,7 @@ class Detail extends Component
                 fn(array $value) => $this->activeVariationId === $value['id'],
             );
         }
+
         return null;
     }
 
@@ -63,12 +60,13 @@ class Detail extends Component
     public function totalPrice(): ?int
     {
         $discountFactor = 1 - $this->product['discount'] / 100;
+
         return $this->product['total_price'] +
             ($this->activeVariation['price_modifier'] ?? 0) * $discountFactor;
     }
 
     #[Renderless]
-    public function incrementCount($v = 1)
+    public function incrementCount($v = 1): void
     {
         $this->count += $v;
         if ($this->count > $this->stock) {

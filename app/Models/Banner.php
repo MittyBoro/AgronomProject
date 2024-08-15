@@ -42,7 +42,9 @@ class Banner extends Model implements HasMedia
 
     public function scopeIsPublished($query): void
     {
-        $query->where('is_published', true)->where('published_until', '>', now());
+        $query
+            ->where('is_published', true)
+            ->where('published_until', '>', now());
     }
 
     public function scopeSelectPublic($query): void
