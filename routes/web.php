@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Livewire\ArticleListPage;
 use App\Livewire\ArticlePage;
+use App\Livewire\CartPage;
 use App\Livewire\CatalogPage;
 use App\Livewire\HomePage;
 use App\Livewire\ProductPage;
@@ -17,7 +18,7 @@ Route::get('/articles', ArticleListPage::class)->name('articles');
 Route::get('/articles/{article:slug}', ArticlePage::class)->name('article');
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function (): void {
-    Route::get('/', [CartController::class, 'index'])->name('index');
+    Route::get('/', CartPage::class)->name('index');
     Route::post('/add', [CartController::class, 'add'])->name('add');
     Route::delete('/remove', [CartController::class, 'remove'])->name('remove');
     Route::patch('/update', [CartController::class, 'update'])->name('update');

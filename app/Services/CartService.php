@@ -4,37 +4,73 @@ namespace App\Services;
 
 use App\Models\Cart;
 use App\Models\CartItem;
-use App\Models\Product;
-use App\Models\ProductVariation;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartService
 {
-    public function getCart()
-    {
-        $userId = Auth::id();
-        $sessionId = Session::getId();
+    private ?string $userId = null;
 
-        return Cart::firstOrCreate([
-            'user_id' => $userId,
-            'session_id' => $userId ? null : $sessionId,
+    private ?string $sessionId = null;
+
+    private ?Cart $cart;
+
+    private Collection $items;
+
+    public function __construct()
+    {
+        $this->userId = Auth::id();
+        $this->sessionId = Session::getId();
+
+        $this->cart = Cart::firstOrNew([
+            'user_id' => $this->userId,
+            'session_id' => $this->userId !== null ? null : $this->sessionId,
         ]);
     }
 
+    public function hasCart(): bool
+    {
+        return (bool) $this->cart->id;
+    }
+
+    public function getCart(): Cart
+    {
+        return $this->cart;
+    }
+
+    public function getItems(): Collection
+    {
+        return $this->cart
+            ->items()
+            ->with(['product', 'variations' => fn($q) => $q->with('group')])
+            ->get();
+    }
+
+    public function getProductItems(int $productId): Collection
+    {
+        if (!$this->cart->id) {
+            return collect();
+        }
+
+        return $this->cart
+            ->items()
+            ->with('variations')
+            ->where('product_id', $productId)
+            ->get();
+    }
+
     public function addToCart(
-        Product $product,
+        $productId,
         array $variationIds,
         int $quantity = 1,
     ) {
-        $cart = $this->getCart();
+        $this->cart->updated_at = now();
+        $this->cart->save();
 
-        $price = $this->calculatePrice($product, $variationIds);
-
-        $cartItem = $cart->items()->create([
-            'product_id' => $product->id,
+        $cartItem = $this->cart->items()->create([
+            'product_id' => $productId,
             'quantity' => $quantity,
-            'price' => $price,
         ]);
 
         $cartItem->variations()->attach($variationIds);
@@ -42,16 +78,24 @@ class CartService
         return $cartItem;
     }
 
-    private function calculatePrice(Product $product, array $variationIds)
-    {
-        $price = $product->price;
+    public function firstInCart(
+        int $productId,
+        ?int $variationId = null,
+    ): ?CartItem {
+        $cart = $this->getCart();
+        $cartItem = $cart
+            ->items()
+            ->where('product_id', $productId)
+            ->when(
+                $variationId,
+                fn($q) => $q->whereHas(
+                    'variations',
+                    fn($query) => $query->where('id', $variationId),
+                ),
+            )
+            ->first();
 
-        $variations = ProductVariation::whereIn('id', $variationIds)->get();
-        foreach ($variations as $variation) {
-            $price += $variation->price_modifier;
-        }
-
-        return $price;
+        return $cartItem;
     }
 
     public function removeFromCart(CartItem $cartItem): void
@@ -76,8 +120,8 @@ class CartService
 
     public function getCartTotal()
     {
-        $cart = $this->getCart();
+        $items = $this->getItems();
 
-        return $cart->items->sum(fn($item) => $item->quantity * $item->price);
+        return $items->sum(fn($item) => $item->quantity * $item->price);
     }
 }

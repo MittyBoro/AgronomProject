@@ -76,6 +76,9 @@
   @include media-breakpoint-down(md) {
     display: none;
   }
+  .product__price--old {
+    margin: 0;
+  }
 }
 .cart__item-quantity--button {
   max-height: 36px;
@@ -140,4 +143,17 @@
   .cart__table-cell {
     display: table-cell;
   }
+}
+
+.cart__empty {
+  text-align: center;
+}
+
+.cart__empty-image {
+  font-size: 72px;
+}
+.cart__empty-text {
+  margin: 20px 0 30px;
+  font-size: 27px;
+  font-weight: 500;
 }

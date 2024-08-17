@@ -225,6 +225,7 @@
 .product__button--cart {
   padding: 20px;
   flex-grow: 1;
+  max-width: 140px;
   @include media-breakpoint-down(lg) {
     order: 5;
     width: 100%;

@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Product;
-use App\Models\Review;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -16,19 +15,17 @@ class ProductPage extends Component
 
     public ?Collection $similar;
 
-    public ?Collection $reviews;
-
     public array $breadcrumbs = [['/catalog', 'Каталог']];
 
     public function mount($slug): void
     {
         $this->product = Product::whereSlug($slug)
             ->selectPublic(full: true)
-            ->firstOrFail()
-            ->append('grouped_variations');
+            ->firstOrFail();
+
+        $this->product->append('grouped_variations');
 
         $this->setBreadcrumbs();
-        $this->setReviews();
         $this->setSimilar();
     }
 
@@ -57,14 +54,6 @@ class ProductPage extends Component
             )
             ->limit(4)
             ->inRandomOrder()
-            ->get();
-    }
-
-    private function setReviews(): void
-    {
-        $this->reviews = Review::selectPublic()
-            ->where('product_id', $this->product->id)
-            ->limit(50)
             ->get();
     }
 }

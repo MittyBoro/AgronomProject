@@ -3,10 +3,10 @@
   <x-main.breadcrumbs :list="$breadcrumbs" />
 
   {{-- product --}}
-  <section class="product product__section">
+  <section class="product product__section" wire:loading.class="loading">
     <div class="product__container container">
       {{-- gallery --}}
-      <x-swiper.product-gallery :media="$product->media" />
+      <x-product.gallery :media="$product->media" />
 
       {{-- right details --}}
       <livewire:product.detail :product="$product->toArray()" />
