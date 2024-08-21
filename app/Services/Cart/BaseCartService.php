@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
 use Closure;
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 abstract class BaseCartService
 {
     protected Cart $cart;
+
     protected Collection $items;
 
     protected ?string $userId = null;
@@ -47,7 +49,7 @@ abstract class BaseCartService
         // проверка наличия продукта и вариации
         $product = $this->findProduct($productId, $variationId);
         if (!$product) {
-            throw new \Exception('Товар не найден');
+            throw new Exception('Товар не найден');
         }
 
         $stock = $product->variation?->stock ?? $product->stock;
@@ -87,25 +89,25 @@ abstract class BaseCartService
 
     public function items(
         bool $full = true,
-        Closure $callback = null,
+        ?Closure $callback = null,
         bool $loadRelated = true,
     ): Collection {
         if (!$this->cart->id) {
             return collect();
-        } else {
-            return $this->cart
-                ->items()
-                ->when($callback, $callback)
-                ->when(
-                    $loadRelated,
-                    fn($q) => $q->when(
-                        $full,
-                        fn($q) => $q->with('product.media', 'variation'),
-                        fn($q) => $q->with('product', 'variation'),
-                    ),
-                )
-                ->get();
         }
+
+        return $this->cart
+            ->items()
+            ->when($callback, $callback)
+            ->when(
+                $loadRelated,
+                fn($q) => $q->when(
+                    $full,
+                    fn($q) => $q->with('product.media', 'variation'),
+                    fn($q) => $q->with('product', 'variation'),
+                ),
+            )
+            ->get();
     }
 
     public function count(): int
@@ -115,7 +117,8 @@ abstract class BaseCartService
 
     public function totalPrice(?Collection $items = null): ?int
     {
-        $items = $items ?? $this->items(full: false);
+        $items ??= $this->items(full: false);
+
         return $items->sum(
             fn($item): float => $item->quantity * $item->total_price,
         ) ?? 0;

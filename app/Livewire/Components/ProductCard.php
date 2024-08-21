@@ -3,21 +3,19 @@
 namespace App\Livewire\Components;
 
 use App\Models\Product;
-use App\Services\Cart\CartService;
 use App\Services\Cart\WishListService;
-use Livewire\Attributes\Computed;
-use Livewire\Attributes\On;
 use Livewire\Attributes\Renderless;
 use Livewire\Component;
 
 class ProductCard extends Component
 {
     public Product $product;
+
     private WishListService $wishlistService;
 
     public $inWishlist = false;
 
-    public function boot(WishListService $wishlistService)
+    public function boot(WishListService $wishlistService): void
     {
         $this->wishlistService = $wishlistService;
 

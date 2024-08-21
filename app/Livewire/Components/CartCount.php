@@ -2,8 +2,6 @@
 
 namespace App\Livewire\Components;
 
-use App\Enums\CartListType;
-use App\Enums\CartTypeEnum;
 use App\Services\Cart\CartService;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -11,6 +9,7 @@ use Livewire\Component;
 class CartCount extends Component
 {
     public ?int $count;
+
     public string $class = '';
 
     #[On('cart-updated')]

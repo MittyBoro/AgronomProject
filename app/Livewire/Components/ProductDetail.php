@@ -14,10 +14,13 @@ class ProductDetail extends Component
     public array $product;
 
     private CartService $cartService;
+
     private WishListService $wishlistService;
 
     public bool $inCart = false;
+
     public int $quantity = 1;
+
     public ?int $activeVariationId = null;
 
     public function boot(
@@ -69,6 +72,7 @@ class ProductDetail extends Component
             if (!empty($variations)) {
                 $this->activeVariationId =
                     $this->product['variations'][0]['id'];
+
                 return;
             }
         } else {
@@ -109,6 +113,7 @@ class ProductDetail extends Component
         );
         if (!$add) {
             $this->addError('cart', 'Не удалось добавить товар в корзину');
+
             return;
         }
 

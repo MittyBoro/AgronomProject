@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use App\Livewire\ArticleListPage;
 use App\Livewire\ArticlePage;
 use App\Livewire\CartPage;

@@ -11,7 +11,6 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\WithoutUrlPagination;
 
 class CatalogPage extends Component
 {

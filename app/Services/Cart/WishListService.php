@@ -32,12 +32,12 @@ class WishListService extends BaseCartService
         if ($this->inList($productId)) {
             $this->delete($productId);
             $this->productIds = array_diff($this->productIds, [$productId]);
-            return false;
-        } else {
-            $this->add($productId);
-            $this->productIds[] = $productId;
 
-            return true;
+            return false;
         }
+        $this->add($productId);
+        $this->productIds[] = $productId;
+
+        return true;
     }
 }

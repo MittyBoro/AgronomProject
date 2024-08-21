@@ -17,6 +17,7 @@ class CartPage extends Component
     public Collection $items;
 
     public int $totalPrice;
+
     private CartService $cartService;
 
     public function boot(CartService $cartService): void

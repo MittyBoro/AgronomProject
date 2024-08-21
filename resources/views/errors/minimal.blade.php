@@ -15,8 +15,9 @@
         <div class="page__container container">
           <div class="head-row">
             <div class="head-row__pretitle">
-              Ошибка
+              {
               @yield('code')
+              }
             </div>
             <div class="head-row__title">
               <h1>@yield('title')</h1>

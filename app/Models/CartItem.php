@@ -2,14 +2,10 @@
 
 namespace App\Models;
 
-use App\Enums\CartTypeEnum;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Facades\DB;
 
 class CartItem extends Model
 {
@@ -78,6 +74,7 @@ class CartItem extends Model
             get: function () {
                 $price =
                     $this->product->price + $this->variation?->price_modifier;
+
                 return $price;
             },
         )->shouldCache();

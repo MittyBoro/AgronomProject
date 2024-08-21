@@ -42,11 +42,15 @@
   }
   .head-row__pretitle {
     @include media-breakpoint-up(lg) {
-      font-size: 27px;
+      font-size: 48px;
+    }
+    &::before {
+      display: none;
     }
   }
   .head-row__title {
-    margin-bottom: 30px;
+    margin-bottom: 27px;
+    font-size: 30px;
     text-align: center;
   }
   .header__logo {

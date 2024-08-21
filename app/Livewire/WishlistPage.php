@@ -6,12 +6,12 @@ use App\Services\Cart\WishListService;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\WithoutUrlPagination;
 
 class WishlistPage extends Component
 {
     use SEOToolsTrait;
     use WithPagination;
+
     private int $perPage = 24;
 
     public array $breadcrumbs = [
@@ -25,7 +25,8 @@ class WishlistPage extends Component
     {
         $this->wishlistService = $wishlistService;
     }
-    public function mount()
+
+    public function mount(): void
     {
         $this->seo()->setTitle('Избранное');
         $this->seo()->metatags()->addMeta('robots', 'noindex, nofollow');
