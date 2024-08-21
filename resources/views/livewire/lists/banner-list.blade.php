@@ -15,7 +15,7 @@
         keyboard="true"
       >
         @foreach ($banners as $banner)
-          <swiper-slide>
+          <swiper-slide :key="$banner->id">
             <div
               class="banner__card"
               onclick="location.href='{{ $banner->button_url }}'"

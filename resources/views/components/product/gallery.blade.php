@@ -9,7 +9,11 @@
   @foreach ($media->sortBy('order_column') as $item)
     <swiper-slide>
       <div class="product__image">
-        <x-main.picture class="object-cover" :media="$item" />
+        <x-main.picture
+          :key="$item->id"
+          class="object-cover"
+          :media="$item"
+        />
       </div>
     </swiper-slide>
   @endforeach

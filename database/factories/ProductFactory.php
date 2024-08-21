@@ -18,11 +18,14 @@ class ProductFactory extends BaseFactory
      */
     public function configure(): static
     {
-        return $this->has(
-            ProductVariation::factory()->count(rand(1, 5)),
-            'variations',
-        )->afterCreating(function (Product $product): void {
+        return $this->afterCreating(function (Product $product): void {
             $product->categories()->attach(Category::all()->random(rand(1, 3)));
+
+            ProductVariation::factory()
+                ->count(rand(0, 3))
+                ->create([
+                    'product_id' => $product->id,
+                ]);
 
             if ($this->loadMedia()) {
                 foreach (range(1, rand(1, 2)) as $v) {
@@ -49,10 +52,10 @@ class ProductFactory extends BaseFactory
             'title' => $title,
             'description' => $this->faker->text(),
 
-            'price' => round($this->faker->numberBetween(500, 9000), -2),
+            'price' => round($this->faker->numberBetween(500, 5000), -2),
             'stock' => $this->faker->numberBetween(0, 1000),
-            'is_published' => $this->faker->boolean(80),
-            'discount' => rand(0, 3) ? rand(10, 50) : 0,
+            'is_published' => $this->faker->boolean(95),
+            'discount' => rand(0, 3) ? rand(1, 5) * 10 : 0,
 
             'meta_title' => $title,
             'meta_description' => $this->faker->text(),

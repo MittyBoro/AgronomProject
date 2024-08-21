@@ -49,6 +49,10 @@
     height: auto;
   }
 }
+.product__card-image--link {
+  position: absolute;
+  inset: 0;
+}
 .products__badge,
 .product__card-badge {
   font-size: 16px;
@@ -88,6 +92,10 @@
   height: 34px;
   border-radius: 50%;
   background: var(--white);
+  &.active {
+    background: var(--primary-color);
+    color: #fff;
+  }
   .icon {
     margin: auto;
     font-size: 24px;

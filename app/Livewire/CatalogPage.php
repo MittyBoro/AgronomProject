@@ -10,17 +10,17 @@ use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Session;
 use Livewire\Component;
-use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
 
 class CatalogPage extends Component
 {
     use SEOToolsTrait;
-    use WithoutUrlPagination, WithPagination;
+    use WithPagination;
 
     private ?Category $category = null;
 
-    private int $perPage = 12;
+    private int $perPage = 24;
 
     public array $breadcrumbs = [['/catalog', 'Каталог']];
 

@@ -89,20 +89,26 @@
     <div class="product__quantity">
       <div
         class="button button-alt product__button product__button--quantity product__button--minus"
-        @click="$wire.set('quantity', --$wire.quantity)"
+        :class="{disabled: $wire.quantity < 2}"
+        {{-- wire:click добавляет в начало аттрибута "$wire.{...}" --}}
+        wire:click.debounce.500ms="get('inCart') && $wire.set('quantity', $wire.quantity)"
+        @click="$wire.quantity--"
       >
         <x-main.icon src="icons/minus.svg" />
       </div>
       <input
         class="button button-input product__button product__button--quantity product__button--input"
         type="number"
-        wire:model.number="quantity"
+        wire:model.blur="quantity"
         min="1"
         :max="$wire.get('stock')"
       />
       <div
         class="button button-alt product__button--quantity product__button--plus"
-        @click="$wire.set('quantity', ++$wire.quantity)"
+        :class="{disabled: $wire.quantity >= 100 || $wire.quantity >= $wire.stock}"
+        {{-- wire:click добавляет в начало аттрибута "$wire.{...}" --}}
+        wire:click.debounce.500ms="get('inCart') && $wire.set('quantity', $wire.quantity)"
+        @click="$wire.quantity++"
       >
         <x-main.icon src="icons/plus.svg" />
       </div>
@@ -121,14 +127,23 @@
         wire:navigate
         class="button button-alt product__button product__button--cart"
       >
-        В корзине
+        <x-main.icon src="icons/check.svg" />
+        <span>В корзине </span>
       </a>
     @endif
 
     {{-- to wishlist --}}
-    <button class="button button-alt product__button product__button--favorite">
+    <button
+      wire:click="toggleWishlist"
+      @class(['button product__button product__button--favorite', 'button-alt ' => ! $this->inWishlist])
+    >
       <x-main.icon src="icons/heart.svg" />
     </button>
+    @error('cart')
+      <div class="product__errors">
+        {{ $message }}
+      </div>
+    @enderror
   </div>
 
   {{-- delivery --}}

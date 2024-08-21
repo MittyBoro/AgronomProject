@@ -18,7 +18,7 @@
           </div>
           <div class="cart__table-body">
             @foreach ($items as $item)
-              <livewire:cart.item :key="$item->id" :$item />
+              <livewire:components.cart-item :key="$item->id" :$item />
             @endforeach
           </div>
         </div>
@@ -41,11 +41,11 @@
           </div>
         </div>
       @else
-        <div class="cart__empty">
-          <div class="cart__empty-image">
-            <x-main.icon src="icons/cart.svg" />
+        <div class="list__empty">
+          <div class="list__empty-image">
+            <x-main.icon src="icons/leaf.svg" />
           </div>
-          <div class="cart__empty-text">Ваша корзина пуста :(</div>
+          <div class="list__empty-text">Ваша корзина пуста</div>
           <a href="/catalog" class="button" wire:navigate>К покупкам</a>
         </div>
       @endif

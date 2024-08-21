@@ -56,9 +56,9 @@ class Product extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'price' => 'decimal:0',
-            'total_price' => 'decimal:0',
-            'discount' => 'decimal:0',
+            'price' => 'integer',
+            'total_price' => 'integer',
+            'discount' => 'integer',
             'stock' => 'integer',
             'is_published' => 'boolean',
         ];

@@ -1,29 +1,31 @@
 <?php
 
-namespace App\Livewire\Product;
+namespace App\Livewire\Components;
 
-use App\Services\CartService;
+use App\Services\Cart\CartService;
+use App\Services\Cart\WishListService;
 use Illuminate\Support\Arr;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
-class Detail extends Component
+class ProductDetail extends Component
 {
     public array $product;
 
-    public string $description;
-
-    public ?int $activeVariationId = null;
-
     private CartService $cartService;
+    private WishListService $wishlistService;
 
     public bool $inCart = false;
-
     public int $quantity = 1;
+    public ?int $activeVariationId = null;
 
-    public function boot(CartService $cartService): void
-    {
+    public function boot(
+        CartService $cartService,
+        WishListService $wishlistService,
+    ): void {
         $this->cartService = $cartService;
+        $this->wishlistService = $wishlistService;
     }
 
     public function mount(): void
@@ -31,38 +33,62 @@ class Detail extends Component
         $this->setActiveVariation();
     }
 
+    #[Computed]
+    #[On('wishlist-updated')]
+    public function inWishlist(): bool
+    {
+        return $this->wishlistService->inList($this->product['id']);
+    }
+
+    // добавить в вишлист
+    public function toggleWishlist(): void
+    {
+        $this->wishlistService->toggle($this->product['id']);
+
+        $this->dispatch('wishlist-updated');
+    }
+
     // устанавливает активную вариацию, помечает кол-во и наличие в корзине
+    // если нет вариации, то устанавливает первую
     private function setActiveVariation(): void
     {
         $variations = Arr::pluck($this->product['variations'], 'id');
-        if (empty($variations)) {
-            return;
-        }
 
-        $activeVariationId = $this->product['variations'][0]['id']; // default
-
+        // найти вариацию без загрузки зависимостей
         $cartItem = $this->cartService
-            ->getProductItems($this->product['id'])
+            ->items(
+                full: false,
+                loadRelated: false,
+                callback: fn($q) => $q
+                    ->where('product_id', $this->product['id'])
+                    ->whereIn('product_variation_id', $variations),
+            )
             ->first();
 
-        if ($cartItem) {
-            $activeVariation = $cartItem->variations->first()?->id;
-
-            if (in_array($activeVariation, $variations)) {
-                $activeVariationId = $activeVariation;
-
-                $this->inCart = true;
-                $this->quantity = $cartItem->quantity;
+        if (!$cartItem) {
+            if (!empty($variations)) {
+                $this->activeVariationId =
+                    $this->product['variations'][0]['id'];
+                return;
             }
+        } else {
+            $this->quantity = $cartItem->quantity;
+            $this->activeVariationId = $cartItem->product_variation_id;
+            $this->inCart = true;
         }
-
-        $this->activeVariationId = $activeVariationId;
     }
 
     // проверяет есть ли в корзине активная вариация
-    public function updatedActiveVariationId($vId): void
+    public function updatedActiveVariationId(int $variationId): void
     {
-        $cartItem = $this->cartService->firstInCart($this->product['id'], $vId);
+        $cartItem = $this->cartService
+            ->items(
+                false,
+                fn($q) => $q
+                    ->where('product_id', $this->product['id'])
+                    ->where('product_variation_id', $variationId),
+            )
+            ->first();
 
         if ($cartItem) {
             $this->quantity = $cartItem->quantity;
@@ -76,13 +102,18 @@ class Detail extends Component
     // добавляет товар в корзину
     public function addToCart(CartService $cartService): void
     {
-        $cartService->addToCart(
+        $add = $cartService->add(
             $this->product['id'],
-            [$this->activeVariationId],
+            $this->activeVariationId,
             $this->quantity,
         );
+        if (!$add) {
+            $this->addError('cart', 'Не удалось добавить товар в корзину');
+            return;
+        }
 
         $this->inCart = true;
+        $this->dispatch('cart-updated');
     }
 
     // получить текущую вариацию товара, если есть
@@ -125,22 +156,18 @@ class Detail extends Component
     {
         $discountFactor = 1 - $this->product['discount'] / 100;
 
-        $activeVariation = $this->getActiveVariation();
-
-        return $this->product['total_price'] +
-            ($activeVariation['price_modifier'] ?? 0) * $discountFactor;
+        return $this->price() * $discountFactor;
     }
 
     // количество
     public function updatedQuantity(int $v): void
     {
-        $this->quantity = $v;
-        if ($this->quantity > $this->stock) {
-            $this->quantity = $this->stock;
-        }
-        if ($this->quantity < 1) {
-            $this->quantity = 1;
-        }
+        $this->quantity = match (true) {
+            $v < 1 => 1,
+            $v > $this->stock => $this->stock,
+            $v > 100 => 100,
+            default => $v,
+        };
 
         $this->updateCartQuantity();
     }
@@ -151,13 +178,10 @@ class Detail extends Component
         if (!$this->inCart) {
             return;
         }
-        $cartItem = $this->cartService->firstInCart(
+        $this->cartService->add(
             $this->product['id'],
             $this->activeVariationId,
+            $this->quantity,
         );
-
-        if ($cartItem) {
-            $this->cartService->updateQuantity($cartItem, $this->quantity);
-        }
     }
 }

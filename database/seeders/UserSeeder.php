@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        User::firstOrCreate([
             'id' => 1,
             'name' => 'Dima Boro',
             'first_name' => 'Дмитрий',

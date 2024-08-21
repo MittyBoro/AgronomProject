@@ -8,7 +8,7 @@
       />
       <div class="reviews__list">
         @foreach ($reviews as $review)
-          <div class="review__card">
+          <div :key="$review->id" class="review__card">
             <div class="review__card-name">{{ $review->name }}</div>
             @if ($review->relationLoaded('product'))
               <a

@@ -50,11 +50,19 @@
       <x-main.icon class="header__search-icon link" src="icons/search.svg" />
     </div>
     <div class="header__icons">
-      <a class="header__icon link" href="/account-favorites" wire:navigate>
+      <a class="header__icon link" href="/wishlist" wire:navigate>
         <x-main.icon src="icons/heart.svg" />
+        <livewire:components.wishlist-count
+          class="header__icon--badge"
+          list="wishlist"
+        />
       </a>
       <a class="header__icon link" href="/cart" wire:navigate>
         <x-main.icon src="icons/cart.svg" />
+        <livewire:components.cart-count
+          class="header__icon--badge"
+          list="cart"
+        />
       </a>
       <a class="header__icon link" href="/account-index" wire:navigate>
         <x-main.icon src="icons/user.svg" />

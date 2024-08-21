@@ -9,21 +9,20 @@
       <x-product.gallery :media="$product->media" />
 
       {{-- right details --}}
-      <livewire:product.detail :product="$product->toArray()" />
+      <livewire:components.product-detail :product="$product->toArray()" />
     </div>
   </section>
+
+  {{-- Популярные товары --}}
+  <x-product.list
+    title="C этим товаром покупают"
+    :products="$similar"
+    :button="['/catalog', 'В каталог']"
+  />
 
   {{-- Отзывы --}}
   <livewire:lists.review-list
     title="Отзывы покупателей"
     :product_id="$product->id"
-  />
-
-  {{-- Популярные товары --}}
-  <x-product.list
-    title="C этим товаром покупают"
-    pretitle="Похожие"
-    :products="$similar"
-    :button="['/catalog', 'В каталог']"
   />
 </main>

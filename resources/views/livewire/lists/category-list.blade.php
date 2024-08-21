@@ -22,6 +22,7 @@
         <div class="categories__list">
           @foreach ($categories as $category)
             <x-category.card
+              :key="$category->id"
               :category="$category"
               :active="$activeIndex === $loop->index"
             />

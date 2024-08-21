@@ -35,7 +35,7 @@ class ProductVariation extends Model
     {
         return [
             'stock' => 'integer',
-            'price_modifier' => 'decimal:2',
+            'price_modifier' => 'integer',
         ];
     }
 
@@ -59,7 +59,7 @@ class ProductVariation extends Model
         );
     }
 
-    public function fullTitle(): Attribute
+    protected function fullTitle(): Attribute
     {
         return Attribute::make(
             get: fn() => $this->group->title . ': ' . $this->title,
