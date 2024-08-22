@@ -64,9 +64,31 @@
           list="cart"
         />
       </a>
-      <a class="header__icon link" href="/account-index" wire:navigate>
+      <div class="header__dropdown header__icon">
         <x-main.icon src="icons/user.svg" />
-      </a>
+        <div class="header__dropdown-list">
+          <a
+            class="header__dropdown-item link"
+            href="{{ route('register') }}"
+            rel="nofollow"
+            wire:navigate
+          >
+            <x-main.icon src="icons/sign_up.svg" />
+            <span>Регистрация</span>
+          </a>
+          <a
+            class="header__dropdown-item link"
+            href="{{ route('login') }}"
+            rel="nofollow"
+            wire:navigate
+          >
+            <span style="transform: translateX(-2px)">
+              <x-main.icon src="icons/sign_in.svg" />
+            </span>
+            <span>Вход</span>
+          </a>
+        </div>
+      </div>
       <div class="header__icon header__icon-menu" data-popup=".popup__menu">
         <x-main.icon src="icons/menu.svg" />
       </div>

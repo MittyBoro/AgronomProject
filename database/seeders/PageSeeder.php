@@ -36,6 +36,8 @@ class PageSeeder extends Seeder
             ['slug' => 'articles', 'title' => 'Статьи'],
             ['slug' => 'about', 'title' => 'О нас'],
             ['slug' => 'contacts', 'title' => 'Контакты'],
+            ['slug' => 'privacy', 'title' => 'Политика конфиденциальности'],
+            ['slug' => 'payment', 'title' => 'Оплата'],
             ['slug' => 'delivery', 'title' => 'Доставка'],
             // ['slug' => 'simple-page', 'title' => 'Простая страница'],
         ];

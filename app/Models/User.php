@@ -7,6 +7,7 @@ use App\Enums\GenderEnum;
 use App\Enums\RoleEnum;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +17,7 @@ use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, MustVerifyEmail, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
