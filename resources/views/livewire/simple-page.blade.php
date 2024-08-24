@@ -2,7 +2,7 @@
   {{-- хлебушек --}}
   <x-main.breadcrumbs :list="$breadcrumbs" />
 
-  {{-- article --}}
+  {{-- текст --}}
   <section class="page__section">
     <div class="page__container container">
       <div class="page__title head-row__title">

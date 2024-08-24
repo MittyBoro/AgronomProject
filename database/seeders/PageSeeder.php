@@ -13,6 +13,7 @@ class PageSeeder extends Seeder
     public function run(): void
     {
         $pages = [
+            //
             [
                 'slug' => '/',
                 'title' => 'Главная',
@@ -30,16 +31,59 @@ class PageSeeder extends Seeder
                     ],
                 ],
             ],
+            //
             ['slug' => 'catalog', 'title' => 'Каталог'],
-            // ['slug' => 'product', 'title' => 'Товар'],
+            //
             ['slug' => 'loyalty', 'title' => 'Бонусная программа'],
+            //
             ['slug' => 'articles', 'title' => 'Статьи'],
-            ['slug' => 'about', 'title' => 'О нас'],
-            ['slug' => 'contacts', 'title' => 'Контакты'],
+            //
+            [
+                'slug' => 'about',
+                'title' => 'О нас',
+                'content' => 'Самая классная компания в мире',
+                'blocks' => [
+                    [
+                        'data' => [
+                            'value' => [
+                                'Преимущество первое',
+                                'Преимущество второе',
+                                'Преимущество третье',
+                                'Преимущество четвёртое',
+                            ],
+                        ],
+                        'type' => 'key_value',
+                    ],
+                ],
+            ],
+
+            //
+            [
+                'slug' => 'contacts',
+                'title' => 'Контакты',
+                'blocks' => [
+                    [
+                        'data' => [
+                            'value' => [
+                                'schedule' => 'ПН-ПТ 9:00-18:00, СБ 9:00-15:00',
+                                'phone_1' => '+71234567890',
+                                'phone_2' => null,
+                                'phone_3' => null,
+                                'email_1' => 'email@example.com',
+                                'email_2' => null,
+                                'email_3' => null,
+                            ],
+                        ],
+                        'type' => 'key_value',
+                    ],
+                ],
+            ],
+            //
             ['slug' => 'privacy', 'title' => 'Политика конфиденциальности'],
+            //
             ['slug' => 'payment', 'title' => 'Оплата'],
+            //
             ['slug' => 'delivery', 'title' => 'Доставка'],
-            // ['slug' => 'simple-page', 'title' => 'Простая страница'],
         ];
 
         foreach ($pages as $page) {

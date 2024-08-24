@@ -41,8 +41,6 @@ class BaseCartService
     /**
      * Сохраняет id гостевой сессии
      * потребуется при объединении корзин после входа
-     *
-     * @return void
      */
     public function saveGuestSessionId(): void
     {
@@ -60,6 +58,7 @@ class BaseCartService
     {
         return $this->userId;
     }
+
     public function getSessionId(): ?string
     {
         return $this->sessionId;

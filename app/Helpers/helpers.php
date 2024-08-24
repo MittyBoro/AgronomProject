@@ -29,3 +29,16 @@ if (!function_exists('parse_price')) {
         );
     }
 }
+
+if (!function_exists('phone_formatter')) {
+    function phone_formatter($from): string
+    {
+        return sprintf(
+            '%s %s %s %s',
+            mb_substr($from, 0, 2),
+            mb_substr($from, 2, 3),
+            mb_substr($from, 5, 3),
+            mb_substr($from, 8),
+        );
+    }
+}
