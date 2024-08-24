@@ -14,7 +14,7 @@
       @csrf
 
       <x-form.input
-        class="account-edit__form"
+        class="profile-edit__form"
         id="code"
         type="text"
         label="Код"
@@ -26,7 +26,7 @@
       />
 
       <x-form.input
-        class="account-edit__form"
+        class="profile-edit__form"
         x-cloak
         x-show="recovery"
         id="code"

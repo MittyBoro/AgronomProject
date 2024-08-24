@@ -6,21 +6,17 @@ use App\Models\Page;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Livewire\Component;
 
-class AboutPage extends Component
+class LoyaltyPage extends Component
 {
     use SEOToolsTrait;
 
     public Page $page;
 
-    public array $breadcrumbs = [['', 'О нас']];
-
-    public array $benefits = [];
+    public array $breadcrumbs = [['', 'Бонусная программа']];
 
     public function mount(): void
     {
-        $this->page = Page::publicSelect()->whereSlug('about')->firstOrFail();
-
-        $this->benefits = $this->page->attrs['list'][0] ?? [];
+        $this->page = Page::publicSelect()->whereSlug('loyalty')->firstOrFail();
 
         $this->seo()
             ->setTitle($this->page->meta_title)

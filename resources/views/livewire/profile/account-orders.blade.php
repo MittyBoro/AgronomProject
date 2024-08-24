@@ -1,7 +1,7 @@
 <x-layouts.account name="orders">
-  <div class="account-orders">
+  <div class="profile-orders">
     @foreach (range(1, 10) as $item)
-      <x-account.order :item="$item" />
+      <x-profile.order :item="$item" />
     @endforeach
   </div>
 </x-layouts.account>

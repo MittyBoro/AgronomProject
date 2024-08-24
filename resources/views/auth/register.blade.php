@@ -1,7 +1,7 @@
 <x-layouts.auth title="Регистрация">
   <form
     method="POST"
-    class="account-edit__form-grid auth__form-grid"
+    class="profile-edit__form-grid auth__form-grid"
     action="{{ route('register') }}"
     x-data="{ showAdditional: false }"
   >
@@ -9,7 +9,7 @@
 
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="first_name"
       label="Ваше имя"
       placeholder="Иван"
@@ -19,7 +19,7 @@
     />
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="middle_name"
       label="Отчество"
       placeholder="Иванович"
@@ -29,7 +29,7 @@
     />
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="last_name"
       label="Фамилия"
       placeholder="Иванов"
@@ -40,7 +40,7 @@
 
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="email"
       type="email"
       label="E-mail"
@@ -50,7 +50,7 @@
     />
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="phone"
       type="tel"
       label="Телефон"
@@ -63,7 +63,7 @@
     />
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="birthday"
       type="date"
       value="{{ old('birthday') }}"
@@ -74,7 +74,7 @@
     />
 
     <div
-      class="account-edit__form-more link"
+      class="profile-edit__form-more link"
       x-on:click="showAdditional = ! showAdditional"
     >
       <span x-show="! showAdditional">Заполнить</span>
@@ -84,7 +84,7 @@
 
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="password"
       type="password"
       label="Пароль"
@@ -94,7 +94,7 @@
     />
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="password_confirmation"
       placeholder="..."
       type="password"

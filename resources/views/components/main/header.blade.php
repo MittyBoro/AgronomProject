@@ -82,7 +82,7 @@
           @auth
             <a
               class="header__dropdown-item link"
-              href="{{ route('register') }}"
+              href="{{ route('profile.index') }}"
               rel="nofollow"
               wire:navigate
             >

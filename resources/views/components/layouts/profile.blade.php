@@ -1,32 +1,35 @@
-<x-layouts.main body_name="account">
+@php
+  SEOMeta::setTitle($title ?? 'Личный кабинет');
+  SEOMeta::addMeta('robots', 'noindex, nofollow');
+@endphp
+
+<x-layouts.app body_name="account">
   {{-- account --}}
-  <section class="account-header account-header__section account">
-    <div class="account-header__container container">
+  <section class="profile-header profile-header__section account">
+    <div class="profile-header__container container">
       <a
-        href="/account-index"
-        @class([
-          'account-header__link',
-          'active' => $attributes['name'] === 'index',
-        ])
+        href="/profile-index"
+        @class(['profile-header__link', 'active' => request()->routeIs('profile.index')])
       >
         <x-main.icon src="icons/user.svg" />
         <span>Личный кабинет</span>
       </a>
       <a
-        href="/account-favorites"
+        href="/profile-favorites"
         @class([
-          'account-header__link',
+          'profile-header__link',
           'active' => $attributes['name'] === 'favorites',
         ])
       >
         <x-main.icon src="icons/heart.svg" />
         <span>Избранное</span>
-        <span class="badge">8</span>
+
+        <livewire:components.wishlist-count class="badge" list="wishlist" />
       </a>
       <a
-        href="/account-orders"
+        href="/profile-orders"
         @class([
-          'account-header__link',
+          'profile-header__link',
           'active' => $attributes['name'] === 'orders',
         ])
       >
@@ -34,19 +37,9 @@
         <span>История заказов</span>
       </a>
       <a
-        href="/account-addresses"
+        href="/profile-loyalty"
         @class([
-          'account-header__link',
-          'active' => $attributes['name'] === 'addresses',
-        ])
-      >
-        <x-main.icon src="icons/location.svg" />
-        <span>Адреса</span>
-      </a>
-      <a
-        href="/account-loyalty"
-        @class([
-          'account-header__link',
+          'profile-header__link',
           'active' => $attributes['name'] === 'loyalty',
         ])
       >
@@ -57,11 +50,11 @@
     </div>
   </section>
 
-  <section class="account-body account-body__section account">
+  <section class="profile-body profile-body__section account">
     <div class="container">
       {{ $slot }}
     </div>
   </section>
 
   {{ $bottom ?? '' }}
-</x-layouts.main>
+</x-layouts.app>

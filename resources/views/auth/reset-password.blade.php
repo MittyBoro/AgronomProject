@@ -17,7 +17,7 @@
 
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="password"
       type="password"
       label="Новый пароль"
@@ -27,7 +27,7 @@
     />
     {{--  --}}
     <x-form.input
-      class="account-edit__form"
+      class="profile-edit__form"
       id="password_confirmation"
       placeholder="..."
       type="password"

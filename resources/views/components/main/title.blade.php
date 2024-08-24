@@ -8,7 +8,10 @@
   @endisset
 
   <div class="head-row__title">
-    <{{ $titleTag }}>{{ $title }}</{{ $titleTag }}>
+    @isset($title)
+      <{{ $titleTag }}>{{ $title }}</{{ $titleTag }}>
+    @endisset
+
     @if (! empty($button))
       <a class="button head-row__button" href="{{ $button[0] }}" wire:navigate>
         {{ $button[1] }}
