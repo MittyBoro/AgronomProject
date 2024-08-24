@@ -15,7 +15,7 @@ class WishlistPage extends Component
     private int $perPage = 24;
 
     public array $breadcrumbs = [
-        ['/id', 'Личный кабинет'],
+        ['/profile', 'Личный кабинет'],
         ['/wishlist', 'Избранное'],
     ];
 

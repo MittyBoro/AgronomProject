@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-abstract class BaseCartService
+class BaseCartService
 {
     protected Cart $cart;
 
@@ -22,21 +22,47 @@ abstract class BaseCartService
 
     protected ?string $sessionId = null;
 
-    protected function __construct(CartTypeEnum $type)
+    public function __construct(CartTypeEnum $type)
     {
         $this->userId = Auth::id();
-        $this->sessionId = Session::getId();
+        $this->sessionId = $this->userId !== null ? null : Session::getId();
+
+        if ($this->sessionId) {
+            $this->saveGuestSessionId();
+        }
 
         $this->cart = Cart::firstOrNew([
             'type' => $type,
             'user_id' => $this->userId,
-            'session_id' => $this->userId !== null ? null : $this->sessionId,
+            'session_id' => $this->sessionId,
         ]);
+    }
+
+    /**
+     * Сохраняет id гостевой сессии
+     * потребуется при объединении корзин после входа
+     *
+     * @return void
+     */
+    public function saveGuestSessionId(): void
+    {
+        if (Session::get('guest_session_id') === null) {
+            Session::put('guest_session_id', $this->sessionId);
+        }
     }
 
     public function getCart(): Cart
     {
         return $this->cart;
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+    public function getSessionId(): ?string
+    {
+        return $this->sessionId;
     }
 
     public function add(
@@ -138,6 +164,7 @@ abstract class BaseCartService
 
         return $product;
     }
+
     // add
     // remove
     // update

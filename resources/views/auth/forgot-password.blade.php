@@ -24,7 +24,7 @@
     <div class="auth__form-buttons">
       <button class="button auth__button">Отправить</button>
       <a href="{{ route('login') }}" class="link" style="margin: 10px auto 0">
-        Ой, нет, уже вспомнил(а)
+        Вспомнил пароль, войти
       </a>
     </div>
   </form>

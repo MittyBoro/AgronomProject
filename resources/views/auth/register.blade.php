@@ -112,12 +112,11 @@
         </a>
       </x-form.checkbox>
     </div>
-    <div class="auth__form-buttons" style="text-align: center">
-      @if (Route::has('password.request'))
-        <a href="{{ route('password.request') }}" class="link">
-          Уже зарегистрированы?
-        </a>
-      @endif
+    <div
+      class="auth__form-buttons"
+      style="text-align: center; justify-content: center"
+    >
+      <a href="{{ route('login') }}" class="link">Уже есть аккаут?</a>
     </div>
   </form>
 </x-layouts.auth>

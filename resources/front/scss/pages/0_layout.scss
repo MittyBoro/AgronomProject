@@ -167,6 +167,7 @@
 .header__dropdown {
   position: relative;
   cursor: pointer;
+  z-index: 20;
   &:hover {
     .header__dropdown-list {
       opacity: 1;
@@ -183,10 +184,9 @@
   background: #fff;
   filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.1));
   border-radius: 4px;
-  padding: 5px 0;
+  padding: 7px 0;
   z-index: 10;
-  font-size: 16px;
-  z-index: 1;
+  font-size: 15px;
   visibility: hidden;
   opacity: 0;
   transition-property: opacity, visibility;
@@ -208,12 +208,20 @@
   align-items: center;
   gap: 8px;
   padding: 5px 20px;
+  width: 100%;
+  white-space: nowrap;
   cursor: pointer;
   &:hover {
     background: #fbfbfb;
   }
   .icon {
     font-size: 1.7em;
+    flex-shrink: 0;
+  }
+  span {
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
