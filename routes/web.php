@@ -9,6 +9,7 @@ use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
 use App\Livewire\LoyaltyPage;
 use App\Livewire\ProductPage;
+use App\Livewire\Profile\EditPage;
 use App\Livewire\Profile\IndexPage;
 use App\Livewire\SimplePage;
 use App\Livewire\WishlistPage;
@@ -34,6 +35,7 @@ Route::prefix('/profile')
     ->middleware(['auth', 'verified'])
     ->group(function (): void {
         Route::get('/', IndexPage::class)->name('index');
+        Route::get('/edit', EditPage::class)->name('edit');
     });
 
 Route::get('/{page:slug}', SimplePage::class)->name('page');

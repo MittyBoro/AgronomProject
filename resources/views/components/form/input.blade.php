@@ -12,7 +12,9 @@
             "help"
         ])
         as $k => $v)
-        {{ $k }}="{{ $v }}"
+        @if ($v !== false)
+            {{ $k }}="{{ $v }}"
+        @endif
     @endforeach
   />
 </x-form.group>

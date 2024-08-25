@@ -41,6 +41,9 @@
   @include media-breakpoint-down(md) {
     padding: 0;
   }
+  .product__price--old {
+    margin: 0;
+  }
 }
 
 .cart__item-image-cell {
@@ -76,10 +79,15 @@
   @include media-breakpoint-down(md) {
     display: none;
   }
-  .product__price--old {
-    margin: 0;
-  }
 }
+
+.cart__item-remove {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
 .cart__item-quantity--button {
   max-height: 36px;
   max-width: 45px;

@@ -32,7 +32,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
-        ])->validatedWithBag('updateProfileInformation');
+        ])->validated();
 
         if ($user->birthday) {
             unset($data['birthday']);

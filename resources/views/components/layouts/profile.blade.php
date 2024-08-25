@@ -7,41 +7,53 @@
   {{-- account --}}
   <section class="profile-header profile-header__section account">
     <div class="profile-header__container container">
+      {{--  --}}
       <a
-        href="/profile-index"
-        @class(['profile-header__link', 'active' => request()->routeIs('profile.index')])
+        href="/profile"
+        @class([
+          'profile-header__link',
+          'active' =>
+            request()->routeIs('profile.index') || request()->routeIs('profile.edit'),
+        ])
+        wire:navigate
       >
         <x-main.icon src="icons/user.svg" />
         <span>Личный кабинет</span>
       </a>
+
+      {{--  --}}
       <a
-        href="/profile-favorites"
-        @class([
-          'profile-header__link',
-          'active' => $attributes['name'] === 'favorites',
-        ])
+        href="/wishlist"
+        @class(['profile-header__link', 'active' => request()->routeIs('wishlist')])
+        wire:navigate
       >
         <x-main.icon src="icons/heart.svg" />
         <span>Избранное</span>
 
         <livewire:components.wishlist-count class="badge" list="wishlist" />
       </a>
+
+      {{--  --}}
       <a
-        href="/profile-orders"
+        href="/profile/orders"
         @class([
           'profile-header__link',
           'active' => $attributes['name'] === 'orders',
         ])
+        wire:navigate
       >
         <x-main.icon src="icons/list.svg" />
         <span>История заказов</span>
       </a>
+
+      {{--  --}}
       <a
-        href="/profile-loyalty"
+        href="/profile/loyalty"
         @class([
           'profile-header__link',
           'active' => $attributes['name'] === 'loyalty',
         ])
+        wire:navigate
       >
         <x-main.icon src="icons/card.svg" />
         <span>Бонусы</span>

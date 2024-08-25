@@ -17,11 +17,7 @@
             <div class="info__message">{!! $info !!}</div>
           @endisset
 
-          @session('status')
-            <div class="success__message">
-              {{ $value }}
-            </div>
-          @endsession
+          <x-form.session-status />
 
           {{ $slot }}
         </div>

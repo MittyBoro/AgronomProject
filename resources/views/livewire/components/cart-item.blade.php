@@ -74,4 +74,14 @@
 
     <span>{{ price_formatter($item->total_price * $quantity) }}₽</span>
   </div>
+  {{--  --}}
+  <div class="cart__table-cell" style="width: 1%; padding-left: 0">
+    <span
+      class="cart__item-remove link"
+      wire:confirm="Удалить товар {{ $item->product->title }} из корзины?"
+      wire:click.debounce.300ms="set('quantity', 0)"
+    >
+      <x-main.icon src="icons/close.svg" />
+    </span>
+  </div>
 </div>

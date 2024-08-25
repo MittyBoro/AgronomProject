@@ -7,7 +7,7 @@
     </p>
     <form action="{{ route('logout') }}" method="POST">
       @csrf
-      <button class="button button-alt button-mini">Выйти из аккаунта</button>
+      <button class="button button-alt button-mini">Выйти</button>
     </form>
   </div>
 
@@ -74,7 +74,8 @@
     {{--  --}}
     <a
       class="profile-index__info-button button button-mini button-alt"
-      href="/profile-edit"
+      href="{{ route('profile.edit') }}"
+      wire:navigate
     >
       Редактировать
     </a>

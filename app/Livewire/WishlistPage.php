@@ -4,20 +4,17 @@ namespace App\Livewire;
 
 use App\Services\Cart\WishListService;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Layout('components.layouts.profile')]
 class WishlistPage extends Component
 {
     use SEOToolsTrait;
     use WithPagination;
 
     private int $perPage = 24;
-
-    public array $breadcrumbs = [
-        ['/profile', 'Личный кабинет'],
-        ['/wishlist', 'Избранное'],
-    ];
 
     private WishListService $wishlistService;
 
