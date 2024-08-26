@@ -24,7 +24,7 @@ class ReviewResource extends Resource
 
     protected static ?string $navigationGroup = 'Магазин';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 20;
 
     protected static ?int $newRecords = null;
 

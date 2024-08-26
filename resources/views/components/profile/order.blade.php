@@ -8,7 +8,7 @@
       ></span>
       <span>Ожидается оплата</span>
     </div>
-    <x-a.icon
+    <x-main.icon
       class="profile-order__arrow active"
       src="icons/arrow-simple.svg"
     />

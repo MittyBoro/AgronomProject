@@ -1,3 +1,4 @@
+{{-- TODO maybe --}}
 <x-layouts.account name="addresses">
   <div class="profile-addresses">
     @foreach (range(1, 3) as $item)

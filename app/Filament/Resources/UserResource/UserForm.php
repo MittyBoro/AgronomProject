@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\UserResource;
 
 use App\Enums\GenderEnum;
+use App\Enums\RoleEnum;
 use App\Models\User;
+use Closure;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
@@ -11,7 +13,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Support\RawJs;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserForm
@@ -130,6 +134,31 @@ class UserForm
                         )
                         ->rules('phone:INTERNATIONAL:ru'),
                 ]),
+
+            Select::make('role')
+                ->label('Роль')
+                ->options(RoleEnum::array())
+                ->default(RoleEnum::User)
+                ->required()
+                ->native(false)
+                ->rules([
+                    fn(Get $get): Closure => function (
+                        string $attribute,
+                        $value,
+                        Closure $fail,
+                    ) use ($get): void {
+                        if ($get('id') === 1) {
+                            if (Auth::id() !== 1) {
+                                $fail(
+                                    'Редактирование администратора запрещено.',
+                                );
+                            }
+                            if ($value !== RoleEnum::Admin->value) {
+                                $fail('Роль должна быть администратором.');
+                            }
+                        }
+                    },
+                ]),
         ];
     }
 
@@ -146,14 +175,22 @@ class UserForm
                 ->dehydrated(fn($state) => filled($state))
                 ->confirmed()
                 ->revealable(true)
-                ->disabled(fn($record) => $record && $record->is_admin),
+                ->disabled(
+                    fn(Get $get, $record) => $record &&
+                        $record->is_admin &&
+                        $get('id') !== Auth::id(),
+                ),
             TextInput::make('password_confirmation')
                 ->label('Повторите новый пароль')
                 ->password()
                 ->minLength(8)
                 ->maxLength(255)
                 ->revealable(true)
-                ->disabled(fn($record) => $record && $record->is_admin),
+                ->disabled(
+                    fn(Get $get, $record) => $record &&
+                        $record->is_admin &&
+                        $get('id') !== Auth::id(),
+                ),
         ];
     }
 }

@@ -1,4 +1,4 @@
-<x-layouts.account name="loyalty">
+<div>
   <div class="profile-loyalty">
     {{--  --}}
     <x-profile.loyalty-card>
@@ -27,6 +27,6 @@
     </div>
   </div>
   <x-slot name="bottom">
-    <x-profile.loyalty-system />
+    <livewire:lists.loyalty-list />
   </x-slot>
-</x-layouts.account>
+</div>

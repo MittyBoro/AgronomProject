@@ -38,7 +38,7 @@
         href="/profile/orders"
         @class([
           'profile-header__link',
-          'active' => $attributes['name'] === 'orders',
+          'active' => request()->routeIs('profile.orders'),
         ])
         wire:navigate
       >
@@ -51,7 +51,7 @@
         href="/profile/loyalty"
         @class([
           'profile-header__link',
-          'active' => $attributes['name'] === 'loyalty',
+          'active' => request()->routeIs('profile.loyalty'),
         ])
         wire:navigate
       >

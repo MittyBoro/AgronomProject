@@ -16,17 +16,17 @@ class BaseForm
         return Section::make([
             Placeholder::make('created_at')
                 ->label('Дата создания')
-                ->hidden(fn(?Model $record) => !$record)
+                ->hidden(fn(?Model $record) => ! $record)
                 ->content(
-                    fn(?Model $record): string => (
+                    fn(?Model $record): ?string => (
                         $record?->created_at ?? now()
-                    )->format('d.m.Y H:i'),
+                    )?->format('d.m.Y H:i'),
                 ),
             Placeholder::make('updated_at')
                 ->visible(fn(?Model $record): bool => (bool) $record)
                 ->label('Последнее обновление')
                 ->content(
-                    fn(Model $record): string => $record->updated_at->format(
+                    fn(Model $record): ?string => $record?->updated_at?->format(
                         'd.m.Y H:i',
                     ),
                 ),

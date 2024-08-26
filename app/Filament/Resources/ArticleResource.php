@@ -24,7 +24,7 @@ class ArticleResource extends Resource
 
     protected static ?string $navigationGroup = 'Прочее';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 10;
 
     public static function form(Form $form): Form
     {

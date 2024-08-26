@@ -48,5 +48,5 @@
   </section>
 
   {{--  --}}
-  <x-profile.loyalty-system />
+  <livewire:lists.loyalty-list />
 </main>

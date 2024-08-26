@@ -91,7 +91,7 @@
             </a>
             <a
               class="header__dropdown-item link"
-              href="{{ route('register') }}"
+              href="{{ route('profile.orders') }}"
               rel="nofollow"
               wire:navigate
             >
@@ -100,7 +100,7 @@
             </a>
             <a
               class="header__dropdown-item link"
-              href="{{ route('register') }}"
+              href="{{ route('profile.loyalty') }}"
               rel="nofollow"
               wire:navigate
             >
@@ -109,7 +109,7 @@
             </a>
             <a
               class="header__dropdown-item link"
-              href="{{ route('register') }}"
+              href="{{ route('profile.edit') }}"
               rel="nofollow"
               wire:navigate
             >

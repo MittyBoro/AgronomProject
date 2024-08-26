@@ -24,7 +24,7 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Магазин';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 10;
 
     public static function form(Form $form): Form
     {
