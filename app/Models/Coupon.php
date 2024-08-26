@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Loyalty extends Model
+class Coupon extends Model
 {
     use HasFactory;
 
@@ -15,10 +15,11 @@ class Loyalty extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-        'description',
+        'code',
         'percentage',
-        'min_order_sum',
+        'count',
+        'is_active',
+        'expires_at',
     ];
 
     /**
@@ -29,8 +30,15 @@ class Loyalty extends Model
     protected function casts(): array
     {
         return [
-            'min_order_sum' => 'float',
             'percentage' => 'float',
+            'count' => 'integer',
+            'is_active' => 'boolean',
+            'expires_at' => 'datetime',
         ];
+    }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', 1)->where('expires_at', '>', now());
     }
 }

@@ -28,7 +28,7 @@ class Banner extends Model implements HasMedia
         'title',
         'url',
         'is_published',
-        'published_until',
+        'expires_at',
         'order_column',
     ];
 
@@ -36,15 +36,13 @@ class Banner extends Model implements HasMedia
     {
         return [
             'is_published' => 'boolean',
-            'published_until' => 'datetime',
+            'expires_at' => 'datetime',
         ];
     }
 
     public function scopeIsPublished($query): void
     {
-        $query
-            ->where('is_published', true)
-            ->where('published_until', '>', now());
+        $query->where('is_published', true)->where('expires_at', '>', now());
     }
 
     public function scopeSelectPublic($query): void

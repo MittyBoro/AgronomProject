@@ -44,7 +44,7 @@ class BannerForm extends BaseForm
                         ),
 
                     //
-                    DateTimePicker::make('published_until')
+                    DateTimePicker::make('expires_at')
                         ->label('Опубликовано до')
                         ->live()
                         ->helperText(
@@ -58,7 +58,7 @@ class BannerForm extends BaseForm
                                 ->color('gray')
                                 ->action(function (Set $set, $state): void {
                                     $set(
-                                        'published_until',
+                                        'expires_at',
                                         Carbon::parse($state)
                                             ->addDay()
                                             ->format('Y-m-d H:i:s'),

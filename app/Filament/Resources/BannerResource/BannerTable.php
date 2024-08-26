@@ -35,7 +35,7 @@ class BannerTable
                 ToggleColumn::make('is_published')->label('Опубликовано'),
 
                 //
-                TextColumn::make('published_until')
+                TextColumn::make('expires_at')
                     ->label('Отображать до')
                     ->sortable()
                     ->date('d.m.Y H:i')
@@ -43,10 +43,10 @@ class BannerTable
                     ->tooltip(
                         fn(
                             Banner $record,
-                        ) => $record->published_until?->diffForHumans(parts: 2),
+                        ) => $record->expires_at?->diffForHumans(parts: 2),
                     )
                     ->color(
-                        fn(Banner $record): string => $record->published_until <
+                        fn(Banner $record): string => $record->expires_at <
                         now()
                             ? 'gray'
                             : 'success',
