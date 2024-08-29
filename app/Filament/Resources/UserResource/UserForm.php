@@ -90,7 +90,7 @@ class UserForm
                 ])
                 ->schema([
                     TextInput::make('email')
-                        ->label('E-mail')
+                        ->label('Email')
                         ->email()
                         ->minLength(1)
                         ->maxLength(255)

@@ -7,7 +7,7 @@
       class="auth__form"
       id="email"
       type="email"
-      label="E-mail"
+      label="Email"
       :value="old('email')"
       required
       autofocus

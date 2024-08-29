@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="profile-order__info-line profile__info-line">
-        <div class="profile-order__info-title profile__info-title">E-mail:</div>
+        <div class="profile-order__info-title profile__info-title">Email:</div>
         <div class="profile-order__info-text profile__info-text">
           JkFkA@example.com
         </div>

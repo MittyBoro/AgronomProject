@@ -42,7 +42,7 @@
   color: #fff;
 }
 .info__message {
-  box-shadow: var(--box-shadow);
+  background: var(--card-color);
   color: var(--gray-dark);
 }
 
@@ -54,6 +54,7 @@
   padding: 5px;
   box-shadow: var(--box-shadow);
 }
+
 .auth__form-buttons {
   display: flex;
   justify-content: space-between;
@@ -61,6 +62,15 @@
   gap: 15px;
   margin-top: 30px;
 }
+
+.auth__form-buttons-grid {
+  display: grid;
+  gap: 15px;
+  .button {
+    width: 100%;
+  }
+}
+
 .auth__form-buttons--register {
   flex-wrap: nowrap;
 }

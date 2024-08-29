@@ -54,7 +54,7 @@ class UserTable
                 ->wrap(),
             //
             TextColumn::make('email')
-                ->label('E-mail')
+                ->label('Email')
                 ->icon(
                     fn(User $user): ?string => !$user->email_verified_at
                         ? 'heroicon-m-exclamation-triangle'
@@ -63,7 +63,7 @@ class UserTable
                 ->tooltip(
                     fn(TextColumn $column): ?string => !$column->getRecord()
                         ->email_verified_at
-                        ? 'E-mail не подтверждён'
+                        ? 'Email не подтверждён'
                         : null,
                 )
 

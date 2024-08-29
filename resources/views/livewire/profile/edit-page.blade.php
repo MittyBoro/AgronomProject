@@ -28,7 +28,7 @@
         class="profile-edit__form"
         id="email"
         type="email"
-        label="E-mail"
+        label="Email"
         value="{{ old('email', $user->email) }}"
         required
       />

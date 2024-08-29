@@ -64,7 +64,7 @@
           class="contacts__form"
           id="email"
           type="email"
-          label="Ваше E-mail"
+          label="Ваш email"
           required
         />
         <x-form.input

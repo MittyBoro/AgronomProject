@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="profile-address__info-line profile__info-line">
-    <div class="profile-address__info-title profile__info-title">E-mail:</div>
+    <div class="profile-address__info-title profile__info-title">Email:</div>
     <div class="profile-address__info-text profile__info-text">
       JkFkA@example.com
     </div>

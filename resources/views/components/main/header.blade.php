@@ -154,4 +154,54 @@
       </div>
     </div>
   </div>
+
+  @auth
+    @if (! Auth::user()->email_verified_at)
+      <div class="header__verify-email">
+        <div class="container">
+          @if (session('status') == 'verification-link-sent')
+            <span>
+              На вашу почту только что была отправлена ссылка для подтверждения
+              регистрации.
+            </span>
+          @else
+            @php
+              $inbox = inbox_url(Auth::user()->email);
+            @endphp
+
+            <div>
+              <span>
+                Пожалуйста, подтвердите свой email, перейдя по ссылке,
+                отправленной вам
+
+                @if ($inbox)
+                  <a
+                    href="{{ $inbox }}"
+                    target="_blank"
+                    class="color-link"
+                    rel="nofollow"
+                  >
+                    на почту.
+                  </a>
+                @else
+                    на почту.
+                @endif
+              </span>
+              <form
+                method="POST"
+                style="display: inline"
+                action="{{ route('verification.send') }}"
+              >
+                @csrf
+                <span>Мы можем</span>
+                <button class="color-link" type="submit">
+                  отправить ссылку повторно.
+                </button>
+              </form>
+            </div>
+          @endif
+        </div>
+      </div>
+    @endif
+  @endauth
 </header>

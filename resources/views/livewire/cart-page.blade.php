@@ -35,9 +35,49 @@
                 {{ price_formatter($this->totalPrice) }}₽
               </span>
             </div>
-            <a class="button cart__checkout-button" href="/checkout">
-              Перейти к оформлению
-            </a>
+          </div>
+          <div class="cart__buttons-grid">
+            @guest
+              <div class="cart__guest-text">
+                <a
+                  href="{{ route('login') }}"
+                  class="color-link"
+                  wire:navigate
+                >
+                  Войдите
+                </a>
+                или
+                <a
+                  href="{{ route('register') }}"
+                  class="color-link"
+                  wire:navigate
+                >
+                  зарегистрируйтесь
+                </a>
+                <br />
+                для перехода к оформлению
+              </div>
+            @endguest
+
+            @auth
+              @if (Auth::user()->email_verified_at)
+                <a class="button cart__checkout-button" href="/checkout">
+                  Перейти к оформлению
+                </a>
+              @else
+                <div class="cart__guest-text">
+                  <a
+                    href="{{ route('verification.notice') }}"
+                    class="color-link"
+                    wire:navigate
+                  >
+                    Подтвердите свою почту
+                  </a>
+                  <br />
+                  для перехода к оформлению заказа
+                </div>
+              @endif
+            @endauth
           </div>
         </div>
       @else

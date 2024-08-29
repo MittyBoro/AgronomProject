@@ -42,3 +42,34 @@ if (!function_exists('phone_formatter')) {
         );
     }
 }
+
+if (!function_exists('inbox_url')) {
+    function inbox_url($email)
+    {
+        // Разделяем email на имя пользователя и домен
+        [$user, $domain] = explode('@', $email);
+
+        // Формируем ссылку на входящие в зависимости от домена
+        switch (mb_strtolower($domain)) {
+            case 'gmail.com':
+                return 'https://mail.google.com/mail/u/0/#inbox';
+            case 'yahoo.com':
+                return 'https://mail.yahoo.com/';
+            case 'outlook.com':
+            case 'hotmail.com':
+            case 'live.com':
+                return 'https://outlook.live.com/mail/inbox';
+            case 'mail.ru':
+                return 'https://e.mail.ru/inbox/';
+            case 'yandex.ru':
+            case 'ya.ru':
+                return 'https://mail.yandex.ru/inbox/';
+            case 'protonmail.com':
+                return 'https://mail.proton.me/u/0/inbox';
+            case 'icloud.com':
+                return 'https://www.icloud.com/mail';
+            default:
+                return null;
+        }
+    }
+}

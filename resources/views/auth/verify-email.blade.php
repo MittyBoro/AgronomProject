@@ -1,42 +1,58 @@
 <x-layouts.auth title="Подтверждение почты">
   <div class="auth__form">
-    <div class="info__message">
-      Прежде чем продолжить, не могли бы вы подтвердить свой адрес электронной
-      почты, нажав на ссылку, которую мы только что отправили на ваш E-mail?
-      Если вы не получили письмо — для начала проверьте папку «Спам», но мы с
-      радостью можем отправить вам другое.
+    <div class="info__message prose">
+      @php
+        $inbox = inbox_url(Auth::user()->email);
+      @endphp
+
+      <p>
+        Для продолжения подтвердите свой email, перейдя по ссылке, отправленной
+
+        @if ($inbox)
+          <a
+            href="{{ $inbox }}"
+            target="_blank"
+            class="color-link"
+            rel="nofollow"
+          >
+            на вашу почту
+          </a>
+        @else
+          на вашу почту
+        @endif
+        (оно может попасть в папку «Спам»). Если письмо не пришло, мы можем
+        отправить новое.
+      </p>
     </div>
 
-    @if (session('status') == 'verification-link-sent')
-      <div class="success__message">
-        Новая ссылка для подтверждения была отправлена ​​на адрес электронной
-        почты, указанный вами в настройках профиля.
-      </div>
-    @endif
+    <div class="auth__form-buttons-grid">
+      {{--  --}}
+      <form
+        method="POST"
+        сlass="auth__form-buttons"
+        action="{{ route('verification.send') }}"
+      >
+        @csrf
 
-    <form
-      method="POST"
-      сlass="auth__form-buttons"
-      action="{{ route('verification.send') }}"
-    >
-      @csrf
-
-      <button class="button" type="submit">Отправить повторно</button>
-    </form>
-
-    <div сlass="auth__form-buttons">
-      <a href="{{ route('profile.show') }}" class="button button-alt">
+        <button class="button" type="submit">Отправить повторно</button>
+      </form>
+      {{--  --}}
+      <a
+        href="{{ route('profile.edit') }}"
+        class="button button-alt"
+        wire:navigate
+      >
         Редактировать профиль
       </a>
+      {{--  --}}
+      <form
+        method="POST"
+        action="{{ route('logout') }}"
+        сlass="auth__form-buttons"
+      >
+        @csrf
+        <button type="submit" class="button button-alt">Выйти</button>
+      </form>
     </div>
-
-    <form
-      method="POST"
-      action="{{ route('logout') }}"
-      сlass="auth__form-buttons"
-    >
-      @csrf
-      <button type="submit" class="button button-alt">Выйти</button>
-    </form>
   </div>
 </x-layouts.auth>

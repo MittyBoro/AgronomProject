@@ -34,7 +34,7 @@
     </div>
     {{--  --}}
     <div class="profile-index__info-line profile__info-line">
-      <div class="profile-index__info-title profile__info-title">E-mail:</div>
+      <div class="profile-index__info-title profile__info-title">Email:</div>
       <div class="profile-index__info-text profile__info-text">
         {{ $user->email }}
       </div>

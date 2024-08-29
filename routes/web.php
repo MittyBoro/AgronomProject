@@ -34,12 +34,14 @@ Route::get('/wishlist', WishlistPage::class)->name('wishlist');
 
 Route::prefix('/profile')
     ->name('profile.')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth'])
     ->group(function (): void {
-        Route::get('/', IndexPage::class)->name('index');
         Route::get('/edit', EditPage::class)->name('edit');
-        Route::get('/loyalty', ProfileLoyaltyPage::class)->name('loyalty');
-        Route::get('/orders', OrdersPage::class)->name('orders'); // replace
+        Route::middleware(['verified'])->group(function (): void {
+            Route::get('/', IndexPage::class)->name('index');
+            Route::get('/loyalty', ProfileLoyaltyPage::class)->name('loyalty');
+            Route::get('/orders', OrdersPage::class)->name('orders'); // replace
+        });
     });
 
 Route::get('/{page:slug}', SimplePage::class)->name('page');
