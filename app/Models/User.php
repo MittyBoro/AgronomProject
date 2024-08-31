@@ -30,6 +30,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'last_name',
         'birthday',
         'gender',
+        'loyalty_id',
         'email',
         'phone',
         'role',
@@ -59,6 +60,16 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         ];
     }
 
+    protected static function booted(): void
+    {
+        static::created(function ($user) {
+            $loyalty = Loyalty::orderBy('percentage', 'asc')->first();
+            if ($loyalty) {
+                $user->loyalty()->associate($loyalty);
+            }
+        });
+    }
+
     /**
      * Get the reviews for the user.
      */
@@ -72,9 +83,26 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->hasMany(Order::class);
     }
 
+    public function loyalty()
+    {
+        return $this->belongsTo(Loyalty::class);
+    }
+
+    public function balances()
+    {
+        return $this->hasMany(Balance::class);
+    }
+
     public function isAdmin(): Attribute
     {
         return Attribute::make(get: fn() => $this->role === RoleEnum::Admin);
+    }
+
+    public function balance(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->balances->sum('amount'),
+        )->shouldCache();
     }
 
     /**

@@ -54,6 +54,7 @@ return new class extends Migration {
             $table->boolean('is_archived')->default(false);
             $table->boolean('is_notified')->default(false);
 
+            $table->softDeletes();
             $table->timestamps();
         });
 

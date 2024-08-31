@@ -6,11 +6,12 @@ use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -78,6 +79,16 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function spentBonuses()
+    {
+        return $this->hasMany(Balance::class)->where('amount', '<', 0);
+    }
+
+    public function earnedBonuses()
+    {
+        return $this->hasMany(Balance::class)->where('amount', '>', 0);
     }
 
     public function scopeIsActive(Builder $query)
