@@ -26,7 +26,7 @@ class ReviewTable
 
                 //
                 TextColumn::make('name')
-                    ->label('Заголовок')
+                    ->label('Имя')
                     ->badge()
                     ->description(
                         fn(Review $record): string => $record->comment,
@@ -165,6 +165,7 @@ class ReviewTable
                     ->orderBy('is_pinned', 'desc')
                     ->orderBy('order_column'),
             )
-            ->reorderable('order_column');
+            ->reorderable('order_column')
+            ->striped();
     }
 }

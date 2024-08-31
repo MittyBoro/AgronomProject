@@ -67,6 +67,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->hasMany(Review::class);
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function isAdmin(): Attribute
     {
         return Attribute::make(get: fn() => $this->role === RoleEnum::Admin);

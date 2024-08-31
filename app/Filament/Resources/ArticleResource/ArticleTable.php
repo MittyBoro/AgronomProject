@@ -45,6 +45,7 @@ class ArticleTable
             ->actions(TableActions::make())
             ->bulkActions(TableBulkActions::make())
             ->defaultSort('order_column')
-            ->reorderable('order_column');
+            ->reorderable('order_column')
+            ->striped();
     }
 }

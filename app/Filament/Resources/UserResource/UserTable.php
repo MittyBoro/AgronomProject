@@ -27,7 +27,8 @@ class UserTable
             ->bulkActions(TableBulkActions::make())
             //
             ->persistSortInSession()
-            ->defaultSort('id', 'desc');
+            ->defaultSort('id', 'desc')
+            ->striped();
     }
 
     private static function columns(): array

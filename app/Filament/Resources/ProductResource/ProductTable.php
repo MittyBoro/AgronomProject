@@ -42,6 +42,14 @@ class ProductTable
                         fn(Product $record): string => $record->variations
                             ->pluck('title')
                             ->implode(', '),
+                    )
+                    ->url(
+                        fn(Product $record): string => route(
+                            'filament.theadmin.resources.reviews.index',
+                            [
+                                'tableFilters[products][value]' => $record->id,
+                            ],
+                        ),
                     ),
 
                 //
@@ -59,10 +67,19 @@ class ProductTable
                                 2,
                             ),
                         )
-                        ->toggleable(),
+                        ->toggleable()
+                        ->url(
+                            fn(Product $record): string => route(
+                                'filament.theadmin.resources.reviews.index',
+                                [
+                                    'tableFilters[products][value]' =>
+                                        $record->id,
+                                ],
+                            ),
+                        ),
 
                     TextColumn::make('reviews_count')
-                        ->label('Отзывов')
+                        ->label('Отзывы')
                         ->sortable()
                         ->counts('reviews')
                         ->state(fn($record) => $record->reviews_count)
@@ -144,6 +161,7 @@ class ProductTable
             //
             ->bulkActions(TableBulkActions::make())
             //
-            ->defaultSort('id', 'desc');
+            ->defaultSort('id', 'desc')
+            ->striped();
     }
 }

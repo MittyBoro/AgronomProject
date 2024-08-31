@@ -45,3 +45,19 @@
     }
   }
 }
+
+.fi-table-order-row {
+  display: flex;
+  flex-direction: column;
+  & > div {
+    flex-grow: 1;
+    & > div:first-child {
+      flex-grow: 1;
+      height: 100%;
+    }
+    & > button {
+      @apply my-4;
+      height: fill-available;
+    }
+  }
+}

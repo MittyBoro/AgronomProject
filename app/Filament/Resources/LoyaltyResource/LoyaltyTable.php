@@ -45,6 +45,7 @@ class LoyaltyTable
             //
             ->bulkActions(TableBulkActions::make())
             //
-            ->defaultSort('percentage');
+            ->defaultSort('percentage')
+            ->striped();
     }
 }

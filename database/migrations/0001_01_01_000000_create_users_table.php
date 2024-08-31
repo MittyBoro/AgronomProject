@@ -32,7 +32,7 @@ return new class extends Migration {
         });
 
         // ставим первый id = 1000000, для красивых чисел на карточке
-        DB::statement('ALTER TABLE `users` AUTO_INCREMENT = 100000;');
+        DB::statement('ALTER TABLE `users` AUTO_INCREMENT = 100100;');
 
         Schema::create('password_reset_tokens', function (
             Blueprint $table,

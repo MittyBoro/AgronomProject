@@ -60,6 +60,7 @@ class CouponTable
             //
             ->bulkActions(TableBulkActions::make())
             //
-            ->defaultSort('created_at', 'desc');
+            ->defaultSort('created_at', 'desc')
+            ->striped();
     }
 }
