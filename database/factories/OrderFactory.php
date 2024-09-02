@@ -38,16 +38,25 @@ class OrderFactory extends Factory
                     'product_id' => $product->id,
                     'product_variation_id' => $variation?->id,
                     'media_id' => $product->media()->first()?->id,
-                    'proudct_title' => $product->title,
+                    'product_title' => $product->title,
                     'variation_title' => $variationName,
-                    'quantity' => $this->faker->numberBetween(1, 10),
+                    'quantity' => $this->faker->numberBetween(
+                        1,
+                        $variation?->stock ?? $product->stock,
+                    ),
                     'price' => $product->total_price,
                 ]);
             }
+
             $order->price = $order->items->sum(
                 fn($item) => $item->price * $item->quantity,
             );
             $order->total_price = $order->price;
+
+            if ($order->is_completed) {
+                $order->earnBonuses();
+            }
+
             $order->save();
         });
     }

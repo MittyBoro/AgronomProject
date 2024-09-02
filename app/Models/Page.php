@@ -55,7 +55,7 @@ class Page extends Model implements HasMedia
         );
     }
 
-    public function attrs(): Attribute
+    protected function attrs(): Attribute
     {
         return Attribute::make(
             get: function () {

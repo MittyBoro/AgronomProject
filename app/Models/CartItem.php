@@ -68,7 +68,7 @@ class CartItem extends Model
         );
     }
 
-    public function price(): Attribute
+    protected function price(): Attribute
     {
         return Attribute::make(
             get: function () {
@@ -80,7 +80,7 @@ class CartItem extends Model
         )->shouldCache();
     }
 
-    public function totalPrice(): Attribute
+    protected function totalPrice(): Attribute
     {
         return Attribute::make(
             get: fn() => ($this->price *= 1 - $this->product->discount / 100),

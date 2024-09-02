@@ -9,7 +9,7 @@
     <div
       class="grid grid-cols-[min-content_1fr_min-content_min-content] gap-x-5 py-2 px-4 -mx-4 items-center even:bg-gray-400/5"
     >
-      {{-- @dump($item->proudct_title) --}}
+      {{-- @dump($item->product_title) --}}
       <div class="w-8 h-8 bg-gray-200 rounded-md overflow-hidden">
         <img src="{{ $item->media?->getUrl() }}" alt="" />
       </div>
@@ -18,7 +18,7 @@
           href="{{ route('filament.theadmin.resources.products.edit', $item->product_id) }}"
           class="font-bold hover:underline"
         >
-          {{ $item->proudct_title }}
+          {{ $item->product_title }}
         </a>
         <p class="text-gray-500">{{ $item->variant_title }}</p>
       </div>

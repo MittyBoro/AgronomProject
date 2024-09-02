@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Loyalty;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -24,5 +25,10 @@ class UserSeeder extends Seeder
         ]);
 
         User::factory(20)->create();
+
+        $loyalty = Loyalty::orderBy('percentage', 'asc')->first();
+        if ($loyalty) {
+            User::query()->update(['loyalty_id' => $loyalty->id]);
+        }
     }
 }

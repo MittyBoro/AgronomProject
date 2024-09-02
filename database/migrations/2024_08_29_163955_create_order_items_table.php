@@ -30,7 +30,7 @@ return new class extends Migration {
                 ->constrained()
                 ->nullOnDelete();
 
-            $table->string('proudct_title');
+            $table->string('product_title');
             $table->string('variation_title')->nullable();
 
             $table->unsignedInteger('quantity');

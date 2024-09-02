@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
-use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 
@@ -27,11 +25,6 @@ class OrderResource extends Resource
 
     protected static ?int $navigationSort = 0;
 
-    public static function form(Form $form): Form
-    {
-        return OrderResource\OrderForm::make($form);
-    }
-
     public static function table(Table $table): Table
     {
         return OrderResource\OrderTable::make($table);
@@ -39,7 +32,9 @@ class OrderResource extends Resource
 
     public static function getRelations(): array
     {
-        return [RelationManagers\ItemsRelationManager::class];
+        return [
+                //
+            ];
     }
 
     public static function getPages(): array

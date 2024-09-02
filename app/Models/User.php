@@ -62,7 +62,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 
     protected static function booted(): void
     {
-        static::created(function ($user) {
+        static::created(function ($user): void {
             $loyalty = Loyalty::orderBy('percentage', 'asc')->first();
             if ($loyalty) {
                 $user->loyalty()->associate($loyalty);
@@ -88,20 +88,20 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->belongsTo(Loyalty::class);
     }
 
-    public function balances()
+    public function bonuses()
     {
-        return $this->hasMany(Balance::class);
+        return $this->hasMany(Bonus::class);
     }
 
-    public function isAdmin(): Attribute
+    protected function isAdmin(): Attribute
     {
         return Attribute::make(get: fn() => $this->role === RoleEnum::Admin);
     }
 
-    public function balance(): Attribute
+    protected function balance(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->balances->sum('amount'),
+            get: fn() => $this->bonuses->sum('amount'),
         )->shouldCache();
     }
 

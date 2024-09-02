@@ -233,7 +233,16 @@ class OrderTable
             ])
             //
             ->modifyQueryUsing(
-                fn(Builder $query) => $query->with(['items', 'user']),
+                fn(Builder $query) => $query->with([
+                    'items' => fn($query) => $query->with([
+                        'product',
+                        'variation',
+                        'media',
+                    ]),
+                    'user',
+                    'bonuses',
+                    'coupon',
+                ]),
             )
             ->recordClasses('fi-table-order-row')
             //
@@ -257,9 +266,9 @@ class OrderTable
                             'is_archived' => !$record->is_archived,
                         ]);
                     }),
-                DeleteAction::make()
-                    ->visible(fn(Order $record): bool => $record->is_archived)
-                    ->button(),
+                // DeleteAction::make()
+                //     ->visible(fn(Order $record): bool => $record->is_archived)
+                //     ->button(),
             ])
             //
             ->defaultSort('id', 'desc');

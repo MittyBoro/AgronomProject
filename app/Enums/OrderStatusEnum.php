@@ -10,7 +10,7 @@ enum OrderStatusEnum: string
     case Paid = 'paid';
     case Processing = 'processing';
     case Shipped = 'shipped';
-    case Succeeded = 'succeeded';
+    case Completed = 'completed';
     case Canceled = 'canceled';
     case Refunded = 'refunded';
 
@@ -21,7 +21,7 @@ enum OrderStatusEnum: string
             self::Paid => 'Оплачен',
             self::Processing => 'Ожидает отправки',
             self::Shipped => 'Отправлен',
-            self::Succeeded => 'Завершен',
+            self::Completed => 'Завершен',
 
             self::Canceled => 'Отменен',
             self::Refunded => 'Средства возвращены',

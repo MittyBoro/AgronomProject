@@ -20,7 +20,7 @@ class OrderItem extends Model
         'product_id',
         'product_variation_id',
         'media_id',
-        'proudct_title',
+        'product_title',
         'variation_title',
         'quantity',
         'price',
@@ -68,7 +68,7 @@ class OrderItem extends Model
     /**
      * Get the product variation that owns the order item.
      */
-    public function productVariation()
+    public function variation()
     {
         return $this->belongsTo(ProductVariation::class);
     }
