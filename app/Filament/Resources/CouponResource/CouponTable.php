@@ -8,6 +8,7 @@ use App\Filament\Tables\TableBulkActions;
 use App\Models\Coupon;
 use Carbon\Carbon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
@@ -23,15 +24,23 @@ class CouponTable
                 ),
 
                 //
-                TextColumn::make('code')->label('Код купона')->sortable(),
+                TextColumn::make('code')
+                    ->label('Код купона')
+                    ->copyable()
+                    ->copyMessage('Код купона скопирован')
+                    ->sortable(),
                 //
-                TextColumn::make('percentage')
+                TextInputColumn::make('percentage')
+                    ->rules(['required', 'numeric', 'min:1', 'max:100'])
+                    ->type('number')
                     ->label('Скидка')
-                    ->suffix('%')
-                    ->sortable()
-                    ->numeric(),
+                    ->sortable(),
                 //
-                TextColumn::make('count')->label('Количество')->sortable(),
+                TextInputColumn::make('count')
+                    ->rules(['required', 'numeric', 'min:1', 'max:9999999'])
+                    ->type('number')
+                    ->label('Количество')
+                    ->sortable(),
 
                 //
                 ToggleColumn::make('is_active')->label('Активен')->sortable(),

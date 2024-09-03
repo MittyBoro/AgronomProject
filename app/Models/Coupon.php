@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Coupon extends Model
 {
@@ -22,6 +23,13 @@ class Coupon extends Model
         'expires_at',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (Coupon $coupon): void {
+            $coupon->code = Str::upper($coupon->code);
+        });
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -39,6 +47,13 @@ class Coupon extends Model
 
     public function scopeIsActive($query)
     {
-        return $query->where('is_active', 1)->where('expires_at', '>', now());
+        return $query
+            ->where('is_active', 1)
+            ->where('count', '>', 0)
+            ->where(
+                fn($q) => $q
+                    ->where('expires_at', '>', now())
+                    ->orWhereNull('expires_at'),
+            );
     }
 }

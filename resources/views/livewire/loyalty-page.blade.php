@@ -16,7 +16,7 @@
             <x-main.icon src="icons/bonus-user.svg" />
           </div>
           <div class="loyalty__feature-text">
-            Пройдите авторизацию на нашем сайте
+            Пройдите авторизацию на нашем сайте
           </div>
         </div>
         <div class="loyalty__feature">

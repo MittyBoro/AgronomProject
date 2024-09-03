@@ -1,10 +1,11 @@
-window.price_formatter = (price) => {
+window.$price_formatter = (price) => {
   return new Intl.NumberFormat('ru-RU', {
     style: 'currency',
     currency: 'RUB',
+    trailingZeroDisplay: 'stripIfInteger',
   }).format(price)
 }
-window.sklonenie = function (number, txt, cases = [2, 0, 1, 1, 1, 2]) {
+window.$sklonenie = function (number, txt, cases = [2, 0, 1, 1, 1, 2]) {
   return txt[
     number % 100 > 4 && number % 100 < 20
       ? 2

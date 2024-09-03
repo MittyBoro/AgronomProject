@@ -5,6 +5,8 @@
   {{-- корзинка --}}
   <section class="cart__section">
     <div class="cart__container container">
+      <x-form.validation-errors />
+      <x-form.session-status />
       @if ($items->isNotEmpty())
         <div class="cart__table" wire:loading.class="loading">
           <div class="cart__table-head">
@@ -32,7 +34,7 @@
             <div>
               <span class="cart__summary-label">Сумма:</span>
               <span class="cart__summary-value">
-                {{ price_formatter($this->totalPrice) }}₽
+                {{ price_formatter($this->totalPrice) }} ₽
               </span>
             </div>
           </div>

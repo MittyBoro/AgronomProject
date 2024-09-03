@@ -22,7 +22,7 @@
         'product__availability',
         match (true) {
           ! $this->stock => 'red',
-          $this->stock < 10 => 'yellow',
+          $this->stock < config('shop.warning_stock') => 'yellow',
           default => 'green',
         },
       ])
@@ -30,7 +30,7 @@
       {{
         match (true) {
           ! $this->stock => 'Нет в наличии',
-          $this->stock < 10 => 'Скоро закончится',
+          $this->stock < config('shop.warning_stock') => 'Скоро закончится',
           default => 'В наличии',
         }
       }}
@@ -39,10 +39,10 @@
 
   {{-- price --}}
   <div class="product__price" wire:loading.class="loading">
-    <span>{{ price_formatter($this->total_price) }}₽</span>
+    <span>{{ price_formatter($this->total_price) }} ₽</span>
     @if ($this->total_price !== $this->price)
       <span class="product__price--old">
-        {{ price_formatter($this->price) }}₽
+        {{ price_formatter($this->price) }} ₽
       </span>
       <span class="products__badge">-{{ (float) $product['discount'] }}%</span>
     @endif

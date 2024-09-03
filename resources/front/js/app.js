@@ -2,6 +2,7 @@ import './libs/utils'
 import './elements/afterLoad'
 import './elements/layout'
 import './elements/popup'
+import './elements/range'
 import './elements/swiper'
 // import './alpine/app'
 

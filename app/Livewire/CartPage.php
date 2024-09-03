@@ -28,6 +28,12 @@ class CartPage extends Component
     public function mount(): void
     {
         $this->items = $this->cartService->items(full: true);
+        if ($this->cartService->checkStock()) {
+            $this->addError(
+                'stock',
+                'Состав корзины изменен, ознакомьтесь с обновлёнными данными',
+            );
+        }
         $this->setTotalPrice();
 
         $this->seo()->setTitle('Корзина');

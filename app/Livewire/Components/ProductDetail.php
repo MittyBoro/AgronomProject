@@ -64,7 +64,13 @@ class ProductDetail extends Component
                 loadRelated: false,
                 callback: fn($q) => $q
                     ->where('product_id', $this->product['id'])
-                    ->whereIn('product_variation_id', $variations),
+                    ->when(
+                        !empty($variations),
+                        fn($q) => $q->whereIn(
+                            'product_variation_id',
+                            $variations,
+                        ),
+                    ),
             )
             ->first();
 

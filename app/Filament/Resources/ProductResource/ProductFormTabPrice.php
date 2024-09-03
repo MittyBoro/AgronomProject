@@ -79,7 +79,8 @@ class ProductFormTabPrice
                 ->integer()
                 ->live()
                 ->hint(
-                    fn(Get $get): ?string => $get('stock') < 10
+                    fn(Get $get): ?string => $get('stock') <
+                    config('shop.warning_stock')
                         ? (!$get('stock')
                             ? 'Закончился'
                             : 'Заканчивается')
@@ -229,7 +230,8 @@ class ProductFormTabPrice
                 ->live()
                 ->required()
                 ->hintIcon(
-                    fn(Get $get): ?string => $get('stock') < 10
+                    fn(Get $get): ?string => $get('stock') <
+                    config('shop.warning_stock')
                         ? (!$get('stock')
                             ? 'heroicon-m-exclamation-triangle'
                             : 'heroicon-o-exclamation-triangle')

@@ -35,6 +35,15 @@ class CartItem extends Model
         ];
     }
 
+    protected static function booted(): void
+    {
+        static::saved(function (CartItem $cartItem): void {
+            if ($cartItem->quantity === 0) {
+                $cartItem->delete();
+            }
+        });
+    }
+
     public function cart(): BelongsTo
     {
         return $this->belongsTo(Cart::class);

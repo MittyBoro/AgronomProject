@@ -39,12 +39,12 @@
   <div class="product__card-price">
     @if ($product->price)
       @if ($product->discount > 0)
-        <span>{{ price_formatter($product->total_price) }}₽</span>
+        <span>{{ price_formatter($product->total_price) }} ₽</span>
         <span class="product__card-price--old">
-          {{ price_formatter($product->price) }}₽
+          {{ price_formatter($product->price) }} ₽
         </span>
       @else
-        <span>{{ price_formatter($product->price) }}₽</span>
+        <span>{{ price_formatter($product->price) }} ₽</span>
       @endif
     @endif
   </div>

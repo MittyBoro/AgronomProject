@@ -1,12 +1,19 @@
 <x-form.group {{ $attributes }}>
   <textarea
     class="{{ $attributes['class'] }}-input field-textarea"
-    id="{{ $attributes['id'] }}"
     name="{{ $attributes['name'] ?? $attributes['id'] }}"
-    {{ $attributes['required'] ? 'required' : '' }}
-    rows="{{ $attributes['rows'] ?? 1 }}"
+    {{ $attributes["required"] ? "required" : "" }}
+    @foreach (Arr::except(
+            [...$attributes],
+            ["class", "name", "type", "x-show", "label", "help", "value"]
+        )
+        as $k => $v)
+        @if ($v !== false)
+            {{ $k }}="{{ $v }}"
+        @endif
+    @endforeach
   >
- {{ $attributes['value'] ?? '' }}
+ {{ $attributes["value"] ?? "" }}
  </textarea
   >
 </x-form.group>

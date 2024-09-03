@@ -40,16 +40,6 @@ class OrderItem extends Model
     }
 
     /**
-     * The "booted" method of the model.
-     */
-    protected static function booted(): void
-    {
-        static::creating(function (OrderItem $orderItem): void {
-            // ...
-        });
-    }
-
-    /**
      * Get the order that owns the order item.
      */
     public function order()

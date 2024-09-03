@@ -34,6 +34,7 @@ class Order extends Model
         'save_info',
         'delivery_comment',
         'coupon_id',
+        'shipping_price',
         'price',
         'total_price',
         'payment_method',
@@ -54,8 +55,10 @@ class Order extends Model
             'save_info' => 'boolean',
             'status' => OrderStatusEnum::class,
 
+            'shipping_price' => 'decimal:2',
             'price' => 'decimal:2',
             'total_price' => 'decimal:2',
+
             'is_archived' => 'boolean',
             'is_notified' => 'boolean',
         ];

@@ -130,7 +130,8 @@ class ProductTable
                     ->color(
                         fn(
                             Product $record,
-                        ): string => $record->variations_min_stock > 10
+                        ): string => $record->variations_min_stock >
+                        config('shop.warning_stock')
                             ? 'gray'
                             : 'danger',
                     ),

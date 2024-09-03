@@ -5,6 +5,7 @@ use App\Livewire\ArticleListPage;
 use App\Livewire\ArticlePage;
 use App\Livewire\CartPage;
 use App\Livewire\CatalogPage;
+use App\Livewire\CheckoutPage;
 use App\Livewire\ContactPage;
 use App\Livewire\HomePage;
 use App\Livewire\LoyaltyPage;
@@ -31,6 +32,9 @@ Route::get('/articles/{article:slug}', ArticlePage::class)->name('article');
 
 Route::get('/cart', CartPage::class)->name('cart');
 Route::get('/wishlist', WishlistPage::class)->name('wishlist');
+Route::middleware(['auth', 'verified'])
+    ->get('/checkout', CheckoutPage::class)
+    ->name('checkout');
 
 Route::prefix('/profile')
     ->name('profile.')

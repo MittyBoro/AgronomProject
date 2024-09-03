@@ -1,5 +1,25 @@
 <?php
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
+
+if (!function_exists('add_session_error')) {
+    function add_session_error(string $error_msg, string $key = 'default'): void
+    {
+        $errors = Session::get('errors', new ViewErrorBag());
+
+        if (!$errors instanceof ViewErrorBag) {
+            $errors = new ViewErrorBag();
+        }
+
+        $bag = $errors->getBags()['default'] ?? new MessageBag();
+        $bag->add($key, $error_msg);
+
+        Session::flash('errors', $errors->put('default', $bag));
+    }
+}
+
 if (!function_exists('faker_media_url')) {
     function faker_media_url(int $width = 700, ?int $height = null): string
     {

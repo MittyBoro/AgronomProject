@@ -23,10 +23,10 @@
   {{--  --}}
   <div class="cart__table-cell cart__item-price">
     @if ($item->total_price != $item->price)
-      <p class="product__price--old">{{ price_formatter($item->price) }}₽</p>
+      <p class="product__price--old">{{ price_formatter($item->price) }} ₽</p>
     @endif
 
-    <span>{{ price_formatter($item->total_price) }}₽</span>
+    <span>{{ price_formatter($item->total_price) }} ₽</span>
   </div>
   <div class="cart__table-cell">
     <div class="cart__item-quantity">
@@ -68,11 +68,11 @@
   <div class="cart__table-cell cart__item-total">
     @if ($item->total_price != $item->price)
       <p class="product__price--old">
-        {{ price_formatter($item->price * $quantity) }}₽
+        {{ price_formatter($item->price * $quantity) }} ₽
       </p>
     @endif
 
-    <span>{{ price_formatter($item->total_price * $quantity) }}₽</span>
+    <span>{{ price_formatter($item->total_price * $quantity) }} ₽</span>
   </div>
   {{--  --}}
   <div class="cart__table-cell" style="width: 1%; padding-left: 0">

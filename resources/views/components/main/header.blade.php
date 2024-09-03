@@ -71,6 +71,7 @@
         <span class="header__icon" ondblclick="Livewire.navigate('/login')">
           @auth
             <x-main.icon src="icons/face.svg" />
+            <livewire:components.user-balance class="header__icon--badge dot" />
           @endauth
 
           @guest
@@ -106,6 +107,9 @@
             >
               <x-main.icon src="icons/card.svg" />
               <span>Бонусы</span>
+              <livewire:components.user-balance
+                class="header__icon--badge header__dropdown-item--badge"
+              />
             </a>
             <a
               class="header__dropdown-item link"

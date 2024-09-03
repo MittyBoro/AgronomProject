@@ -1,17 +1,23 @@
 <div class="{{ $attributes['class'] }}-checkbox-group field-checkbox-group">
   <input
     class="{{ $attributes['class'] }}-checkbox field-radio"
-    id="{{ $attributes['id'] }}"
     name="{{ $attributes['name'] ?? $attributes['id'] }}"
     type="radio"
-    value="{{ $attributes['value'] ?? '' }}"
-    {{ $attributes['required'] ? 'required' : '' }}
+    @foreach (Arr::except(
+            [...$attributes],
+            ["class", "name", "type", "x-show", "label", "help"]
+        )
+        as $k => $v)
+        @if ($v !== false)
+            {{ $k }}="{{ $v }}"
+        @endif
+    @endforeach
   />
   <label
     class="{{ $attributes['class'] }}-checkbox-label field-checkbox-label"
     for="{{ $attributes['id'] }}"
   >
-    {{ $attributes['label'] }}
+    {{ $attributes["label"] }}
     {{ $slot }}
   </label>
 </div>

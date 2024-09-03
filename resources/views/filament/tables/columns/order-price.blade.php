@@ -16,7 +16,7 @@
     <span>Стоимость</span>
     <span class="w-full min-w-8 mx-2 border-b"></span>
   </div>
-  <div class="max-w-base">{{ price_formatter($getRecord()->price) }}₽</div>
+  <div class="max-w-base">{{ price_formatter($getRecord()->price) }} ₽</div>
 
   {{--  --}}
   @if ($getRecord()->spent_amount)
@@ -48,7 +48,7 @@
       <span class="w-full min-w-8 mx-2 border-b"></span>
     </div>
     <div class="max-w-base">
-      {{ price_formatter($getRecord()->discount) }}₽
+      {{ price_formatter($getRecord()->discount) }} ₽
       ({{ round(($getRecord()->discount / $getRecord()->total_price) * 100, 2) }}%)
     </div>
   @endif
@@ -59,6 +59,6 @@
     <span class="w-full min-w-8 mx-2 border-b"></span>
   </div>
   <div class="max-w-base font-bold">
-    {{ price_formatter($getRecord()->total_price) }}₽
+    {{ price_formatter($getRecord()->total_price) }} ₽
   </div>
 </div>
