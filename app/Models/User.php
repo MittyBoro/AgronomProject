@@ -129,4 +129,20 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
             'phone',
         ];
     }
+
+    /**
+     * Установить уровень пользователя.
+     */
+    public function setLoyalty(): void
+    {
+        $sumOfOrders = (int) $this->orders()->isCompleted()->sum('total_price');
+
+        $loyalty = Loyalty::query()
+            ->where('min_order_sum', '<=', $sumOfOrders)
+            ->orderByDesc('min_order_sum')
+            ->first();
+
+        $this->loyalty()->associate($loyalty);
+        $this->save();
+    }
 }
