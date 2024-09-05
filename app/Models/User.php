@@ -101,7 +101,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     protected function balance(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->bonuses->sum('amount'),
+            get: fn() => (int) $this->bonuses->sum('amount') ?? 0,
         )->shouldCache();
     }
 

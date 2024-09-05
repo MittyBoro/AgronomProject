@@ -183,15 +183,13 @@
               После получения заказа на ваш счёт зачислится
               <b style="display: inline-block">
                 {{ price_formatter($this->earnBonuses) }}
-                <span
-                  x-text="
-                    $sklonenie($wire.earnBonuses, [
-                      'бонусный балл',
-                      'бонусных балла',
-                      'бонусных баллов',
-                    ])
-                  "
-                ></span>
+                {{
+                  sklonenie($this->earnBonuses, [
+                    'бонусный балл',
+                    'бонусных балла',
+                    'бонусных баллов',
+                  ])
+                }}
               </b>
             </p>
             <p>
@@ -278,9 +276,7 @@
           <span class="checkout__total-value">
             <b>
               +{{ price_formatter($this->earnBonuses) }}
-              <span
-                x-text="$sklonenie($wire.earnBonuses, ['балл', 'балла', 'баллов'])"
-              ></span>
+              {{ sklonenie($this->earnBonuses, ['балл', 'балла', 'баллов']) }}
             </b>
           </span>
         </div>

@@ -33,4 +33,11 @@ class Loyalty extends Model
             'percentage' => 'float',
         ];
     }
+
+    public function nextLevel(): ?self
+    {
+        return $this->where('min_order_sum', '>', $this->min_order_sum)
+            ->orderBy('min_order_sum')
+            ->first();
+    }
 }

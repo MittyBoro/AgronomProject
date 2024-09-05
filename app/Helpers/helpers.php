@@ -63,6 +63,19 @@ if (!function_exists('phone_formatter')) {
     }
 }
 
+if (!function_exists('sklonenie')) {
+    function sklonenie($number, array $txt, $cases = [2, 0, 1, 1, 1, 2])
+    {
+        $number = (int) $number;
+
+        return $txt[
+            $number % 100 > 4 && $number % 100 < 20
+                ? 2
+                : $cases[min($number % 10, 5)]
+        ];
+    }
+}
+
 if (!function_exists('inbox_url')) {
     function inbox_url($email)
     {

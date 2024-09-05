@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Profile;
 
-use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -11,14 +10,7 @@ use Livewire\WithPagination;
 #[Layout('components.layouts.profile')]
 class OrdersPage extends Component
 {
-    use SEOToolsTrait;
     use WithPagination;
-
-    public function mount(): void
-    {
-        $this->seo()->setTitle('История заказов');
-        $this->seo()->metatags()->addMeta('robots', 'noindex, nofollow');
-    }
 
     public function render()
     {

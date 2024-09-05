@@ -1,4 +1,5 @@
 <div class="profile-index">
+  {{-- дратути --}}
   <div class="profile-index__greeting">
     <p>
       Здравствуйте,
@@ -7,10 +8,11 @@
     </p>
     <form action="{{ route('logout') }}" method="POST">
       @csrf
-      <button class="button button-alt button-mini">Выйти</button>
+      <button class="button button-alt button-mini">Выйти из аккаунта</button>
     </form>
   </div>
 
+  {{-- общая информация --}}
   <div class="profile-index__info profile__card">
     <div class="profile-index__title profile__title">
       Ваша личная информация
@@ -80,11 +82,18 @@
     </a>
   </div>
 
-  <x-profile.loyalty-card>
-    <a class="profile-index__loyalty-button button button-alt" href="#">
-      Подробнее
-    </a>
-  </x-profile.loyalty-card>
+  {{-- карта лояльности --}}
+  <div class="loyalty-card__wrapper">
+    <livewire:components.loyalty-card />
+    <div class="loyalty-card__link">
+      <a
+        class="profile-index__loyalty-button button button-alt"
+        href="{{ route('profile.loyalty') }}"
+      >
+        Подробнее
+      </a>
+    </div>
+  </div>
 
   {{-- последние заказы --}}
   <div class="profile-index__orders">

@@ -156,6 +156,11 @@ class Order extends Model
         ]);
     }
 
+    public function scopeIsCompleted(Builder $query)
+    {
+        return $query->where('status', OrderStatusEnum::Completed);
+    }
+
     public function scopeIsArchived(Builder $query)
     {
         return $query->where('is_archived', true);

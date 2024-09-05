@@ -44,8 +44,6 @@ class CheckoutPage extends Component
 
     public ?int $couponAmount = 0; // скидка по купону
 
-    private $maxSpentPercent = 30; // максимальный процент потраченных бонусов
-
     public function boot(CartService $cartService): void
     {
         $this->cartService = $cartService;
@@ -96,9 +94,10 @@ class CheckoutPage extends Component
     public function maxSpentBonuses(): int
     {
         // можно списать до {$maxSpentPercent}% из общей суммы
+        $maxSpentPercent = config('shop.max_spend_bonuses');
+
         $maxSpentBonusesByCart = round(
-            (($this->subTotal - $this->couponAmount) * $this->maxSpentPercent) /
-                100,
+            (($this->subTotal - $this->couponAmount) * $maxSpentPercent) / 100,
         );
         $maxSpentBonuses = max(
             0,

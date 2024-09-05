@@ -86,6 +86,7 @@
   display: inline-grid;
   gap: 2px;
   text-align: right;
+  white-space: nowrap;
 }
 .checkout__item-price--old {
   text-decoration: line-through;

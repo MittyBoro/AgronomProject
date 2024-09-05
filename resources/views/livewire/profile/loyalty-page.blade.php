@@ -1,28 +1,38 @@
 <div>
   <div class="profile-loyalty">
     {{--  --}}
-    <x-profile.loyalty-card>
-      <a class="link" href="#">Условиях использования бонусной карты</a>
-    </x-profile.loyalty-card>
+    <div class="loyalty-card__wrapper">
+      <livewire:components.loyalty-card />
+      <div class="loyalty-card__link">
+        <a class="link" href="#">Условиях использования бонусной карты</a>
+      </div>
+    </div>
 
     {{--  --}}
     <div class="profile-loyalty__info">
       <div class="profile-loyalty__info-text">
         Копите бонусы и оплачивайте
         <br />
-        <b class="primary">до 50%</b>
+        <b class="primary">до {{ config('shop.max_spend_bonuses') }}%</b>
         от стоимости заказа
       </div>
       <div class="profile-loyalty__progress">
-        <div class="profile-loyalty__progress-title">У вас 1 уровень</div>
+        <div class="profile-loyalty__progress-title">
+          У вас {{ $user->loyalty?->title }}
+        </div>
         <div
           class="profile-loyalty__progress-bar"
-          style="--progress: 30%"
+          style="--progress: {{ $toNextLevelPercent }}%"
         ></div>
-        <div>
-          До повышения уровня осталось
-          <span>15 000 ₽</span>
-        </div>
+
+        @if ($toNextLevel >= 0)
+          <div>
+            До повышения уровня осталось заказать на
+            <b>{{ price_formatter($toNextLevel) }} ₽</b>
+          </div>
+        @else
+          <div>Вы достигли максимального уровня!</div>
+        @endif
       </div>
     </div>
   </div>
