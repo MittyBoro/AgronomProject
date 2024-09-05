@@ -1,7 +1,13 @@
 <div>
-  <div class="profile-orders">
-    @foreach (range(1, 10) as $item)
-      <x-profile.order :item="$item" />
+  <div class="profile-orders" id="paginated">
+    @foreach ($items as $item)
+      <x-profile.order :order="$item" />
     @endforeach
+
+    @if ($items instanceof \Illuminate\Pagination\LengthAwarePaginator)
+      <div class="pagination">
+        {{ $items->links('components.main.pagination', data: ['scrollTo' => '#paginated']) }}
+      </div>
+    @endif
   </div>
 </div>

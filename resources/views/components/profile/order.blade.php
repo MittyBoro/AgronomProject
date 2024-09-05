@@ -1,57 +1,79 @@
-<div class="profile-order">
-  <div class="profile-order__header">
-    <div class="profile-order__number">Заказ #{{ $item }}</div>
-    <div class="profile-order__date">12.12.2021 в 12:12</div>
+<div class="profile-order" x-data="{ open: {{ $open ?? 'false' }} }">
+  <div class="profile-order__header" @click="open = ! open">
+    <div class="profile-order__number">Заказ #{{ $order->id }}</div>
+    <div class="profile-order__date">
+      {{ $order->created_at->format('d.m.Y в H:i') }}
+    </div>
     <div class="profile-order__status">
       <span
-        class="profile-order__status-icon profile-order__status--{{ ['success', 'pending', 'danger'][rand(0, 2)] }}"
+        class="profile-order__status-icon profile-order__status--{{
+          match ($order->status->value) {
+            'completed' => 'success',
+            'canceled' => '',
+            'refunded' => '',
+            default => 'pending',
+          }
+        }}"
       ></span>
-      <span>Ожидается оплата</span>
+      <span>{{ $order->status->label() }}</span>
     </div>
     <x-main.icon
-      class="profile-order__arrow active"
+      class="profile-order__arrow"
       src="icons/arrow-simple.svg"
+      ::class="{ 'active': open }"
     />
   </div>
-  <div class="profile-order__body">
+  <div class="profile-order__body" x-cloak x-show="open" x-collapse>
     <div class="profile-order__info">
       <div class="profile-order__info-header">Информация о заказе</div>
       <div class="profile-order__info-line profile__info-line">
         <div class="profile-order__info-title profile__info-title">
-          Способ доставки
-        </div>
-        <div class="profile-order__info-text profile__info-text">Самовывоз</div>
-      </div>
-      <div class="profile-order__info-line profile__info-line">
-        <div class="profile-order__info-title profile__info-title">
           Способ оплаты
         </div>
-        <div class="profile-order__info-text profile__info-text">Наличные</div>
+        <div class="profile-order__info-text profile__info-text">
+          {{ $order->payment_method }}
+        </div>
       </div>
+
       <div class="profile-order__info-line profile__info-line">
         <div class="profile-order__info-title profile__info-title">
           Стоимость доставки
         </div>
-        <div class="profile-order__info-text profile__info-text">Бесплатно</div>
-      </div>
-      <div class="profile-order__info-line profile__info-line">
-        <div class="profile-order__info-title profile__info-title">Скидка</div>
-        <div class="profile-order__info-text profile__info-text">-500 руб.</div>
-      </div>
-      <div class="profile-order__info-line profile__info-line">
-        <div class="profile-order__info-title profile__info-title">
-          Начально бонусов
-        </div>
-        <div class="profile-order__info-text profile__info-text primary">
-          <b>15</b>
+        <div class="profile-order__info-text profile__info-text">
+          {{ (int) $order->shipping_price ? price_formatter($order->shipping_price) . ' ₽' : 'Бесплатно' }}
         </div>
       </div>
+
+      @if ($order->discount)
+        <div class="profile-order__info-line profile__info-line">
+          <div class="profile-order__info-title profile__info-title">
+            Скидка
+          </div>
+          <div class="profile-order__info-text profile__info-text">
+            -{{ price_formatter($order->discount) }} ₽
+          </div>
+        </div>
+      @endif
+
+      {{--  --}}
+      @if ($order->earned_amount)
+        <div class="profile-order__info-line profile__info-line">
+          <div class="profile-order__info-title profile__info-title">
+            Начально бонусов
+          </div>
+          <div class="profile-order__info-text profile__info-text primary">
+            <b>{{ $order->earned_amount }}</b>
+          </div>
+        </div>
+      @endif
+
+      {{--  --}}
       <div class="profile-order__info-line profile__info-line">
         <div class="profile-order__info-title profile__info-title">
           Сумма заказа
         </div>
         <div class="profile-order__info-text profile__info-text">
-          <b>2 000 руб.</b>
+          <b>{{ price_formatter($order->total_price) }} ₽</b>
         </div>
       </div>
     </div>
@@ -62,19 +84,19 @@
           Контактное лицо
         </div>
         <div class="profile-order__info-text profile__info-text">
-          Иванов Иван Иванович
+          {{ $order->full_name }}
         </div>
       </div>
       <div class="profile-order__info-line profile__info-line">
         <div class="profile-order__info-title profile__info-title">Телефон</div>
         <div class="profile-order__info-text profile__info-text">
-          +7 (999) 999-99-99
+          {{ $order->phone?->formatInternational() }}
         </div>
       </div>
       <div class="profile-order__info-line profile__info-line">
         <div class="profile-order__info-title profile__info-title">Email:</div>
         <div class="profile-order__info-text profile__info-text">
-          JkFkA@example.com
+          {{ $order->email }}
         </div>
       </div>
       <div class="profile-order__info-line profile__info-line">
@@ -82,30 +104,44 @@
           Адрес доставки
         </div>
         <div class="profile-order__info-text profile__info-text">
-          Москва, ул. Ленина, д. 1
+          <p>{{ $order->city }}</p>
+          <p>{{ $order->address }}</p>
+          @if ($order->postal_code)
+            <p>Индекс: {{ $order->postal_code }}</p>
+          @endif
         </div>
       </div>
     </div>
     <div class="profile-order__products">
-      @foreach (range(1, rand(2, 5)) as $product)
+      @foreach ($order->items as $item)
         <div class="profile-order__product">
           <div class="profile-order__product-image cart__item-image">
-            <img
-              class="object-cover"
-              src="{{ Vite::front('images/product-demo.png') }}"
-              alt="{{ config('app.name') }}"
-            />
+            <x-main.picture class="object-cover" :media="$item->media" />
           </div>
           <div class="profile-order__product-name">
-            <a class="link" href="#" target="_blank">Грудка куриная</a>
-            <div class="profile-order__product-option gray">5кг</div>
+            @if ($item->product)
+              <a
+                class="link"
+                href="{{ route('product', $item->product->slug) }}"
+                target="_blank"
+              >
+                {{ $item->product_title }}
+              </a>
+            @else
+              <span>
+                {{ $item->product_title }}
+              </span>
+            @endif
+            <div class="profile-order__product-option gray">
+              {{ $item->variation_title }}
+            </div>
           </div>
           <div class="profile-order__product-price">
-            <span>2 000 руб.</span>
-            <span>× 2</span>
+            <span>{{ price_formatter($item->price) }} ₽</span>
+            <span>× {{ $item->quantity }}</span>
           </div>
           <div class="profile-order__product-total">
-            <b>4 000 руб.</b>
+            <b>{{ price_formatter($item->price * $item->quantity) }} ₽</b>
           </div>
         </div>
       @endforeach

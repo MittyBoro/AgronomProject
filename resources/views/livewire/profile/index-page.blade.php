@@ -2,7 +2,7 @@
   <div class="profile-index__greeting">
     <p>
       Здравствуйте,
-      <b>{{ $user->first_name }} {{ $user->last_name }},</b>
+      <b>{{ trim($user->first_name . ' ' . $user->middle_name) }},</b>
       добро пожаловать в личный кабинет!
     </p>
     <form action="{{ route('logout') }}" method="POST">
@@ -29,7 +29,8 @@
       <div class="profile-index__info-title profile__info-title">ФИО</div>
       <div class="profile-index__info-text profile__info-text">
         {{ $user->last_name }}
-        {{ $user->first_name }} {{ $user->middle_name }}
+        {{ $user->first_name }}
+        {{ $user->middle_name }}
       </div>
     </div>
     {{--  --}}
@@ -40,14 +41,12 @@
       </div>
     </div>
     {{--  --}}
-    @if ($user->birthday)
-      <div class="profile-index__info-line profile__info-line">
-        <div class="profile-index__info-title profile__info-title">Телефон</div>
-        <div class="profile-index__info-text profile__info-text">
-          {{ $user->phone ?? 'Не указан' }}
-        </div>
+    <div class="profile-index__info-line profile__info-line">
+      <div class="profile-index__info-title profile__info-title">Телефон</div>
+      <div class="profile-index__info-text profile__info-text">
+        {{ $user->phone?->formatInternational() ?? 'Не указан' }}
       </div>
-    @endif
+    </div>
 
     {{--  --}}
     @if ($user->birthday)
@@ -93,13 +92,16 @@
       Последние заказы
     </div>
     <div class="profile-orders">
-      @foreach (range(3, 1) as $item)
-        {{-- <x-profile.order :item="$item" /> --}}
+      @foreach ($orders as $order)
+        <x-profile.order :$order />
       @endforeach
     </div>
 
-    <a class="profile-index__orders-button button button-alt" href="#">
-      Посмотреть все
+    <a
+      class="profile-index__orders-button button button-alt"
+      href="{{ route('profile.orders') }}"
+    >
+      Ко всем заказам
     </a>
   </div>
 </div>

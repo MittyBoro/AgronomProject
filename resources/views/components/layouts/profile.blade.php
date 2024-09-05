@@ -38,7 +38,8 @@
         href="/profile/orders"
         @class([
           'profile-header__link',
-          'active' => request()->routeIs('profile.orders'),
+          'active' =>
+            request()->routeIs('profile.orders') || request()->routeIs('profile.order'),
         ])
         wire:navigate
       >

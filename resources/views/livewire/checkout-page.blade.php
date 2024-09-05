@@ -36,8 +36,6 @@
           id="phone"
           type="tel"
           label="Телефон"
-          x-mask="+7 999 999 99 99"
-          x-on:input="event.target.value.startsWith('+7 8') && (event.target.value = event.target.value.replace('+7 8', '+7'))"
           wire:model="form.phone"
           autocomplete="tel"
           required

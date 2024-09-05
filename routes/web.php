@@ -14,6 +14,7 @@ use App\Livewire\Profile\EditPage;
 use App\Livewire\Profile\IndexPage;
 use App\Livewire\Profile\LoyaltyPage as ProfileLoyaltyPage;
 use App\Livewire\Profile\OrdersPage;
+use App\Livewire\Profile\SingleOrderPage;
 use App\Livewire\SimplePage;
 use App\Livewire\WishlistPage;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,9 @@ Route::prefix('/profile')
             Route::get('/', IndexPage::class)->name('index');
             Route::get('/loyalty', ProfileLoyaltyPage::class)->name('loyalty');
             Route::get('/orders', OrdersPage::class)->name('orders'); // replace
+            Route::get('/orders/{order:id}', SingleOrderPage::class)->name(
+                'order',
+            ); // replace
         });
     });
 

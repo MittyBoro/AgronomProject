@@ -26,7 +26,7 @@
   &:readonly {
     opacity: 0.8;
   }
-  &.invalid {
+  &:not(:focus).invalid {
     color: var(--accent-color);
     border-color: var(--accent-color);
     &.valid::-webkit-calendar-picker-indicator {
