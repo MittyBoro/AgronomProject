@@ -138,38 +138,42 @@
           >
             Начислить баллы
           </div>
-          <div
-            class="checkout__loyalty-button button"
-            :class="{'button-alt': $wire.isEarnBonuses}"
-            wire:click="isEarnBonuses = false"
-          >
-            или списать (до {{ price_formatter($this->maxSpentBonuses) }} ₽)
-          </div>
+          @if ($this->maxSpentBonuses)
+            <div
+              class="checkout__loyalty-button button"
+              :class="{'button-alt': $wire.isEarnBonuses}"
+              wire:click="isEarnBonuses = false"
+            >
+              или списать (до {{ price_formatter($this->maxSpentBonuses) }} ₽)
+            </div>
+          @endif
 
           {{-- списать --}}
-          <div
-            class="checkout__loyalty-range"
-            x-cloak
-            x-show="!$wire.isEarnBonuses"
-          >
-            <div class="field-range--bubble bubble"></div>
-            <input
-              class="checkout__loyalty-range--input field-range"
-              type="range"
-              min="0"
-              max="{{ $this->maxSpentBonuses }}"
-              wire:model.change="spentBonuses"
-            />
-            <div class="checkout__loyalty-range-values">
-              <span class="range-label">0 бонусов</span>
-              <span class="range-label">
-                {{ price_formatter($this->maxSpentBonuses) }} бонусов
-              </span>
+          @if ($this->maxSpentBonuses)
+            <div
+              class="checkout__loyalty-range"
+              x-cloak
+              x-show="!$wire.isEarnBonuses"
+            >
+              <div class="field-range--bubble bubble"></div>
+              <input
+                class="checkout__loyalty-range--input field-range"
+                type="range"
+                min="0"
+                max="{{ $this->maxSpentBonuses }}"
+                wire:model.change="spentBonuses"
+              />
+              <div class="checkout__loyalty-range-values">
+                <span class="range-label">0 бонусов</span>
+                <span class="range-label">
+                  {{ price_formatter($this->maxSpentBonuses) }} бонусов
+                </span>
+              </div>
+              <p style="margin-top: 15px; text-align: center; opacity: 0.5">
+                При списании бонусные баллы не зачисляются
+              </p>
             </div>
-            <p style="margin-top: 15px; text-align: center; opacity: 0.5">
-              При списании бонусные баллы не зачисляются
-            </p>
-          </div>
+          @endif
 
           {{-- начислить --}}
           <div
@@ -211,7 +215,7 @@
             :class="{'validated': $wire.couponAmount}"
             type="text"
             placeholder="Промокод"
-            wire:model.trim="couponStr"
+            wire:model.trim="couponCode"
           />
           <div
             x-show="!$wire.couponAmount"
@@ -222,7 +226,7 @@
           </div>
           <div
             x-show="$wire.couponAmount"
-            wire:click="set('couponStr', null);$wire.applyCoupon()"
+            wire:click="set('couponCode', null);$wire.applyCoupon()"
             x-cloak
             class="checkout__promo-button button button-alt"
           >

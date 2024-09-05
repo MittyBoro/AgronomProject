@@ -29,22 +29,22 @@ class CheckoutPage extends Component
 
     private User $user;
 
-    public ?int $subTotal = 0;
+    public ?int $subTotal = 0; // сумма всех позиций в корзине
 
-    public bool $isEarnBonuses = true;
+    public bool $isEarnBonuses = true; // начислить (true) или списать (false) бонусы
 
-    public ?int $spentBonuses = 0;
+    public ?int $spentBonuses = 0; // потратить бонусы
 
     #[Session]
-    public ?string $couponStr;
+    public ?string $couponCode = null; // код купона
 
-    public ?string $couponError;
+    public ?string $couponError; // ошибка при применении купона
 
-    public ?Coupon $coupon;
+    private ?Coupon $coupon; // купон
 
-    public ?int $couponAmount = 0;
+    public ?int $couponAmount = 0; // скидка по купону
 
-    private $maxSpentPercent = 30;
+    private $maxSpentPercent = 30; // максимальный процент потраченных бонусов
 
     public function boot(CartService $cartService): void
     {
@@ -62,24 +62,36 @@ class CheckoutPage extends Component
         $this->seo()->metatags()->addMeta('robots', 'noindex, nofollow');
     }
 
+    /**
+     * Список позиций в корзине
+     */
     #[Computed]
     public function items()
     {
         return $this->cartService->items(full: true);
     }
 
+    /**
+     * Итоговая стоимость со скидками
+     */
     #[Computed]
     public function total(): int
     {
         return $this->subTotal - $this->couponAmount - $this->spentBonuses;
     }
 
+    /**
+     * Сколько начислим бонусов
+     */
     #[Computed]
     public function earnBonuses(): int
     {
         return floor($this->total * $this->user->loyalty?->percentage) / 100;
     }
 
+    /**
+     * Сколько можно списать бонусов
+     */
     #[Computed]
     public function maxSpentBonuses(): int
     {
@@ -118,11 +130,14 @@ class CheckoutPage extends Component
         $this->subTotal = $this->cartService->totalPrice();
 
         // применить промокод, если был введён ранее
-        if ($this->couponStr) {
+        if ($this->couponCode) {
             $this->applyCoupon();
         }
     }
 
+    /**
+     * Перенаправление на страницу корзины в случае ошибки
+     */
     private function redirectToCart(string $error): void
     {
         add_session_error($error);
@@ -185,7 +200,7 @@ class CheckoutPage extends Component
         $this->spentBonuses = 0;
         $this->isEarnBonuses = true;
 
-        if (empty($this->couponStr)) {
+        if (empty($this->couponCode)) {
             $this->couponError = '';
             $this->couponAmount = 0;
             $this->coupon = null;
@@ -193,7 +208,7 @@ class CheckoutPage extends Component
             return;
         }
 
-        $code = Str::upper($this->couponStr);
+        $code = Str::upper($this->couponCode);
         $this->coupon = Coupon::where('code', $code)->isActive()->first();
 
         if (!$this->coupon) {
@@ -206,6 +221,9 @@ class CheckoutPage extends Component
         }
     }
 
+    /**
+     * Отправить форму
+     */
     public function submit(): void
     {
         //

@@ -201,4 +201,14 @@ class Order extends Model
             }
         });
     }
+
+    /**
+     * Убавление кол-ва доступных купонов
+     */
+    public function decrementCouponCount(int $decrement = 1): void
+    {
+        if ($this->coupon) {
+            $this->coupon->decrement('count', $decrement);
+        }
+    }
 }

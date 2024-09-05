@@ -13,6 +13,7 @@ class OrderObserver
     public function created(Order $order): void
     {
         $order->decrementProductStock();
+        $order->decrementCouponCount();
     }
 
     /**
@@ -46,13 +47,16 @@ class OrderObserver
                         ])
                     ) {
                         $order->decrementProductStock(-1);
+                        $order->decrementCouponCount(-1);
                     }
 
                     break;
 
                 default:
-                    // убираем товары, если статус изменили с Canceled или Refunded
-                    // то есть заказ возвращён «в работу»
+                    /**
+                     * Убираем товары, если статус изменили с Canceled или Refunded
+                     * то есть заказ возвращён «в работу»
+                     */
                     if (
                         in_array($oldStatus, [
                             OrderStatusEnum::Canceled,
@@ -60,6 +64,7 @@ class OrderObserver
                         ])
                     ) {
                         $order->decrementProductStock();
+                        $order->decrementCouponCount();
                     }
 
                     break;
