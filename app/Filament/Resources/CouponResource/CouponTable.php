@@ -30,7 +30,7 @@ class CouponTable
                     ->copyMessage('Код купона скопирован')
                     ->sortable(),
                 //
-                TextInputColumn::make('percentage')
+                TextInputColumn::make('percent')
                     ->rules(['required', 'numeric', 'min:1', 'max:100'])
                     ->type('number')
                     ->label('Скидка')

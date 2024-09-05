@@ -12,13 +12,8 @@ class LoyaltyList extends Component
 
     public function mount(): void
     {
-        $this->list = Loyalty::select(
-            'id',
-            'title',
-            'description',
-            'percentage',
-        )
-            ->orderBy('percentage')
+        $this->list = Loyalty::select('id', 'title', 'description', 'percent')
+            ->orderBy('percent')
             ->get();
     }
 }

@@ -17,7 +17,7 @@ class Coupon extends Model
      */
     protected $fillable = [
         'code',
-        'percentage',
+        'percent',
         'count',
         'is_active',
         'expires_at',
@@ -38,7 +38,7 @@ class Coupon extends Model
     protected function casts(): array
     {
         return [
-            'percentage' => 'float',
+            'percent' => 'float',
             'count' => 'integer',
             'is_active' => 'boolean',
             'expires_at' => 'datetime',

@@ -14,12 +14,7 @@ class Loyalty extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'title',
-        'description',
-        'percentage',
-        'min_order_sum',
-    ];
+    protected $fillable = ['title', 'description', 'percent', 'min_order_sum'];
 
     /**
      * Get the attributes that should be cast.
@@ -30,7 +25,7 @@ class Loyalty extends Model
     {
         return [
             'min_order_sum' => 'float',
-            'percentage' => 'float',
+            'percent' => 'float',
         ];
     }
 

@@ -25,7 +25,7 @@ class LoyaltyTable
                     ->searchable()
                     ->sortable(),
                 //
-                TextColumn::make('percentage')
+                TextColumn::make('percent')
                     ->label('Начисляемый процент')
                     ->suffix('%')
                     ->searchable()
@@ -45,7 +45,7 @@ class LoyaltyTable
             //
             ->bulkActions(TableBulkActions::make())
             //
-            ->defaultSort('percentage')
+            ->defaultSort('percent')
             ->striped();
     }
 }

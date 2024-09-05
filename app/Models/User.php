@@ -63,7 +63,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     protected static function booted(): void
     {
         static::created(function ($user): void {
-            $loyalty = Loyalty::orderBy('percentage', 'asc')->first();
+            $loyalty = Loyalty::orderBy('percent', 'asc')->first();
             if ($loyalty) {
                 $user->loyalty()->associate($loyalty);
             }

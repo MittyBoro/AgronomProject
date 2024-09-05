@@ -16,7 +16,7 @@ class CouponFactory extends BaseFactory
     {
         return [
             'code' => 'TEST_' . rand(1000, 9999),
-            'percentage' => rand(1, 10),
+            'percent' => rand(1, 10),
             'count' => rand(1, 10),
             'is_active' => rand(0, 1),
             'expires_at' => rand(0, 1) ? now()->addDays(30) : null,

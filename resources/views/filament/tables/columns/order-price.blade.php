@@ -37,7 +37,7 @@
       <span class="w-full min-w-8 mx-2 border-b"></span>
     </div>
     <div class="max-w-base">
-      {{ price_formatter($getRecord()->coupon->percentage) }}%
+      {{ price_formatter($getRecord()->coupon->percent) }}%
       [{{ $getRecord()->coupon->code }}]
     </div>
   @endif

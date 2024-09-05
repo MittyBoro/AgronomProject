@@ -32,7 +32,7 @@ class LoyaltyForm extends BaseForm
                         ->autosize()
                         ->maxLength(2048),
                     //
-                    TextInput::make('percentage')
+                    TextInput::make('percent')
                         ->label('Начисляемый процент')
                         ->hint('от суммы заказа')
                         ->numeric()

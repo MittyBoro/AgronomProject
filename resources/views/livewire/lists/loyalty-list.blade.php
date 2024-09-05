@@ -12,7 +12,7 @@
         @foreach ($list as $item)
           <div :key="$item->id" class="loyalty__level">
             <div class="loyalty__level-title">{{ $item->title }}</div>
-            <div class="loyalty__level-percent">{{ $item->percentage }}%</div>
+            <div class="loyalty__level-percent">{{ $item->percent }}%</div>
             <div class="loyalty__level-description">
               {{ $item->description }}
             </div>

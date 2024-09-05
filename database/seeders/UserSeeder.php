@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
 
         User::factory(20)->create();
 
-        $loyalty = Loyalty::orderBy('percentage', 'asc')->first();
+        $loyalty = Loyalty::orderBy('percent', 'asc')->first();
         if ($loyalty) {
             User::query()->update(['loyalty_id' => $loyalty->id]);
         }

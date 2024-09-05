@@ -176,7 +176,7 @@ class Order extends Model
      */
     public function earnBonuses(): void
     {
-        $percentToBonus = $this->user->loyalty?->percentage;
+        $percentToBonus = $this->user->loyalty?->percent;
         if ($percentToBonus) {
             $this->bonuses()->create([
                 'user_id' => $this->user_id,

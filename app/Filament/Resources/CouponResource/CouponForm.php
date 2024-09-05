@@ -45,7 +45,7 @@ class CouponForm extends BaseForm
                                 }),
                         ),
 
-                    TextInput::make('percentage')
+                    TextInput::make('percent')
                         ->label('Процент скидки')
                         ->hint('от суммы заказа')
                         ->default(10)

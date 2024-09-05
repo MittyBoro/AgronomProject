@@ -15,7 +15,7 @@ return new class extends Migration {
 
             $table->string('title');
             $table->string('description')->nullable();
-            $table->decimal('percentage', 5, 2);
+            $table->decimal('percent', 5, 2);
             $table->decimal('min_order_sum', 10, 2)->nullable();
 
             $table->timestamps();

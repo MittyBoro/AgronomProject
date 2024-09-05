@@ -84,7 +84,7 @@ class CheckoutPage extends Component
     #[Computed]
     public function earnBonuses(): int
     {
-        return floor($this->total * $this->user->loyalty?->percentage) / 100;
+        return floor($this->total * $this->user->loyalty?->percent) / 100;
     }
 
     /**
@@ -215,7 +215,7 @@ class CheckoutPage extends Component
         } else {
             $this->couponError = null;
             $this->couponAmount = round(
-                ($this->subTotal * $this->coupon->percentage) / 100,
+                ($this->subTotal * $this->coupon->percent) / 100,
             );
         }
     }
