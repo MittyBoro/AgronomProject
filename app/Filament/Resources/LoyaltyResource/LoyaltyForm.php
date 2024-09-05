@@ -9,18 +9,14 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Split;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 
 class LoyaltyForm extends BaseForm
 {
     public static function make(Form $form): Form
     {
-        // 'title',
-        // 'description',
-        // 'percentage',
-        // 'min_order_sum',
         return $form->columns(1)->schema([
             Split::make([
                 Section::make()->schema([

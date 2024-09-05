@@ -21,7 +21,7 @@ class OrderFactory extends Factory
     public function configure(): static
     {
         return $this->afterCreating(function (Order $order): void {
-            foreach (range(1, rand(3, 10)) as $i) {
+            foreach (range(1, rand(2, 5)) as $i) {
                 $product = Product::inRandomOrder()->selectPublic()->first();
 
                 $variation = $product
@@ -79,8 +79,8 @@ class OrderFactory extends Factory
             'address' => $this->faker->address,
             'comment' => rand(0, 1) ? $this->faker->sentence(10) : null,
             'save_info' => $this->faker->boolean(80),
-            'price' => $this->faker->numberBetween(500, 5000),
-            'total_price' => $this->faker->numberBetween(500, 5000),
+            'price' => 0,
+            'total_price' => 0,
             'payment_method' => 'Наличные',
             'status' => $status,
             'is_archived' => $this->faker->boolean(10),

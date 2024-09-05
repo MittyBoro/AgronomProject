@@ -9,7 +9,7 @@
   </div>
   <div class="loyalty-card__count">
     <div class="loyalty-card__count-value primary">
-      {{ $user->loyalty->percentage }}%
+      {{ $user->loyalty?->percentage ?? 0 }}%
     </div>
     <div class="loyalty-card__count-label">от покупки</div>
   </div>
