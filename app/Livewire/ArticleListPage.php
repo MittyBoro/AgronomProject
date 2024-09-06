@@ -6,8 +6,8 @@ use App\Models\Article;
 use App\Models\Page;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class ArticleListPage extends Component
 {

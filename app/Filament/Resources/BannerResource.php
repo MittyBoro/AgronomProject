@@ -54,7 +54,10 @@ class BannerResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::isPublished()->count();
+        return cache_filament_badge(
+            static::class,
+            fn() => static::getModel()::isPublished()->count(),
+        );
     }
 
     public static function getNavigationBadgeColor(): ?string

@@ -3,14 +3,10 @@
 namespace App\Filament\Resources\LoyaltyResource;
 
 use App\Filament\Forms\BaseForm;
-use App\Filament\Resources\ProductResource;
-use App\Models\Category;
-use Filament\Actions\Action;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Split;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 
 class LoyaltyForm extends BaseForm
@@ -62,26 +58,7 @@ class LoyaltyForm extends BaseForm
     private static function informationSectionComponents(): array
     {
         return [
-                // Placeholder::make('products')
-                //     ->visible(fn(?Category $record): bool => (bool) $record)
-                //     ->label('Товары')
-                //     ->content(
-                //         fn(?Category $record) => Action::make(
-                //             $record->products()->count() . ' шт.',
-                //         )
-                //             ->icon('heroicon-o-shopping-cart')
-                //             ->color('gray')
-                //             ->size('xs')
-                //             ->url(
-                //                 ProductResource::getUrl('index', [
-                //                     'tableFilters' => [
-                //                         'categories' => [
-                //                             'value' => $record->id,
-                //                         ],
-                //                     ],
-                //                 ]),
-                //             ),
-                //     ),
+                //
             ];
     }
 }

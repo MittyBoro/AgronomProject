@@ -12,6 +12,7 @@ class ArticlePage extends Component
     use SEOToolsTrait;
 
     public Article $article;
+
     public int $articleId;
 
     public array $breadcrumbs = [['/articles', 'Статьи']];

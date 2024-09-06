@@ -54,7 +54,10 @@ class CouponResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::isActive()->count();
+        return cache_filament_badge(
+            static::class,
+            fn() => static::getModel()::isActive()->count(),
+        );
     }
 
     public static function getGloballySearchableAttributes(): array

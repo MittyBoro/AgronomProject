@@ -13,7 +13,7 @@ class RecentlyWatched extends Component
 
     public ?int $excludeId = null;
 
-    public function mount()
+    public function mount(): void
     {
         $watchedArray = Cookie::get('user_watched')
             ? json_decode(Cookie::get('user_watched'))
@@ -21,12 +21,11 @@ class RecentlyWatched extends Component
 
         if (count($watchedArray) < 3) {
             return;
-        } else {
-            if ($this->excludeId) {
-                $watchedArray = array_diff($watchedArray, [$this->excludeId]);
-            }
-            $watchedArray = array_slice($watchedArray, -4);
         }
+        if ($this->excludeId) {
+            $watchedArray = array_diff($watchedArray, [$this->excludeId]);
+        }
+        $watchedArray = array_slice($watchedArray, -4);
 
         $this->items = Product::selectPublic()
             ->whereIn('id', $watchedArray)

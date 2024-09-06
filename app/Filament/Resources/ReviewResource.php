@@ -56,12 +56,18 @@ class ReviewResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getNewRecordsCount() ?: static::getModel()::count();
+        return cache_filament_badge(
+            static::class,
+            fn() => static::getNewRecordsCount() ?: static::getModel()::count(),
+        );
     }
 
     public static function getNavigationBadgeColor(): ?string
     {
-        return static::getNewRecordsCount() ? 'warning' : 'gray';
+        return cache_filament_badge(
+            static::class . '.color',
+            fn() => static::getNewRecordsCount() ? 'warning' : 'gray',
+        );
     }
 
     private static function getNewRecordsCount(): ?int

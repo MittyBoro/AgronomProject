@@ -14,6 +14,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 
 class ReviewTable
 {
@@ -26,15 +27,11 @@ class ReviewTable
 
                 //
                 TextColumn::make('name')
-                    ->label('Имя')
+                    ->label('Пользователь')
                     ->badge()
-                    ->description(
-                        fn(Review $record): string => $record->comment,
-                    )
                     ->icon('heroicon-o-user')
                     ->color('info')
                     ->wrap()
-                    ->searchable()
                     ->sortable()
                     ->url(
                         fn(Review $record): string => ReviewResource::getUrl(
@@ -48,7 +45,17 @@ class ReviewTable
                             ],
                         ),
                     ),
-
+                //
+                TextColumn::make('comment')
+                    ->label('Текст ')
+                    ->wrap()
+                    ->formatStateUsing(
+                        fn(string $state): HtmlString => new HtmlString(
+                            '<span class="  leading-tight line-clamp-3 max-w-60">' .
+                                nl2br($state) .
+                                '</span>',
+                        ),
+                    ),
                 //
                 TextColumn::make('rating')
                     ->label('Рейтинг')
@@ -89,8 +96,9 @@ class ReviewTable
                             : 'heroicon-o-hand-thumb-down',
                     ),
                 //
-                CheckboxColumn::make('is_approved')
+                ToggleColumn::make('is_approved')
                     ->label('Одобрено')
+                    ->toggleable()
                     ->sortable(),
                 //
                 ToggleColumn::make('is_pinned')
@@ -113,6 +121,7 @@ class ReviewTable
                     ->label('Дата создания')
                     ->sortable()
                     ->toggleable()
+                    ->dateTimeTooltip()
                     ->date('d.m.Y H:i'),
             ])
             ->filters([

@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\LoyaltyResource;
 
+use App\Filament\Resources\UserResource;
 use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\TableActions;
 use App\Filament\Tables\TableBulkActions;
+use App\Models\Loyalty;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -36,6 +38,27 @@ class LoyaltyTable
                     ->money('RUB')
                     ->searchable()
                     ->sortable(),
+
+                //
+                TextColumn::make('users_count')
+                    ->label('Пользователи')
+                    ->counts('users')
+                    ->icon('heroicon-o-users')
+                    ->badge()
+                    ->color('gray')
+                    ->sortable()
+                    ->url(
+                        fn(Loyalty $record): string => UserResource::getUrl(
+                            'index',
+                            [
+                                'tableFilters' => [
+                                    'loyalties' => [
+                                        'value' => $record->id,
+                                    ],
+                                ],
+                            ],
+                        ),
+                    ),
             ])
             ->filters([
                 //

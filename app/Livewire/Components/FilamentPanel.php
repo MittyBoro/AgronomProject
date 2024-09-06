@@ -3,7 +3,6 @@
 namespace App\Livewire\Components;
 
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
 class FilamentPanel extends Component

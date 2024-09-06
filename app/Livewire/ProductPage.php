@@ -13,6 +13,7 @@ class ProductPage extends Component
     use SEOToolsTrait;
 
     public Product $product;
+
     public int $productId;
 
     public ?Collection $similar;

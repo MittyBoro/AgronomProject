@@ -40,11 +40,7 @@ class BannerTable
                     ->sortable()
                     ->date('d.m.Y H:i')
                     ->badge()
-                    ->tooltip(
-                        fn(
-                            Banner $record,
-                        ) => $record->expires_at?->diffForHumans(parts: 2),
-                    )
+                    ->sinceTooltip()
                     ->color(
                         fn(Banner $record): string => $record->expires_at <
                         now()

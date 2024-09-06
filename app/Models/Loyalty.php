@@ -29,6 +29,11 @@ class Loyalty extends Model
         ];
     }
 
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function nextLevel(): ?self
     {
         return $this->where('min_order_sum', '>', $this->min_order_sum)

@@ -139,6 +139,7 @@ class ProductTable
                 TextColumn::make('created_at')
                     ->label('Дата создания')
                     ->date('d.m.Y H:i:s')
+                    ->dateTimeTooltip()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([

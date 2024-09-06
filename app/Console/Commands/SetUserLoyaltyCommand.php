@@ -26,7 +26,7 @@ class SetUserLoyaltyCommand extends Command
      * Выбрать всех, у кого не выставился уровень
      * или последний заказ был обновлен менее 3 часов назад (с запасом)
      */
-    public function handle()
+    public function handle(): void
     {
         User::whereHas(
             'orders',
@@ -34,7 +34,7 @@ class SetUserLoyaltyCommand extends Command
         )
             ->orWhereNull('loyalty_id')
             ->cursor()
-            ->each(function (User $user) {
+            ->each(function (User $user): void {
                 $user->setLoyalty();
             });
     }

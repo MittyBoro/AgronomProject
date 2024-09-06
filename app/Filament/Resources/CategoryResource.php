@@ -55,7 +55,10 @@ class CategoryResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        return cache_filament_badge(
+            static::class,
+            fn() => static::getModel()::count(),
+        );
     }
 
     public static function getNavigationBadgeColor(): ?string

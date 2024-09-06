@@ -37,7 +37,8 @@ class ArticleTable
                 TextColumn::make('created_at')
                     ->label('Дата создания')
                     ->sortable()
-                    ->date('d.m.Y H:i'),
+                    ->dateTimeTooltip()
+                    ->date('d.m.Y'),
             ])
             ->filters([
                 //

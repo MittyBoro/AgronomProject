@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
@@ -104,5 +105,16 @@ if (!function_exists('inbox_url')) {
             default:
                 return null;
         }
+    }
+}
+
+if (!function_exists('cache_filament_badge')) {
+    function cache_filament_badge($name, Closure $data)
+    {
+        return Cache::remember(
+            'filament.badge.' . $name,
+            now()->addMinute(),
+            $data,
+        );
     }
 }
