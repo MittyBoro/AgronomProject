@@ -93,4 +93,7 @@
       @endif
     </div>
   </section>
+
+  {{-- недавно смотрели --}}
+  <livewire:lists.recently-watched />
 </main>

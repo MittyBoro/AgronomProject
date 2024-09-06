@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Product;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cookie;
 use Livewire\Component;
 
 class ProductPage extends Component
@@ -27,6 +28,7 @@ class ProductPage extends Component
 
         $this->setBreadcrumbs();
         $this->setSimilar();
+        $this->setUserWatched();
     }
 
     private function setBreadcrumbs(): void
@@ -55,5 +57,22 @@ class ProductPage extends Component
             ->limit(4)
             ->inRandomOrder()
             ->get();
+    }
+
+    private function setUserWatched(): void
+    {
+        $watchedArray = Cookie::get('user_watched')
+            ? json_decode(Cookie::get('user_watched'))
+            : [];
+
+        if (!in_array($this->product->id, $watchedArray)) {
+            $watchedArray[] = $this->product->id;
+            $watchedArray = array_slice($watchedArray, -5);
+            Cookie::queue(
+                'user_watched',
+                json_encode($watchedArray),
+                60 * 24 * 30,
+            );
+        }
     }
 }

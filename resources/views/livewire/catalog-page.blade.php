@@ -33,4 +33,7 @@
       </div>
     </div>
   </x-product.list>
+
+  {{-- недавно смотрели --}}
+  <livewire:lists.recently-watched />
 </main>

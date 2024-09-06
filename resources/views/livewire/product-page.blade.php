@@ -25,4 +25,7 @@
     title="Отзывы покупателей"
     :product_id="$product->id"
   />
+
+  {{-- недавно смотрели --}}
+  <livewire:lists.recently-watched :excludeId="$product->id" />
 </main>
