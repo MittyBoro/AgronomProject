@@ -62,4 +62,17 @@ class PageResource extends Resource
     {
         return 'gray';
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'id',
+            'slug',
+            'title',
+            'content',
+            'meta_title',
+            'meta_description',
+            'meta_keywords',
+        ];
+    }
 }

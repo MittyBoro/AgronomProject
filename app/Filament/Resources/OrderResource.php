@@ -54,4 +54,20 @@ class OrderResource extends Resource
     {
         return 'info';
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'id',
+            'full_name',
+            'email',
+            'phone',
+            'postal_code',
+            'city',
+            'address',
+            'comment',
+            'delivery_comment',
+            'status',
+        ];
+    }
 }

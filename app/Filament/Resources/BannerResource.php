@@ -61,4 +61,9 @@ class BannerResource extends Resource
     {
         return 'gray';
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['id', 'title', 'url'];
+    }
 }

@@ -51,4 +51,9 @@ class LoyaltyResource extends Resource
             'edit' => Pages\EditLoyalty::route('/{record}/edit'),
         ];
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['id', 'title', 'description'];
+    }
 }

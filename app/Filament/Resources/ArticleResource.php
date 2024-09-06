@@ -62,4 +62,18 @@ class ArticleResource extends Resource
     {
         return 'gray';
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'id',
+            'slug',
+            'title',
+            'description',
+            'content',
+            'meta_title',
+            'meta_description',
+            'meta_keywords',
+        ];
+    }
 }

@@ -61,4 +61,20 @@ class UserResource extends Resource
     {
         return 'gray';
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'id',
+            'name',
+            'first_name',
+            'middle_name',
+            'last_name',
+            'birthday',
+            'gender',
+            'email',
+            'phone',
+            'role',
+        ];
+    }
 }

@@ -62,4 +62,17 @@ class CategoryResource extends Resource
     {
         return 'gray';
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'id',
+            'title',
+            'slug',
+            'description',
+            'meta_title',
+            'meta_description',
+            'meta_keywords',
+        ];
+    }
 }

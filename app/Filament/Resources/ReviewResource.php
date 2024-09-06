@@ -74,4 +74,9 @@ class ReviewResource extends Resource
 
         return self::$newRecords;
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['id', 'name', 'comment'];
+    }
 }

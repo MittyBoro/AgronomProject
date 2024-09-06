@@ -62,4 +62,18 @@ class ProductResource extends Resource
     {
         return 'gray';
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'id',
+            'slug',
+            'title',
+            'description',
+            'meta_title',
+            'meta_description',
+            'meta_keywords',
+            'variations.title',
+        ];
+    }
 }

@@ -56,4 +56,9 @@ class CouponResource extends Resource
     {
         return static::getModel()::isActive()->count();
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['id', 'code'];
+    }
 }
