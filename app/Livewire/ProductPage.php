@@ -13,6 +13,7 @@ class ProductPage extends Component
     use SEOToolsTrait;
 
     public Product $product;
+    public int $productId;
 
     public ?Collection $similar;
 
@@ -23,6 +24,8 @@ class ProductPage extends Component
         $this->product = Product::whereSlug($slug)
             ->selectPublic(full: true)
             ->firstOrFail();
+
+        $this->productId = $this->product->id;
 
         $this->product->append('grouped_variations');
 

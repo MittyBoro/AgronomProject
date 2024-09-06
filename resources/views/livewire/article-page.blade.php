@@ -28,7 +28,7 @@
 
   {{-- Популярные товары --}}
   <x-article.list
-    title="Так же смотрят"
+    title="Так же читают"
     pretitle="Похожие"
     :articles="$similar"
     :button="['/articles', 'Посмотреть все']"

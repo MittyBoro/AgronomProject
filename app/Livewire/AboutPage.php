@@ -10,7 +10,7 @@ class AboutPage extends Component
 {
     use SEOToolsTrait;
 
-    public Page $page;
+    public ?Page $page;
 
     public array $breadcrumbs = [['', 'О нас']];
 

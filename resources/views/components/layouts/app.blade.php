@@ -42,6 +42,10 @@
   </head>
 
   <body>
+    @if (Auth::user()?->is_admin)
+      <livewire:components.filament-panel />
+    @endif
+
     <x-main.header />
 
     {{ $slot }}

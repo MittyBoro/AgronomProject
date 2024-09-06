@@ -14,8 +14,6 @@ class HomePage extends Component
 {
     use SEOToolsTrait;
 
-    public ?Page $page;
-
     public ?string $homeTitle;
 
     public ?string $homeDescription;
@@ -39,14 +37,14 @@ class HomePage extends Component
 
     private function setPage(): void
     {
-        $this->page = Page::publicSelect()->whereSlug('/')->firstOrFail();
+        $page = Page::publicSelect()->whereSlug('/')->firstOrFail();
 
-        $homeData = $this->page->attrs['key_value'][0];
+        $homeData = $page->attrs['key_value'][0];
         $this->homeTitle = $homeData['home_title'] ?? null;
         $this->homeDescription = $homeData['home_description'] ?? null;
 
-        $this->seo()->setTitle($this->page->meta_title);
-        $this->seo()->setDescription($this->page->meta_description);
+        $this->seo()->setTitle($page->meta_title);
+        $this->seo()->setDescription($page->meta_description);
     }
 
     // популярные товары

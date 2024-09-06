@@ -22,6 +22,10 @@
 .product__slider {
   max-width: 500px;
   min-width: 1px;
+
+  swiper-slide:not([style]) ~ swiper-slide {
+    display: none;
+  }
 }
 .product__image {
   position: relative;

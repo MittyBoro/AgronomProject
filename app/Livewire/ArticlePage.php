@@ -12,6 +12,7 @@ class ArticlePage extends Component
     use SEOToolsTrait;
 
     public Article $article;
+    public int $articleId;
 
     public array $breadcrumbs = [['/articles', 'Статьи']];
 
@@ -21,6 +22,8 @@ class ArticlePage extends Component
     {
         $this->setBreadcrumbs();
         $this->setSimilar();
+
+        $this->articleId = $this->article->id;
     }
 
     private function setBreadcrumbs(): void

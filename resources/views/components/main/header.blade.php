@@ -68,7 +68,7 @@
       </a>
       {{-- личный кабинет --}}
       <div class="header__dropdown header__icon">
-        <span class="header__icon" ondblclick="Livewire.navigate('/login')">
+        <span class="header__icon" ondblclick="Livewire.navigate('/profile')">
           @auth
             <x-main.icon src="icons/face.svg" />
             <livewire:components.user-balance
