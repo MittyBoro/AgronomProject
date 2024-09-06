@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Enums\VariationGroupTypeEnum;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\VariationGroup>
  */
 class VariationGroupFactory extends BaseFactory
 {

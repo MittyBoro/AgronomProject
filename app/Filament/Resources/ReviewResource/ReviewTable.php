@@ -7,7 +7,6 @@ use App\Filament\Tables\IdColumn;
 use App\Filament\Tables\TableActions;
 use App\Filament\Tables\TableBulkActions;
 use App\Models\Review;
-use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -47,11 +46,11 @@ class ReviewTable
                     ),
                 //
                 TextColumn::make('comment')
-                    ->label('Текст ')
+                    ->label('Текст')
                     ->wrap()
                     ->formatStateUsing(
                         fn(string $state): HtmlString => new HtmlString(
-                            '<span class="  leading-tight line-clamp-3 max-w-60">' .
+                            '<span class="leading-tight line-clamp-3 max-w-60">' .
                                 nl2br($state) .
                                 '</span>',
                         ),

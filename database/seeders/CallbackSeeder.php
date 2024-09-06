@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Review;
+use App\Models\Callback;
 use Illuminate\Database\Seeder;
 
-class ReviewSeeder extends Seeder
+class CallbackSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Review::factory(300)->create();
+        Callback::factory(100)->create();
     }
 }

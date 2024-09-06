@@ -4,10 +4,9 @@ namespace App\Filament\Resources\OrderResource;
 
 use App\Enums\OrderStatusEnum;
 use App\Filament\Resources\OrderResource;
+use App\Filament\Tables\ArchiveAction;
 use App\Filament\Tables\IdColumn;
 use App\Models\Order;
-use Filament\Notifications\Notification;
-use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\Layout\Component;
 use Filament\Tables\Columns\Layout\Grid;
@@ -58,34 +57,7 @@ class OrderTable
             //
             ->actions([
                 // в архив
-                Action::make('archive')
-                    ->label(
-                        fn(Order $record): string => $record->is_archived
-                            ? 'Восстановить'
-                            : 'Архивировать',
-                    )
-                    ->color(
-                        fn(Order $record): string => $record->is_archived
-                            ? 'warning'
-                            : 'gray',
-                    )
-                    ->icon('heroicon-m-archive-box')
-                    ->button()
-                    ->action(function (Order $record): void {
-                        $record->update([
-                            'is_archived' => !$record->is_archived,
-                        ]);
-                    })
-                    ->after(function (Order $record): void {
-                        $title =
-                            'Заказ #' .
-                            $record->id .
-                            ' ' .
-                            ($record->is_archived
-                                ? 'Архивирован'
-                                : 'Восстановлен');
-                        Notification::make()->success()->title($title)->send();
-                    }),
+                ArchiveAction::make('archive')->button(),
             ])
             //
             ->defaultSort('id', 'desc');
