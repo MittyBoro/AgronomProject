@@ -54,7 +54,7 @@
       <a class="header__icon link" href="/wishlist" wire:navigate>
         <x-main.icon src="icons/heart.svg" />
         <livewire:components.wishlist-count
-          class="header__icon--badge"
+          class="header__icon--badge badge"
           list="wishlist"
         />
       </a>
@@ -62,7 +62,7 @@
       <a class="header__icon link" href="/cart" wire:navigate>
         <x-main.icon src="icons/cart.svg" />
         <livewire:components.cart-count
-          class="header__icon--badge"
+          class="header__icon--badge badge"
           list="cart"
         />
       </a>
@@ -71,7 +71,9 @@
         <span class="header__icon" ondblclick="Livewire.navigate('/login')">
           @auth
             <x-main.icon src="icons/face.svg" />
-            <livewire:components.user-balance class="header__icon--badge dot" />
+            <livewire:components.user-balance
+              class="header__icon--badge badge dot"
+            />
           @endauth
 
           @guest
@@ -108,7 +110,7 @@
               <x-main.icon src="icons/card.svg" />
               <span>Бонусы</span>
               <livewire:components.user-balance
-                class="header__icon--badge header__dropdown-item--badge"
+                class="header__icon--badge header__dropdown-item--badge badge"
               />
             </a>
             <a

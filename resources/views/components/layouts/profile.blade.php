@@ -58,7 +58,9 @@
       >
         <x-main.icon src="icons/card.svg" />
         <span>Бонусы</span>
-        <span class="badge">{{ price_formatter(Auth::user()->balance) }}</span>
+        <span class="badge">
+          {{ price_formatter(Auth::user()?->balance) }}
+        </span>
       </a>
     </div>
   </section>

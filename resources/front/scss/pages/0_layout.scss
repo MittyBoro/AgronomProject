@@ -145,13 +145,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  &.dot {
-    padding: 0;
-    font-size: 0;
-    width: 10px;
-    height: 10px;
-    min-width: auto;
-  }
 }
 .header__icon-menu {
   align-items: center;
@@ -381,6 +374,7 @@
 }
 
 .mobile-nav__link {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -396,6 +390,15 @@
 .mobile-nav__icon {
   align-self: center;
   font-size: 30px;
+}
+
+.mobile-nav__badge {
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+  background: var(--primary-color);
+  margin: 0;
+  color: #fff;
 }
 
 // **********************

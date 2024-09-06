@@ -21,6 +21,10 @@
   font-weight: 600;
   margin-bottom: 30px;
   text-align: center;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 10px;
+  }
 }
 
 .info__message,

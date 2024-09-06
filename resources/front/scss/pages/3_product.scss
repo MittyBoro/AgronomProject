@@ -167,6 +167,7 @@
 
 .product__actions {
   display: grid;
+  align-items: center;
   grid-template-columns: auto 1fr auto;
   margin-bottom: 65px;
   gap: 14px;
@@ -217,6 +218,8 @@
   flex-grow: 1;
   padding: 0;
   max-width: 80px;
+  min-width: 1px;
+  width: auto;
   border-left: none;
   border-right: none;
   font-size: 20px;
@@ -224,7 +227,7 @@
   font-weight: 500;
   border-radius: 0;
   @include media-breakpoint-down(lg) {
-    max-width: 130px;
+    max-width: auto;
   }
 }
 

@@ -13,6 +13,6 @@ class UserBalance extends Component
 
     public function mount(): void
     {
-        $this->balance = Auth::user()->balance;
+        $this->balance = Auth::user()?->balance;
     }
 }
