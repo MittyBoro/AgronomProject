@@ -22,9 +22,8 @@ class OrderObserver
     public function updated(Order $order): void
     {
         if ($order->wasChanged('status')) {
-            // Отправляем уведомление о новом статусе
-            $order->is_notified = false;
-            $order->save();
+            // в очередь, иначе рекурсия
+            dispatch(fn() => $order->update(['is_notified' => true]));
 
             $oldStatus = $order->getOriginal('status');
 
