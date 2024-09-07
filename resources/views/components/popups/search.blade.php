@@ -9,15 +9,18 @@
             placeholder="Что вы ищете?"
             autofocus
           />
-          <x-a.icon class="header__search-icon link" src="icons/search.svg" />
+          <x-main.icon
+            class="header__search-icon link"
+            src="icons/search.svg"
+          />
         </div>
         <div class="popup__search-close popup__close link">
-          <x-a.icon src="icons/close.svg" />
+          <x-main.icon src="icons/close.svg" />
         </div>
       </div>
       <div class="popup__search-categories">
         @foreach ($categories as $category)
-          <x-categories.card :category="$category" />
+          <x-category.card :category="$category" />
         @endforeach
       </div>
     </div>

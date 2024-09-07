@@ -31,14 +31,14 @@
         'button-alt--primary' => $item !== 1,
       ])
     >
-      <x-a.icon src="icons/check.svg" />
+      <x-main.icon src="icons/check.svg" />
       По умолчанию
     </div>
     <div class="button button-mini button-alt">
-      <x-a.icon src="icons/edit.svg" />
+      <x-main.icon src="icons/edit.svg" />
     </div>
     <div class="button button-mini button-alt--danger">
-      <x-a.icon src="icons/trash.svg" />
+      <x-main.icon src="icons/trash.svg" />
     </div>
   </div>
 </div>
