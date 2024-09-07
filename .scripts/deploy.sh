@@ -9,6 +9,7 @@ echo  "Deployment started ..."
 echo "Application is not running"
 
 # Извлечь последнюю версию приложения
+git checkout main
 git pull origin main
 echo "Last version deployed"
 

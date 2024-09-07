@@ -86,6 +86,8 @@ class PageSeeder extends Seeder
             ['slug' => 'delivery', 'title' => 'Доставка'],
         ];
 
-        Page::upsert($data, uniqueBy: ['slug'], update: []);
+        foreach ($data as $page) {
+            Page::firstOrCreate($page);
+        }
     }
 }

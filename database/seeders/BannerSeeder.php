@@ -17,10 +17,6 @@ class BannerSeeder extends Seeder
                 'title' => 'Отрава со скидкой 7%',
                 'url' => '/',
             ],
-            [
-                'title' => 'Отрава со скидкой 15%',
-                'url' => '/',
-            ],
         ];
 
         foreach ($pages as $page) {

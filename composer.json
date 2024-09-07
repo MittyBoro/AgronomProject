@@ -52,7 +52,7 @@
             "@php artisan package:discover --ansi",
             "@php artisan vendor:publish --tag=livewire:assets --ansi --force",
             "@php artisan filament:upgrade",
-            "@php artisan db:seed PropSeeder"
+            "@php artisan db:seed PropSeeder --force"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
