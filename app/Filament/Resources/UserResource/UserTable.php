@@ -66,12 +66,12 @@ class UserTable
                 ->searchable()
                 ->sortable()
                 ->description(
-                    fn(User $user): string => implode(
+                    fn(User $record): string => implode(
                         ' ',
                         array_filter([
-                            $user->last_name,
-                            $user->first_name,
-                            $user->middle_name,
+                            $record->last_name,
+                            $record->first_name,
+                            $record->middle_name,
                         ]),
                     ),
                     position: 'below',
@@ -151,7 +151,7 @@ class UserTable
             TextColumn::make('bonuses_sum_amount')
                 ->label('Бонусы')
                 ->description(
-                    fn(User $record): string => $record->loyalty?->title,
+                    fn(User $record): ?string => $record->loyalty?->title,
                 )
                 ->default(0)
                 ->numeric()
