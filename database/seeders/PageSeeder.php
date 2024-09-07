@@ -12,7 +12,7 @@ class PageSeeder extends Seeder
      */
     public function run(): void
     {
-        $pages = [
+        $data = [
             //
             [
                 'slug' => '/',
@@ -86,8 +86,6 @@ class PageSeeder extends Seeder
             ['slug' => 'delivery', 'title' => 'Доставка'],
         ];
 
-        foreach ($pages as $page) {
-            Page::firstOrCreate($page);
-        }
+        Page::upsert($data, uniqueBy: ['slug'], update: []);
     }
 }

@@ -6,19 +6,46 @@ use Filament\Tables;
 
 class TableActions
 {
-    public static function make(): array
-    {
-        return [
-            Tables\Actions\ViewAction::make('show')
+    public static function make(
+        bool $view = true,
+        bool $edit = true,
+        bool $delete = true,
+        bool $forceDelete = true,
+        bool $restore = true,
+    ): array {
+        $actions = [];
+
+        if ($view) {
+            $actions[] = Tables\Actions\ViewAction::make()
                 ->button()
                 ->iconButton(false)
-                ->openUrlInNewTab(),
-            Tables\Actions\EditAction::make()->button()->iconButton(false),
-            Tables\Actions\DeleteAction::make()->button()->iconButton(false),
-            Tables\Actions\ForceDeleteAction::make()
+                ->openUrlInNewTab();
+        }
+
+        if ($edit) {
+            $actions[] = Tables\Actions\EditAction::make()
                 ->button()
-                ->iconButton(false),
-            Tables\Actions\RestoreAction::make()->button()->iconButton(false),
-        ];
+                ->iconButton(false);
+        }
+
+        if ($delete) {
+            $actions[] = Tables\Actions\DeleteAction::make()
+                ->button()
+                ->iconButton(false);
+        }
+
+        if ($forceDelete) {
+            $actions[] = Tables\Actions\ForceDeleteAction::make()
+                ->button()
+                ->iconButton(false);
+        }
+
+        if ($restore) {
+            $actions[] = Tables\Actions\RestoreAction::make()
+                ->button()
+                ->iconButton(false);
+        }
+
+        return $actions;
     }
 }

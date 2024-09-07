@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LoyaltySeeder::class);
         $this->call(CouponSeeder::class);
+        $this->call(PropSeeder::class);
 
         $this->call(UserSeeder::class);
         $this->call(PageSeeder::class);
