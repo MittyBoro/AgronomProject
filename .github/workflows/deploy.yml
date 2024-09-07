@@ -24,4 +24,4 @@ jobs:
           username: ${{ secrets.USERNAME }} // ivan
           port: ${{ secrets.PORT }} // 22
           key: ${{ secrets.SSHKEY }} // secret
-          script: ${{ secrets.SCRIPT }} // 'cd /home/ivan/AgronomCity && ./.scripts/deploy.sh'
+          script: ${{ vars.SCRIPT }} // 'cd /home/ivan/AgronomCity && ./.scripts/deploy.sh'
