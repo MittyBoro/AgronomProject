@@ -40,7 +40,7 @@ return new class extends Migration {
                 ->constrained()
                 ->nullOnDelete();
 
-            $table->decimal('shipping_price', 10, 2)->default(0);
+            $table->decimal('delivery_price', 10, 2)->default(0);
             $table->decimal('price', 10, 2);
             $table->decimal('total_price', 10, 2);
 

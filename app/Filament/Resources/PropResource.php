@@ -16,15 +16,15 @@ class PropResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $label = 'Настройки';
+    protected static ?string $label = 'Дополнительно';
 
-    protected static ?string $pluralLabel = 'Настройка';
+    protected static ?string $pluralLabel = 'Дополнительно';
 
-    protected static ?string $navigationLabel = 'Настройки';
+    protected static ?string $navigationLabel = 'Дополнительно';
 
     protected static ?string $navigationGroup = 'Прочее';
 
-    protected static ?int $navigationSort = 0;
+    protected static ?int $navigationSort = 50;
 
     public static function form(Form $form): Form
     {

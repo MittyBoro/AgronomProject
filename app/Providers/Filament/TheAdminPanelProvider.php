@@ -22,6 +22,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
@@ -79,11 +80,11 @@ class TheAdminPanelProvider extends PanelProvider
             ])
             ->userMenuItems([
                 MenuItem::make()
-                    ->label('Редактировать')
+                    ->label('Профиль')
                     ->icon('heroicon-o-cog-6-tooth')
                     ->url(
                         fn(): string => UserResource::getUrl('edit', [
-                            auth()->id(),
+                            Auth::id(),
                         ]),
                     ),
             ])

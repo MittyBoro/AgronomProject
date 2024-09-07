@@ -14,6 +14,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Notifications\Notification;
+use Illuminate\Http\Request;
 
 class PropForm extends BaseForm
 {
@@ -59,11 +60,14 @@ class PropForm extends BaseForm
                         ->required(),
                 ])
                 ->footerActions([
+                    // работает криво, не закрывает окно
                     Action::make('delete')
                         ->label('Удалить')
                         ->color('danger')
-                        ->visible(fn(?Prop $record): bool => (bool) $record)
-                        ->action(fn(Prop $record) => $record->delete())
+                        ->visible(
+                            fn(?Prop $record): bool => (bool) (bool) $record,
+                        )
+                        ->action(fn(?Prop $record) => $record?->delete())
                         ->requiresConfirmation()
                         ->icon('heroicon-o-trash')
                         ->after(function (): void {
@@ -71,7 +75,10 @@ class PropForm extends BaseForm
                                 ->success()
                                 ->body('Удалено')
                                 ->send();
-                        }),
+                        })
+                        ->successRedirectUrl(
+                            fn(Request $request): string => $request->url(),
+                        ),
                 ])
                 ->collapsible()
                 ->collapsed(fn(?Prop $record): bool => (bool) $record),

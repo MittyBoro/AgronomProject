@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Profile;
 
+use App\Models\Prop;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
@@ -16,9 +17,13 @@ class LoyaltyPage extends Component
 
     public int $toNextLevelPercent = 100;
 
+    public int $maxSpendPercent;
+
     public function mount(): void
     {
         $this->user = Auth::user();
+
+        $this->maxSpendPercent = Prop::get('max_bonuses_spend_percent', 10);
 
         $this->setLoyaltyLevel();
     }

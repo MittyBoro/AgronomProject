@@ -21,10 +21,10 @@ class PropSeeder extends Seeder
                 'title' => 'Email для уведомлений',
             ],
 
-            // 'delivery_cost'
+            // 'delivery_price'
             [
                 'type' => 'number',
-                'key' => 'delivery_cost',
+                'key' => 'delivery_price',
                 'group' => 'Платежи',
                 'title' => 'Стоимость доставки',
             ],
@@ -35,10 +35,10 @@ class PropSeeder extends Seeder
                 'group' => 'Платежи',
                 'title' => 'Минимальная сумма для бесплатной доставки',
             ],
-            // 'max_bonus_payment_percent'
+            // 'max_bonuses_spend_percent'
             [
                 'type' => 'number',
-                'key' => 'max_bonus_payment_percent',
+                'key' => 'max_bonuses_spend_percent',
                 'group' => 'Платежи',
                 'title' => 'Максимальный процент оплаты бонусами',
             ],

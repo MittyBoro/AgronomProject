@@ -13,7 +13,7 @@
       <div class="profile-loyalty__info-text">
         Копите бонусы и оплачивайте
         <br />
-        <b class="primary">до {{ config('shop.max_spend_bonuses') }}%</b>
+        <b class="primary">до {{ $maxSpendPercent }}%</b>
         от стоимости заказа
       </div>
       <div class="profile-loyalty__progress">

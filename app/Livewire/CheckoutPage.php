@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\CheckoutForm;
 use App\Models\Coupon;
+use App\Models\Prop;
 use App\Models\User;
 use App\Services\Cart\CartService;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
@@ -94,7 +95,7 @@ class CheckoutPage extends Component
     public function maxSpentBonuses(): int
     {
         // можно списать до {$maxSpentPercent}% из общей суммы
-        $maxSpentPercent = config('shop.max_spend_bonuses');
+        $maxSpentPercent = Prop::get('max_bonuses_spend_percent', 10);
 
         $maxSpentBonusesByCart = round(
             (($this->subTotal - $this->couponAmount) * $maxSpentPercent) / 100,

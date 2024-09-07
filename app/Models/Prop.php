@@ -5,13 +5,15 @@ namespace App\Models;
 use App\Enums\PropTypeEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
- * Помним про
+ * !Помним про
  *
  * @see \Database\Seeders\PropSeeder
+ * (приложение сверяется с данными оттуда)
  */
 class Prop extends Model implements HasMedia
 {
@@ -42,6 +44,16 @@ class Prop extends Model implements HasMedia
         return [
             'type' => PropTypeEnum::class,
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::saved(function (self $prop): void {
+            Cache::forget('props.' . $prop->key);
+        });
+        static::deleting(function (self $prop): void {
+            Cache::forget('props.' . $prop->key);
+        });
     }
 
     protected function value(): Attribute
@@ -76,5 +88,17 @@ class Prop extends Model implements HasMedia
                 return $value;
             },
         );
+    }
+
+    public static function get(string $key, $default = null)
+    {
+        return Cache::rememberForever('props.' . $key, function () use (
+            $key,
+            $default,
+        ) {
+            return Prop::select('id', 'type', 'value')
+                ->where('key', $key)
+                ->first()?->value ?? $default;
+        });
     }
 }

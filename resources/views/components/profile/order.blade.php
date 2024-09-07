@@ -40,7 +40,7 @@
           Стоимость доставки
         </div>
         <div class="profile-order__info-text profile__info-text">
-          {{ (int) $order->shipping_price ? price_formatter($order->shipping_price) . ' ₽' : 'Бесплатно' }}
+          {{ (int) $order->delivery_price ? price_formatter($order->delivery_price) . ' ₽' : 'Бесплатно' }}
         </div>
       </div>
 
