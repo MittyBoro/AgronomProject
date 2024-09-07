@@ -22,6 +22,7 @@ class Callback extends Model
         'message',
         'user_hash',
         'is_archived',
+        'form',
     ];
 
     /**

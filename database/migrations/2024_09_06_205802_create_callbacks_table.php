@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->string('user_hash', 32)->nullable();
             // ip + useragent
 
+            $table->string('form')->nullable();
+
             $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });

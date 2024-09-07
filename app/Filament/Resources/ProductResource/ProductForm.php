@@ -70,19 +70,12 @@ class ProductForm extends BaseForm
         return [
             TextInput::make('title')
                 ->label('Название')
-                ->live()
-                ->afterStateUpdated(function (
-                    Get $get,
-                    Set $set,
-                    ?string $old,
-                    ?string $state,
-                ): void {
-                    if (($get('slug') ?? '') !== Str::slug($old)) {
-                        return;
-                    }
-
-                    $set('slug', Str::slug($state));
-                })
+                ->live(onBlur: true)
+                ->afterStateUpdated(
+                    fn(Get $get, Set $set, ?string $state) => $get(
+                        'slug_enabled',
+                    ) && $set('slug', Str::slug($state)),
+                )
                 ->required()
                 ->maxLength(255),
 

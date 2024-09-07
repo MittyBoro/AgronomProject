@@ -42,14 +42,6 @@ class ProductTable
                         fn(Product $record): string => $record->variations
                             ->pluck('title')
                             ->implode(', '),
-                    )
-                    ->url(
-                        fn(Product $record): string => route(
-                            'filament.theadmin.resources.reviews.index',
-                            [
-                                'tableFilters[products][value]' => $record->id,
-                            ],
-                        ),
                     ),
 
                 //
@@ -83,7 +75,16 @@ class ProductTable
                         ->sortable()
                         ->counts('reviews')
                         ->state(fn($record) => $record->reviews_count)
-                        ->toggleable(),
+                        ->toggleable()
+                        ->url(
+                            fn(Product $record): string => route(
+                                'filament.theadmin.resources.reviews.index',
+                                [
+                                    'tableFilters[products][value]' =>
+                                        $record->id,
+                                ],
+                            ),
+                        ),
                 ]),
 
                 ColumnGroup::make('Цены', [
