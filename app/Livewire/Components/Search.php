@@ -12,7 +12,7 @@ class Search extends Component
 {
     public Collection $categories;
 
-    public string $search = 'Architecto nam';
+    public string $search = '';
 
     public function render()
     {
