@@ -132,3 +132,37 @@
   height: auto;
   margin-bottom: 40px;
 }
+
+.popup__search-title {
+  margin-top: -20px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  grid-column: 1 / -1;
+}
+
+.popup__search-list {
+  &:not(:last-child) {
+    margin-bottom: 50px;
+  }
+}
+
+.popup__search-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.popup__search-item--image {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.popup__search-category {
+  .popup__search-item--image {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}

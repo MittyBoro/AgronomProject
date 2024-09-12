@@ -58,7 +58,10 @@ class CatalogPage extends Component
 
     private function getCategoryPage($slug): Model
     {
-        $category = Category::whereSlug($slug)->with('media')->firstOrFail();
+        $category = Category::selectPublic()
+            ->whereSlug($slug)
+            ->with('media')
+            ->firstOrFail();
         $this->breadcrumbs[] = [
             url('/catalog/' . $category->slug),
             $category->title,

@@ -23,6 +23,10 @@ document.addEventListener('livewire:navigated', function () {
     })
     document.dispatchEvent(event)
 
+    setTimeout(() => {
+      popup.querySelector('[autofocus]')?.focus()
+    }, 100)
+
     window.popupClass = popupClass
 
     history.pushState({ popup: popupClass }, '')
