@@ -23,8 +23,8 @@ jobs:
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }} // ip
-          username: ${{ secrets.USERNAME }} // ivan
-          port: ${{ secrets.PORT }} // 22
-          key: ${{ secrets.SSHKEY }} // secret
-          script: ${{ vars.SCRIPT }} // 'cd /home/ivan/AgronomCity && ./.scripts/deploy.sh'
+          host: ${{ secrets.HOST }} # ip
+          port: ${{ secrets.PORT }} # 22
+          username: ${{ secrets.USERNAME }} # ivan
+          key: ${{ secrets.SSHKEY }} # secret
+          script: ${{ vars.SCRIPT }} # 'cd /home/ivan/AgronomCity && ./.scripts/deploy.sh'
