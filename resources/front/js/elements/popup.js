@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('livewire:navigated', function () {
   // popup окна
 
   window.openPopup = function (popupClass, popupData = null) {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .querySelectorAll('.popups > .active')
       .forEach((el) => el.classList.remove('active'))
 
-    document.documentElement.style.overflow = undefined
+    document.documentElement.style.overflow = null
 
     window.popupClass = null
 
@@ -41,12 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.dispatchEvent(event)
   }
 
-  document.querySelectorAll('[data-popup]').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault()
-      openPopup(el.dataset.popup, el.dataset.popupData)
-    })
-  })
   document.querySelectorAll('.popup__close').forEach((el) => {
     el.addEventListener('click', (e) => {
       e.preventDefault()
@@ -89,6 +83,20 @@ document.addEventListener('DOMContentLoaded', function () {
       closePopups()
     }
   }
+
+  document.querySelectorAll('[data-popup]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault()
+      openPopup(el.dataset.popup, el.dataset.popupData)
+    })
+  })
+
+  // закрыть меню
+  document.querySelectorAll('.popup__menu a').forEach((element) => {
+    element.addEventListener('click', function () {
+      window.closePopups()
+    })
+  })
 })
 
 const setScrollbarWidth = function (
@@ -120,10 +128,3 @@ const setScrollbarWidth = function (
 
   return scrollbarWidth
 }
-
-// закрыть меню
-document.querySelectorAll('.popup__menu a').forEach((element) => {
-  element.addEventListener('click', function () {
-    window.closePopups()
-  })
-})

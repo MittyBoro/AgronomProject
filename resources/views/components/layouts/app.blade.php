@@ -46,7 +46,7 @@
       <livewire:components.filament-panel />
     @endif
 
-    <x-main.header />
+    <x-main.header wire:ignore />
 
     {{ $slot }}
 
@@ -58,15 +58,13 @@
       <x-main.icon class="to-top__icon" src="icons/arrow.svg" />
     </div>
 
-    <div class="popups">
+    <div class="popups" wire:ignore>
       {{--  --}}
       {!! $popup ?? '' !!}
 
       {{--  --}}
-      {{--
-        <x-popups.menu :categories="$categories" />
-        <x-popups.search :categories="$categories" />
-      --}}
+      <x-popups.menu :categories="$categories" />
+      <x-popups.search :categories="$categories" />
     </div>
 
     @vite(config('app.resources.front') . '/js/app.js')

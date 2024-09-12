@@ -10,15 +10,17 @@ import 'lightgallery/css/lg-thumbnail.css'
 import 'lightgallery/css/lg-zoom.css'
 import 'lightgallery/css/lg-video.css'
 
-document.querySelectorAll('.lightgallery').forEach((el) => {
-  lightGallery(el, {
-    plugins: [lgThumbnail, lgZoom, lgVideo],
-    counter: false,
-    download: false,
-    thumbnail: true,
-    zoom: true,
-    preload: 0,
-    scale: 1.5,
-    thumbWidth: 70,
+document.addEventListener('livewire:navigated', () => {
+  document.querySelectorAll('.lightgallery').forEach((el) => {
+    lightGallery(el, {
+      plugins: [lgThumbnail, lgZoom, lgVideo],
+      counter: false,
+      download: false,
+      thumbnail: true,
+      zoom: true,
+      preload: 0,
+      scale: 1.5,
+      thumbWidth: 70,
+    })
   })
 })

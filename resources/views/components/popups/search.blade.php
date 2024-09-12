@@ -18,7 +18,7 @@
           <x-main.icon src="icons/close.svg" />
         </div>
       </div>
-      <div class="popup__search-categories">
+      <div class="popup__search-categories categories__list">
         @foreach ($categories as $category)
           <x-category.card :category="$category" />
         @endforeach

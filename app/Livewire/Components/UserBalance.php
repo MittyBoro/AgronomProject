@@ -9,6 +9,8 @@ class UserBalance extends Component
 {
     public ?string $balance;
 
+    public bool $mini = false;
+
     public string $class = '';
 
     public function mount(): void

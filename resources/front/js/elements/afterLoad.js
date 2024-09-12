@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('livewire:navigated', () => {
   // анимация перед загрузкой страницы выкл.
   let timerStart = Date.now()
   window.addEventListener('load', function () {

@@ -4,7 +4,7 @@
     <p>
       Здравствуйте,
       <b>{{ trim($user->first_name . ' ' . $user->middle_name) }},</b>
-      добро пожаловать в личный кабинет!
+      добро пожаловать в личный кабинет!
     </p>
     <form action="{{ route('logout') }}" method="POST">
       @csrf

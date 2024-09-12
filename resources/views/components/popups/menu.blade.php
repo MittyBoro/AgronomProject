@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="popup-menu__title title">Каталог</div>
-      <div class="popup-menu__categories catalog-categories">
+      <div class="popup-menu__categories categories__list">
         @foreach ($categories as $category)
           <x-category.card :category="$category" />
         @endforeach

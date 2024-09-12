@@ -538,14 +538,14 @@ strong {
   font-weight: 700;
   background: var(--card-color);
   color: var(--gray);
-  &.dot {
-    padding: 0;
-    font-size: 0;
-    width: 10px;
-    height: 10px;
-    min-width: auto;
-    border-radius: 50%;
-  }
+  // &.dot {
+  //   padding: 0;
+  //   font-size: 0;
+  //   width: 10px;
+  //   height: 10px;
+  //   min-width: auto;
+  //   border-radius: 50%;
+  // }
 }
 
 // *********************
@@ -589,5 +589,66 @@ strong {
   font-weight: 600;
 }
 
-// **************************
-// ******* Pagination *******
+// ************************
+// ******* Dropdown *******
+
+.dropdown {
+  position: relative;
+  cursor: pointer;
+  z-index: 20;
+  &:hover {
+    .dropdown-list {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+.dropdown-list {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  display: grid;
+  gap: 3px;
+  background: #fff;
+  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.1));
+  border-radius: 4px;
+  padding: 7px 0;
+  z-index: 10;
+  font-size: 15px;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: opacity, visibility;
+  transition-duration: 0.2s;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 9px;
+    width: 15px;
+    height: 15px;
+    transform: rotate(45deg);
+    background: inherit;
+  }
+}
+.dropdown-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 20px;
+  width: 100%;
+  white-space: nowrap;
+  cursor: pointer;
+  &:hover {
+    background: #fbfbfb;
+  }
+  .icon {
+    font-size: 1.7em;
+    flex-shrink: 0;
+  }
+  span {
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

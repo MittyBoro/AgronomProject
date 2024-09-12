@@ -4,7 +4,7 @@
   SEOMeta::addMeta('robots', 'noindex, nofollow');
 @endphp
 
-<x-layouts.app>
+<x-app-layout>
   <main class="auth-page">
     <section class="auth">
       <div class="container auth-container">
@@ -24,4 +24,4 @@
       </div>
     </section>
   </main>
-</x-layouts.app>
+</x-app-layout>

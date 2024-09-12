@@ -1,5 +1,5 @@
 import { register } from 'swiper/element/bundle'
-addEventListener('DOMContentLoaded', () => {
+addEventListener('livewire:navigated', () => {
   const swipers = document.querySelectorAll('swiper-container')
 
   swipers.forEach((swiperEl) => {

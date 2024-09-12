@@ -3,7 +3,7 @@
   SEOMeta::addMeta('robots', 'noindex, nofollow');
 @endphp
 
-<x-layouts.app body_name="account">
+<x-app-layout body_name="account">
   {{-- account --}}
   <section class="profile-header profile-header__section account">
     <div class="profile-header__container container">
@@ -72,4 +72,4 @@
   </section>
 
   {{ $bottom ?? '' }}
-</x-layouts.app>
+</x-app-layout>

@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="header__container container">
+  <div class="header__container container" wire:ignore.self>
     <a class="header__logo" href="/" wire:navigate>
       <picture>
         <source
@@ -67,24 +67,32 @@
         />
       </a>
       {{-- личный кабинет --}}
-      <div class="header__dropdown header__icon">
-        <span class="header__icon" ondblclick="Livewire.navigate('/profile')">
-          @auth
+      <div class="header__dropdown dropdown header__icon">
+        @auth
+          <a
+            href="{{ route('profile.index') }}"
+            rel="nofollow"
+            wire:navigate
+            class="header__icon"
+          >
             <x-main.icon src="icons/face.svg" />
             <livewire:components.user-balance
               class="header__icon--badge badge dot"
+              mini
             />
-          @endauth
+          </a>
+        @endauth
 
-          @guest
+        @guest
+          <span class="header__icon">
             <x-main.icon src="icons/user.svg" />
-          @endguest
-        </span>
+          </span>
+        @endguest
 
-        <div class="header__dropdown-list">
+        <div class="header__dropdown-list dropdown-list">
           @auth
             <a
-              class="header__dropdown-item link"
+              class="dropdown-item link"
               href="{{ route('profile.index') }}"
               rel="nofollow"
               wire:navigate
@@ -93,7 +101,7 @@
               <span>{{ Auth::user()->name }}</span>
             </a>
             <a
-              class="header__dropdown-item link"
+              class="dropdown-item link"
               href="{{ route('profile.orders') }}"
               rel="nofollow"
               wire:navigate
@@ -102,7 +110,7 @@
               <span>Заказы</span>
             </a>
             <a
-              class="header__dropdown-item link"
+              class="dropdown-item link"
               href="{{ route('profile.loyalty') }}"
               rel="nofollow"
               wire:navigate
@@ -114,7 +122,7 @@
               />
             </a>
             <a
-              class="header__dropdown-item link"
+              class="dropdown-item link"
               href="{{ route('profile.edit') }}"
               rel="nofollow"
               wire:navigate
@@ -124,7 +132,7 @@
             </a>
             <form action="{{ route('logout') }}" method="POST">
               @csrf
-              <button class="header__dropdown-item link">
+              <button class="dropdown-item link">
                 <x-main.icon src="icons/logout.svg" />
                 <span>Выход</span>
               </button>
@@ -133,7 +141,7 @@
 
           @guest
             <a
-              class="header__dropdown-item link"
+              class="dropdown-item link"
               href="{{ route('register') }}"
               rel="nofollow"
               wire:navigate
@@ -142,7 +150,7 @@
               <span>Регистрация</span>
             </a>
             <a
-              class="header__dropdown-item link"
+              class="dropdown-item link"
               href="{{ route('login') }}"
               rel="nofollow"
               wire:navigate
