@@ -13,7 +13,7 @@
   {{-- Товары --}}
   <x-product.list titleTag="h1" :$title :$products>
     {{-- сортировка --}}
-    <div class="dropdown">
+    <div class="dropdown" onclick="">
       <div class="dropdown__button button catalog__button">
         {{ $this->currentSort }}
       </div>

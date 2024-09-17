@@ -557,6 +557,13 @@ strong {
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
+  z-index: 20;
+  &:hover {
+    .dropdown-list {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 .dropdown__content {
@@ -590,20 +597,6 @@ strong {
   font-weight: 600;
 }
 
-// ************************
-// ******* Dropdown *******
-
-.dropdown {
-  position: relative;
-  cursor: pointer;
-  z-index: 20;
-  &:hover {
-    .dropdown-list {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-}
 .dropdown-list {
   position: absolute;
   top: 110%;

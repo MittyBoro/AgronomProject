@@ -39,7 +39,7 @@
     @endauth
 
     @guest
-      <a class="mobile-nav__dropdown dropdown mobile-nav__link" onclick="">
+      <div class="mobile-nav__dropdown dropdown mobile-nav__link" onclick="">
         <x-main.icon class="mobile-nav__icon" src="icons/user.svg" />
         <span>Профиль</span>
         <div class="mobile-nav__dropdown-list dropdown-list">
@@ -64,7 +64,7 @@
             <span>Вход</span>
           </a>
         </div>
-      </ф>
+      </div>
     @endguest
   </div>
 </nav>
