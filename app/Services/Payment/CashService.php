@@ -18,17 +18,17 @@ class CashService implements PaymentInterface
         $this->order->setStatus(OrderStatusEnum::Paid);
     }
 
-    public function check()
+    public function check(): void
     {
         //
     }
 
-    public function webhook()
+    public function webhook(): void
     {
         //
     }
 
-    public function refund()
+    public function refund(): void
     {
         $this->order->setStatus(OrderStatusEnum::Refunded);
     }

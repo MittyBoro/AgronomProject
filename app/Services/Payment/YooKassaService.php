@@ -126,7 +126,7 @@ class YooKassaService implements PaymentInterface
         }
     }
 
-    public function webhook()
+    public function webhook(): void
     {
         $source = file_get_contents('php://input');
         $requestBody = json_decode($source, true);
@@ -166,6 +166,7 @@ class YooKassaService implements PaymentInterface
                 ],
                 uniqid('', true),
             );
+
             return $this->order->setStatus(OrderStatusEnum::Refunded);
         } catch (Throwable $th) {
             logger()->error(

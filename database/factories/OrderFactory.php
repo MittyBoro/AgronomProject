@@ -81,7 +81,7 @@ class OrderFactory extends Factory
             'save_info' => $this->faker->boolean(80),
             'price' => 0,
             'total_price' => 0,
-            'payment_method' => 'Наличные',
+            'payment_method' => 'cash',
             'status' => $status,
             'is_archived' => $this->faker->boolean(10),
         ];
