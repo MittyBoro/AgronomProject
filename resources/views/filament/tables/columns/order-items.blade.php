@@ -23,10 +23,10 @@
         <p class="text-gray-500">{{ $item->variant_title }}</p>
       </div>
       <div class="whitespace-nowrap opacity-70">
-        {{ $item->quantity }} × {{ price_formatter($item->price) }} ₽
+        {{ $item->quantity }} × {{ price_formatter(round($item->price)) }} ₽
       </div>
       <div class="whitespace-nowrap font-bold">
-        {{ price_formatter($item->price * $item->quantity) }} ₽
+        {{ price_formatter(round($item->price * $item->quantity)) }} ₽
       </div>
     </div>
   @endforeach

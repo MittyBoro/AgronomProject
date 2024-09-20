@@ -150,7 +150,11 @@ class Order extends Model implements OrderInterface
 
     protected function discount(): Attribute
     {
-        return Attribute::make(get: fn() => $this->total_price - $this->price);
+        return Attribute::make(
+            get: fn() => $this->total_price -
+                $this->price -
+                $this->delivery_price,
+        );
     }
 
     public function scopeIsActive(Builder $query)

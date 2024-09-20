@@ -245,12 +245,12 @@
         </div>
 
         {{-- Доставка --}}
-        @if (isset($deliveryPrice))
-          <div class="checkout__total">
-            <span class="checkout__total-label">Доставка:</span>
-            <span class="checkout__total-value">0 ₽</span>
-          </div>
-        @endif
+        <div class="checkout__total">
+          <span class="checkout__total-label">Доставка:</span>
+          <span class="checkout__total-value">
+            {{ price_formatter($this->delivery) }} ₽
+          </span>
+        </div>
 
         {{-- Промокод --}}
         <div class="checkout__total" x-show="$wire.couponAmount">
@@ -292,32 +292,37 @@
         {{-- способы оплаты --}}
         <div class="checkout__payment-methods">
           {{--  --}}
-          <x-form.radio
-            class="checkout__payment"
-            id="card"
-            name="payment_method"
-            value="card"
-            wire:model="form.payment_method"
-            required
-          >
-            Банковской картой
-            <img
-              class="checkout__payment-icon"
-              src="{{ Vite::front('images/visa-mastercard-mir.png') }}"
-              alt="Visa MasterCard Mir"
-            />
-          </x-form.radio>
+          @if (config('shop.drivers.yookassa'))
+            <x-form.radio
+              class="checkout__payment"
+              id="card"
+              name="payment_method"
+              value="yookassa"
+              wire:model="form.payment_method"
+              required
+            >
+              Банковской картой
+              <img
+                class="checkout__payment-icon"
+                src="{{ Vite::front('images/visa-mastercard-mir.png') }}"
+                alt="Visa MasterCard Mir"
+              />
+            </x-form.radio>
+          @endif
+
           {{--  --}}
-          <x-form.radio
-            class="checkout__payment"
-            id="cash"
-            name="payment_method"
-            value="cash"
-            wire:model="form.payment_method"
-            required
-          >
-            Наличными при доставке
-          </x-form.radio>
+          @if (config('shop.drivers.cash'))
+            <x-form.radio
+              class="checkout__payment"
+              id="cash"
+              name="payment_method"
+              value="cash"
+              wire:model="form.payment_method"
+              required
+            >
+              Наличными при доставке
+            </x-form.radio>
+          @endif
         </div>
 
         {{-- кнопочка --}}
@@ -325,7 +330,12 @@
           <button class="checkout__submit-button button">Оформить заказ</button>
 
           {{--  --}}
-          <x-form.checkbox class="checkout__privacy" id="privacy" required>
+          <x-form.checkbox
+            class="checkout__privacy"
+            id="privacy"
+            required
+            checked
+          >
             Нажимая эту кнопку я соглашаюсь с
             <a class="link underline" href="/privacy">
               Политикой конфиденциальности

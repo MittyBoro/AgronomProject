@@ -108,7 +108,7 @@
 
     <a
       class="profile-index__orders-button button button-alt"
-      href="{{ route('profile.orders') }}"
+      href="{{ route('profile.orders.index') }}"
     >
       Ко всем заказам
     </a>

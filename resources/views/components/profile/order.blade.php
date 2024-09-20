@@ -9,7 +9,7 @@
         class="profile-order__status-icon profile-order__status--{{
           match ($order->status->value) {
             'completed' => 'success',
-            'canceled' => '',
+            'processing', 'shipped' => 'info',
             'refunded' => '',
             default => 'pending',
           }
@@ -31,7 +31,19 @@
           Способ оплаты
         </div>
         <div class="profile-order__info-text profile__info-text">
-          {{ $order->payment_method }}
+          {{
+            match ($order->payment_method) {
+              'cash' => 'Наличные',
+              'yookassa' => 'Банковская карта',
+            }
+          }}
+        </div>
+      </div>
+
+      <div class="profile-order__info-line profile__info-line">
+        <div class="profile-order__info-title profile__info-title">Товары</div>
+        <div class="profile-order__info-text profile__info-text">
+          {{ price_formatter($order->price) }} ₽
         </div>
       </div>
 
@@ -40,7 +52,7 @@
           Стоимость доставки
         </div>
         <div class="profile-order__info-text profile__info-text">
-          {{ (int) $order->delivery_price ? price_formatter($order->delivery_price) . ' ₽' : 'Бесплатно' }}
+          {{ $order->delivery_price ? price_formatter($order->delivery_price) . ' ₽' : 'Бесплатно' }}
         </div>
       </div>
 
@@ -50,7 +62,7 @@
             Скидка
           </div>
           <div class="profile-order__info-text profile__info-text">
-            -{{ price_formatter($order->discount) }} ₽
+            {{ price_formatter($order->discount) }} ₽
           </div>
         </div>
       @endif
@@ -69,9 +81,7 @@
 
       {{--  --}}
       <div class="profile-order__info-line profile__info-line">
-        <div class="profile-order__info-title profile__info-title">
-          Сумма заказа
-        </div>
+        <div class="profile-order__info-title profile__info-title">Итого</div>
         <div class="profile-order__info-text profile__info-text">
           <b>{{ price_formatter($order->total_price) }} ₽</b>
         </div>
@@ -137,11 +147,13 @@
             </div>
           </div>
           <div class="profile-order__product-price">
-            <span>{{ price_formatter($item->price) }} ₽</span>
+            <span>{{ price_formatter(round($item->price)) }} ₽</span>
             <span>× {{ $item->quantity }}</span>
           </div>
           <div class="profile-order__product-total">
-            <b>{{ price_formatter($item->price * $item->quantity) }} ₽</b>
+            <b>
+              {{ price_formatter(round($item->price * $item->quantity)) }} ₽
+            </b>
           </div>
         </div>
       @endforeach

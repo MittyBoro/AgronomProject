@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\CheckoutForm;
 use App\Models\Coupon;
+use App\Models\Order;
 use App\Models\Prop;
 use App\Models\User;
 use App\Services\Cart\CartService;
+use App\Services\Payment\PaymentService;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -41,7 +44,7 @@ class CheckoutPage extends Component
 
     public ?string $couponError; // ошибка при применении купона
 
-    private ?Coupon $coupon; // купон
+    private ?Coupon $coupon = null; // купон
 
     public ?int $couponAmount = 0; // скидка по купону
 
@@ -53,12 +56,17 @@ class CheckoutPage extends Component
 
     public function mount(): void
     {
-        $this->setDataByCart();
-
         $this->fillFormDefaults();
 
         $this->seo()->setTitle('Оформление заказа');
         $this->seo()->metatags()->addMeta('robots', 'noindex, nofollow');
+
+        $this->setDataByCart();
+
+        // применить промокод, если был введён ранее
+        if ($this->couponCode) {
+            $this->applyCoupon();
+        }
     }
 
     /**
@@ -71,12 +79,33 @@ class CheckoutPage extends Component
     }
 
     /**
+     * Стоимость доставки
+     */
+    #[Computed]
+    public function delivery(): int
+    {
+        $freeDeliveryMinAmount = (int) Prop::get('free_delivery_min_amount', 0);
+
+        if (
+            $this->subTotal - $this->couponAmount - $this->spentBonuses >=
+            $freeDeliveryMinAmount
+        ) {
+            return 0;
+        }
+
+        return (int) Prop::get('delivery_price', 0);
+    }
+
+    /**
      * Итоговая стоимость со скидками
      */
     #[Computed]
     public function total(): int
     {
-        return $this->subTotal - $this->couponAmount - $this->spentBonuses;
+        return $this->subTotal -
+            $this->couponAmount -
+            $this->spentBonuses +
+            $this->delivery();
     }
 
     /**
@@ -98,7 +127,9 @@ class CheckoutPage extends Component
         $maxSpentPercent = Prop::get('max_bonuses_spend_percent', 10);
 
         $maxSpentBonusesByCart = round(
-            (($this->subTotal - $this->couponAmount) * $maxSpentPercent) / 100,
+            (($this->subTotal - $this->couponAmount + $this->delivery()) *
+                $maxSpentPercent) /
+                100,
         );
         $maxSpentBonuses = max(
             0,
@@ -128,11 +159,6 @@ class CheckoutPage extends Component
 
         // рассчёт общей суммы
         $this->subTotal = $this->cartService->totalPrice();
-
-        // применить промокод, если был введён ранее
-        if ($this->couponCode) {
-            $this->applyCoupon();
-        }
     }
 
     /**
@@ -189,16 +215,21 @@ class CheckoutPage extends Component
                 $this->form->email = $this->user->email;
             }
         }
+
+        $this->form->payment_method =
+            array_keys(config('shop.drivers'))[0] ?? null;
     }
 
     /**
      * Применить купон
      */
-    public function applyCoupon(): void
+    public function applyCoupon($resetSpentBonuses = true): void
     {
         // сбросить скидку бонусами
-        $this->spentBonuses = 0;
-        $this->isEarnBonuses = true;
+        if ($resetSpentBonuses) {
+            $this->spentBonuses = 0;
+            $this->isEarnBonuses = true;
+        }
 
         if (empty($this->couponCode)) {
             $this->couponError = '';
@@ -216,7 +247,9 @@ class CheckoutPage extends Component
         } else {
             $this->couponError = null;
             $this->couponAmount = round(
-                ($this->subTotal * $this->coupon->percent) / 100,
+                (($this->subTotal + $this->delivery()) *
+                    $this->coupon->percent) /
+                    100,
             );
         }
     }
@@ -226,6 +259,81 @@ class CheckoutPage extends Component
      */
     public function submit(): void
     {
-        //
+        // заполнить информацию из корзины
+        $this->setDataByCart();
+        // применить промокод, если введён
+        if ($this->couponCode) {
+            $this->applyCoupon(false);
+        }
+
+        $this->validate();
+
+        $data = $this->form->all();
+
+        $data['user_id'] = $this->user->id;
+
+        $data['price'] = $this->subTotal;
+        $data['delivery_price'] = $this->delivery();
+        $data['total_price'] = $this->total();
+
+        if ($this->coupon) {
+            $data['coupon_id'] = $this->coupon->id;
+        }
+
+        $discountFactor =
+            ($data['total_price'] - $data['delivery_price']) / $data['price'];
+
+        $items = $this->getOrderItems($discountFactor);
+
+        // создать заказ
+        $order = Order::create($data);
+        $order->items()->createMany($items);
+
+        // потратить бонусы
+
+        if ($this->spentBonuses) {
+            $order->bonuses()->create([
+                'amount' => $this->spentBonuses * -1,
+                'user_id' => $this->user->id,
+            ]);
+        }
+
+        try {
+            $payment = PaymentService::set($order);
+            $payment->charge();
+
+            $order->refresh();
+
+            // удалить купон
+            $this->couponCode = null;
+
+            // перенаправить на страницу оплаты
+            $this->redirect($order->getPaymentUrl());
+        } catch (Exception $e) {
+            $order->delete();
+            $this->addError('payment', $e->getMessage());
+        }
+    }
+
+    /**
+     * Получить список товаров для заказа
+     * с учётом полной скидки на сумму заказа
+     */
+    private function getOrderItems(float $discountFactor): array
+    {
+        $items = [];
+        foreach ($this->items() as $item) {
+            $items[] = [
+                'product_id' => $item->product_id,
+                'product_variation_id' => $item->product_variation_id,
+                'media_id' => $item->product->media()->first()?->id,
+                'product_title' => $item->product->title,
+                'variation_title' => $item->variation?->full_title,
+                'quantity' => $item->quantity,
+                'price' => $item->total_price * $discountFactor,
+            ];
+        }
+
+        return $items;
     }
 }

@@ -39,7 +39,8 @@
         @class([
           'profile-header__link',
           'active' =>
-            request()->routeIs('profile.orders') || request()->routeIs('profile.order'),
+            request()->routeIs('profile.orders.index') ||
+            request()->routeIs('profile.orders.show'),
         ])
         wire:navigate
       >

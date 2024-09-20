@@ -18,12 +18,14 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "propaganistas/laravel-phone": "^5.3",
-        "spatie/laravel-medialibrary": "^11.9"
+        "spatie/laravel-medialibrary": "^11.9",
+        "yoomoney/yookassa-sdk-php": "^3.6"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
         "barryvdh/laravel-ide-helper": "^3.1",
         "fakerphp/faker": "^1.23",
+        "laravel-lang/common": "^6.4",
         "laravel-lang/lang": "^15.7",
         "laravel/pint": "^1.17",
         "laravel/sail": "^1.31",

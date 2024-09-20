@@ -102,7 +102,7 @@
             </a>
             <a
               class="dropdown-item link"
-              href="{{ route('profile.orders') }}"
+              href="{{ route('profile.orders.index') }}"
               rel="nofollow"
               wire:navigate
             >

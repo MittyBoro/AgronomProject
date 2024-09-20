@@ -36,7 +36,7 @@ if (!function_exists('faker_media_url')) {
 if (!function_exists('price_formatter')) {
     function price_formatter(null|float|int $price): string
     {
-        return number_format($price, 0, ',', ' ');
+        return str_replace('.00', '', number_format($price, 2, '.', ' '));
     }
 }
 

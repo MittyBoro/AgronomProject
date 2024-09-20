@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Payments\WebhookController;
 use App\Livewire\AboutPage;
 use App\Livewire\ArticleListPage;
 use App\Livewire\ArticlePage;
@@ -45,11 +46,16 @@ Route::prefix('/profile')
         Route::middleware(['verified'])->group(function (): void {
             Route::get('/', IndexPage::class)->name('index');
             Route::get('/loyalty', ProfileLoyaltyPage::class)->name('loyalty');
-            Route::get('/orders', OrdersPage::class)->name('orders'); // replace
+            Route::get('/orders', OrdersPage::class)->name('orders.index');
             Route::get('/orders/{order:id}', SingleOrderPage::class)->name(
-                'order',
-            ); // replace
+                'orders.show',
+            );
         });
     });
+
+Route::any('/payment/webhook/{method}', [
+    WebhookController::class,
+    'handle',
+])->name('payment.webhook');
 
 Route::get('/{page:slug}', SimplePage::class)->name('page');

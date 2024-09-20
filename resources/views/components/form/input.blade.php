@@ -9,6 +9,7 @@
             placeholder="+7 ___ ___ __ __"
         @endif
         x-mask="+7 999 999 99 99"
+        pattern="\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}"
         x-on:input="
             (event.target.value.startsWith('+7 8') ||
                 event.target.value.startsWith('+7 7')) &&

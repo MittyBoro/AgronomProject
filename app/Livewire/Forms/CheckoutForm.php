@@ -2,35 +2,60 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Validate;
+use Illuminate\Validation\Rule;
 use Livewire\Form;
 
 class CheckoutForm extends Form
 {
-    #[Validate('required|min:3|max:255')]
     public $full_name;
 
-    #[Validate('required|email|max:255')]
     public $email;
 
-    #[Validate('required|phone:INTERNATIONAL,RU')]
     public $phone;
 
-    #[Validate('nullable|string|min:6|max:8')]
     public $postal_code;
 
-    #[Validate('required|min:3|max:255')]
     public $city;
 
-    #[Validate('required|min:3|max:255')]
     public $address;
 
-    #[Validate('nullable|max:5000')]
     public $comment;
 
-    #[Validate('boolean')]
     public $save_info = true;
 
-    #[Validate('required|in:card,cash')]
-    public $payment_method = 'card';
+    public $payment_method = '';
+
+    public function rules()
+    {
+        return [
+            'full_name' => ['required', 'min:3', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'phone:INTERNATIONAL,RU'],
+            'postal_code' => ['nullable', 'string', 'min:6', 'max:8'],
+            'city' => ['required', 'min:3', 'max:255'],
+            'address' => ['required', 'min:3', 'max:255'],
+            'comment' => ['nullable', 'max:5000'],
+            'save_info' => ['required', 'boolean'],
+            'payment_method' => [
+                'required',
+                Rule::in(array_keys(config('shop.drivers'))),
+            ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'phone' => 'Поле :attribute должно быть корректным номером.',
+        ];
+    }
+
+    public function validationAttributes()
+    {
+        return [
+            'full_name' => 'Фамилия Имя Отчество',
+            'payment_method' => 'Способ оплаты',
+            'comment' => 'Комментарий',
+        ];
+    }
 }

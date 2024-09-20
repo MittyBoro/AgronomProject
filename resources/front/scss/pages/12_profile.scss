@@ -384,6 +384,11 @@
 }
 .profile-order__status--pending {
   background: var(--warning-color);
+  animation: blink 0.5s infinite linear alternate;
+}
+.profile-order__status--info {
+  background: var(--info-color);
+  animation: blink 0.5s infinite linear alternate;
 }
 .profile-order__arrow {
   position: relative;
