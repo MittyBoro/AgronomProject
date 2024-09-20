@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Enums\CartTypeEnum;
 use App\Enums\OrderStatusEnum;
+use App\Models\Cart;
 use App\Models\Order;
 
 class OrderObserver
@@ -12,7 +14,10 @@ class OrderObserver
      */
     public function created(Order $order): void
     {
-        $order->decrementProductStock();
+        // товары добавятся сразу, но после created
+        dispatch(fn() => $order->decrementProductStock())->afterResponse();
+
+        // уменьшаем количество купонов
         $order->decrementCouponCount();
     }
 
@@ -49,6 +54,24 @@ class OrderObserver
                         $order->decrementCouponCount(-1);
                     }
 
+                    if ($order->status === OrderStatusEnum::Refunded) {
+                        $order->getPaymentService()->refund();
+                    }
+
+                    break;
+                // оплаченный заказ переводим в "в работу"
+                case OrderStatusEnum::Paid:
+                    $order->status = OrderStatusEnum::Processing;
+                    $order->save();
+
+                    // Очищаем корзину
+                    dispatch(
+                        fn() => Cart::query()
+                            ->where('type', CartTypeEnum::Cart)
+                            ->where('user_id', $order->user_id)
+                            ->delete(),
+                    );
+
                     break;
 
                 default:
@@ -76,7 +99,9 @@ class OrderObserver
      */
     public function deleted(Order $order): void
     {
-        //
+        $order->decrementProductStock(-1);
+        $order->decrementCouponCount(-1);
+        $order->bonuses()->delete();
     }
 
     /**
