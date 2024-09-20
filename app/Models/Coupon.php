@@ -27,6 +27,9 @@ class Coupon extends Model
     {
         static::saving(function (Coupon $coupon): void {
             $coupon->code = Str::upper($coupon->code);
+            if ($coupon->count < 1) {
+                $coupon->is_active = false;
+            }
         });
     }
 

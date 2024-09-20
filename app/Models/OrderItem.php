@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Contracts\OrderItemInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class OrderItem extends Model
+class OrderItem extends Model implements OrderItemInterface
 {
     use HasFactory;
 
@@ -60,7 +61,10 @@ class OrderItem extends Model
      */
     public function variation()
     {
-        return $this->belongsTo(ProductVariation::class);
+        return $this->belongsTo(
+            ProductVariation::class,
+            'product_variation_id',
+        );
     }
 
     /**
@@ -69,5 +73,20 @@ class OrderItem extends Model
     public function media()
     {
         return $this->belongsTo(Media::class);
+    }
+
+    public function getAmount()
+    {
+        return $this->price;
+    }
+
+    public function getName()
+    {
+        return trim($this->product_title . ' ' . $this->variation_title);
+    }
+
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 }

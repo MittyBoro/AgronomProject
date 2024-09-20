@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Contracts\OrderInterface;
 use App\Enums\OrderStatusEnum;
+use App\Models\Traits\OrderTrait;
 use App\Observers\OrderObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,9 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
 #[ObservedBy([OrderObserver::class])]
-class Order extends Model
+class Order extends Model implements OrderInterface
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, OrderTrait, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -32,12 +34,16 @@ class Order extends Model
         'address',
         'comment',
         'save_info',
+
         'delivery_comment',
         'coupon_id',
-        'delivery_price',
+
         'price',
+        'delivery_price',
         'total_price',
+
         'payment_method',
+        'payment_data',
         'status',
         'is_archived',
         'is_notified',
@@ -54,6 +60,7 @@ class Order extends Model
             'phone' => E164PhoneNumberCast::class . ':RU',
             'save_info' => 'boolean',
             'status' => OrderStatusEnum::class,
+            'payment_data' => 'array',
 
             'delivery_price' => 'decimal:2',
             'price' => 'decimal:2',
@@ -190,19 +197,15 @@ class Order extends Model
      */
     public function decrementProductStock(int $decrement = 1): void
     {
+        $this->refresh();
         $this->load('items.product', 'items.variation');
-
         $this->items->each(function (OrderItem $item) use ($decrement): void {
             if ($item->variation) {
-                $item->variation->decrement(
-                    'stock',
-                    $item->quantity * $decrement,
-                );
+                $item->variation->stock -= $item->quantity * $decrement;
+                $item->variation->save();
             } else {
-                $item->product->decrement(
-                    'stock',
-                    $item->quantity * $decrement,
-                );
+                $item->product->stock -= $item->quantity * $decrement;
+                $item->product->save();
             }
         });
     }
@@ -213,7 +216,8 @@ class Order extends Model
     public function decrementCouponCount(int $decrement = 1): void
     {
         if ($this->coupon) {
-            $this->coupon->decrement('count', $decrement);
+            $this->coupon->count -= $decrement;
+            $this->coupon->save();
         }
     }
 }
