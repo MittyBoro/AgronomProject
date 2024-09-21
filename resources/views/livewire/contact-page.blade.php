@@ -49,15 +49,20 @@
           @endforeach
         </div>
       </div>
-      <form class="contacts__form">
+      <form wire:submit.prevent="submit" class="contacts__form">
         <div class="contacts__form-title head-row__title">
           <h1>Написать нам</h1>
+        </div>
+        <div class="contacts__form-messages">
+          <x-form.validation-errors />
+          <x-form.session-status />
         </div>
 
         <x-form.input
           class="contacts__form"
           id="name"
           label="Ваше имя"
+          wire:model="form.name"
           required
         />
         <x-form.input
@@ -65,12 +70,14 @@
           id="email"
           type="email"
           label="Ваш email"
+          wire:model="form.email"
           required
         />
         <x-form.input
           class="contacts__form"
           id="phone"
           type="tel"
+          wire:model="form.phone"
           label="Ваш телефон"
         />
         <x-form.textarea
@@ -78,14 +85,16 @@
           id="message"
           label="Ваше сообщение"
           rows="6"
+          wire:model="form.message"
           required
         />
-
-        <div class="contacts__form-submit-row">
-          <button class="contacts__form-submit button" type="submit">
-            Отправить
-          </button>
-        </div>
+        @if (! session()->has('status'))
+          <div class="contacts__form-submit-row">
+            <button class="contacts__form-submit button" type="submit">
+              Отправить
+            </button>
+          </div>
+        @endif
       </form>
     </div>
   </section>

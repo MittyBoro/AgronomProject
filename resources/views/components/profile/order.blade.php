@@ -35,6 +35,7 @@
             match ($order->payment_method) {
               'cash' => 'Наличные',
               'yookassa' => 'Банковская карта',
+              default => 'Неизвестно',
             }
           }}
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
@@ -24,6 +25,28 @@ class Callback extends Model
         'is_archived',
         'form',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (self $model): void {
+            $model->user_hash = md5(
+                serialize([
+                    request()->ip(),
+                    request()->server('HTTP_USER_AGENT'),
+                ]),
+            );
+
+            $canCreate = !self::where('user_hash', $model->user_hash)
+                ->where('created_at', '>=', Carbon::now()->subMinutes(1))
+                ->exists();
+
+            if (!$canCreate) {
+                throw new \Exception(
+                    'Слишком частые обращения, пожалуйста, повторите позднее',
+                );
+            }
+        });
+    }
 
     /**
      * Get the attributes that should be cast.

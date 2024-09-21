@@ -95,6 +95,13 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return Attribute::make(get: fn() => $this->role === RoleEnum::Admin);
     }
 
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => trim($this->first_name . ' ' . $this->last_name),
+        );
+    }
+
     protected function balance(): Attribute
     {
         return Attribute::make(
