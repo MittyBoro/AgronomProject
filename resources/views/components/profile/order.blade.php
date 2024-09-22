@@ -24,6 +24,7 @@
     />
   </div>
   <div class="profile-order__body" x-cloak x-show="open" x-collapse>
+    {{--  --}}
     <div class="profile-order__info">
       <div class="profile-order__info-header">Информация о заказе</div>
       <div class="profile-order__info-line profile__info-line">
@@ -88,6 +89,8 @@
         </div>
       </div>
     </div>
+
+    {{--  --}}
     <div class="profile-order__info">
       <div class="profile-order__info-header">Контактное лицо</div>
       <div class="profile-order__info-line profile__info-line">
@@ -123,6 +126,16 @@
         </div>
       </div>
     </div>
+
+    {{--  --}}
+    @if (! empty($order->delivery_comment))
+      <div class="profile-order__info" style="grid-column: 1 / -1">
+        <div class="profile-order__info-header">Комментарий отправителя</div>
+        <p>{!! nl2br($order->delivery_comment) !!}</p>
+      </div>
+    @endif
+
+    {{--  --}}
     <div class="profile-order__products">
       @foreach ($order->items as $item)
         <div class="profile-order__product">

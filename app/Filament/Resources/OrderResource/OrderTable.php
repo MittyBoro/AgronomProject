@@ -7,6 +7,9 @@ use App\Filament\Resources\OrderResource;
 use App\Filament\Tables\ArchiveAction;
 use App\Filament\Tables\IdColumn;
 use App\Models\Order;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\Layout\Component;
 use Filament\Tables\Columns\Layout\Grid;
@@ -53,11 +56,34 @@ class OrderTable
             //
             ->recordClasses('fi-table-order-row')
             //
-            ->defaultPaginationPageOption(25)
-            //
             ->actions([
                 // в архив
                 ArchiveAction::make('archive')->button(),
+
+                Action::make('changeDeliveryComment')
+                    ->label('Комментарий')
+                    ->icon('heroicon-o-pencil')
+                    ->visible(fn(Order $record) => !$record->is_archived)
+                    ->button()
+                    ->color('gray')
+                    ->modalHeading(
+                        fn(Order $record) => 'Комментарий к заказу #' .
+                            $record->id,
+                    )
+                    ->modalDescription(
+                        'Здесь можно оставить код для отслеживания заказа, или другие данные, которые увидит покупатель',
+                    )
+                    ->form([
+                        Textarea::make('delivery_comment')
+                            ->label('Текст')
+                            ->autosize()
+                            ->nullable(),
+                    ])
+                    ->action(function (array $data, Order $record): void {
+                        $record->delivery_comment = $data['delivery_comment'];
+                        $record->is_notified = false;
+                        $record->save();
+                    }),
             ])
             //
             ->defaultSort('id', 'desc');
@@ -256,7 +282,25 @@ class OrderTable
                             ),
                         ),
                 ]),
+            ])->extraAttributes([
+                'class' => 'mb-4',
             ]),
+
+            // Комментарии к доставке
+            Panel::make([
+                TextColumn::make('delivery_comment')
+                    ->icon('heroicon-o-chat-bubble-bottom-center-text')
+                    ->color('info')
+                    ->tooltip('Комментарий к доставке')
+                    ->label('Ваш комментарий')
+                    ->grow(true),
+            ])
+                ->visible(
+                    fn(Order $record) => !empty($record->delivery_comment),
+                )
+                ->extraAttributes([
+                    'class' => 'mb-4',
+                ]),
 
             // Покупатель
             Panel::make([

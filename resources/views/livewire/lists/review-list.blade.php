@@ -15,7 +15,7 @@
           @foreach ($reviews as $review)
             <div :key="$review->id" class="review__card">
               <div class="review__card-name">{{ $review->name }}</div>
-              @if ($review->relationLoaded('product'))
+              @if ($review->relationLoaded('product') && $review->product)
                 <a
                   class="review__card-product link"
                   href="/products/{{ $review->product->slug }}"
@@ -26,7 +26,7 @@
               @endif
 
               <div class="review__card-text">
-                {{ $review->comment }}
+                {!! $review->comment !!}
               </div>
               <div class="review__card-rating rating">
                 <span
