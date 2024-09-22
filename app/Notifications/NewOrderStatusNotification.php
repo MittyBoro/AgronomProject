@@ -5,20 +5,21 @@ namespace App\Notifications;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Markdown;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewOrderStatusNotification extends Notification
+class NewOrderStatusNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(protected Order $order)
+    public function __construct(public Order $order)
     {
-        //
+        $this->order->refresh();
     }
 
     /**
@@ -76,5 +77,12 @@ class NewOrderStatusNotification extends Notification
         return [
                 //
             ];
+    }
+
+    public function shouldSend(object $notifiable, string $channel): bool
+    {
+        $this->order->refresh();
+
+        return !$this->order->is_notified;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\CallbackCreatedEvent;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,6 +47,10 @@ class Callback extends Model
                     'Слишком частые обращения, пожалуйста, повторите позднее',
                 );
             }
+        });
+
+        static::created(function (self $model): void {
+            event(new CallbackCreatedEvent($model));
         });
     }
 

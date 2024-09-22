@@ -83,42 +83,44 @@
   @endif
 
   {{--  --}}
-  <table>
-    <tbody>
-      @foreach ($order->items as $item)
-        <tr>
-          <td style="width: 50px; vertical-align: middle; padding: 5px 0">
-            <x-main.picture :media="$item->media" />
-          </td>
-          <td style="padding: 0 10px">
-            @if ($item->product)
-              <a
-                href="{{ route('product', $item->product->slug) }}"
-                target="_blank"
-              >
-                {{ $item->product_title }}
-              </a>
-            @else
-              <span>
-                {{ $item->product_title }}
-              </span>
-            @endif
-            @if (! empty($item->variation_title))
+  <div class="table">
+    <table>
+      <tbody>
+        @foreach ($order->items as $item)
+          <tr>
+            <td style="width: 50px; vertical-align: middle; padding: 5px 0">
+              <x-main.picture :media="$item->media" />
+            </td>
+            <td style="padding: 0 10px">
+              @if ($item->product)
+                <a
+                  href="{{ route('product', $item->product->slug) }}"
+                  target="_blank"
+                >
+                  {{ $item->product_title }}
+                </a>
+              @else
+                <span>
+                  {{ $item->product_title }}
+                </span>
+              @endif
+              @if (! empty($item->variation_title))
+                <div>
+                  {{ $item->variation_title }}
+                </div>
+              @endif
+            </td>
+            <td style="text-align: right; white-space: nowrap">
               <div>
-                {{ $item->variation_title }}
+                {{ price_formatter(round($item->price)) }} ₽ × {{ $item->quantity }}
               </div>
-            @endif
-          </td>
-          <td style="text-align: right; white-space: nowrap">
-            <div>
-              {{ price_formatter(round($item->price)) }} ₽ × {{ $item->quantity }}
-            </div>
-            <b>
-              {{ price_formatter(round($item->price * $item->quantity)) }} ₽
-            </b>
-          </td>
-        </tr>
-      @endforeach
-    </tbody>
-  </table>
+              <b>
+                {{ price_formatter(round($item->price * $item->quantity)) }} ₽
+              </b>
+            </td>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
 </div>

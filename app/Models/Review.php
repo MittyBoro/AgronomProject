@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ReviewCreatedEvent;
 use App\Models\Traits\HasResponsiveImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,13 @@ class Review extends Model implements HasMedia
             'is_approved' => 'boolean',
             'is_pinned' => 'boolean',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::created(function (self $model): void {
+            event(new ReviewCreatedEvent($model));
+        });
     }
 
     public function product()

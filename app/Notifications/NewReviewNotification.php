@@ -4,11 +4,12 @@ namespace App\Notifications;
 
 use App\Models\Review;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Markdown;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewReviewNotification extends Notification
+class NewReviewNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -46,6 +47,7 @@ class NewReviewNotification extends Notification
             ->line('Оценка: ' . $this->review->rating)
             ->line('Отзыв:')
             ->line(Markdown::parse('>' . nl2br($this->review->comment)))
+            ->line('Вам нужно одобрить или отклонить отзыв.')
             ->action(
                 'Перейти к отзыву',
                 route(

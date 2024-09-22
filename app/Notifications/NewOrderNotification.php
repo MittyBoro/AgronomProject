@@ -5,20 +5,21 @@ namespace App\Notifications;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Markdown;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\HtmlString;
 
-class NewOrderNotification extends Notification
+class NewOrderNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(protected Order $order)
+    public function __construct(public Order $order)
     {
         //
     }

@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Enums\CartTypeEnum;
 use App\Enums\OrderStatusEnum;
+use App\Events\OrderStatusChangedEvent;
 use App\Models\Cart;
 use App\Models\Order;
 
@@ -28,9 +29,21 @@ class OrderObserver
     {
         if ($order->wasChanged('status')) {
             // в очередь, иначе рекурсия
-            dispatch(fn() => $order->update(['is_notified' => true]));
+            dispatch(fn() => $order->update(['is_notified' => false]));
 
             $oldStatus = $order->getOriginal('status');
+
+            // Уведомляем об изменении статуса
+            switch ($order->status) {
+                case OrderStatusEnum::Paid:
+                case OrderStatusEnum::Processing:
+                case OrderStatusEnum::Shipped:
+                case OrderStatusEnum::Completed:
+                case OrderStatusEnum::Canceled:
+                case OrderStatusEnum::Refunded:
+                    event(new OrderStatusChangedEvent($order));
+                    break;
+            }
 
             switch ($order->status) {
                 case OrderStatusEnum::Completed:
