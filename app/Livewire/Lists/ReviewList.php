@@ -3,9 +3,10 @@
 namespace App\Livewire\Lists;
 
 use App\Models\Review;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
-use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
 
 class ReviewList extends Component
 {
@@ -15,7 +16,11 @@ class ReviewList extends Component
 
     public ?string $pretitle;
 
+    #[Locked]
     public ?int $productId;
+
+    #[Locked]
+    public bool $canCreateReview = false;
 
     private int $perPage = 6;
 

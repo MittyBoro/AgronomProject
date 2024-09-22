@@ -24,6 +24,7 @@
   <livewire:lists.review-list
     title="Отзывы покупателей"
     :product_id="$product->id"
+    :$canCreateReview
   />
 
   {{-- недавно смотрели --}}

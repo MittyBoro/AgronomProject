@@ -22,7 +22,7 @@ class ContactForm extends Form
             'name' => ['required', 'min:2', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['nullable', 'phone:INTERNATIONAL,RU'],
-            'message' => ['nullable', 'min:10', 'max:10000'],
+            'message' => ['required', 'min:10', 'max:10000'],
         ];
     }
 

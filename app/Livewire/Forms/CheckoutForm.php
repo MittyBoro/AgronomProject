@@ -54,8 +54,8 @@ class CheckoutForm extends Form
     {
         return [
             'full_name' => 'Фамилия Имя Отчество',
-            'payment_method' => 'Способ оплаты',
-            'comment' => 'Комментарий',
+            'payment_method' => 'способ оплаты',
+            'comment' => 'комментарий',
         ];
     }
 }

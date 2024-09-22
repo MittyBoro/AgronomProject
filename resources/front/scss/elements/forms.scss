@@ -207,3 +207,35 @@ https://toughengineer.github.io/demo/slider-styler*/
   background: var(--track-background);
   box-shadow: none;
 }
+
+.field-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.field-rating-input {
+  appearance: none;
+  --icon: url(../icons/star.svg);
+  background: #c1c1c1;
+  width: 100px;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid currentColor;
+  transition-property: background, border-color;
+  transition-duration: 0.15s;
+  cursor: pointer;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+  &:hover,
+  &:checked,
+  &:hover ~ .field-rating-input,
+  &:checked ~ .field-rating-input {
+    background: var(--yellow);
+  }
+}

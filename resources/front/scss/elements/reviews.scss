@@ -13,6 +13,26 @@
     grid-template-columns: 1fr;
   }
 }
+.contacts__form-review.contacts__form {
+  display: block;
+  .contacts__form-title {
+    font-size: 24px;
+    margin: 0;
+    @include media-breakpoint-down(md) {
+      font-size: 18px;
+    }
+  }
+  .head-row__title {
+    align-items: center;
+    margin: 0;
+  }
+}
+.review__form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+}
 
 .review__card {
   position: relative;
