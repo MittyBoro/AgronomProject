@@ -7,7 +7,6 @@ use App\Filament\Resources\OrderResource;
 use App\Filament\Tables\ArchiveAction;
 use App\Filament\Tables\IdColumn;
 use App\Models\Order;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\IconColumn;

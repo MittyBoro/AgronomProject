@@ -10,8 +10,8 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Support\RawJs;
@@ -22,21 +22,10 @@ class UserForm
 {
     public static function make(Form $form): Form
     {
-        return $form->columns(1)->schema([
-            Tabs::make()
-                ->persistTabInQueryString()
-                ->tabs([
-                    Tabs\Tab::make('main')
-                        ->label('Основное')
-                        ->schema(self::mainTabSchema()),
-                    Tabs\Tab::make('password')
-                        ->label('Пароль')
-                        ->schema(self::passwordTabSchema()),
-                ]),
-        ]);
+        return $form->columns(1)->schema(self::mainDataSchema());
     }
 
-    private static function mainTabSchema(): array
+    private static function mainDataSchema(): array
     {
         return [
             //
@@ -135,6 +124,8 @@ class UserForm
                         ->rules('phone:INTERNATIONAL:ru'),
                 ]),
 
+            Toggle::make('is_notifiable')->label('Получать уведомления'),
+
             Select::make('role')
                 ->label('Роль')
                 ->options(RoleEnum::array())
@@ -159,6 +150,8 @@ class UserForm
                         }
                     },
                 ]),
+
+            ...self::passwordTabSchema(),
         ];
     }
 
@@ -166,31 +159,31 @@ class UserForm
     {
         return [
             TextInput::make('password')
-                ->label('Новый пароль')
+                ->label('Пароль')
                 ->password()
                 ->minLength(8)
                 ->maxLength(255)
+                ->confirmed()
                 ->password()
                 ->dehydrateStateUsing(fn($state) => Hash::make($state))
                 ->dehydrated(fn($state) => filled($state))
+                ->afterStateHydrated(function (
+                    TextInput $component,
+                    $state,
+                ): void {
+                    $component->state('');
+                })
                 ->confirmed()
                 ->revealable(true)
-                ->disabled(
-                    fn(Get $get, $record) => $record &&
-                        $record->is_admin &&
-                        $get('id') !== Auth::id(),
-                ),
+                ->hidden(fn(?User $record) => $record),
             TextInput::make('password_confirmation')
-                ->label('Повторите новый пароль')
+                ->label('Повторите пароль')
                 ->password()
+                ->confirmed()
                 ->minLength(8)
                 ->maxLength(255)
                 ->revealable(true)
-                ->disabled(
-                    fn(Get $get, $record) => $record &&
-                        $record->is_admin &&
-                        $get('id') !== Auth::id(),
-                ),
+                ->hidden(fn(?User $record) => $record),
         ];
     }
 }

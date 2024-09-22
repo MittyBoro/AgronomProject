@@ -51,7 +51,7 @@
 
       <div class="profile-order__info-line profile__info-line">
         <div class="profile-order__info-title profile__info-title">
-          Стоимость доставки
+          Доставка
         </div>
         <div class="profile-order__info-text profile__info-text">
           {{ $order->delivery_price ? price_formatter($order->delivery_price) . ' ₽' : 'Бесплатно' }}
@@ -73,7 +73,7 @@
       @if ($order->earned_amount)
         <div class="profile-order__info-line profile__info-line">
           <div class="profile-order__info-title profile__info-title">
-            Начально бонусов
+            Начислено бонусов
           </div>
           <div class="profile-order__info-text profile__info-text primary">
             <b>{{ $order->earned_amount }}</b>

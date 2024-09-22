@@ -13,14 +13,6 @@ class PropSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            // 'notification_email'
-            [
-                'type' => 'string',
-                'key' => 'notification_email',
-                'group' => 'Основные',
-                'title' => 'Email для уведомлений',
-            ],
-
             // 'delivery_price'
             [
                 'type' => 'number',

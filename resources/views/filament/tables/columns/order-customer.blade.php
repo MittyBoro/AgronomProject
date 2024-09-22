@@ -1,17 +1,4 @@
 @php
-  //     TextColumn::make('full_name')
-  //         ->label('Покупатель')
-  //         ->icon('heroicon-o-user'),
-  //     TextColumn::make('email')->icon('heroicon-o-at-symbol'),
-  //     TextColumn::make('phone')->icon('heroicon-s-phone'),
-  //     TextColumn::make('postal_code')->icon(
-  //         'heroicon-o-map-pin',
-  //     ),
-  //     TextColumn::make('city')->icon('heroicon-o-map-pin'),
-  //     TextColumn::make('address')->icon('heroicon-o-map-pin'),
-  //     TextColumn::make('comment')->icon(
-  //         'heroicon-o-chat-bubble-bottom-center-text',
-  //     ),
   $gridData = [
     'ФИО' => 'full_name',
     'Email' => 'email',

@@ -33,6 +33,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'loyalty_id',
         'email',
         'phone',
+        'is_notifiable',
         'role',
         'password',
     ];
@@ -57,6 +58,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
             'phone' => E164PhoneNumberCast::class . ':RU',
             'gender' => GenderEnum::class,
             'role' => RoleEnum::class,
+            'is_notifiable' => 'boolean',
         ];
     }
 
@@ -150,5 +152,15 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
             $this->loyalty()->associate($loyalty);
             $this->save();
         }
+    }
+
+    public function scopeIsNotifiable($query)
+    {
+        return $query->where('is_notifiable', true);
+    }
+
+    public function scopeIsAdmin($query)
+    {
+        return $query->where('role', RoleEnum::Admin);
     }
 }
