@@ -5,8 +5,8 @@ namespace App\Livewire\Lists;
 use App\Models\Review;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class ReviewList extends Component
 {

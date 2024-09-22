@@ -35,7 +35,7 @@ class ReviewForm extends Component
         $this->name = $this->user->name;
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate();
 

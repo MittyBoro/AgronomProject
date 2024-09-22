@@ -7,6 +7,7 @@ use App\Models\Page;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Throwable;
 
 class ContactPage extends Component
 {
@@ -50,12 +51,12 @@ class ContactPage extends Component
         ]);
     }
 
-    public function submit()
+    public function submit(): void
     {
         try {
             $this->form->store();
             session()->flash('status', 'Ваше сообщение успешно отправлено!');
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             $this->addError('form', $th->getMessage());
         }
     }

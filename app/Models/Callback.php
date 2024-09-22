@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
@@ -41,7 +42,7 @@ class Callback extends Model
                 ->exists();
 
             if (!$canCreate) {
-                throw new \Exception(
+                throw new Exception(
                     'Слишком частые обращения, пожалуйста, повторите позднее',
                 );
             }

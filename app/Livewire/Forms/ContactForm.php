@@ -3,7 +3,6 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Callback;
-use Illuminate\Http\Request;
 use Livewire\Form;
 
 class ContactForm extends Form
@@ -33,7 +32,7 @@ class ContactForm extends Form
         ];
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate();
 

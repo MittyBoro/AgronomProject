@@ -13,6 +13,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Illuminate\Support\HtmlString;
 
@@ -23,6 +24,13 @@ class ReviewForm extends BaseForm
         return $form->columns(1)->schema([
             Split::make([
                 Section::make()->schema([
+                    //
+                    Select::make('product_id')
+                        ->relationship('product', 'title')
+                        ->searchable(['title', 'description'])
+                        ->preload()
+                        ->label('Товар'),
+
                     TextInput::make('name')
                         ->label('Имя автора')
                         ->required()
@@ -31,6 +39,7 @@ class ReviewForm extends BaseForm
                     Select::make('rating')
                         ->label('Рейтинг')
                         ->prefixIcon('heroicon-o-star')
+                        ->required()
                         ->options([
                             '1' => '1 звезда',
                             '2' => '2 звезды',
@@ -46,19 +55,19 @@ class ReviewForm extends BaseForm
                         ->required()
                         ->maxLength(65535),
 
-                    MediaUpload::make('media')
-                        ->label('Изображения')
-                        ->multiple()
-                        ->maxFiles(10)
-                        ->maxSize(1024 * 20)
-                        ->image()
-                        ->imageEditor()
-                        ->imageResizeTargetWidth(
-                            fn(): ?int => Review::$mediaMaxWidth,
-                        )
-                        ->imageResizeTargetHeight(
-                            fn(): ?int => Review::$mediaMaxWidth,
-                        ),
+                    // MediaUpload::make('media')
+                    //     ->label('Изображения')
+                    //     ->multiple()
+                    //     ->maxFiles(10)
+                    //     ->maxSize(1024 * 20)
+                    //     ->image()
+                    //     ->imageEditor()
+                    //     ->imageResizeTargetWidth(
+                    //         fn(): ?int => Review::$mediaMaxWidth,
+                    //     )
+                    //     ->imageResizeTargetHeight(
+                    //         fn(): ?int => Review::$mediaMaxWidth,
+                    //     ),
                 ]),
 
                 // сайдбар справа
@@ -74,7 +83,7 @@ class ReviewForm extends BaseForm
         return [
             Placeholder::make('user')
                 ->label('Автор отзыва')
-                ->hidden(fn(?Review $record) => !$record)
+                ->hidden(fn(?Review $record) => !$record?->user)
                 ->content(
                     fn(?Review $record) => new HtmlString(
                         '<a class="text-primary-500" href="' .
@@ -88,7 +97,7 @@ class ReviewForm extends BaseForm
                 ),
             Placeholder::make('product')
                 ->label('Товар')
-                ->hidden(fn(?Review $record) => !$record)
+                ->hidden(fn(?Review $record) => !$record?->product)
                 ->content(
                     fn(?Review $record) => new HtmlString(
                         '<a class="block text-primary-500 max-w-60 truncate" href="' .
@@ -100,6 +109,9 @@ class ReviewForm extends BaseForm
                             '</a>',
                     ),
                 ),
+
+            Toggle::make('is_approved')->default(true)->label('Одобрено'),
+            Toggle::make('is_pinned')->label('Закреплено'),
         ];
     }
 }

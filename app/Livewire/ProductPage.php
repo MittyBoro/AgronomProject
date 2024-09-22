@@ -107,7 +107,7 @@ class ProductPage extends Component
             $this->canCreateReview = $user
                 ->orders()
                 ->where('status', OrderStatusEnum::Completed)
-                ->whereHas('items', function ($query) {
+                ->whereHas('items', function ($query): void {
                     $query->where('product_id', $this->productId);
                 })
                 ->exists();

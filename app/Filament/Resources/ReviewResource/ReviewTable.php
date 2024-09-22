@@ -32,6 +32,9 @@ class ReviewTable
                     ->color('info')
                     ->wrap()
                     ->sortable()
+                    ->extraAttributes([
+                        'class' => 'max-w-32 truncate',
+                    ])
                     ->url(
                         fn(Review $record): string => ReviewResource::getUrl(
                             'index',
@@ -48,6 +51,7 @@ class ReviewTable
                 TextColumn::make('comment')
                     ->label('Текст')
                     ->wrap()
+                    ->toggleable()
                     ->formatStateUsing(
                         fn(string $state): HtmlString => new HtmlString(
                             '<span class="leading-tight line-clamp-3 max-w-60">' .
@@ -61,6 +65,7 @@ class ReviewTable
                     ->badge()
                     ->icon('heroicon-o-star')
                     ->color('gray')
+                    ->toggleable()
                     ->sortable(),
 
                 //
@@ -71,7 +76,11 @@ class ReviewTable
                     ->icon('heroicon-o-shopping-bag')
                     ->badge()
                     ->wrap()
+                    ->extraAttributes([
+                        'class' => 'max-w-32 truncate',
+                    ])
                     ->color('gray')
+                    ->toggleable()
                     ->url(
                         fn(Review $record): string => ReviewResource::getUrl(
                             'index',
@@ -168,11 +177,7 @@ class ReviewTable
             ->bulkActions(TableBulkActions::make())
             //
             ->persistSortInSession()
-            ->defaultSort(
-                fn($query) => $query
-                    ->orderBy('is_pinned', 'desc')
-                    ->orderBy('order_column'),
-            )
+            ->defaultSort('id', 'desc')
             ->reorderable('order_column')
             ->striped();
     }
