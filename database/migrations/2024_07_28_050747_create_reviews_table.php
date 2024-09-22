@@ -14,6 +14,7 @@ return new class extends Migration {
         Schema::create('reviews', function (Blueprint $table): void {
             $table->id();
 
+            // nullable fixed
             $table
                 ->foreignId('product_id')
                 ->constrained()
