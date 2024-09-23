@@ -6,6 +6,7 @@
 /public/storage
 /public/assets/filament
 /public/vendor
+/public/sitemap.xml
 /storage/*.key
 /vendor
 .env

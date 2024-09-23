@@ -49,6 +49,26 @@ class ProductPage extends Component
         $this->seo()
             ->setTitle($this->product->meta_title)
             ->setDescription($this->product->meta_description);
+
+        $this->seo()
+            ->jsonLdMulti()
+            ->newJsonLd()
+            ->addValue('Product', [
+                '@type' => 'Product',
+                'name' => $this->product->title,
+                'description' => $this->product->description,
+                'offers' => [
+                    '@type' => 'Offer',
+                    'priceCurrency' => 'RUB',
+                    'price' => $this->product->total_price,
+                    'url' => url('\/products\/' . $this->product->slug),
+                    'availability' => 'http://schema.org/InStock', // или другой статус, если товар недоступен
+                ],
+                'image' => $this->product->preview,
+            ]);
+        $this->seo()
+            ->opengraph()
+            ->addImage($this->product->preview);
     }
 
     private function setBreadcrumbs(): void
