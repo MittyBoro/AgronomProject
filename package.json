@@ -1,4 +1,5 @@
 {
+    "name": "agronom_project",
     "private": true,
     "type": "module",
     "scripts": {
